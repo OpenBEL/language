@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>BEL Specification</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #777777;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+tt {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+.monospaced {
+  font-family: monospace;
+  font-size: inherit;
+  color: navy;
+}
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+
+
+/*
+ * Theme specific overrides of the preceding (asciidoc.css) CSS.
+ *
+ */
+body {
+  font-family: Garamond, Georgia, serif;
+  font-size: 17px;
+  color: #3E4349;
+  line-height: 1.3em;
+}
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Garmond, Georgia, serif;
+  font-weight: normal;
+  border-bottom-width: 0;
+  color: #3E4349;
+}
+div.title, caption.title { color: #596673; font-weight: bold; }
+h1 { font-size: 240%; }
+h2 { font-size: 180%; }
+h3 { font-size: 150%; }
+h4 { font-size: 130%; }
+h5 { font-size: 115%; }
+h6 { font-size: 100%; }
+#header h1 { margin-top: 0; }
+#toc {
+  color: #444444;
+  line-height: 1.5;
+  padding-top: 1.5em;
+}
+#toctitle {
+  font-size: 20px;
+}
+#toc a {
+    border-bottom: 1px dotted #999999;
+    color: #444444 !important;
+    text-decoration: none !important;
+}
+#toc a:hover {
+    border-bottom: 1px solid #6D4100;
+    color: #6D4100 !important;
+    text-decoration: none !important;
+}
+div.toclevel1 { margin-top: 0.2em; font-size: 16px; }
+div.toclevel2 { margin-top: 0.15em; font-size: 14px; }
+em, dt, td.hdlist1 { color: black; }
+strong { color: #3E4349; }
+a { color: #004B6B; text-decoration: none; border-bottom: 1px dotted #004B6B; }
+a:visited { color: #615FA0; border-bottom: 1px dotted #615FA0; }
+a:hover { color: #6D4100; border-bottom: 1px solid #6D4100; }
+div.tableblock > table, table.tableblock { border: 3px solid #E8E8E8; }
+th.tableblock, td.tableblock { border: 1px solid #E8E8E8; }
+ul > li > * { color: #3E4349; }
+pre, tt, .monospaced { font-family: Consolas,Menlo,'Deja Vu Sans Mono','Bitstream Vera Sans Mono',monospace; }
+tt, .monospaced { font-size: 0.9em; color: black;
+}
+div.exampleblock > div.content, div.sidebarblock > div.content, div.listingblock > div.content { border-width: 0 0 0 3px; border-color: #E8E8E8; }
+div.verseblock { border-left-width: 0; margin-left: 3em; }
+div.quoteblock { border-left-width: 3px; margin-left: 0; margin-right: 0;}
+div.admonitionblock td.content { border-left: 3px solid #E8E8E8; }
+
+
+@media screen {
+  body {
+    max-width: 50em; /* approximately 80 characters wide */
+    margin-left: 16em;
+  }
+
+  #toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 13em;
+    padding: 0.5em;
+    padding-bottom: 1.5em;
+    margin: 0;
+    overflow: auto;
+    border-right: 3px solid #f8f8f8;
+    background-color: white;
+  }
+
+  #toc .toclevel1 {
+    margin-top: 0.5em;
+  }
+
+  #toc .toclevel2 {
+    margin-top: 0.25em;
+    display: list-item;
+    color: #aaaaaa;
+  }
+
+  #toctitle {
+    margin-top: 0.5em;
+  }
+}
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install(2);
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>BEL Specification</h1>
+<span id="author">Natalie Catlett</span><br>
+<span id="email" class="monospaced">&lt;<a href="mailto:ncatlett@selventa.com">ncatlett@selventa.com</a>&gt;</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2012-07</span>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>This is the home of the BEL Language Documentation v 1.0</p></div>
+<div class="paragraph"><p>Please cite the BEL v1.0 language documentation as "BEL v1.0 Language
+Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>", along with the date accessed.</p></div>
+<div class="paragraph"><p>All canonical BEL Language Documentation is maintained as wiki pages.
+You can export these pages as PDF via the Browse&#8594;Space Operations&#8594;PDF
+Export.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview">Overview</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>BEL is a language for representing scientific findings in the life
+sciences in a computable form. BEL is designed to represent scientific
+findings by capturing causal and correlative relationships in context,
+where context can include information about the biological and
+experimental system in which the relationships were observed, the
+supporting publications cited and the process of curation.</p></div>
+<div class="paragraph"><p>BEL is intended as a knowledge capture and interchange medium,
+supporting the operation of systems that integrate knowledge derived
+from independent efforts. The language is designed to be use-neutral,
+facilitating the storage and use of structured knowledge for inference
+by applications through a knowledge assembly process that can create
+computable biological networks. While BEL does not prescribe any
+particular assembly process or any particular knowledge format for the
+output of an assembly process, a suite of software components called the
+BEL Framework provides everything necessary to create, compile,
+assemble, and deliver computable knowledge models to BEL-aware
+applications.</p></div>
+<div class="paragraph"><p>The current version of BEL provides the means to describe biological
+interactions qualitatively but not to quantify the magnitude or rate of
+these interactions. This limitation is by design because this
+quantitative information has significant variability and is not
+consistently reported in the literature. It is our hope that future
+versions of BEL can accommodate these additional data, and <strong>that YOU are
+able to work together with the OpenBEL Consortium to make this happen.</strong></p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="language_structure">1. Language Structure</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Knowledge in BEL is expressed as BEL Statements that are stored in BEL
+Documents. BEL Documents are structured text documents that contain BEL
+Statements, along with sufficient additional information to fully
+describe and process the document.</p></div>
+<div class="paragraph"><p>BEL Statements are generally defined as a semantic triple composed of a
+subject - predicate - object where the subject is always a Bel Term and
+the object can be either another BEL Term or a BEL Statement. The
+predicate is one of the BEL Relationship types describing the
+relationship between the subject BEL Term and the object.</p></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img src="/home/tony/projects/openbel/language/version_1.0/bel_statement.jpg" alt="Structure of a BEL Statement">
+</div>
+<div class="title">Figure 1. Structure of a BEL Statement</div>
+</div>
+<div class="paragraph"><p>BEL Terms are composed of BEL Functions and entity definitions
+referenced using BEL Namespace identifiers. Each BEL Term represents
+either an abundance of a biological entity, the abundance of human AKT1
+for example, or a biological process such as cardiomyopathy.</p></div>
+<div class="paragraph"><p>Each BEL Statement can optionally be annotated with one or more
+references which express additional information about the statement
+itself such as the tissue, species, and cell line for example. Within a
+BEL Document statements can be associated with a set of Annotation Types
+that tag each statement and that can be used to describe the context in
+which the statement was observed and increases the richness of the
+knowledge being captured.</p></div>
+<div class="sect2">
+<h3 id="Namespaces">1.1. Namespaces</h3>
+<div class="paragraph"><p>Apart from a concise set of intrinsic categories of life science
+concepts, BEL does not prescribe any specific ontology or vocabulary of
+concepts to be used in the representation of life science knowledge.
+Rather, BEL is specifically designed to adopt external vocabularies and
+ontologies, and therefore represent life-science knowledge in the
+language and schema of the organization collecting or using the
+knowledge. Thus, biological entities encoded in BEL are defined by
+reference to values in external vocabularies, which provide a
+specification of a set of well-known domain values such as the set of
+Entrez Gene Ids. While we consider it good practice to define biological
+entities with respect to well-defined domains such as public ontologies,
+no specific vocabulary is essential to the use of BEL, and users are
+free to define and reference their own vocabularies as needed.</p></div>
+<div class="paragraph"><p>BEL adopts a concept of Namespaces to disambiguate references for
+biological entities. Generally, the user can associate a Namespace
+prefix with an external vocabulary and refer to elements of the
+vocabulary within the Namespace. For example, if we associate the
+Namespace identifier HGNC with the vocabulary of symbols managed by the
+HGNC committee, we can then encode BEL Terms by referencing the
+Namespace identifier and elements within the Namespace. Thus,
+<span class="monospaced">proteinAbundance(HGNC:AKT1)</span> and <span class="monospaced">proteinAbundance(HGNC:TNF)</span> would be
+allowable and valid BEL Terms. However, note that
+<span class="monospaced">proteinAbundance(HGNC:AKT1)</span> simply means "the class of protein
+abundance designated by AKT1 in the HGNC Namespace". Any other knowledge
+about the term must be expressed by BEL Statements.</p></div>
+<div class="sect3">
+<h4 id="_equivalencing_between_namespaces">1.1.1. Equivalencing between Namespaces</h4>
+<div class="paragraph"><p>Values from different Namespaces may correspond to the same biological
+concept. For example, the name AKT1 in the HGNC Namespace refers to the
+same gene referenced with Id 207 in the Entrez Gene Id Namespace. In
+assembling knowledge from BEL Documents, the BEL Compiler/Assembler
+attempts to create networks in which a single node corresponds to both
+the term <span class="monospaced">proteinAbundance(HGNC:AKT1)</span> and <span class="monospaced">proteinAbundance(EGID:207)</span>,
+where EGID is the namespace identifier for the Entrez Gene vocabulary.
+This correspondence of Namespace values is handled in the BEL Framework
+separately from knowledge representation in BEL.</p></div>
+<div class="paragraph"><p>The BEL Framework manages equivalencing between Namespace values through
+the use of BEL Equivalence Tables. When equivalence tables are specified
+as inputs to the knowledge assembly process, the BEL Compiler can
+integrate knowledge expressed using terms based on multiple Namespaces.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bel_terms">2. BEL Terms</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Biological entities in BEL are represented by BEL Terms. Two categories of biological entities are represented in BEL: classes of abundances and classes of processes.</p></div>
+<div class="sect2">
+<h3 id="_abundances">2.1. Abundances</h3>
+<div class="paragraph"><p>Measured values in life science experiments are often measurements of the abundance of a type of thing in a given sample or set of samples. For example, a probe value measured by a microarray provides a measure of the abundance of RNA matching the probe in the sample, and an appropriate set of probe values may be interpreted as a measure of the abundance of the RNA produced by a specific gene. Some BEL Terms represent classes of abundance, the abundances of specific types of things. Examples include "the protein abundance of TP53", "the RNA abundance of CCND1", "the abundance of the protein AKT1 phosphorylated at serine 21", or "the abundance of the complex of the proteins CCND1 and CDK4".</p></div>
+</div>
+<div class="sect2">
+<h3 id="_processes">2.2. Processes</h3>
+<div class="paragraph"><p>Some BEL Terms may represent classes of complex phenomena taking place at the level of the cell or the organism, such as the process of cell cycle or the process of a disease such as cardiomyopathy. In other cases, BEL Terms may represent classes of specific molecular activities, such as a type of reaction involving small molecules or the kinase activity of a class of proteins. Measurable biological parameters such as systolic blood pressure or body temperature do not correspond to abundances, and can be accommodated by representation as process BEL Terms. These BEL Terms thereby denote biological activities that, when measured, are reduced to an output parameter.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_bel_terms_as_functional_expressions">2.3. BEL Terms as Functional Expressions</h3>
+<div class="paragraph"><p>BEL Terms are denoted by expressions composed of a BEL Function and a list of arguments. BEL V1.0 specifies a set of over 30 intrinsic functions allowed in term expressions. The combination of a term function and its arguments fully specifies a represented biological entity. The BEL Term expression <span class="monospaced">f(a)</span> denotes a BEL Term defined by function <span class="monospaced">f()</span> applied to an argument <span class="monospaced">a</span>. Wherever the same function applied to the same arguments is defined, BEL assumes these BEL Terms denote the same biological entity. The semantics of a BEL Term are determined by the definition of the function used in the term expression. For example, the function proteinAbundance() is defined such that any expression using proteinAbundance() represents a class of abundance of protein. Many functions used in BEL take only single values as arguments and provide a structured method of adopting ontologies and vocabularies for use in BEL. For example, values in the HUGO Gene Nomenclature Committee (HGNC) vocabulary of official human gene names can be used to designate gene, RNA, and protein abundances. The function <span class="monospaced">proteinAbundance()</span> could then be applied to an HGNC gene symbol, AKT1 for example, to indicate the class of protein abundances produced by the corresponding gene. Thus, we might encode the BEL Term <span class="monospaced">proteinAbundance(AKT1)</span>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_term_disambiguation_via_namespaces">2.4. Term Disambiguation via Namespaces</h3>
+<div class="paragraph"><p>As gene symbols, and more generally, names in life sciences as a rule are often ambiguous, it is more precise to reference the vocabulary as well as the symbol when designating a term identifying an abundance or biological process. To this end, we would prefer to write <span class="monospaced">proteinAbundance(HGNC:AKT1)</span> so that we can provide an exact specification of the protein abundance being referenced. The designation of a term parameter such as AKT1 referenced with respect to an external ontology, HGNC in this case, is central to the BEL language. Generally, all term parameters are defined within a Namespace identifying the vocabulary used to identify the term parameter. BEL provides the ability to use existing namespaces or to create your own namespaces.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bel_statements">3. BEL Statements</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>BEL Statements are expressions that represent knowledge of the existence of biological entities and relationships between them that are known to be observed within a particular context, based on some source of prior knowledge such as a scientific publication or newly generated experimental data.
+Most BEL Statements represent relationships between one BEL Term and another BEL Term or BEL Statement. This type of BEL Statement represents an assertion of a relationship between the subject and object. BEL defines an intrinsic set of relationship types used to represent the type of relationship observed. If the object of a BEL Statement is another BEL Statement, the BEL Statement is said to be nested and the relationship type is constrained to the set of causal relationship types. A nested BEL Statement represents a causal relationship between two terms, which is in turn causally affected by a third term. An example would be "A increases the process in which B decreases C".In its simplest form a BEL Statement contains a single BEL Term and no relationship. This type of BEL Statement can be used to establish that a BEL Term has been observed in the context of the BEL Statement. A typical example of such a statement would be one that contains a molecular complex term. Such a BEL Statement would assert that the complex has been observed. Statements of this type can capture binding relationships between classes of molecular abundances.</p></div>
+<div class="sect2">
+<h3 id="_examples_of_bel_statements">3.1. Examples of BEL Statements</h3>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>complex(p(HGNC:CCND1), p(HGNC:CDK4))</pre>
+</div></div>
+<div class="paragraph"><p>The abundance of the complex of the proteins designated by <strong>CCND1</strong> and <strong>CDK4</strong> in the HGNC namespace has been observed in this context.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:CCND1) =&gt; kin(p(HGNC:CDK4))</pre>
+</div></div>
+<div class="paragraph"><p>Increased abundance of the protein designated by <strong>CCND1</strong> in the HGNC namespace directly increases the kinase activity of the abundance of the protein designated by <strong>CDK4</strong> in the HGNC namespace.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:BCL2)-| bp(MESHPP:Apoptosis)</pre>
+</div></div>
+<div class="paragraph"><p>Increased abundance of the protein designated by <strong>BCL2</strong> in the HGNC namespace decreases the biological process designated by <strong>apoptosis</strong> in the MESHPP (phenomena and processes) namespace.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:GATA1) =&gt; ( tscript(p(HGNC:ZBTB16)) =&gt; r(HGNC:MPL) )</pre>
+</div></div>
+<div class="paragraph"><p>Increased abundance of the protein designated by <strong>GATA1</strong> in the HGNC namespace directly increases the process in which the transcriptional activity of the protein abundance designated by <strong>ZBTB16</strong> in the HGNC namespace directly increases the abundance of RNA designated by <strong>MPL</strong> in the HGNC namespace.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_annotations">4. Annotations</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Each BEL Statement can optionally be annotated to express knowledge about the statement itself. Some important uses of annotations are to:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Specify information about the biological system in which the facts represented by the statement hold or were demonstrated,
+</p>
+</li>
+<li>
+<p>
+Specify information about the experimental methods used to demonstrate the facts, and
+</p>
+</li>
+<li>
+<p>
+Specify information about the knowledge source on which the statement is based, such as the citation and the specific text supporting the statement.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Examples of annotations that could be associated with a BEL Statement are the:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+PubMed id specifying the publication in which the findings were reported,
+</p>
+</li>
+<li>
+<p>
+Species, tissue, and cellular location in which the observations were made, and
+</p>
+</li>
+<li>
+<p>
+Dosage, exposure and recovery time for an experimental result.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>BEL allows annotations to be defined to meet the needs of the knowledge designer. The knowledge designer can define and use their own annotations, or use one or more provided by the BEL Framework. Annotation Types are defined within a BEL Document and each Annotation Type has the following characteristics:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+A unique name within a BEL Document,
+</p>
+</li>
+<li>
+<p>
+A pre-specified domain of allowable values, and
+</p>
+</li>
+<li>
+<p>
+Optionally, usage information and a description.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Each Annotation Type is given a unique name within a BEL Document. Examples of Annotation Type names might be Species, ExperimentType, Dosage, and ExposureTime. Each Annotation Type must have a domain of allowable values associated with it. BEL supports three (3) ways in which domain values for an Annotation Type may be specified:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+An externally specified enumerated list, such as the set of NCBI Taxonomy IDs,
+</p>
+</li>
+<li>
+<p>
+An internally specified enumerated list, and
+</p>
+</li>
+<li>
+<p>
+A regular expression.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Internally specified lists can be defined within a BEL Document. These lists enumerate the set of allowable domain values for statements using the Annotation Type within the BEL Document. For example, an annotation type named <em>dosage</em> might have the domain values <span class="monospaced">{"LOW", "MEDIUM", "HIGH"}</span> specified as a list.</p></div>
+<div class="paragraph"><p>Annotation Types defined using a regular expression domain allow the knowledge designer to specify which strings are allowed for statements using the Annotation Type within the BEL Document. For example, a regular expression such as <span class="monospaced">[-+]?[0-9]*\.?[0-9]+</span> can be used to constrain the annotation type to only allow floating-point numbers.</p></div>
+<div class="sect2">
+<h3 id="_reserved_annotation_types">4.1. Reserved Annotation Types</h3>
+<div class="paragraph"><p>The following commonly used Annotation Types are reserved by BEL and cannot be redefined. These annotation types have been selected to promote interoperability of knowledge by the use of a common contextual vocabulary.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_citation">4.2. Citation</h3>
+<div class="paragraph"><p>Enables BEL Statements to be annotated with the knowledge source cited to support the relationship expressed by the statement.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_evidence">4.3. Evidence</h3>
+<div class="paragraph"><p>Enables BEL Statements to be annotated with the exact evidence line from a citation that supports the relationship expressed by the statement.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_other_available_annotation_types">4.4. Other Available Annotation Types</h3>
+<div class="paragraph"><p>The BEL Framework provides nineteen (19) additional annotation types that can be used. These annotations cover species, cell lines, tissues, diseases, cellular locations, and other commonly used standardized annotation types.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bel_script_version_1_0_format">5. BEL Script, Version 1.0 Format</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>BEL Script is a syntax and format for encoding BEL Statements and associated annotations as human-readable documents that can also be efficiently processed by the BEL Framework. BEL Script is an alternative to encoding BEL Statements using the <a href="http://resource.belframework.org/belframework/1.0/schema/">XBEL XML format</a>.</p></div>
+<div class="paragraph"><p>Both BEL Script and XBEL are document formats, that is, they have a specialized structure and have several sections that enable the BEL Framework to determine how to process and interpret BEL Statements. This document describes the overall document structure and provides examples of encoding BEL Statements using the BEL Script format.</p></div>
+<div class="sect2">
+<h3 id="_overview">5.1. Overview</h3>
+<div class="sect3">
+<h4 id="_bel_script_overview">5.1.1. BEL Script Overview</h4>
+<div class="paragraph"><p>BEL Script is a syntax and document format for storing multiple BEL Statements in a single text file and associating statement annotations, namespaces, and provenance with the statements.</p></div>
+<div class="paragraph"><p>BEL Script can be written using any text editor or word processor application that can save documents as simple text files. Each BEL Script is composed of records (rows) in the file which either:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+specify a BEL Statement using BEL
+</p>
+</li>
+<li>
+<p>
+provide a control record, or
+</p>
+</li>
+<li>
+<p>
+define a comment.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect3">
+<h4 id="_bel_script_sections">5.1.2. BEL Script Sections</h4>
+<div class="paragraph"><p>BEL Scripts are composed of three (3) functional sections:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Properties
+</p>
+</li>
+<li>
+<p>
+Definitions
+</p>
+</li>
+<li>
+<p>
+Statements
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>BEL Scripts are processed from top to bottom, thus the ordering of sections within the document and of records within each section is important.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_properties_section">5.1.3. Properties Section</h4>
+<div class="paragraph"><p>The Properties section contains a set of control records that define the provenance for the document. This section includes control records that can identify when the document was created, the organization that created the document, copyright information if needed, and additional information that can be included to identify how the BEL Statements were processed.</p></div>
+<div class="paragraph"><p>The following BEL Document Properties are recognized:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:100%;">
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Authors</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ContactInfo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Copyright</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Disclaimer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Licenses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Name</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Version</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_definitions_section">5.1.4. Definitions Section</h4>
+<div class="paragraph"><p>The Definitions section contains a set of control records that define the Namespaces and Annotation Types used within the document. Namespace control records are used to identify external vocabularies and ontologies that are used to identify entities within BEL Terms. Annotation Type control records define the set of annotations that can be used by BEL Statements within the document.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_statement_section">5.1.5. Statement Section</h4>
+<div class="paragraph"><p>The Statement section is the last section in the document and contains a set BEL Statements and control records that associate Annotations and comments with the BEL Statements. Each BEL Statement records a biological fact.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_control_records">5.2. Control Records</h3>
+<div class="paragraph"><p>Control records are records that begin with a control action keyword. The BEL Script syntax supports the following control actions:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+SET
+</p>
+</li>
+<li>
+<p>
+DEFINE
+</p>
+</li>
+<li>
+<p>
+UNSET
+</p>
+</li>
+</ul></div>
+<div class="sect3">
+<h4 id="_set">5.2.1. SET</h4>
+<div class="paragraph"><p>The SET action instantiates an object of a given type and assigns specific properties to that object reference. This action is used in the Properties section to associate provenance information with the statements that follow in the Statements section, and in the Statements section to associate annotations with specific BEL Statements. The SET action can also define a new Statement Group.</p></div>
+<div class="sect4">
+<h5 id="_usage">Usage</h5>
+<div class="paragraph"><p>Sets an annotation value, statement group name, or a document level property. Document-level properties must be set before all other annotations and BEL Statements.
+Once set, document-level properties cannot be cleared. If the same document-level property is set multiple times, the last value takes precedence.</p></div>
+<div class="paragraph"><p>If a statement group is set, all following statements will be associated with the statement group. If no statement group is set, all statements will be associated with the default (unnamed) statement group.</p></div>
+<div class="paragraph"><p>The annotation will be associated with all BEL Statements after this command unless it is explicitly cleared with the UNSET action. If the annotation is previously set, the SET action changes its value. Use commas (,) to separate multiple values for the same annotation.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_syntax">Syntax</h5>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>SET [DOCUMENT ] name = value | {value, value,…}
+SET STATEMENT_GROUP = value</pre>
+</div></div>
+</div>
+<div class="sect4">
+<h5 id="_examples">Examples</h5>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>SET BodyPart = {"lung", "liver", "kidney"}
+
+SET DOCUMENT Version = "1.0"
+
+SET DOCUMENT License = "LGPL"
+
+SET DOCUMENT Name = "Test Document"
+
+SET STATEMENT_GROUP = "PubMed 123456"</pre>
+</div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_define">5.2.2. DEFINE</h4>
+<div class="paragraph"><p>The DEFINE action instructs the BEL Script interpreter to define a new object type and associate specific properties to that object type.</p></div>
+<div class="paragraph"><p>This action is used to define new Namespace references and new Annotation Types in the Definitions section of the BEL Script.</p></div>
+<div class="sect4">
+<h5 id="_usage_2">Usage</h5>
+<div class="paragraph"><p>Define a namespace or annotation in the document. Three value types are supported:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:50%;">
+<col style="width:50%;">
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">URL</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">A Uniform Resource Locator that can be used to retrieve a Namespace or Annotation Type definition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">LIST</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">A comma separated list of possible values, list surrounded by { and } characters. Can only be used with the ANNOTATION keyword.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">PATTERN</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">A regular expression pattern that can be used to constrain the values associated with an Annotation Type. Can only be used with the ANNOTATION keyword</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_syntax_2">Syntax</h5>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>DEFINE [ ANNOTATION | [DEFAULT] NAMESPACE ] name AS [ URL | LIST | PATTERN ] value | { value, values, …}</pre>
+</div></div>
+</div>
+<div class="sect4">
+<h5 id="_examples_2">Examples</h5>
+<div class="paragraph"><p>The following example defines the EGID Namespace value. The Namespace identifier EGID is associated with the Namespace defined using the URL.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>DEFINE DEFAULT NAMESPACE EGID AS URL \
+    "http://resource.belframework.org/belframework/1.0/ns/entrez-gene-ids-hmr.belns"</pre>
+</div></div>
+<div class="paragraph"><p>This next example defines an Annotation Type named ExposureTime and restricts allowable values to the regular expression.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>DEFINE ANNOTATION ExposureTime AS PATTERN "[0-9]+ hours"</pre>
+</div></div>
+<div class="paragraph"><p>This next example defines an Annotation Type named Dosage and restricts allowable values to the predefined set of values.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>DEFINE ANNOTATION Dosage AS LIST {"low", "medium", "high"}</pre>
+</div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_unset">5.2.3. UNSET</h4>
+<div class="paragraph"><p>The UNSET action clears one or more previously SET annotations such that any following BEL Statement does not get annotated with the annotations. If the UNSET action is applied to STATEMENT_GROUP any statements following the UNSET command will be assigned to the default statement group and all annotations associated will be restored to the state prior to the SET STATEMENT_GROUP command.</p></div>
+<div class="sect4">
+<h5 id="_usage_3">Usage</h5>
+<div class="paragraph"><p>The UNSET action can unset a single previously SET annotation, a list of previously SET annotation types or unset all currently set annotation types. Statements after the UNSET action will not be associated with the annotation unless they are explicitly set again with the SET action.</p></div>
+<div class="paragraph"><p>If the Annotation Type identified in the UNSET action is not defined, an Error will be generated during processing.</p></div>
+<div class="paragraph"><p>If the Annotation Type identified in the UNSET action is not SET, a Warning will be generated during processing.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_syntax_3">Syntax</h5>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>UNSET [ name | { name, name,…} | ALL ]
+
+UNSET STATEMENT_GROUP</pre>
+</div></div>
+</div>
+<div class="sect4">
+<h5 id="_examples_3">Examples</h5>
+<div class="paragraph"><p>The following example will UNSET the ExposureTime Annotation Type.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>UNSET ExposureTime</pre>
+</div></div>
+<div class="paragraph"><p>This example will UNSET all currently set Annotations.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>UNSET ALL</pre>
+</div></div>
+<div class="paragraph"><p>This example will UNSET the Annotations names rating, quality and species.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>UNSET {ExposureTime, Dosage, Species}</pre>
+</div></div>
+<div class="paragraph"><p>This example will UNSET the current Statement Group</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>UNSET STATEMENT_GROUP</pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_language_characteristics">5.3. Language Characteristics</h3>
+<div class="paragraph"><p>This page provides information about other characteristics of the BEL Script format.</p></div>
+<div class="sect3">
+<h4 id="_reserved_keywords">5.3.1. Reserved Keywords</h4>
+<div class="paragraph"><p>The following keywords are reserved for use in BEL Script documents:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:25%;">
+<col style="width:25%;">
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ALL</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">ANNOTATION</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">AS</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">DEFAULT</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">DEFINE</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">DOCUMENT</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">LIST</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">NAMESPACE</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">PATTERN</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">SET</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">STATEMENT_GROUP</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">UNSET</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">URL</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"></p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_case_sensitivity">5.3.2. Case Sensitivity</h4>
+<div class="paragraph"><p>BEL and BEL Script are case sensitive. All relationship types, function names, and reserved keywords are case sensitive.</p></div>
+<div class="paragraph"><p>Annotation Type names and annotation values are case specific.</p></div>
+<div class="paragraph"><p>Namespace identifiers are case specific. The case sensitivity of namespace values is defined within the Namespace itself but most Namespaces default to being case sensitive.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_blank_lines">5.3.3. Blank Lines</h4>
+<div class="paragraph"><p>BEL Script allows blank lines in any section. Blank lines are ignored by the BEL Script processor.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_quotes">5.3.4. Quotes</h4>
+<div class="paragraph"><p>All URLs used in Annotation Types or Namespace definitions in the Definitions section need to be quoted with double quotes.</p></div>
+<div class="paragraph"><p>Any string identifiers that contain non-alphanumeric characters including white space should be quoted. For example, the following BEL Statement</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(CHEBI:"4-fluoro-N-{2-[4-(7-methoxynaphthalen-1-yl)piperazin-1-yl]ethyl}benzamide(1+)") -&gt; bp(GO:"cell proliferation")</pre>
+</div></div>
+<div class="paragraph"><p>would be correctly interpreted.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_escape_sequences_in_quotes">5.3.5. Escape Sequences in Quotes</h4>
+<div class="paragraph"><p>Some characters must be escaped (using an <a href="http://en.wikipedia.org/wiki/Escape_sequence">escape sequence</a>) for it to be recognized in a quoted string.  The following escape sequences are supported:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:33%;">
+<col style="width:33%;">
+<col style="width:33%;">
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Name</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Escape Sequence</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Backslash</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\\</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Include an actual backslash character in the string.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Backspace control character</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\b</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a backspace control character (less used).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Tab</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\t</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a tab character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Newline</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\n</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a newline character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Form feed</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\f</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a form feed character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Carriage return</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\r</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a carriage return character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Double quote</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\"</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a double quote character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Single quote</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\'</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a single quote character.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Unicode</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\uXXXX (X = hexidecimal 0 - F)</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a unicode character.  For example \u2026 represents the horizontal ellipsis (
+…
+).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Octal</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">\OOO, \OO, or \O</p>
+<p class="tableblock">(O = octal 0 - 7)</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Captures a character by its octal value.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_object_identifiers">5.3.6. Object Identifiers</h4>
+<div class="paragraph"><p>Annotation Type and Namespace identifiers must contain only alphanumeric characters and underscore (<span class="monospaced">_</span>). They must not begin with number. By convention BEL Script uses Camel Case for object identifiers.</p></div>
+<div class="sect4">
+<h5 id="_examples_of_valid_object_identifiers">Examples of Valid Object Identifiers</h5>
+<div class="ulist"><ul>
+<li>
+<p>
+Quality
+</p>
+</li>
+<li>
+<p>
+ExperimentType
+</p>
+</li>
+<li>
+<p>
+experiment_type
+</p>
+</li>
+<li>
+<p>
+Rating
+</p>
+</li>
+<li>
+<p>
+Workflow
+</p>
+</li>
+<li>
+<p>
+ReviewStatus
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect4">
+<h5 id="_examples_of_invalid_object_identifiers">Examples of Invalid Object Identifiers</h5>
+<div class="ulist"><ul>
+<li>
+<p>
+Experiment type (space is not allowed)
+</p>
+</li>
+<li>
+<p>
+2nd_time_point (begins with a number)
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_list_operator">5.3.7. List Operator</h4>
+<div class="paragraph"><p>Certain control records take a list of arguments as input. A list is defined by enclosing comma separated values in <span class="monospaced">{</span> and <span class="monospaced">}</span> braces.</p></div>
+<div class="paragraph"><p>The following are examples of using the list operator:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>SET BodyPart = {"lung", "liver"}
+
+SET Citation = {"document type", "document name", "publication id"}</pre>
+</div></div>
+<div class="paragraph"><p>A List can be nested within another list if the operation takes a list of lists as values.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_line_continuation_operator">5.3.8. Line Continuation Operator</h4>
+<div class="paragraph"><p>Statements in a BEL Script are processed one line at a time. Multiple lines can be grouped together by using the line continuation operator <span class="monospaced">\</span>. In this case, the lines are processed as a single statement. For example, the following two statements have the same meaning:</p></div>
+<div class="sect4">
+<h5 id="_statement_example">Statement Example</h5>
+<div class="listingblock">
+<div class="content monospaced">
+<pre># without line continuator
+kinase(p(HGNC:IGFI1R)) -| (p(HGNC:BNIP3) -&gt; bp(GO:apoptosis))
+
+# with line continuator
+kinase(p(HGNC:IGFI1R)) -| \
+ (p(HGNC:BNIP3) -&gt; bp(GO:apoptosis))</pre>
+</div></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_comments">5.3.9. Comments</h4>
+<div class="paragraph"><p>BEL Script supports both Document-level and Statement-level comments in a script file.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_document_comments">5.3.10. Document Comments</h4>
+<div class="paragraph"><p>Document-level comments can be positioned anywhere in a document. These comments do not get processed and are not stored once the BEL Script is imported into a Document Store. A document-level comment starts with a pound sign (<span class="monospaced">#</span>) character that must be the first character in the record.</p></div>
+<div class="paragraph"><p>The following are examples for document-level comments:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre># document generated by NLP algorithm ABC on December 22, 2010
+# most statements in this document are from a PubMed document</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_statement_comments">5.3.11. Statement Comments</h4>
+<div class="paragraph"><p>BEL Script supports in-line comments associated with BEL Statements. In-line comments can be used after any BEL Statement. Each Statement comment starts with a double slash <span class="monospaced">//</span> followed by the comment text. All text following the comment is processed by the interpreter and will be imported into a BEL Document Store and associated with the BEL Statement.</p></div>
+<div class="paragraph"><p>The following is an example of a Statement-level comment:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>tscript(p(HGNC:TP53)) -&gt; r(HGNC:FAS) // apoptosis related gene</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example_bel_script">5.4. Example BEL Script</h3>
+<div class="paragraph"><p>The following is an example of a BEL Script document created from a PubMed abstract.</p></div>
+<div class="paragraph"><p>Additional BEL Script examples can be found <a href="http://resource.belframework.org/belframework/1.0/knowledge/">here</a>.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>##############################################################################
+#
+#
+# Example BEL Script.
+#
+#
+# This BEL Script encodes BEL Statements extracted from PubMed ID 11340296   #
+#
+#
+##############################################################################
+
+##############################################################################
+#
+# Properties Section
+# This section is used to define properties associated with the document as a
+# whole.
+#
+# Set the Citation for the Document. This is generally used to define who
+# created the document.
+
+SET DOCUMENT Name = "Example BEL Script Document"
+
+SET DOCUMENT Authors = "Selventa"
+
+SET DOCUMENT Version = "1.0"
+
+SET DOCUMENT Copyright = "Copyright (c) 2011, Selventa. All Rights Reserved"
+
+# Set additional information for the Document. This is generally used to define why
+# the document was created and what it can be used for.
+
+SET DOCUMENT Description = "This document provides an illustration of the structure
+of a BEL Script document and the encoding of BEL Statements"
+
+##############################################################################
+#
+# Definitions Section
+# This section is used to define the Namespaces and Annotation Types that will
+# be used within the document.
+#
+# First define the Namespaces for term parameters. One Namespace can be set as
+# the DEFAULT Namespace for the document
+
+DEFINE DEFAULT NAMESPACE HGNC AS URL \
+ "http://resource.belframework.org/belframework/1.0/ns/hgnc-approved-\
+ symbols.belns"
+
+DEFINE NAMESPACE EGID AS URL \
+ "http://resource.belframework.org/belframework/1.0/ns/entrez-gene-ids-hmr.belns"
+
+# Next define Annotation Types to be used to annotate the BEL Statements that are
+# defined later on
+
+# Here we set up a species annotation using the pre-defined species annotation type
+
+# This species annotation uses NCBI TAX IDs
+
+DEFINE ANNOTATION Species AS URL \
+ "http://resource.belframework.org/belframework/1.0/annotation/species-taxonomy-id.belanno"
+
+# Define a Tissues annotation type
+
+DEFINE ANNOTATION Tissue AS URL \
+ "http://resource.belframework.org/belframework/1.0/annotation/mesh-tissue.belanno"
+
+# Define an ExposureTime Annotation Type using a REGEX pattern
+
+DEFINE ANNOTATION ExposureTime AS PATTERN "[0-6]hr"
+
+##############################################################################
+#
+# Statements Section
+# This section is used to encode BEL Statements using the Namespaces and
+# Annotation Types previously defined.
+#
+# Set the citation for the PubMed article being used. The Citation and Evidence
+# Annotation types are part of the BEL specification and don't need to be defined as
+# Annotation Types
+# Set the statement group. All following statements will be assigned to this group
+
+SET STATEMENT_GROUP = “PubMed 11340296”
+
+SET Citation = {“PubMed”, "Exp Clin Immunogenet, 2001;18(2) 80-5", "11340296"}
+
+# Set document-defined annotation values
+
+SET Species = 9606
+
+SET Tissue = "t-cells"
+
+# Create an Evidence Line for a block of BEL Statements
+
+SET Evidence = "Here we show that interfereon-alpha
+ (IFNalpha) is a potent producer of SOCS expression in human T cells, as high expression of CIS, SOCS-1, SOCS-2,
+ and SOCS-3 was detectable after IFNalpha stimulation. After 4 h of stimulation CIS, SOCS-1, and SOCS-3 had returned to baseline
+ levels, whereas SOCS-2 expression had not declined."
+
+SET ExposureTime = "4hr"
+
+# Create some BEL Statements. The following statements will be annotated with Citation,
+
+# Species, Tissue, Evidence and ExposureTime annotation type values defined above.
+
+p(HGNC:IFNA1) -&gt; r(HGNC:CISH) // protein abundance of IFNA1 increases the rna \
+      abundance of CISH
+
+p(HGNC:IFNA1) -&gt; r(HGNC:SOCS1) // protein abundance of IFNA1 increases the rna \
+      abundance of SOCS1
+
+p(HGNC:IFNA1) -&gt; r(HGNC:SOCS2) // protein abundance of IFNA1 increases the rna \
+      abundance of SOCS2
+
+p(HGNC:IFNA1) -&gt; r(HGNC:SOCS3) // protein abundance of IFNA1 increases the rna \
+      abundance of SOCS3
+
+# Reset the Evidence line and ExposureTime Annotation Type values
+
+SET Evidence = "In contrast, after IL-2 induction neither CIS, SOCS-1, nor SOCS-2
+ expression levels declined after 6h."
+
+SET ExposureTime = "6hr"
+
+# The following statements will be annotated with Citation, Species,
+# Tissue, Evidence and ExposureTime annotation type values defined above.
+
+p(HGNC:IL2) -&gt; r(HGNC:CISH)       // protein abundance of IL2 increases the rna \
+    abundance of CISH
+
+p(HGNC:IL2) -&gt; r(HGNC:SOCS1)      // protein abundance of IL2 increases the rna \
+    abundance of SOSC1
+
+p(HGNC:IL2) -&gt; r(HGNC:SOCS2)      //protein abundance of IL2 increases the rna \
+    abundance of SOSC2</pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bel_functions">6. BEL Functions</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This section provides a listing of all BEL functions that are included in the BEL V1.0 Language Specification.</p></div>
+<div class="sect2">
+<h3 id="_abundance_functions">6.1. Abundance functions</h3>
+<div class="paragraph"><p>The following BEL Functions represent classes of abundances of specific types of biological entities like RNAs, proteins, post-translationally modified proteins, and small molecules. Biological experiments frequently involve the manipulation and measurement of entities in samples. These BEL functions specify the type of entity referred to by a namespace value. For example+geneAbundance(HGNC:AKT1+), <span class="monospaced">rnaAbundance(HGNC:AKT1)</span>, and <span class="monospaced">proteinAbundance(HGNC:AKT1)</span>, represent the abundances of the AKT1 gene, RNA, and protein, respectively.</p></div>
+<div class="sect3">
+<h4 id="_abundance_a">6.1.1. abundance(), a()</h4>
+<div class="paragraph"><p><span class="monospaced">abundance(ns:v)</span> or <span class="monospaced">a(ns:v)</span> denotes the abundance of the entity designated by the value <span class="monospaced">v</span> in the namespace <span class="monospaced">ns</span>. abundance is a general abundance term that can be used for chemicals or other molecules not defined by a more specific abundance function. Examples of abundances include small molecules and chemicals, such as <span class="monospaced">a(CHEBI:"oxygen atom")</span> and <span class="monospaced">a(CHEBI:thapsigargin)</span>. Gene, RNA, protein, and microRNA abundances should be represented using the appropriate specific abundance function.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_complexabundance_complex">6.1.2. complexAbundance(), complex()</h4>
+<div class="paragraph"><p>The <span class="monospaced">complexAbundance()</span> or+ complex()+ function can take a list of one or more namespace values.
+<span class="monospaced">complexAbundance(ns:v)</span> denotes the abundance of the molecular complex designated by the value <span class="monospaced">v</span> in the namespace <span class="monospaced">ns</span>. This form is generally used to identify abundances of named complexes, for example the activator protein 1 (AP-1) transcription complex can be represented as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>complexAbundance(NCH:"AP-1 Complex")</pre>
+</div></div>
+<div class="paragraph"><p><span class="monospaced">complexAbundance(&lt;abundance term list&gt;)</span> denotes the abundance of the molecular complex of members of the abundances denoted by <span class="monospaced">&lt;abundance term list&gt;</span>, a list of abundance terms supplied as arguments. BEL assumes that the list is unordered, thus different orderings of the arguments will be interpreted as the same term. For example, the FOS JUN AP-1 complex can be represented as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>complex(p(HGNC:FOS), p(HGNC:JUN))</pre>
+</div></div>
+<div class="paragraph"><p>or equivalently as</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>complex(p(HGNC:JUN), p(HGNC:FOS))</pre>
+</div></div>
+<div class="paragraph"><p>Members of a molecular complex retain their individual identities. The <span class="monospaced">complexAbundance()</span> function does not specify the duration or stability of the interaction of the members of the complex.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_compositeabundance_composite">6.1.3. compositeAbundance(), composite()</h4>
+<div class="paragraph"><p>The <span class="monospaced">compositeAbundance(&lt;abundance term list&gt;)</span> function takes a list of abundances.
+The <span class="monospaced">compositeAbundance()</span> or +composite() +function is used to represent cases where multiple abundances synergize to produce an effect. For example "treatment with A and B together increases C", where can be represented as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>compositeAbundance(a(A), a(B)) increases C</pre>
+</div></div>
+<div class="paragraph"><p>This function should not be used if A or B alone are reported to cause C. +compositeAbundance() +terms should be used only as subjects of statements, not as objects.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_geneabundance_g">6.1.4. geneAbundance(), g()</h4>
+<div class="paragraph"><p><span class="monospaced">geneAbundance(ns:v)</span> or <span class="monospaced">g(ns:v)</span> denotes the abundance of the gene designated by the value v in the namespace ns. <span class="monospaced">geneAbundance() +terms are used to represent the DNA encoding the specified gene. +geneAbundance()</span> is considered decreased in the case of a homozygous or heterozygous gene deletion, and increased in the case of a DNA amplification mutation. Events in which a protein A binds to the promoter of a gene B can be represented using the <span class="monospaced">geneAbundance()</span> function as follows:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>complexAbundance(p(A), g(B))</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_micrornaabundance_m">6.1.5. microRNAAbundance(), m()</h4>
+<div class="paragraph"><p><span class="monospaced">microRNAAbundance(ns:v)</span> or <span class="monospaced">m(ns:v)</span> denotes the abundance of the processed, functional microRNA designated by the value+ v+ in the namespace <span class="monospaced">ns</span>. For example, human microRNA 21 can be represented as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>microRNAAbundance(HGNC:MIR21)</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_proteinabundance_p">6.1.6. proteinAbundance(), p()</h4>
+<div class="paragraph"><p><span class="monospaced">proteinAbundance(ns:v)</span> or <span class="monospaced">p(ns:v)</span> denotes the abundance of the protein designated by the value <span class="monospaced">v</span> in the namespace <span class="monospaced">ns</span>, where <span class="monospaced">v</span> references a gene or a named protein family. Examples of protein abundances are:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>proteinAbundance(HGNC:AKT1)
+p(PFH:"AKT family")</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_rnaabundance_r">6.1.7. rnaAbundance(), r()</h4>
+<div class="paragraph"><p><span class="monospaced">rnaAbundance(ns:v)</span> or <span class="monospaced">r(ns:v)</span> denotes the abundance of the RNA designated by the value v in the namespace <span class="monospaced">ns</span>, where <span class="monospaced">v</span> references a gene. This function refers to all RNA designated by <span class="monospaced">ns:v</span>, regardless of splicing, editing, or polyadenylation stage. An example of RNA abundance is the human AKT1 messenger RNA:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>r(HGNC:AKT1)</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_modifications">6.2. Modifications</h3>
+<div class="paragraph"><p>The following functions represent covalent modifications or sequence variation of protein, RNA, or gene abundances. These modifications are special functions that can only be used as an argument within an abundance function.</p></div>
+<div class="sect3">
+<h4 id="_covalent_modifications">6.2.1. Covalent modifications</h4>
+<div class="sect4">
+<h5 id="_proteinmodification_pmod">proteinModification(), pmod()</h5>
+<div class="paragraph"><p>The proteinModification() or pmod() function can be used only as an argument within a <span class="monospaced">proteinAbundance()</span> function to indicate covalent modification of the specified protein. Covalently modified protein abundance term expressions have the form:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(ns:v, pmod(&lt;type&gt;, &lt;code&gt;, &lt;pos&gt;))</pre>
+</div></div>
+<div class="paragraph"><p>Where <span class="monospaced">&lt;type&gt;</span> is one of a set of 9 covalent protein modification types, <span class="monospaced">&lt;code&gt;</span> is one of the 20 single-letter amino acid codes, and &lt;pos&gt; is the position at which the modification occurs based on the reference sequence for the protein.
+If <span class="monospaced">&lt;pos&gt;</span> is omitted, then the position of the modification is unspecified. If both+ &lt;code&gt;+ and <span class="monospaced">&lt;pos&gt;</span> are omitted, then the residue and position of the modification are unspecified.</p></div>
+<div class="paragraph"><p>An example of a protein modification code would be "P", denoting phosphorylation:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:AKT1, pmod(P, S, 21))</pre>
+</div></div>
+<div class="paragraph"><p>defines the abundance of human AKT1 phosphorylated at serine 21.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:AKT1, pmod(P, S))</pre>
+</div></div>
+<div class="paragraph"><p>defines the abundance of human AKT1 phosphorylated at an unspecified serine.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:AKT1, pmod(P))</pre>
+</div></div>
+<div class="paragraph"><p>defines the abundance of human AKT1 with unspecified phosphorylation.</p></div>
+<div class="paragraph"><p>The following modification types are supported:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:50%;">
+<col style="width:50%;">
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Type</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Modification</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">P</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Phosphorylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Acetylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">F</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Farnesylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">G</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Glycosylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">H</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Hydroxylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Methylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Ribosylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">S</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Sumoylation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">U</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Ubiquitination</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph"><p>The following single-letter Amino Acid codes are supported:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:50%;">
+<col style="width:50%;">
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Code</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Amino Acid</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Alanine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Arginine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">N</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Asparagine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">D</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Aspartic Acid</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Cysteine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">E</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Glutamic Acid</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Q</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Glutamine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">G</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Glycine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">H</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Histidine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">I</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Isoleucine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">L</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Leucine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">K</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Lysine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">M</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Methionine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">F</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Phenylalanine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">P</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Proline</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">S</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Serine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">T</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Threonine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">W</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Tryptophan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Tyrosine</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">V</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">Valine</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sequence_variations">6.2.2. Sequence Variations</h4>
+<div class="sect4">
+<h5 id="_substitution_sub">substitution(), sub()</h5>
+<div class="paragraph"><p>The <span class="monospaced">substitution()</span> or <span class="monospaced">sub()</span> function can be used only as an argument within a <span class="monospaced">proteinAbundance()</span> function to indicate amino acid substitution of the specified protein, generally resulting from a missense polymorphism or mutation in the corresponding gene. Expressions indicating the abundance of proteins with amino acid substitution sequence variants have the form:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(ns:v, sub(&lt;code_reference&gt;, &lt;pos&gt;, &lt;code_variant&gt;))</pre>
+</div></div>
+<div class="paragraph"><p>Where <span class="monospaced">&lt;pos&gt;</span> is the position at which the substitution occurs based on the reference sequence for the protein, <span class="monospaced">&lt;code_reference&gt;</span> is one of the single-letter amino acid codes and specifies the amino acid at that position in the reference sequence for the protein and <span class="monospaced">&lt;code_variant&gt;</span> specifies the amino acid at that position in the variant sequence for the protein.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:KRAS, sub(G, 12, V))</pre>
+</div></div>
+<div class="paragraph"><p>defines the abundance of human KRAS in which a glycine is substituted with valine at codon 12.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_truncation_trunc">truncation(), trunc()</h5>
+<div class="paragraph"><p>The <span class="monospaced">truncation()</span> or <span class="monospaced">trunc()</span> function can only be used as an argument within a <span class="monospaced">proteinAbundance()</span> function to indicate a truncated protein, generally resulting from a gene sequence variation like a frame shift or nonsense mutation. Expressions indicating the abundance of proteins with truncation sequence variants have the form:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(ns:v, truncation(&lt;pos&gt;))</pre>
+</div></div>
+<div class="paragraph"><p>Where <span class="monospaced">&lt;pos&gt;</span> is the position at which the truncation occurs based on the reference sequence for the protein,</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>p(HGNC:KRAS, truncation(55))</pre>
+</div></div>
+<div class="paragraph"><p>defines the abundance of human KRAS truncated at position 55.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_fusion_fus">fusion(), fus()</h5>
+<div class="paragraph"><p>Expressions indicating the abundance of genes, proteins, and rna with fusion modifications have the form: <span class="monospaced">x(ns1:v1, fus(ns2:v2, a, b))</span> Where x is either a proteinAbundance, a geneAbundance or a rnaAbundance, ns1:v1 is the 5' (left side) partner gene and ns2:v2 is the 3' (right side) partner gene, a and b are the breakpoints for the 5' and 3' genes respectively.</p></div>
+<div class="paragraph"><p>If a and b are omitted, the position of the 5' and 3' breakpoints are unspecified.
+The following example of a fusion modification+:+</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>g(HGNC:TMPRSS2, fusion(HGNC:ERG, 365, 38))</pre>
+</div></div>
+<div class="paragraph"><p>defines the abundance of human TMPRSS2-ERG fusion gene which encodes nucleotide 1-365 of TMPRSS2 fused to nucleotide 38-3097 of ERG.
+If the breakpoint were unknown or unspecified the fusion gene would be represented as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>g(HGNC:TMPRSS2, fusion(HGNC:ERG))</pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activities">6.3. Activities</h3>
+<div class="paragraph"><p>Activity functions are applied to protein, complex, and RNA abundances to specify the frequency of events resulting from the molecular activity of the abundance. Activity functions provide distinct terms that differentiate the molecular activity from the abundance of a protein, complex, or RNA.</p></div>
+<div class="sect3">
+<h4 id="_catalyticactivity_cat">6.3.1. catalyticActivity(), cat()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">catalyticActivity(A)</span> or <span class="monospaced">cat(A)</span> denotes the frequency or abundance of events in which a member of A acts as an enzymatic catalyst of biochemical reactions; A should represent an abundance of a protein, molecular complex, or ribozyme with catalytic activity, such as super oxide dismutase 1 (<span class="monospaced">p(HGNC:SOD1)</span>) or the RNA polymerase II complex (<span class="monospaced">complex(NCH:"RNA polymerase II complex")</span> ).</p></div>
+<div class="paragraph"><p>In BEL V1.0, certain types of catalytic activity are represented by a more specific activity function. These include kinase (phosphotransferase), ADP-ribosylase, phosphatase, and peptidase (protease). To represent these types of activities, the more specific function should be used.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_chaperoneactivity_chap">6.3.2. chaperoneActivity(), chap()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">chaperoneActivity(A)</span> or <span class="monospaced">chap(A)</span> denotes the frequency or abundance of events in which a member of A acts as a chaperone facilitating the folding, unfolding, assembly, or disassembly of another protein. A should represent an abundance of a protein or molecular complex with chaperone activity, such as Hsp27 (<span class="monospaced">p(HGNC:HSPB1)</span>) or BiP (<span class="monospaced">p(HGNC:HSPA5)</span>).</p></div>
+</div>
+<div class="sect3">
+<h4 id="_gtpboundactivity_gtp">6.3.3. gtpBoundActivity(), gtp()</h4>
+<div class="paragraph"><p>For the protein abundance term A, <span class="monospaced">gtpBoundActivity(A)</span> or <span class="monospaced">gtp(A)</span> denotes the frequency or abundance of events that a member of the protein abundance A acts in due to its being in the active, GTP-bound state. A should represent the protein abundance of a GTP-binding protein, such as G-ALPHA-q (<span class="monospaced">p(HGNC:GNAQ)</span>), KRAS (<span class="monospaced">p(HGNC:KRAS)</span>) or CDC42 (<span class="monospaced">p(HGNC:CDC42)</span>).
+<span class="monospaced">gtpBoundActivity()</span> represents the signaling activity of G-proteins, not GTPase Activity. GTPase activity catalyzes the hydrolysis of bound GTP to GDP, which leaves the G-protein inactive.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_kinaseactivity_kin">6.3.4. kinaseActivity(), kin()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">kinaseActivity(A)</span> or <span class="monospaced">kin(A</span>) denotes the frequency or abundance of events in which a member of A acts as a kinase, performing enzymatic phosphorylation of a substrate via transfer of a phosphate group, usually from ATP. A should represent an abundance of protein or molecular complex with kinase activity, such as AKT1 (<span class="monospaced">p(HGNC:AKT1)</span>) or the AMP-activated protein kinase complex (<span class="monospaced">complex(MC:"AMP-activated protein kinase complex")</span>).</p></div>
+</div>
+<div class="sect3">
+<h4 id="_molecularactivity_act">6.3.5. molecularActivity(), act()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">molecularActivity(A)</span> or <span class="monospaced">act(A)</span> denotes the frequency or abundance of events in which a member of A acts as a causal agent at the molecular scale. The nature of the activity is unspecified.
+This term function may be used to represent activities of molecular entities in cases where the mechanism of action the entity is unknown or is not represented by another activity function. For example, the toll-like receptor TLR4 does not have a specific enzymatic activity, but signal transduction downstream from TLR4 protein, such as that activated by TLR4 binding its ligand lipopolysaccharide, can be represented as <span class="monospaced">molecularActivity(p(HGNC:TLR4))</span>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_peptidaseactivity_pep">6.3.6. peptidaseActivity(), pep()</h4>
+<div class="paragraph"><p>For the abundance term A,<span class="monospaced">peptidaseActivity(A)</span> or <span class="monospaced">pep(A)</span> denotes the frequency or abundance of events in which a member of A acts to cleave a protein via hydrolysis of the peptide bonds that link amino acids together in the polypeptide chain forming the protein. A should represent an abundance of protein or molecular complex with peptidase activity, such as angiotensin-converting enzyme (<span class="monospaced">p(HGNC:ACE)</span>).</p></div>
+</div>
+<div class="sect3">
+<h4 id="_phosphataseactivity_phos">6.3.7. phosphataseActivity(), phos()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">phosphataseActivity(A)</span> or <span class="monospaced">phos(A)</span> denotes the frequency or abundance of events in which a member of A acts as a phosphatase, performing enzymatic removal of a phosphate from a substrate; A should represent an abundance of a protein or molecular complex with phosphatase activity, such as PTEN (<span class="monospaced">p(HGNC:PTEN)</span>) or DUSP1 (<span class="monospaced">p(HGNC:DUSP1)</span>).</p></div>
+</div>
+<div class="sect3">
+<h4 id="_ribosylationactivity_ribo">6.3.8. ribosylationActivity(), ribo()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">ribosylationActivity(A)</span> or <span class="monospaced">ribo(A)</span> denotes the frequency or abundance of events in which a member of A acts as a ribosylase to perform post-translational modification of proteins via the addition of one or more ADP-ribose moieties; A should represent an abundance of protein or molecular complex with ribosylation activity, such as PARP1 (<span class="monospaced">p(HGNC:PARP1)</span>).</p></div>
+</div>
+<div class="sect3">
+<h4 id="_transcriptionalactivity_tscript">6.3.9. transcriptionalActivity(), tscript()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">transcriptionalActivity(A)</span> or <span class="monospaced">tscript(A)</span> denotes the frequency or abundance of events in which a member of A directly acts to control transcription, the copying of DNA into RNA. A should represent the abundance of a protein or molecular complex with transcriptional activity, such as the glucocorticoid receptor (<span class="monospaced">p(HGNC:NR3C1)</span>) or the AP-1 transcription complex (<span class="monospaced">complex(NCH:"AP-1 complex")</span>).
+Activities represented using this term function include the activities of abundances of proteins or molecular complexes that bind DNA directly and act as transcription factors, as well as transcriptional corepressors and coactivators which directly regulate transcription factor activity.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_transportactivity_tport">6.3.10. transportActivity(), tport()</h4>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">transportActivity(A)</span> or <span class="monospaced">tport(A)</span> denotes the frequency or abundance of events in which a member of A directly acts to enable the directed movement of substances (such as macromolecules, small molecules, ions) into, out of, within or between cells. A should represent an abundance of protein or molecular complex with transporter activity, such as aquaporin 1 (<span class="monospaced">p(HGNC:AQP1)</span>), Scavenger receptor class B member 1 (<span class="monospaced">p(HGNC:SCARB1)</span>), or the epithelial sodium channel (ENaC) complex (<span class="monospaced">complex(NCH:"ENAC complex")</span>). This function only applies to cases involving movement of molecules at a cellular scale.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_processes_2">6.4. Processes</h3>
+<div class="paragraph"><p>Processes are complex phenomena taking place at the level of the cell or the organism which do not correspond to molecular abundances, but instead to a biological process like angiogenesis or a pathology like cancer.</p></div>
+<div class="sect3">
+<h4 id="_biologicalprocess_bp">6.4.1. biologicalProcess(), bp()</h4>
+<div class="paragraph"><p><span class="monospaced">biologicalProcess(ns:v)</span> or <span class="monospaced">bp(ns:v)</span> denotes the process or population of events designated by the value <span class="monospaced">v</span> in the namespace <span class="monospaced">ns</span>. Examples of biological processes are <span class="monospaced">bp(GO:angiogenesis)</span> and <span class="monospaced">bp(GO:"cell cycle arrest")</span>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_pathology_path">6.4.2. pathology(), path()</h4>
+<div class="paragraph"><p><span class="monospaced">pathology(ns:v)</span> or <span class="monospaced">path(ns:v)</span> denotes the disease or pathology process designated by the value <span class="monospaced">v</span> in the namespace <span class="monospaced">ns</span>. Examples of pathologies are <span class="monospaced">pathology(MESHD:"Pulmonary Disease, Chronic Obstructive")</span> and <span class="monospaced">pathology(MESHD:adenocarcinoma)</span>.
+BEL 1.0 includes the pathology term function to facilitate the distinction of pathologies from other biological processes because of their importance in many potential applications in the life sciences.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transformations">6.5. Transformations</h3>
+<div class="paragraph"><p>The following BEL functions represent transformations. Transformations are events in which one class of abundance is transformed or changed into a second class of abundance by translocation, degradation, or participation in a reaction.</p></div>
+<div class="sect3">
+<h4 id="_translocations">6.5.1. Translocations</h4>
+<div class="paragraph"><p>BEL translocation functions include <span class="monospaced">translocation()</span>, as well as <span class="monospaced">cellSurfaceExpression()</span> and+ cellSecretion()+, two functions intended to provide a simple, standard means of expressing commonly represented translocations.</p></div>
+<div class="sect4">
+<h5 id="_translocation_tloc">translocation(), tloc()</h5>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">translocation(A, ns1:v1, ns2:v2)</span> or <span class="monospaced">tloc(A, ns1:v1, ns2:v2)</span> denotes the frequency or abundance of events in which members of A move from the location designated by the value <span class="monospaced">v1</span> in the namespace <span class="monospaced">ns1</span> to the location designated by the value <span class="monospaced">v2</span> in the namespace <span class="monospaced">ns2</span>. Translocation is applied to represent events on the cellular scale, like endocytosis, protein secretion (see <span class="monospaced">cellSecretion()</span>), and movement of transcription factors from the cytoplasm to the nucleus. For example, endocytosis of the epidermal growth factor receptor (EGFR) protein can be represented as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>translocation(p(HGNC:EGFR), (GO:"cell surface"), (GO:endosome))</pre>
+</div></div>
+</div>
+<div class="sect4">
+<h5 id="_cellsecretion_sec">cellSecretion(), sec()</h5>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">cellSecretion(A)</span> or <span class="monospaced">sec(A)</span> denotes the frequency or abundance of events in which members of the abundance A move from cells to regions outside of the cells.<span class="monospaced">cellSecretion(A)</span> can be equivalently expressed as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>translocation(A, GO:intracellular, GO:extracellular)</pre>
+</div></div>
+<div class="paragraph"><p>The intent of the <span class="monospaced">cellSecretion()</span> term function is to provide a simple, standard means of expressing a commonly represented translocation.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_cellsurfaceexpression_surf">cellSurfaceExpression(), surf()</h5>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">cellSurfaceExpression(A)</span> or <span class="monospaced">surf(A)</span> denotes the frequency or abundance of events in which members of the abundance A move to the surface of cells.<span class="monospaced">cellSurfaceExpression(A)</span> can be equivalently expressed as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>translocation(A, GO:intracellular, GO:"cell surface")</pre>
+</div></div>
+<div class="paragraph"><p>The intent of the <span class="monospaced">cellSurfaceExpression()</span> term function is to provide a simple, standard means of expressing a commonly represented translocation.</p></div>
+</div>
+<div class="sect4">
+<h5 id="_degradation_deg">degradation(), deg()</h5>
+<div class="paragraph"><p>For the abundance term A, <span class="monospaced">degradation(A)</span> or <span class="monospaced">deg(A)</span> denotes the frequency or abundance of events in which a member of A is degraded in some way such that it is no longer a member of A. For example, <span class="monospaced">degradation()</span> is used to represent proteasome-mediated proteolysis. <span class="monospaced">deg(A)</span> is automatically connected to A by the compiler such that:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>deg(A) directlyDecreases A</pre>
+</div></div>
+</div>
+<div class="sect4">
+<h5 id="_reaction_rxn">reaction(), rxn()</h5>
+<div class="paragraph"><p><span class="monospaced">reaction(reactants(&lt;abundance term list1&gt;), products(&lt;abundance term list2&gt;) )</span> denotes the frequency or abundance of events in which members of the abundances in <span class="monospaced">&lt;abundance term list1&gt;</span> (the reactants) are transformed into members of the abundances in <span class="monospaced">&lt;abundance term list2&gt;</span> (the products). For example, the dismutation of superoxides into oxygen and hydrogen peroxide can be represented as:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>reaction(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen"))</pre>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_glossary">7. Glossary</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>A glossary of BEL terminology.</p></div>
+<div class="dlist glossary"><dl>
+<dt>
+BEL Parameter
+</dt>
+<dd>
+<p>
+  The corresponding (indented) definition.
+</p>
+</dd>
+<dt>
+BEL Term
+</dt>
+<dd>
+<p>
+  The corresponding (indented) definition.
+</p>
+</dd>
+<dt>
+BEL Statement
+</dt>
+<dd>
+<p>
+  The corresponding (indented) definition.
+</p>
+</dd>
+</dl></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div id="footnotes"><hr></div>
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Last updated 2015-10-08 15:06:58 EDT
+</div>
+</div>
+</body>
+</html>

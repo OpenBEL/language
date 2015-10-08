@@ -1,0 +1,1095 @@
+BEL Specification
+=================
+Natalie Catlett <ncatlett@selventa.com>
+v1.0, 2012-07
+
+This is the home of the BEL Language Documentation v 1.0
+
+Please cite the BEL v1.0 language documentation as "BEL v1.0 Language
+Documentation, http://wiki.openbel.org/", along with the date accessed.
+
+All canonical BEL Language Documentation is maintained as wiki pages.
+You can export these pages as PDF via the Browse->Space Operations->PDF
+Export.
+
+:numbered!:
+[[overview]]
+Overview
+--------
+BEL is a language for representing scientific findings in the life
+sciences in a computable form. BEL is designed to represent scientific
+findings by capturing causal and correlative relationships in context,
+where context can include information about the biological and
+experimental system in which the relationships were observed, the
+supporting publications cited and the process of curation.
+
+BEL is intended as a knowledge capture and interchange medium,
+supporting the operation of systems that integrate knowledge derived
+from independent efforts. The language is designed to be use-neutral,
+facilitating the storage and use of structured knowledge for inference
+by applications through a knowledge assembly process that can create
+computable biological networks. While BEL does not prescribe any
+particular assembly process or any particular knowledge format for the
+output of an assembly process, a suite of software components called the
+BEL Framework provides everything necessary to create, compile,
+assemble, and deliver computable knowledge models to BEL-aware
+applications.
+
+The current version of BEL provides the means to describe biological
+interactions qualitatively but not to quantify the magnitude or rate of
+these interactions. This limitation is by design because this
+quantitative information has significant variability and is not
+consistently reported in the literature. It is our hope that future
+versions of BEL can accommodate these additional data, and *that YOU are
+able to work together with the OpenBEL Consortium to make this happen.*
+
+:numbered:
+[[language_structure]]
+Language Structure
+------------------
+Knowledge in BEL is expressed as BEL Statements that are stored in BEL
+Documents. BEL Documents are structured text documents that contain BEL
+Statements, along with sufficient additional information to fully
+describe and process the document.
+
+BEL Statements are generally defined as a semantic triple composed of a
+subject - predicate - object where the subject is always a Bel Term and
+the object can be either another BEL Term or a BEL Statement. The
+predicate is one of the BEL Relationship types describing the
+relationship between the subject BEL Term and the object.
+
+.Structure of a BEL Statement
+image::/home/tony/projects/openbel/language/version_1.0/bel_statement.jpg["Structure of a BEL Statement",align="center"]
+
+BEL Terms are composed of BEL Functions and entity definitions
+referenced using BEL Namespace identifiers. Each BEL Term represents
+either an abundance of a biological entity, the abundance of human AKT1
+for example, or a biological process such as cardiomyopathy.
+
+Each BEL Statement can optionally be annotated with one or more
+references which express additional information about the statement
+itself such as the tissue, species, and cell line for example. Within a
+BEL Document statements can be associated with a set of Annotation Types
+that tag each statement and that can be used to describe the context in
+which the statement was observed and increases the richness of the
+knowledge being captured.
+
+[[Namespaces]]
+Namespaces
+~~~~~~~~~~
+Apart from a concise set of intrinsic categories of life science
+concepts, BEL does not prescribe any specific ontology or vocabulary of
+concepts to be used in the representation of life science knowledge.
+Rather, BEL is specifically designed to adopt external vocabularies and
+ontologies, and therefore represent life-science knowledge in the
+language and schema of the organization collecting or using the
+knowledge. Thus, biological entities encoded in BEL are defined by
+reference to values in external vocabularies, which provide a
+specification of a set of well-known domain values such as the set of
+Entrez Gene Ids. While we consider it good practice to define biological
+entities with respect to well-defined domains such as public ontologies,
+no specific vocabulary is essential to the use of BEL, and users are
+free to define and reference their own vocabularies as needed.
+
+BEL adopts a concept of Namespaces to disambiguate references for
+biological entities. Generally, the user can associate a Namespace
+prefix with an external vocabulary and refer to elements of the
+vocabulary within the Namespace. For example, if we associate the
+Namespace identifier HGNC with the vocabulary of symbols managed by the
+HGNC committee, we can then encode BEL Terms by referencing the
+Namespace identifier and elements within the Namespace. Thus,
+`proteinAbundance(HGNC:AKT1)` and `proteinAbundance(HGNC:TNF)` would be
+allowable and valid BEL Terms. However, note that
+`proteinAbundance(HGNC:AKT1)` simply means "the class of protein
+abundance designated by AKT1 in the HGNC Namespace". Any other knowledge
+about the term must be expressed by BEL Statements.
+
+Equivalencing between Namespaces
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Values from different Namespaces may correspond to the same biological
+concept. For example, the name AKT1 in the HGNC Namespace refers to the
+same gene referenced with Id 207 in the Entrez Gene Id Namespace. In
+assembling knowledge from BEL Documents, the BEL Compiler/Assembler
+attempts to create networks in which a single node corresponds to both
+the term `proteinAbundance(HGNC:AKT1)` and `proteinAbundance(EGID:207)`,
+where EGID is the namespace identifier for the Entrez Gene vocabulary.
+This correspondence of Namespace values is handled in the BEL Framework
+separately from knowledge representation in BEL.
+
+The BEL Framework manages equivalencing between Namespace values through
+the use of BEL Equivalence Tables. When equivalence tables are specified
+as inputs to the knowledge assembly process, the BEL Compiler can
+integrate knowledge expressed using terms based on multiple Namespaces.
+
+BEL Terms
+---------
+Biological entities in BEL are represented by BEL Terms. Two categories of biological entities are represented in BEL: classes of abundances and classes of processes.
+
+Abundances
+~~~~~~~~~~
+Measured values in life science experiments are often measurements of the abundance of a type of thing in a given sample or set of samples. For example, a probe value measured by a microarray provides a measure of the abundance of RNA matching the probe in the sample, and an appropriate set of probe values may be interpreted as a measure of the abundance of the RNA produced by a specific gene. Some BEL Terms represent classes of abundance, the abundances of specific types of things. Examples include "the protein abundance of TP53", "the RNA abundance of CCND1", "the abundance of the protein AKT1 phosphorylated at serine 21", or "the abundance of the complex of the proteins CCND1 and CDK4".
+
+Processes
+~~~~~~~~~
+Some BEL Terms may represent classes of complex phenomena taking place at the level of the cell or the organism, such as the process of cell cycle or the process of a disease such as cardiomyopathy. In other cases, BEL Terms may represent classes of specific molecular activities, such as a type of reaction involving small molecules or the kinase activity of a class of proteins. Measurable biological parameters such as systolic blood pressure or body temperature do not correspond to abundances, and can be accommodated by representation as process BEL Terms. These BEL Terms thereby denote biological activities that, when measured, are reduced to an output parameter.
+
+BEL Terms as Functional Expressions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+BEL Terms are denoted by expressions composed of a BEL Function and a list of arguments. BEL V1.0 specifies a set of over 30 intrinsic functions allowed in term expressions. The combination of a term function and its arguments fully specifies a represented biological entity. The BEL Term expression +f(a)+ denotes a BEL Term defined by function +f()+ applied to an argument +a+. Wherever the same function applied to the same arguments is defined, BEL assumes these BEL Terms denote the same biological entity. The semantics of a BEL Term are determined by the definition of the function used in the term expression. For example, the function proteinAbundance() is defined such that any expression using proteinAbundance() represents a class of abundance of protein. Many functions used in BEL take only single values as arguments and provide a structured method of adopting ontologies and vocabularies for use in BEL. For example, values in the HUGO Gene Nomenclature Committee (HGNC) vocabulary of official human gene names can be used to designate gene, RNA, and protein abundances. The function +proteinAbundance()+ could then be applied to an HGNC gene symbol, AKT1 for example, to indicate the class of protein abundances produced by the corresponding gene. Thus, we might encode the BEL Term +proteinAbundance(AKT1)+.
+
+Term Disambiguation via Namespaces
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+As gene symbols, and more generally, names in life sciences as a rule are often ambiguous, it is more precise to reference the vocabulary as well as the symbol when designating a term identifying an abundance or biological process. To this end, we would prefer to write +proteinAbundance(HGNC:AKT1)+ so that we can provide an exact specification of the protein abundance being referenced. The designation of a term parameter such as AKT1 referenced with respect to an external ontology, HGNC in this case, is central to the BEL language. Generally, all term parameters are defined within a Namespace identifying the vocabulary used to identify the term parameter. BEL provides the ability to use existing namespaces or to create your own namespaces.
+
+BEL Statements
+--------------
+
+BEL Statements are expressions that represent knowledge of the existence of biological entities and relationships between them that are known to be observed within a particular context, based on some source of prior knowledge such as a scientific publication or newly generated experimental data.
+Most BEL Statements represent relationships between one BEL Term and another BEL Term or BEL Statement. This type of BEL Statement represents an assertion of a relationship between the subject and object. BEL defines an intrinsic set of relationship types used to represent the type of relationship observed. If the object of a BEL Statement is another BEL Statement, the BEL Statement is said to be nested and the relationship type is constrained to the set of causal relationship types. A nested BEL Statement represents a causal relationship between two terms, which is in turn causally affected by a third term. An example would be "A increases the process in which B decreases C".In its simplest form a BEL Statement contains a single BEL Term and no relationship. This type of BEL Statement can be used to establish that a BEL Term has been observed in the context of the BEL Statement. A typical example of such a statement would be one that contains a molecular complex term. Such a BEL Statement would assert that the complex has been observed. Statements of this type can capture binding relationships between classes of molecular abundances.
+
+Examples of BEL Statements
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[source,java]
+----
+complex(p(HGNC:CCND1), p(HGNC:CDK4))
+----
+The abundance of the complex of the proteins designated by *CCND1* and *CDK4* in the HGNC namespace has been observed in this context.
+
+[source,java]
+----
+p(HGNC:CCND1) => kin(p(HGNC:CDK4))
+----
+Increased abundance of the protein designated by *CCND1* in the HGNC namespace directly increases the kinase activity of the abundance of the protein designated by *CDK4* in the HGNC namespace.
+
+[source,java]
+----
+p(HGNC:BCL2)-| bp(MESHPP:Apoptosis)
+----
+Increased abundance of the protein designated by *BCL2* in the HGNC namespace decreases the biological process designated by *apoptosis* in the MESHPP (phenomena and processes) namespace.
+
+[source,java]
+----
+p(HGNC:GATA1) => ( tscript(p(HGNC:ZBTB16)) => r(HGNC:MPL) )
+----
+Increased abundance of the protein designated by *GATA1* in the HGNC namespace directly increases the process in which the transcriptional activity of the protein abundance designated by *ZBTB16* in the HGNC namespace directly increases the abundance of RNA designated by *MPL* in the HGNC namespace.
+
+Annotations
+-----------
+
+Each BEL Statement can optionally be annotated to express knowledge about the statement itself. Some important uses of annotations are to:
+
+*   Specify information about the biological system in which the facts represented by the statement hold or were demonstrated,
+*   Specify information about the experimental methods used to demonstrate the facts, and
+*   Specify information about the knowledge source on which the statement is based, such as the citation and the specific text supporting the statement.
+
+Examples of annotations that could be associated with a BEL Statement are the:
+
+*   PubMed id specifying the publication in which the findings were reported,
+*   Species, tissue, and cellular location in which the observations were made, and
+*   Dosage, exposure and recovery time for an experimental result.
+
+BEL allows annotations to be defined to meet the needs of the knowledge designer. The knowledge designer can define and use their own annotations, or use one or more provided by the BEL Framework. Annotation Types are defined within a BEL Document and each Annotation Type has the following characteristics:
+
+*   A unique name within a BEL Document,
+*   A pre-specified domain of allowable values, and
+*   Optionally, usage information and a description.
+
+Each Annotation Type is given a unique name within a BEL Document. Examples of Annotation Type names might be Species, ExperimentType, Dosage, and ExposureTime. Each Annotation Type must have a domain of allowable values associated with it. BEL supports three (3) ways in which domain values for an Annotation Type may be specified:
+
+*   An externally specified enumerated list, such as the set of NCBI Taxonomy IDs,
+*   An internally specified enumerated list, and
+*   A regular expression.
+
+Internally specified lists can be defined within a BEL Document. These lists enumerate the set of allowable domain values for statements using the Annotation Type within the BEL Document. For example, an annotation type named _dosage_ might have the domain values +{"LOW", "MEDIUM", "HIGH"}+ specified as a list.
+
+Annotation Types defined using a regular expression domain allow the knowledge designer to specify which strings are allowed for statements using the Annotation Type within the BEL Document. For example, a regular expression such as `[-+]?[0-9]*\.?[0-9]+` can be used to constrain the annotation type to only allow floating-point numbers.
+
+Reserved Annotation Types
+~~~~~~~~~~~~~~~~~~~~~~~~~
+The following commonly used Annotation Types are reserved by BEL and cannot be redefined. These annotation types have been selected to promote interoperability of knowledge by the use of a common contextual vocabulary.
+
+Citation
+~~~~~~~~
+Enables BEL Statements to be annotated with the knowledge source cited to support the relationship expressed by the statement.
+
+Evidence
+~~~~~~~~
+Enables BEL Statements to be annotated with the exact evidence line from a citation that supports the relationship expressed by the statement.
+
+Other Available Annotation Types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The BEL Framework provides nineteen (19) additional annotation types that can be used. These annotations cover species, cell lines, tissues, diseases, cellular locations, and other commonly used standardized annotation types.
+
+BEL Script, Version 1.0 Format
+------------------------------
+
+BEL Script is a syntax and format for encoding BEL Statements and associated annotations as human-readable documents that can also be efficiently processed by the BEL Framework. BEL Script is an alternative to encoding BEL Statements using the http://resource.belframework.org/belframework/1.0/schema/[XBEL XML format].
+
+Both BEL Script and XBEL are document formats, that is, they have a specialized structure and have several sections that enable the BEL Framework to determine how to process and interpret BEL Statements. This document describes the overall document structure and provides examples of encoding BEL Statements using the BEL Script format.
+
+Overview
+~~~~~~~~
+
+BEL Script Overview
+^^^^^^^^^^^^^^^^^^^
+
+BEL Script is a syntax and document format for storing multiple BEL Statements in a single text file and associating statement annotations, namespaces, and provenance with the statements.
+
+BEL Script can be written using any text editor or word processor application that can save documents as simple text files. Each BEL Script is composed of records (rows) in the file which either:
+
+*   specify a BEL Statement using BEL
+*   provide a control record, or
+*   define a comment.
+
+BEL Script Sections
+^^^^^^^^^^^^^^^^^^^
+
+BEL Scripts are composed of three (3) functional sections:
+
+*   Properties
+*   Definitions
+*   Statements
+
+BEL Scripts are processed from top to bottom, thus the ordering of sections within the document and of records within each section is important.
+
+Properties Section
+^^^^^^^^^^^^^^^^^^
+
+The Properties section contains a set of control records that define the provenance for the document. This section includes control records that can identify when the document was created, the organization that created the document, copyright information if needed, and additional information that can be included to identify how the BEL Statements were processed.
+
+The following BEL Document Properties are recognized:
+
+|====
+| Authors
+| ContactInfo
+| Copyright
+| Description
+| Disclaimer
+| Licenses
+| Name
+| Version
+|====
+
+Definitions Section
+^^^^^^^^^^^^^^^^^^^
+
+The Definitions section contains a set of control records that define the Namespaces and Annotation Types used within the document. Namespace control records are used to identify external vocabularies and ontologies that are used to identify entities within BEL Terms. Annotation Type control records define the set of annotations that can be used by BEL Statements within the document.
+
+Statement Section
+^^^^^^^^^^^^^^^^^
+
+The Statement section is the last section in the document and contains a set BEL Statements and control records that associate Annotations and comments with the BEL Statements. Each BEL Statement records a biological fact.
+
+Control Records
+~~~~~~~~~~~~~~~
+
+Control records are records that begin with a control action keyword. The BEL Script syntax supports the following control actions:
+
+*   SET
+*   DEFINE
+*   UNSET
+
+SET
+^^^
+
+The SET action instantiates an object of a given type and assigns specific properties to that object reference. This action is used in the Properties section to associate provenance information with the statements that follow in the Statements section, and in the Statements section to associate annotations with specific BEL Statements. The SET action can also define a new Statement Group.
+
+Usage
++++++
+
+Sets an annotation value, statement group name, or a document level property. Document-level properties must be set before all other annotations and BEL Statements.   
+Once set, document-level properties cannot be cleared. If the same document-level property is set multiple times, the last value takes precedence.
+
+If a statement group is set, all following statements will be associated with the statement group. If no statement group is set, all statements will be associated with the default (unnamed) statement group.
+
+The annotation will be associated with all BEL Statements after this command unless it is explicitly cleared with the UNSET action. If the annotation is previously set, the SET action changes its value. Use commas (,) to separate multiple values for the same annotation.
+
+Syntax
+++++++
+[source,java]
+----
+SET [DOCUMENT ] name = value | {value, value,…}
+SET STATEMENT_GROUP = value
+----
+
+Examples
+++++++++
+[source,java]
+----
+SET BodyPart = {"lung", "liver", "kidney"}
+
+SET DOCUMENT Version = "1.0"
+
+SET DOCUMENT License = "LGPL"
+
+SET DOCUMENT Name = "Test Document"
+
+SET STATEMENT_GROUP = "PubMed 123456"
+----
+
+DEFINE
+^^^^^^
+The DEFINE action instructs the BEL Script interpreter to define a new object type and associate specific properties to that object type.
+
+This action is used to define new Namespace references and new Annotation Types in the Definitions section of the BEL Script.
+
+Usage
++++++
+Define a namespace or annotation in the document. Three value types are supported:
+
+|====
+| URL | A Uniform Resource Locator that can be used to retrieve a Namespace or Annotation Type definition.
+| LIST | A comma separated list of possible values, list surrounded by { and } characters. Can only be used with the ANNOTATION keyword.
+| PATTERN | A regular expression pattern that can be used to constrain the values associated with an Annotation Type. Can only be used with the ANNOTATION keyword
+|====
+
+Syntax
+++++++
+[source,java]
+----
+DEFINE [ ANNOTATION | [DEFAULT] NAMESPACE ] name AS [ URL | LIST | PATTERN ] value | { value, values, …}
+----
+
+Examples
+++++++++
+The following example defines the EGID Namespace value. The Namespace identifier EGID is associated with the Namespace defined using the URL.
+
+[source,java]
+----
+DEFINE DEFAULT NAMESPACE EGID AS URL \
+    "http://resource.belframework.org/belframework/1.0/ns/entrez-gene-ids-hmr.belns"
+----
+
+This next example defines an Annotation Type named ExposureTime and restricts allowable values to the regular expression.
+
+[source,java]
+----
+DEFINE ANNOTATION ExposureTime AS PATTERN "[0-9]+ hours"
+----
+
+This next example defines an Annotation Type named Dosage and restricts allowable values to the predefined set of values.
+
+[source,java]
+----
+DEFINE ANNOTATION Dosage AS LIST {"low", "medium", "high"}
+----
+
+UNSET
+^^^^^
+The UNSET action clears one or more previously SET annotations such that any following BEL Statement does not get annotated with the annotations. If the UNSET action is applied to STATEMENT_GROUP any statements following the UNSET command will be assigned to the default statement group and all annotations associated will be restored to the state prior to the SET STATEMENT_GROUP command.
+
+Usage
++++++
+The UNSET action can unset a single previously SET annotation, a list of previously SET annotation types or unset all currently set annotation types. Statements after the UNSET action will not be associated with the annotation unless they are explicitly set again with the SET action.
+
+If the Annotation Type identified in the UNSET action is not defined, an Error will be generated during processing.
+
+If the Annotation Type identified in the UNSET action is not SET, a Warning will be generated during processing.
+
+Syntax
+++++++
+[source,java]
+----
+UNSET [ name | { name, name,…} | ALL ]
+
+UNSET STATEMENT_GROUP
+----
+
+Examples
+++++++++
+The following example will UNSET the ExposureTime Annotation Type.
+[source,java]
+----
+UNSET ExposureTime
+----
+
+This example will UNSET all currently set Annotations.
+[source,java]
+----
+UNSET ALL
+----
+
+This example will UNSET the Annotations names rating, quality and species.
+[source,java]
+----
+UNSET {ExposureTime, Dosage, Species}
+----
+
+This example will UNSET the current Statement Group
+[source,java]
+----
+UNSET STATEMENT_GROUP
+----
+  
+
+Language Characteristics
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This page provides information about other characteristics of the BEL Script format.
+
+Reserved Keywords
+^^^^^^^^^^^^^^^^^
+The following keywords are reserved for use in BEL Script documents:
+
+|====
+| ALL | ANNOTATION | AS | DEFAULT
+| DEFINE | DOCUMENT | LIST | NAMESPACE
+| PATTERN | SET | STATEMENT_GROUP | UNSET
+| URL |   |   |  
+|====
+
+Case Sensitivity
+^^^^^^^^^^^^^^^^
+BEL and BEL Script are case sensitive. All relationship types, function names, and reserved keywords are case sensitive.
+
+Annotation Type names and annotation values are case specific.
+
+Namespace identifiers are case specific. The case sensitivity of namespace values is defined within the Namespace itself but most Namespaces default to being case sensitive.
+
+Blank Lines
+^^^^^^^^^^^
+BEL Script allows blank lines in any section. Blank lines are ignored by the BEL Script processor.
+
+Quotes
+^^^^^^
+All URLs used in Annotation Types or Namespace definitions in the Definitions section need to be quoted with double quotes.
+
+Any string identifiers that contain non-alphanumeric characters including white space should be quoted. For example, the following BEL Statement
+
+[source,java]
+----
+p(CHEBI:"4-fluoro-N-{2-[4-(7-methoxynaphthalen-1-yl)piperazin-1-yl]ethyl}benzamide(1+)") -> bp(GO:"cell proliferation")
+----
+
+would be correctly interpreted.
+
+Escape Sequences in Quotes
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some characters must be escaped (using an http://en.wikipedia.org/wiki/Escape_sequence[escape sequence]) for it to be recognized in a quoted string.  The following escape sequences are supported:
+
+|====
+| Name | Escape Sequence | Description
+| Backslash | \\ | Include an actual backslash character in the string.
+| Backspace control character | \b | Captures a backspace control character (less used).
+| Tab | \t | Captures a tab character.
+| Newline | \n | Captures a newline character.
+| Form feed | \f | Captures a form feed character.
+| Carriage return | \r | Captures a carriage return character.
+| Double quote | \" | Captures a double quote character.
+| Single quote | \' | Captures a single quote character.
+| Unicode | \uXXXX (X = hexidecimal 0 - F) | Captures a unicode character.  For example \u2026 represents the horizontal ellipsis (
+…
+).
+| Octal | \OOO, \OO, or \O
+
+(O = octal 0 - 7) | Captures a character by its octal value.
+|====
+
+Object Identifiers
+^^^^^^^^^^^^^^^^^^
+Annotation Type and Namespace identifiers must contain only alphanumeric characters and underscore (+_+). They must not begin with number. By convention BEL Script uses Camel Case for object identifiers.
+
+Examples of Valid Object Identifiers
++++++++++++++++++++++++++++++++++++++
+*   Quality
+*   ExperimentType
+*   experiment_type
+*   Rating
+*   Workflow
+*   ReviewStatus
+
+Examples of Invalid Object Identifiers
+++++++++++++++++++++++++++++++++++++++
+*   Experiment type (space is not allowed)
+*   2nd_time_point (begins with a number)
+
+List Operator
+^^^^^^^^^^^^^
+Certain control records take a list of arguments as input. A list is defined by enclosing comma separated values in +{+ and +}+ braces.
+
+The following are examples of using the list operator:
+
+[source,java]
+----
+SET BodyPart = {"lung", "liver"}
+
+SET Citation = {"document type", "document name", "publication id"}
+----
+
+A List can be nested within another list if the operation takes a list of lists as values.
+
+Line Continuation Operator
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Statements in a BEL Script are processed one line at a time. Multiple lines can be grouped together by using the line continuation operator +\+. In this case, the lines are processed as a single statement. For example, the following two statements have the same meaning:
+
+Statement Example
++++++++++++++++++
+[source,java]
+----
+# without line continuator
+kinase(p(HGNC:IGFI1R)) -| (p(HGNC:BNIP3) -> bp(GO:apoptosis))
+
+# with line continuator
+kinase(p(HGNC:IGFI1R)) -| \
+ (p(HGNC:BNIP3) -> bp(GO:apoptosis))
+----
+
+Comments
+^^^^^^^^
+BEL Script supports both Document-level and Statement-level comments in a script file.
+
+Document Comments
+^^^^^^^^^^^^^^^^^
+Document-level comments can be positioned anywhere in a document. These comments do not get processed and are not stored once the BEL Script is imported into a Document Store. A document-level comment starts with a pound sign (+#+) character that must be the first character in the record.
+
+The following are examples for document-level comments:
+
+[source,java]
+----
+# document generated by NLP algorithm ABC on December 22, 2010
+# most statements in this document are from a PubMed document
+----
+
+Statement Comments
+^^^^^^^^^^^^^^^^^^
+BEL Script supports in-line comments associated with BEL Statements. In-line comments can be used after any BEL Statement. Each Statement comment starts with a double slash +//+ followed by the comment text. All text following the comment is processed by the interpreter and will be imported into a BEL Document Store and associated with the BEL Statement.
+
+The following is an example of a Statement-level comment:
+
+[source,java]
+----
+tscript(p(HGNC:TP53)) -> r(HGNC:FAS) // apoptosis related gene
+----
+
+Example BEL Script
+~~~~~~~~~~~~~~~~~~
+
+The following is an example of a BEL Script document created from a PubMed abstract.
+
+Additional BEL Script examples can be found http://resource.belframework.org/belframework/1.0/knowledge/[here].  
+
+[source,java]
+----
+##############################################################################
+#                                                                          
+#
+# Example BEL Script.                                                      
+#
+#                                                                           
+# This BEL Script encodes BEL Statements extracted from PubMed ID 11340296   #
+#                                                                          
+#
+##############################################################################
+
+##############################################################################
+#
+# Properties Section
+# This section is used to define properties associated with the document as a
+# whole.
+#
+# Set the Citation for the Document. This is generally used to define who
+# created the document.
+
+SET DOCUMENT Name = "Example BEL Script Document"
+
+SET DOCUMENT Authors = "Selventa"
+
+SET DOCUMENT Version = "1.0"
+
+SET DOCUMENT Copyright = "Copyright (c) 2011, Selventa. All Rights Reserved"
+
+# Set additional information for the Document. This is generally used to define why
+# the document was created and what it can be used for.
+
+SET DOCUMENT Description = "This document provides an illustration of the structure
+of a BEL Script document and the encoding of BEL Statements"
+
+##############################################################################
+#
+# Definitions Section
+# This section is used to define the Namespaces and Annotation Types that will
+# be used within the document.
+#
+# First define the Namespaces for term parameters. One Namespace can be set as
+# the DEFAULT Namespace for the document
+
+DEFINE DEFAULT NAMESPACE HGNC AS URL \
+ "http://resource.belframework.org/belframework/1.0/ns/hgnc-approved-\
+ symbols.belns"
+
+DEFINE NAMESPACE EGID AS URL \
+ "http://resource.belframework.org/belframework/1.0/ns/entrez-gene-ids-hmr.belns"
+
+# Next define Annotation Types to be used to annotate the BEL Statements that are
+# defined later on
+
+# Here we set up a species annotation using the pre-defined species annotation type
+
+# This species annotation uses NCBI TAX IDs
+
+DEFINE ANNOTATION Species AS URL \
+ "http://resource.belframework.org/belframework/1.0/annotation/species-taxonomy-id.belanno"
+
+# Define a Tissues annotation type
+
+DEFINE ANNOTATION Tissue AS URL \
+ "http://resource.belframework.org/belframework/1.0/annotation/mesh-tissue.belanno"
+
+# Define an ExposureTime Annotation Type using a REGEX pattern
+
+DEFINE ANNOTATION ExposureTime AS PATTERN "[0-6]hr"
+
+##############################################################################
+#
+# Statements Section
+# This section is used to encode BEL Statements using the Namespaces and
+# Annotation Types previously defined.
+#
+# Set the citation for the PubMed article being used. The Citation and Evidence
+# Annotation types are part of the BEL specification and don't need to be defined as
+# Annotation Types
+# Set the statement group. All following statements will be assigned to this group
+
+SET STATEMENT_GROUP = “PubMed 11340296”
+
+SET Citation = {“PubMed”, "Exp Clin Immunogenet, 2001;18(2) 80-5", "11340296"}
+
+# Set document-defined annotation values
+
+SET Species = 9606
+
+SET Tissue = "t-cells"
+
+# Create an Evidence Line for a block of BEL Statements
+
+SET Evidence = "Here we show that interfereon-alpha
+ (IFNalpha) is a potent producer of SOCS expression in human T cells, as high expression of CIS, SOCS-1, SOCS-2,
+ and SOCS-3 was detectable after IFNalpha stimulation. After 4 h of stimulation CIS, SOCS-1, and SOCS-3 had returned to baseline
+ levels, whereas SOCS-2 expression had not declined."
+
+SET ExposureTime = "4hr"
+
+# Create some BEL Statements. The following statements will be annotated with Citation,
+
+# Species, Tissue, Evidence and ExposureTime annotation type values defined above.
+
+p(HGNC:IFNA1) -> r(HGNC:CISH) // protein abundance of IFNA1 increases the rna \
+      abundance of CISH
+
+p(HGNC:IFNA1) -> r(HGNC:SOCS1) // protein abundance of IFNA1 increases the rna \
+      abundance of SOCS1
+
+p(HGNC:IFNA1) -> r(HGNC:SOCS2) // protein abundance of IFNA1 increases the rna \
+      abundance of SOCS2
+
+p(HGNC:IFNA1) -> r(HGNC:SOCS3) // protein abundance of IFNA1 increases the rna \
+      abundance of SOCS3
+
+# Reset the Evidence line and ExposureTime Annotation Type values
+
+SET Evidence = "In contrast, after IL-2 induction neither CIS, SOCS-1, nor SOCS-2
+ expression levels declined after 6h."
+
+SET ExposureTime = "6hr"
+
+# The following statements will be annotated with Citation, Species,
+# Tissue, Evidence and ExposureTime annotation type values defined above.
+
+p(HGNC:IL2) -> r(HGNC:CISH)       // protein abundance of IL2 increases the rna \
+    abundance of CISH
+
+p(HGNC:IL2) -> r(HGNC:SOCS1)      // protein abundance of IL2 increases the rna \
+    abundance of SOSC1
+
+p(HGNC:IL2) -> r(HGNC:SOCS2)      //protein abundance of IL2 increases the rna \
+    abundance of SOSC2
+----
+
+BEL Functions
+-------------
+
+This section provides a listing of all BEL functions that are included in the BEL V1.0 Language Specification.
+
+Abundance functions
+~~~~~~~~~~~~~~~~~~~
+
+The following BEL Functions represent classes of abundances of specific types of biological entities like RNAs, proteins, post-translationally modified proteins, and small molecules. Biological experiments frequently involve the manipulation and measurement of entities in samples. These BEL functions specify the type of entity referred to by a namespace value. For example+geneAbundance(HGNC:AKT1+), +rnaAbundance(HGNC:AKT1)+, and +proteinAbundance(HGNC:AKT1)+, represent the abundances of the AKT1 gene, RNA, and protein, respectively.
+
+abundance(), a()
+^^^^^^^^^^^^^^^^
+
++abundance(ns:v)+ or +a(ns:v)+ denotes the abundance of the entity designated by the value +v+ in the namespace +ns+. abundance is a general abundance term that can be used for chemicals or other molecules not defined by a more specific abundance function. Examples of abundances include small molecules and chemicals, such as +a(CHEBI:"oxygen atom")+ and +a(CHEBI:thapsigargin)+. Gene, RNA, protein, and microRNA abundances should be represented using the appropriate specific abundance function.
+
+complexAbundance(), complex()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The +complexAbundance()+ or+ complex()+ function can take a list of one or more namespace values.   
++complexAbundance(ns:v)+ denotes the abundance of the molecular complex designated by the value +v+ in the namespace +ns+. This form is generally used to identify abundances of named complexes, for example the activator protein 1 (AP-1) transcription complex can be represented as:
+[source,java]
+----
+complexAbundance(NCH:"AP-1 Complex")
+----
+
++complexAbundance(<abundance term list>)+ denotes the abundance of the molecular complex of members of the abundances denoted by +<abundance term list>+, a list of abundance terms supplied as arguments. BEL assumes that the list is unordered, thus different orderings of the arguments will be interpreted as the same term. For example, the FOS JUN AP-1 complex can be represented as:
+
+[source,java]
+----
+complex(p(HGNC:FOS), p(HGNC:JUN))
+----
+
+or equivalently as
+
+[source,java]
+----
+complex(p(HGNC:JUN), p(HGNC:FOS))
+----
+
+Members of a molecular complex retain their individual identities. The +complexAbundance()+ function does not specify the duration or stability of the interaction of the members of the complex.
+
+compositeAbundance(), composite()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The +compositeAbundance(<abundance term list>)+ function takes a list of abundances.   
+The +compositeAbundance()+ or +composite() +function is used to represent cases where multiple abundances synergize to produce an effect. For example "treatment with A and B together increases C", where can be represented as:
+
+[source,java]
+----
+compositeAbundance(a(A), a(B)) increases C
+----
+
+This function should not be used if A or B alone are reported to cause C. +compositeAbundance() +terms should be used only as subjects of statements, not as objects.
+
+geneAbundance(), g()
+^^^^^^^^^^^^^^^^^^^^
+
++geneAbundance(ns:v)+ or +g(ns:v)+ denotes the abundance of the gene designated by the value v in the namespace ns. +geneAbundance() +terms are used to represent the DNA encoding the specified gene. +geneAbundance()+ is considered decreased in the case of a homozygous or heterozygous gene deletion, and increased in the case of a DNA amplification mutation. Events in which a protein A binds to the promoter of a gene B can be represented using the +geneAbundance()+ function as follows:
+
+[source,java]
+----
+complexAbundance(p(A), g(B))
+----
+
+microRNAAbundance(), m()
+^^^^^^^^^^^^^^^^^^^^^^^^
++microRNAAbundance(ns:v)+ or +m(ns:v)+ denotes the abundance of the processed, functional microRNA designated by the value+ v+ in the namespace +ns+. For example, human microRNA 21 can be represented as:
+
+[source,java]
+----
+microRNAAbundance(HGNC:MIR21)
+----
+
+proteinAbundance(), p()
+^^^^^^^^^^^^^^^^^^^^^^^
++proteinAbundance(ns:v)+ or +p(ns:v)+ denotes the abundance of the protein designated by the value +v+ in the namespace +ns+, where +v+ references a gene or a named protein family. Examples of protein abundances are:
+
+[source,java]
+----
+proteinAbundance(HGNC:AKT1)
+p(PFH:"AKT family")
+----
+
+
+rnaAbundance(), r()
+^^^^^^^^^^^^^^^^^^^
++rnaAbundance(ns:v)+ or +r(ns:v)+ denotes the abundance of the RNA designated by the value v in the namespace +ns+, where +v+ references a gene. This function refers to all RNA designated by +ns:v+, regardless of splicing, editing, or polyadenylation stage. An example of RNA abundance is the human AKT1 messenger RNA:
+
+[source,java]
+----
+r(HGNC:AKT1)
+----
+
+
+Modifications
+~~~~~~~~~~~~~
+
+The following functions represent covalent modifications or sequence variation of protein, RNA, or gene abundances. These modifications are special functions that can only be used as an argument within an abundance function.
+
+Covalent modifications
+^^^^^^^^^^^^^^^^^^^^^^
+
+proteinModification(), pmod()
++++++++++++++++++++++++++++++
+The proteinModification() or pmod() function can be used only as an argument within a +proteinAbundance()+ function to indicate covalent modification of the specified protein. Covalently modified protein abundance term expressions have the form:
+
+[source,java]
+----
+p(ns:v, pmod(<type>, <code>, <pos>))
+----
+
+Where +<type>+ is one of a set of 9 covalent protein modification types, +<code>+ is one of the 20 single-letter amino acid codes, and <pos> is the position at which the modification occurs based on the reference sequence for the protein.  
+If +<pos>+ is omitted, then the position of the modification is unspecified. If both+ <code>+ and +<pos>+ are omitted, then the residue and position of the modification are unspecified.
+
+An example of a protein modification code would be "P", denoting phosphorylation:
+
+[source,java]
+----
+p(HGNC:AKT1, pmod(P, S, 21))
+----
+
+defines the abundance of human AKT1 phosphorylated at serine 21.
+
+[source,java]
+----
+p(HGNC:AKT1, pmod(P, S))
+----
+
+defines the abundance of human AKT1 phosphorylated at an unspecified serine.
+
+[source,java]
+----
+p(HGNC:AKT1, pmod(P))
+----
+
+defines the abundance of human AKT1 with unspecified phosphorylation.
+
+The following modification types are supported:
+
+|====
+| Type | Modification
+| P | Phosphorylation
+| A | Acetylation
+| F | Farnesylation
+| G | Glycosylation
+| H | Hydroxylation
+| M | Methylation
+| R | Ribosylation
+| S | Sumoylation
+| U | Ubiquitination
+|====
+
+The following single-letter Amino Acid codes are supported:
+
+|====
+| Code | Amino Acid
+| A | Alanine
+| R | Arginine
+| N | Asparagine
+| D | Aspartic Acid
+| C | Cysteine
+| E | Glutamic Acid
+| Q | Glutamine
+| G | Glycine
+| H | Histidine
+| I | Isoleucine
+| L | Leucine
+| K | Lysine
+| M | Methionine
+| F | Phenylalanine
+| P | Proline
+| S | Serine
+| T | Threonine
+| W | Tryptophan
+| Y | Tyrosine
+| V | Valine
+|====
+
+Sequence Variations
+^^^^^^^^^^^^^^^^^^^
+
+substitution(), sub()
++++++++++++++++++++++
+The +substitution()+ or +sub()+ function can be used only as an argument within a +proteinAbundance()+ function to indicate amino acid substitution of the specified protein, generally resulting from a missense polymorphism or mutation in the corresponding gene. Expressions indicating the abundance of proteins with amino acid substitution sequence variants have the form:
+
+[source,java]
+----
+p(ns:v, sub(<code_reference>, <pos>, <code_variant>))
+----
+
+Where +<pos>+ is the position at which the substitution occurs based on the reference sequence for the protein, +<code_reference>+ is one of the single-letter amino acid codes and specifies the amino acid at that position in the reference sequence for the protein and +<code_variant>+ specifies the amino acid at that position in the variant sequence for the protein.
+
+[source,java]
+----
+p(HGNC:KRAS, sub(G, 12, V))
+----
+
+defines the abundance of human KRAS in which a glycine is substituted with valine at codon 12.
+
+truncation(), trunc()
++++++++++++++++++++++
+The +truncation()+ or +trunc()+ function can only be used as an argument within a +proteinAbundance()+ function to indicate a truncated protein, generally resulting from a gene sequence variation like a frame shift or nonsense mutation. Expressions indicating the abundance of proteins with truncation sequence variants have the form:
+
+[source,java]
+----
+p(ns:v, truncation(<pos>))
+----
+
+Where +<pos>+ is the position at which the truncation occurs based on the reference sequence for the protein,
+
+[source,java]
+----
+p(HGNC:KRAS, truncation(55))
+----
+
+defines the abundance of human KRAS truncated at position 55.
+
+fusion(), fus()
++++++++++++++++
+Expressions indicating the abundance of genes, proteins, and rna with fusion modifications have the form: +x(ns1:v1, fus(ns2:v2, a, b))+ Where x is either a proteinAbundance, a geneAbundance or a rnaAbundance, ns1:v1 is the 5' (left side) partner gene and ns2:v2 is the 3' (right side) partner gene, a and b are the breakpoints for the 5' and 3' genes respectively.
+
+If a and b are omitted, the position of the 5' and 3' breakpoints are unspecified.  
+The following example of a fusion modification+:+
+
+[source,java]
+----
+g(HGNC:TMPRSS2, fusion(HGNC:ERG, 365, 38))
+----
+
+defines the abundance of human TMPRSS2-ERG fusion gene which encodes nucleotide 1-365 of TMPRSS2 fused to nucleotide 38-3097 of ERG.  
+If the breakpoint were unknown or unspecified the fusion gene would be represented as:
+
+[source,java]
+----
+g(HGNC:TMPRSS2, fusion(HGNC:ERG))
+----
+
+Activities
+~~~~~~~~~~
+
+Activity functions are applied to protein, complex, and RNA abundances to specify the frequency of events resulting from the molecular activity of the abundance. Activity functions provide distinct terms that differentiate the molecular activity from the abundance of a protein, complex, or RNA.
+
+catalyticActivity(), cat()
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +catalyticActivity(A)+ or +cat(A)+ denotes the frequency or abundance of events in which a member of A acts as an enzymatic catalyst of biochemical reactions; A should represent an abundance of a protein, molecular complex, or ribozyme with catalytic activity, such as super oxide dismutase 1 (+p(HGNC:SOD1)+) or the RNA polymerase II complex (+complex(NCH:"RNA polymerase II complex")+ ).  
+
+In BEL V1.0, certain types of catalytic activity are represented by a more specific activity function. These include kinase (phosphotransferase), ADP-ribosylase, phosphatase, and peptidase (protease). To represent these types of activities, the more specific function should be used.
+
+chaperoneActivity(), chap()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +chaperoneActivity(A)+ or +chap(A)+ denotes the frequency or abundance of events in which a member of A acts as a chaperone facilitating the folding, unfolding, assembly, or disassembly of another protein. A should represent an abundance of a protein or molecular complex with chaperone activity, such as Hsp27 (+p(HGNC:HSPB1)+) or BiP (+p(HGNC:HSPA5)+).
+
+gtpBoundActivity(), gtp()
+^^^^^^^^^^^^^^^^^^^^^^^^^
+For the protein abundance term A, +gtpBoundActivity(A)+ or +gtp(A)+ denotes the frequency or abundance of events that a member of the protein abundance A acts in due to its being in the active, GTP-bound state. A should represent the protein abundance of a GTP-binding protein, such as G-ALPHA-q (+p(HGNC:GNAQ)+), KRAS (+p(HGNC:KRAS)+) or CDC42 (+p(HGNC:CDC42)+).  
++gtpBoundActivity()+ represents the signaling activity of G-proteins, not GTPase Activity. GTPase activity catalyzes the hydrolysis of bound GTP to GDP, which leaves the G-protein inactive.
+
+kinaseActivity(), kin()
+^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +kinaseActivity(A)+ or +kin(A+) denotes the frequency or abundance of events in which a member of A acts as a kinase, performing enzymatic phosphorylation of a substrate via transfer of a phosphate group, usually from ATP. A should represent an abundance of protein or molecular complex with kinase activity, such as AKT1 (+p(HGNC:AKT1)+) or the AMP-activated protein kinase complex (+complex(MC:"AMP-activated protein kinase complex")+).
+
+molecularActivity(), act()
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +molecularActivity(A)+ or +act(A)+ denotes the frequency or abundance of events in which a member of A acts as a causal agent at the molecular scale. The nature of the activity is unspecified.   
+This term function may be used to represent activities of molecular entities in cases where the mechanism of action the entity is unknown or is not represented by another activity function. For example, the toll-like receptor TLR4 does not have a specific enzymatic activity, but signal transduction downstream from TLR4 protein, such as that activated by TLR4 binding its ligand lipopolysaccharide, can be represented as +molecularActivity(p(HGNC:TLR4))+.
+
+peptidaseActivity(), pep()
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A,+peptidaseActivity(A)+ or +pep(A)+ denotes the frequency or abundance of events in which a member of A acts to cleave a protein via hydrolysis of the peptide bonds that link amino acids together in the polypeptide chain forming the protein. A should represent an abundance of protein or molecular complex with peptidase activity, such as angiotensin-converting enzyme (+p(HGNC:ACE)+).
+
+phosphataseActivity(), phos()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +phosphataseActivity(A)+ or +phos(A)+ denotes the frequency or abundance of events in which a member of A acts as a phosphatase, performing enzymatic removal of a phosphate from a substrate; A should represent an abundance of a protein or molecular complex with phosphatase activity, such as PTEN (+p(HGNC:PTEN)+) or DUSP1 (+p(HGNC:DUSP1)+).
+
+ribosylationActivity(), ribo()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +ribosylationActivity(A)+ or +ribo(A)+ denotes the frequency or abundance of events in which a member of A acts as a ribosylase to perform post-translational modification of proteins via the addition of one or more ADP-ribose moieties; A should represent an abundance of protein or molecular complex with ribosylation activity, such as PARP1 (+p(HGNC:PARP1)+).
+
+transcriptionalActivity(), tscript()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +transcriptionalActivity(A)+ or +tscript(A)+ denotes the frequency or abundance of events in which a member of A directly acts to control transcription, the copying of DNA into RNA. A should represent the abundance of a protein or molecular complex with transcriptional activity, such as the glucocorticoid receptor (+p(HGNC:NR3C1)+) or the AP-1 transcription complex (+complex(NCH:"AP-1 complex")+).  
+Activities represented using this term function include the activities of abundances of proteins or molecular complexes that bind DNA directly and act as transcription factors, as well as transcriptional corepressors and coactivators which directly regulate transcription factor activity.
+
+transportActivity(), tport()
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+For the abundance term A, +transportActivity(A)+ or +tport(A)+ denotes the frequency or abundance of events in which a member of A directly acts to enable the directed movement of substances (such as macromolecules, small molecules, ions) into, out of, within or between cells. A should represent an abundance of protein or molecular complex with transporter activity, such as aquaporin 1 (+p(HGNC:AQP1)+), Scavenger receptor class B member 1 (+p(HGNC:SCARB1)+), or the epithelial sodium channel (ENaC) complex (+complex(NCH:"ENAC complex")+). This function only applies to cases involving movement of molecules at a cellular scale.
+
+Processes
+~~~~~~~~~
+
+Processes are complex phenomena taking place at the level of the cell or the organism which do not correspond to molecular abundances, but instead to a biological process like angiogenesis or a pathology like cancer.
+
+biologicalProcess(), bp()
+^^^^^^^^^^^^^^^^^^^^^^^^^
++biologicalProcess(ns:v)+ or +bp(ns:v)+ denotes the process or population of events designated by the value +v+ in the namespace +ns+. Examples of biological processes are +bp(GO:angiogenesis)+ and +bp(GO:"cell cycle arrest")+.
+
+pathology(), path()
+^^^^^^^^^^^^^^^^^^^
++pathology(ns:v)+ or +path(ns:v)+ denotes the disease or pathology process designated by the value +v+ in the namespace +ns+. Examples of pathologies are +pathology(MESHD:"Pulmonary Disease, Chronic Obstructive")+ and +pathology(MESHD:adenocarcinoma)+.  
+BEL 1.0 includes the pathology term function to facilitate the distinction of pathologies from other biological processes because of their importance in many potential applications in the life sciences.
+  
+Transformations
+~~~~~~~~~~~~~~~
+
+The following BEL functions represent transformations. Transformations are events in which one class of abundance is transformed or changed into a second class of abundance by translocation, degradation, or participation in a reaction.
+
+Translocations
+^^^^^^^^^^^^^^
+BEL translocation functions include +translocation()+, as well as +cellSurfaceExpression()+ and+ cellSecretion()+, two functions intended to provide a simple, standard means of expressing commonly represented translocations.
+
+translocation(), tloc()
++++++++++++++++++++++++
+For the abundance term A, +translocation(A, ns1:v1, ns2:v2)+ or +tloc(A, ns1:v1, ns2:v2)+ denotes the frequency or abundance of events in which members of A move from the location designated by the value +v1+ in the namespace +ns1+ to the location designated by the value +v2+ in the namespace +ns2+. Translocation is applied to represent events on the cellular scale, like endocytosis, protein secretion (see +cellSecretion()+), and movement of transcription factors from the cytoplasm to the nucleus. For example, endocytosis of the epidermal growth factor receptor (EGFR) protein can be represented as:
+
+[source,java]
+----
+translocation(p(HGNC:EGFR), (GO:"cell surface"), (GO:endosome))
+----
+
+cellSecretion(), sec()
+++++++++++++++++++++++
+For the abundance term A, +cellSecretion(A)+ or +sec(A)+ denotes the frequency or abundance of events in which members of the abundance A move from cells to regions outside of the cells.+cellSecretion(A)+ can be equivalently expressed as:
+
+[source,java]
+----
+translocation(A, GO:intracellular, GO:extracellular)
+----
+
+The intent of the +cellSecretion()+ term function is to provide a simple, standard means of expressing a commonly represented translocation.
+
+cellSurfaceExpression(), surf()
++++++++++++++++++++++++++++++++
+For the abundance term A, +cellSurfaceExpression(A)+ or +surf(A)+ denotes the frequency or abundance of events in which members of the abundance A move to the surface of cells.+cellSurfaceExpression(A)+ can be equivalently expressed as:
+
+[source,java]
+----
+translocation(A, GO:intracellular, GO:"cell surface")
+----
+
+The intent of the +cellSurfaceExpression()+ term function is to provide a simple, standard means of expressing a commonly represented translocation.
+
+degradation(), deg()
+++++++++++++++++++++
+For the abundance term A, +degradation(A)+ or +deg(A)+ denotes the frequency or abundance of events in which a member of A is degraded in some way such that it is no longer a member of A. For example, +degradation()+ is used to represent proteasome-mediated proteolysis. +deg(A)+ is automatically connected to A by the compiler such that:
+
+[source,java]
+----
+deg(A) directlyDecreases A
+----
+
+reaction(), rxn()
++++++++++++++++++
++reaction(reactants(<abundance term list1>), products(<abundance term list2>) )+ denotes the frequency or abundance of events in which members of the abundances in +<abundance term list1>+ (the reactants) are transformed into members of the abundances in +<abundance term list2>+ (the products). For example, the dismutation of superoxides into oxygen and hydrogen peroxide can be represented as:
+
+[source,java]
+----
+reaction(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen"))
+----
+
+
+
+
+
+[glossary]
+Glossary
+--------
+A glossary of BEL terminology.
+
+[glossary]
+BEL Parameter::
+  The corresponding (indented) definition.
+
+BEL Term::
+  The corresponding (indented) definition.
+
+BEL Statement::
+  The corresponding (indented) definition.
+
+ifdef::backend-docbook[]
+[index]
+Example Index
+-------------
+////////////////////////////////////////////////////////////////
+The index is normally left completely empty, it's contents being
+generated automatically by the DocBook toolchain.
+////////////////////////////////////////////////////////////////
+endif::backend-docbook[]
+----

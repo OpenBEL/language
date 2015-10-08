@@ -1,0 +1,17 @@
+Flatten XML to one line
+
+xmlstarlet fo -n entities.xml | tr -d $'\n'
+
+Extract only the body HTML; strip CDATA
+
+xmllint --xpath '//property[@name="body"]' entities_flat.xml | sed 's#</property>#</property>\n#g' | grep -v "<property name=\"body\"><\!\[CDATA\[\]\]></property>" | sed "s#<\!\[CDATA\[##g" | sed "s#\]\]\s*>##g" | sed "s#^<property name=\"body\">##g" | sed "s#</property>\$##g" >> html_bodies.lst
+
+Pass to Pandoc (bash)
+
+IFS=$'\n'
+for x in `cat html_bodies.lst`; do
+    file=$(mktemp -p docs)
+    echo "$x" > "${file}"
+    pandoc -f html -t asciidoc "${file}" >> "${file}.adoc"
+done
+

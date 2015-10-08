@@ -1,2 +1,0 @@
-# language
-Specification for BEL

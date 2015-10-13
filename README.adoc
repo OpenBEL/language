@@ -16,6 +16,11 @@ Each specification is captured in an individual http://asciidoc.org[asciidoc]-fo
 
 Currently the http://build.openbel.org/browse/BEL-BLS[OpenBEL Build Server] renders the language specifications to HTML. The latest built HTML artifact can be obtained http://build.openbel.org/browse/BEL-BLS/latestSuccessful/artifact/shared/BEL-v1.0-HTML/bel_specification_version_1.0.html[here].
 
+License
+~~~~~~~
+
+https://github.com/OpenBEL/language/blob/master/LICENSE[Apache License 2.0]
+
 Work Required
 ~~~~~~~~~~~~~
 

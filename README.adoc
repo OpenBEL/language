@@ -1,18 +1,25 @@
 language
 --------
 
-The source of the Biological Expression Language specification.
+The specification(s) for the Biological Expression Language.
 
-plans
-~~~~~
+Motivations
+~~~~~~~~~~~
 
-The initial idea is to convert the OpenBEL wiki language specifications over to a version control system for better collaboration.
+* Track changes
+* Collaboration
+* Discuss Issues
 
-The conversion will be to the http://asciidoc.org/[Asciidoc] markup format. This will allow for rich documentation while being easy to edit.
-
-Source
+Design
 ~~~~~~
 
-* http://wiki.openbel.org/display/BLD[BEL, version 1.0]
-* http://wiki.openbel.org/display/BLVD[BEL, version 2.0]
+Each specification is captured in an individual http://asciidoc.org[asciidoc]-formatted file that is rendered (manually) to HTML.
 
+The repository has a GitHub website available at http://openbel.github.io/language/[http://openbel.github.io/language/]. Changes need to be pushed to the _gh-pages_ branch in order to change the site.
+
+Work Required
+~~~~~~~~~~~~~
+
+* Port BEL, version 2.0 to asciidoc.
+* Automate rendering of BEL specifications?
+* Collaboration recommendation.

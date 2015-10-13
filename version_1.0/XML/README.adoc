@@ -1,0 +1,20 @@
+language
+--------
+
+XML
+~~~
+
+Pulled directly from the
+https://github.com/OpenBEL/openbel-framework[framework].
+
+xbel.xsd
+^^^^^^^^
+
+XML schema definition for BEL documents. Used by the legacy Java BEL Framework.
+
+xbel-annotations.xsd
+^^^^^^^^^^^^^^^^^^^^
+
+XML schema definition for BEL annotations used by the legacy Java BEL
+Framework.
+

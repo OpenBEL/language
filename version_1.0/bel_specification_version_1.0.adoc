@@ -1065,6 +1065,287 @@ reaction(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a
 ----
 
 
+BEL Relationships
+-----------------
+This section provides a listing of all BEL relationships that are included in the BEL V1.0 Language Specification.
+
+Causal Relationships
+~~~~~~~~~~~~~~~~~~~~
+
+These relationship types denote a causal relationship, or the absence of a causal relationship between a subject and an object term.
+
+decreases, -|
+^^^^^^^^^^^^^
+
+For terms A and B, +A decreases B+ or +A -| B+ indicate that increases in A have been observed to cause decreases in B.   
++A decreases B+ also represents cases where decreases in A have been observed to cause increases in B, for example, in recording the results of gene deletion or other inhibition experiments.   
+A is a BEL Term and B is either a BEL Term or a BEL Statement.  
+The +decreases+ relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.
+
+directlyDecreases, =|
+^^^^^^^^^^^^^^^^^^^^^
+
+For terms A and B, +A directlyDecreases B+ or +A =| B+ indicates that increases in A have been observed to cause decreases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a direct version of the decreases relationship.
+
+increases, \->
+^^^^^^^^^^^^^^
+
+For terms A and B, +A increases B+ or +A \-> B+ indicate that increases in A have been observed to cause increases in B.   
++A increases B+ also represents cases where decreases in A have been observed to cause decreases in B, for example, in recording the results of gene deletion or other inhibition experiments.   
+A is a BEL Term and B is either a BEL Term or a BEL Statement.  
+The +increases+ relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.
+
+directlyIncreases, \=>
+^^^^^^^^^^^^^^^^^^^^^^
+
+For terms A and B, +A directlyIncreases B+ or +A \=> B+ indicates that increases in A have been observed to cause increases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a direct version of the increases relationship.
+
+causesNoChange
+^^^^^^^^^^^^^^
+
+For terms A and B, +A causesNoChange B+ indicates that B was observed not to change in response to changes in A.   
+Statements using this relationship correspond to cases where explicit measurement of B demonstrates lack of significant change, not for cases where the state of B is unknown.
+
+
+Correlative Relationships
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These relationship types link abundances and biological processes when no causal relationship is known. The order of subject and object terms does not matter in a statement with a correlative relationship, unlike a statement with a causal relationship.
+
+negativeCorrelation
+^^^^^^^^^^^^^^^^^^^
+
+For terms A and B, +A negativeCorrelation B+ indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus +B negativeCorrelation A+ is equivalent to +A negativeCorrelation B+.
+
+positiveCorrelation
+^^^^^^^^^^^^^^^^^^^
+
+For terms A and B, +A positiveCorrelation B+ indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus +B positiveCorrelation A+ is equivalent to +A positiveCorrelation B+.
+
+association, --
+^^^^^^^^^^^^^^^
+
+For terms A and B, +A association B+ or +A \-- B+ indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like +increases+ or +positiveCorrelation+. The order of the subject and object does not affect the interpretation of the statement, thus +B \-- A+ is equivalent to +A \-- B+.
+
+
+Direct Relationships
+~~~~~~~~~~~~~~~~~~~~
+
+Direct relationships include direct causal relationships and non-causal relationships that are considered direct because they are self-referential.
+
+Direct causal relationships
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The direct casual relationships included in BEL V1.0 are +directlyIncreases+ (notational form,+\=>+) and +directlyDecreases+ (notational form, +=|+).   
+The direct casual relationships are causal relationships where the mechanism of the causal relationship is based on the physical interaction of entities related to the BEL Statement subject and object terms.   
+If A or B is an abundance, then members of the abundance are part of the interaction. If A or B are activities, then members of the abundances performing the activities physically interact. For example, inhibition of the Patched 1 receptor signaling activity by Hedgehog is represented as direct, because Hedgehog and Patched 1 physically interact:
+
++p(PFH:"Hedgehog Family") =| act(p(HGNC:PTCH1))+
+
+In the case of transcriptional activity, if the protein performing the transcriptional activity interacts with the gene that the RNA is transcribed from, the relationship is considered direct. For example, repression of the transcription of miR-21 by FOXO3 protein transcriptional activity is represented as direct because FOXO3 binds the miR-21 promoter:
+
++tscript(p(HGNC:FOXO3)) =| r(HGNC:MIR21)+
+
+If B is a BEL Statement, the relationship is considered direct if the subject abundance term for B physically interacts with the abundance term for A. For example, for the BEL Statement:
+
++p(HGNC:CLSPN) => (kin(p(HGNC:ATR)) => p(HGNC:CHEK1, mod(P)))+
+
+CLSPN protein is considered to directly activate the phosphorylation of CHEK1 protein by the kinase activity of ATR, because the CLSPN and ATR proteins physically interact.
+
+Self-referential causal relationships are generally represented as direct. For example, phosphorylation of GSK3B at serine 9 inhibiting the kinase activity of GSK3B can be represented as:
+
++p(HGNC:GSK3B, mod(P, S, 9)) =| kin(p(HGNC:GSK3B))+
+
+Genomic Relationships
+~~~~~~~~~~~~~~~~~~~~~
+
+These relationship types link related terms, like orthologous terms from two different species or the +geneAbundance()+ and +rnaAbundance()+ terms for the same namespace value.
+
+analogous
+^^^^^^^^^
+
+For terms A and B, +A analogousTo B+ indicates that A and B represent abundances or molecular activities which function in a similar manner.
+
+orthologous
+^^^^^^^^^^^
+
+For terms A and B, +A orthologous B+ indicates that A and B represent entities in different species which are sequence similar and which are therefore presumed to share a common ancestor. For example,
+
++g(HGNC:AKT1) orthologous g(MGI:AKT1)+
+
+indicates that the mouse and human AKT1 genes are orthologous.
+
+transcribedTo, :>
+^^^^^^^^^^^^^^^^^
+
+For RNA abundance term R and gene abundance term G, +G transcribedTo R+ or +G :> R+ indicates that members of R are produced by the transcription of members of G. For example:
+
++g(HGNC:AKT1) :> r(HGNC:AKT1)+
+
+indicates that the human AKT1 RNA is transcribed from the human AKT1 gene.
+
+translatedTo, >>
+^^^^^^^^^^^^^^^^
+
+For RNA abundance term R and protein abundance term P, +R translatedTo P+ or +R >> P+ indicates that members of P are produced by the translation of members of R. For example:
+
++r(HGNC:AKT1) >> p(HGNC:AKT1)+
+
+indicates that AKT1 protein is produced by translation of AKT1 RNA.
+
+
+Other Relationships
+~~~~~~~~~~~~~~~~~~~
+
+BEL V1.0 supports additional miscellaneous relationship types.
+
+biomarkerFor
+^^^^^^^^^^^^
+
+For term A and process term P, +A biomarkerFor P+ indicates that changes in or detection of A is used in some way to be a biomarker for pathology or biological process P.
+
+hasMember
+^^^^^^^^^
+
+For term abundances A and B, +A hasMember B+ designates B as a member class of A. A member class is a distinguished sub-class. A is defined as a group by all of the members assigned to it. The member classes may or may not be overlapping and may or may not entirely cover all instances of A. A term may not appear in both the subject and object of the same hasMember statement
+
+hasMembers
+^^^^^^^^^^
+
+The +hasMembers+ relationship is a special form which enables the assignment of multiple member classes in a single statement where the object of the statement is a set of abundance terms. A statement using +hasMembers+ is exactly equivalent to multiple +hasMember+ statements. A term may not appear in both the subject and object of the same +hasMembers+ statement.   
+For the abundance terms A, B, C and D, +A hasMembers list(B, C, D)+ indicates that A is defined by its member abundance classes B, C and D.
+
+hasComponent
+^^^^^^^^^^^^
+
+For complex abundance term A and abundance term B, +A hasComponent B+ designates B as a component of A, that complexes that are instances of A have instances of B as possible components. Note that, the stoichiometry of A is not described, nor is it stated that B is a required component.   
+The use of +hasComponent+ relationships is complementary to the use of functionally composed complexes and is intended to enable the assignment of components to complexes designated by names in external vocabularies. The assignment of components can potentially enable the reconciliation of equivalent complexes at knowledge assembly time.
+
+hasComponents
+^^^^^^^^^^^^^
+
+The +hasComponents+ relationship is a special form which enables the assignment of multiple complex components in a single statement where the object of the statement is a set of abundance terms. A statement using +hasComponents+ is exactly equivalent to multiple +hasComponent+ statements. A term may not appear in both the subject and object of the same +hasComponents+ statement.   
+For the abundance terms A, B, C and D, +A hasComponents list(B, C, D)+ indicates that A has components B, C and D.
+
+isA
+^^^
+
+For terms A and B, +A isA B+ indicates that A is a subset of B.  
+All terms in BEL 1.0 represent classes, but given that classes implicitly have instances, +A isA B+ is interpreted to mean that any instance of A must also be an instance of B. This relationship can be used to represent GO and MeSH hierarchies:
+
++pathology(MESH:Psoriasis) isA pathology(MESH:"Skin Diseases")+
+
+prognosticBiomarkerFor
+^^^^^^^^^^^^^^^^^^^^^^
+
+For term A and process term P, +A prognosticBiomarkerFor P+ indicates that changes in or detection of A is used in some way to be a prognostic biomarker for the subsequent development of pathology or biological process P.
+
+rateLimitingStepOf
+^^^^^^^^^^^^^^^^^^
+
+For process, activity, or transformation term A and process term B, +A rateLimitingStepOf B+ indicates both:
+
++A subProcessOf B+
+
+and
+
++A \-> B+
+
+For example, the catalytic activity of HMG CoA reductase is a rate-limiting step for cholesterol biosynthesis:
+
++cat(p(HGNC:HMGCR)) rateLimitingStepOf bp(GO:"cholesterol biosynthetic process")+
+
+subProcessOf
+^^^^^^^^^^^^
+
+For process, activity, or transformation term A and process term B, +A subProcessOf B+ indicates that instances of process B, by default, include one or more instances of A in their composition. For example, the reduction of HMG-CoA to mevalonate is a subprocess of cholesterol biosynthesis:
+
+[source,java]
+----
+rxn(reactants(a(CHEBI:"(S)-3-hydroxy-3-methylglutaryl-CoA"),a(CHEBI:NADPH), a(CHEBI:hydron)),\
+ products(a(CHEBI:mevalonate), a(CHEBI:"CoA-SH"), a(CHEBI:"NADP(+)"))) subProcessOf\
+ bp(GO:"cholesterol biosynthetic process")
+----
+
+Direct Relationships Injected by the Compiler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+These relationships are introduced by the BEL compiler. They cannot be used in BEL documents.
+
+actsIn
+^^^^^^
+
+This relationship links an abundance term to the activity term for the same abundance. This relationship is direct because it is a _self_ relationship, the abundance acts in its own activity. For protein abundance +p(A)+ and its molecular activity +kin(p(A))+, +p(A) actsIn kin(p(A))+. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
+
+hasProduct
+^^^^^^^^^^
+
+This relationship links abundance terms from the +products(<list>)+ in a reaction to the reaction. For example:
+
+[source,java]
+----
+rxn(reactants(a(CHEBI:superoxide), a(CHEBI:hydron)),\
+ products(a(CHEBI:"hydrogen peroxide"), a(CHEBI:dioxygen))) hasProduct\
+ a(CHEBI:"hydrogen peroxide")
+----
+
+This is a direct relationship because it is a _self_ relationship. Products are produced directly by a reaction. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
+
+hasVariant
+^^^^^^^^^^
+
+This relationship links abundance terms modified by the +substitution()+, +fusion()+, or +truncation()+ functions to the unmodified abundance term. For example:
+
++p(HGNC:KRAS) hasVariant p(HGNC:KRAS, sub(G, 12, V))+
+
+This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
+
+hasModification
+^^^^^^^^^^^^^^^
+
+This relationship links abundance terms modified by the +pmod()+ function to the unmodified abundance term. For example:
+
++p(HGNC:AKT1) hasModification p(HGNC:AKT1, pmod(P, S, 473))+
+
+This is a direct relationship because it is a _self_ relationship. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
+
+reactantIn
+^^^^^^^^^^
+
+This relationship links abundance terms from the +reactants(<list>)+ in a reaction to the reaction. For example:
+
+[source,java]
+----
+a(CHEBI:superoxide) reactantIn\
+ rxn(reactants(a(CHEBI:superoxide), a(CHEBI:hydron)),\
+ products(a(CHEBI:"hydrogen peroxide"), a(CHEBI:dioxygen))) 
+----
+
+This is a direct relationship because it is a _self_ relationship. Reactants are consumed directly by a reaction. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
+
+translocates
+^^^^^^^^^^^^
+
+This relationship links a translocation term to the abundance term that is translocated. For example:
+
++sec(p(HGNC:IL6)) translocates p(HGNC:IL6)+
+
+This relationship is direct because it is a _self_ relationship. The translocated abundance is directly acted on by the translocation process. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
+
+includes
+^^^^^^^^
+
+This relationship links each individual abundance term in a +compositeAbundance(<list>)+ to the composite abundance. For example:
+
++compositeAbundance(A,B) includes A+
+
++compositeAbundance(A,B) includes B+
+
+This relationship is direct because it is a _self_ relationship. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
+
+
+BEL Examples
+------------
 
 
 

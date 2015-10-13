@@ -2154,7 +2154,220 @@ BEL 1.0 includes the pathology term function to facilitate the distinction of pa
 </div>
 </div>
 <div class="sect1">
-<h2 id="_glossary">7. Glossary</h2>
+<h2 id="_bel_relationships">7. BEL Relationships</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This section provides a listing of all BEL relationships that are included in the BEL V1.0 Language Specification.</p></div>
+<div class="sect2">
+<h3 id="_causal_relationships">7.1. Causal Relationships</h3>
+<div class="paragraph"><p>These relationship types denote a causal relationship, or the absence of a causal relationship between a subject and an object term.</p></div>
+<div class="sect3">
+<h4 id="_decreases">7.1.1. decreases, -|</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A decreases B</span> or <span class="monospaced">A -| B</span> indicate that increases in A have been observed to cause decreases in B.
+<span class="monospaced">A decreases B</span> also represents cases where decreases in A have been observed to cause increases in B, for example, in recording the results of gene deletion or other inhibition experiments.
+A is a BEL Term and B is either a BEL Term or a BEL Statement.
+The <span class="monospaced">decreases</span> relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_directlydecreases">7.1.2. directlyDecreases, =|</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A directlyDecreases B</span> or <span class="monospaced">A =| B</span> indicates that increases in A have been observed to cause decreases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a direct version of the decreases relationship.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_increases_gt">7.1.3. increases, -&gt;</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A increases B</span> or <span class="monospaced">A -&gt; B</span> indicate that increases in A have been observed to cause increases in B.
+<span class="monospaced">A increases B</span> also represents cases where decreases in A have been observed to cause decreases in B, for example, in recording the results of gene deletion or other inhibition experiments.
+A is a BEL Term and B is either a BEL Term or a BEL Statement.
+The <span class="monospaced">increases</span> relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_directlyincreases_gt">7.1.4. directlyIncreases, =&gt;</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A directlyIncreases B</span> or <span class="monospaced">A =&gt; B</span> indicates that increases in A have been observed to cause increases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a direct version of the increases relationship.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_causesnochange">7.1.5. causesNoChange</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A causesNoChange B</span> indicates that B was observed not to change in response to changes in A.
+Statements using this relationship correspond to cases where explicit measurement of B demonstrates lack of significant change, not for cases where the state of B is unknown.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_correlative_relationships">7.2. Correlative Relationships</h3>
+<div class="paragraph"><p>These relationship types link abundances and biological processes when no causal relationship is known. The order of subject and object terms does not matter in a statement with a correlative relationship, unlike a statement with a causal relationship.</p></div>
+<div class="sect3">
+<h4 id="_negativecorrelation">7.2.1. negativeCorrelation</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A negativeCorrelation B</span> indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus <span class="monospaced">B negativeCorrelation A</span> is equivalent to <span class="monospaced">A negativeCorrelation B</span>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_positivecorrelation">7.2.2. positiveCorrelation</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A positiveCorrelation B</span> indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus <span class="monospaced">B positiveCorrelation A</span> is equivalent to <span class="monospaced">A positiveCorrelation B</span>.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_association">7.2.3. association, --</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A association B</span> or <span class="monospaced">A -- B</span> indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like <span class="monospaced">increases</span> or <span class="monospaced">positiveCorrelation</span>. The order of the subject and object does not affect the interpretation of the statement, thus <span class="monospaced">B -- A</span> is equivalent to <span class="monospaced">A -- B</span>.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_direct_relationships">7.3. Direct Relationships</h3>
+<div class="paragraph"><p>Direct relationships include direct causal relationships and non-causal relationships that are considered direct because they are self-referential.</p></div>
+<div class="sect3">
+<h4 id="_direct_causal_relationships">7.3.1. Direct causal relationships</h4>
+<div class="paragraph"><p>The direct casual relationships included in BEL V1.0 are <span class="monospaced">directlyIncreases</span> (notational form,<span class="monospaced">=&gt;</span>) and <span class="monospaced">directlyDecreases</span> (notational form, <span class="monospaced">=|</span>).
+The direct casual relationships are causal relationships where the mechanism of the causal relationship is based on the physical interaction of entities related to the BEL Statement subject and object terms.
+If A or B is an abundance, then members of the abundance are part of the interaction. If A or B are activities, then members of the abundances performing the activities physically interact. For example, inhibition of the Patched 1 receptor signaling activity by Hedgehog is represented as direct, because Hedgehog and Patched 1 physically interact:</p></div>
+<div class="paragraph"><p><span class="monospaced">p(PFH:"Hedgehog Family") =| act(p(HGNC:PTCH1))</span></p></div>
+<div class="paragraph"><p>In the case of transcriptional activity, if the protein performing the transcriptional activity interacts with the gene that the RNA is transcribed from, the relationship is considered direct. For example, repression of the transcription of miR-21 by FOXO3 protein transcriptional activity is represented as direct because FOXO3 binds the miR-21 promoter:</p></div>
+<div class="paragraph"><p><span class="monospaced">tscript(p(HGNC:FOXO3)) =| r(HGNC:MIR21)</span></p></div>
+<div class="paragraph"><p>If B is a BEL Statement, the relationship is considered direct if the subject abundance term for B physically interacts with the abundance term for A. For example, for the BEL Statement:</p></div>
+<div class="paragraph"><p><span class="monospaced">p(HGNC:CLSPN) &#8658; (kin(p(HGNC:ATR)) &#8658; p(HGNC:CHEK1, mod(P)))</span></p></div>
+<div class="paragraph"><p>CLSPN protein is considered to directly activate the phosphorylation of CHEK1 protein by the kinase activity of ATR, because the CLSPN and ATR proteins physically interact.</p></div>
+<div class="paragraph"><p>Self-referential causal relationships are generally represented as direct. For example, phosphorylation of GSK3B at serine 9 inhibiting the kinase activity of GSK3B can be represented as:</p></div>
+<div class="paragraph"><p><span class="monospaced">p(HGNC:GSK3B, mod(P, S, 9)) =| kin(p(HGNC:GSK3B))</span></p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_genomic_relationships">7.4. Genomic Relationships</h3>
+<div class="paragraph"><p>These relationship types link related terms, like orthologous terms from two different species or the <span class="monospaced">geneAbundance()</span> and <span class="monospaced">rnaAbundance()</span> terms for the same namespace value.</p></div>
+<div class="sect3">
+<h4 id="_analogous">7.4.1. analogous</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A analogousTo B</span> indicates that A and B represent abundances or molecular activities which function in a similar manner.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_orthologous">7.4.2. orthologous</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A orthologous B</span> indicates that A and B represent entities in different species which are sequence similar and which are therefore presumed to share a common ancestor. For example,</p></div>
+<div class="paragraph"><p><span class="monospaced">g(HGNC:AKT1) orthologous g(MGI:AKT1)</span></p></div>
+<div class="paragraph"><p>indicates that the mouse and human AKT1 genes are orthologous.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_transcribedto_gt">7.4.3. transcribedTo, :&gt;</h4>
+<div class="paragraph"><p>For RNA abundance term R and gene abundance term G, <span class="monospaced">G transcribedTo R</span> or <span class="monospaced">G :&gt; R</span> indicates that members of R are produced by the transcription of members of G. For example:</p></div>
+<div class="paragraph"><p><span class="monospaced">g(HGNC:AKT1) :&gt; r(HGNC:AKT1)</span></p></div>
+<div class="paragraph"><p>indicates that the human AKT1 RNA is transcribed from the human AKT1 gene.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_translatedto_gt_gt">7.4.4. translatedTo, &gt;&gt;</h4>
+<div class="paragraph"><p>For RNA abundance term R and protein abundance term P, <span class="monospaced">R translatedTo P</span> or <span class="monospaced">R &gt;&gt; P</span> indicates that members of P are produced by the translation of members of R. For example:</p></div>
+<div class="paragraph"><p><span class="monospaced">r(HGNC:AKT1) &gt;&gt; p(HGNC:AKT1)</span></p></div>
+<div class="paragraph"><p>indicates that AKT1 protein is produced by translation of AKT1 RNA.</p></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_other_relationships">7.5. Other Relationships</h3>
+<div class="paragraph"><p>BEL V1.0 supports additional miscellaneous relationship types.</p></div>
+<div class="sect3">
+<h4 id="_biomarkerfor">7.5.1. biomarkerFor</h4>
+<div class="paragraph"><p>For term A and process term P, <span class="monospaced">A biomarkerFor P</span> indicates that changes in or detection of A is used in some way to be a biomarker for pathology or biological process P.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_hasmember">7.5.2. hasMember</h4>
+<div class="paragraph"><p>For term abundances A and B, <span class="monospaced">A hasMember B</span> designates B as a member class of A. A member class is a distinguished sub-class. A is defined as a group by all of the members assigned to it. The member classes may or may not be overlapping and may or may not entirely cover all instances of A. A term may not appear in both the subject and object of the same hasMember statement</p></div>
+</div>
+<div class="sect3">
+<h4 id="_hasmembers">7.5.3. hasMembers</h4>
+<div class="paragraph"><p>The <span class="monospaced">hasMembers</span> relationship is a special form which enables the assignment of multiple member classes in a single statement where the object of the statement is a set of abundance terms. A statement using <span class="monospaced">hasMembers</span> is exactly equivalent to multiple <span class="monospaced">hasMember</span> statements. A term may not appear in both the subject and object of the same <span class="monospaced">hasMembers</span> statement.
+For the abundance terms A, B, C and D, <span class="monospaced">A hasMembers list(B, C, D)</span> indicates that A is defined by its member abundance classes B, C and D.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_hascomponent">7.5.4. hasComponent</h4>
+<div class="paragraph"><p>For complex abundance term A and abundance term B, <span class="monospaced">A hasComponent B</span> designates B as a component of A, that complexes that are instances of A have instances of B as possible components. Note that, the stoichiometry of A is not described, nor is it stated that B is a required component.
+The use of <span class="monospaced">hasComponent</span> relationships is complementary to the use of functionally composed complexes and is intended to enable the assignment of components to complexes designated by names in external vocabularies. The assignment of components can potentially enable the reconciliation of equivalent complexes at knowledge assembly time.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_hascomponents">7.5.5. hasComponents</h4>
+<div class="paragraph"><p>The <span class="monospaced">hasComponents</span> relationship is a special form which enables the assignment of multiple complex components in a single statement where the object of the statement is a set of abundance terms. A statement using <span class="monospaced">hasComponents</span> is exactly equivalent to multiple <span class="monospaced">hasComponent</span> statements. A term may not appear in both the subject and object of the same <span class="monospaced">hasComponents</span> statement.
+For the abundance terms A, B, C and D, <span class="monospaced">A hasComponents list(B, C, D)</span> indicates that A has components B, C and D.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_isa">7.5.6. isA</h4>
+<div class="paragraph"><p>For terms A and B, <span class="monospaced">A isA B</span> indicates that A is a subset of B.
+All terms in BEL 1.0 represent classes, but given that classes implicitly have instances, <span class="monospaced">A isA B</span> is interpreted to mean that any instance of A must also be an instance of B. This relationship can be used to represent GO and MeSH hierarchies:</p></div>
+<div class="paragraph"><p><span class="monospaced">pathology(MESH:Psoriasis) isA pathology(MESH:"Skin Diseases")</span></p></div>
+</div>
+<div class="sect3">
+<h4 id="_prognosticbiomarkerfor">7.5.7. prognosticBiomarkerFor</h4>
+<div class="paragraph"><p>For term A and process term P, <span class="monospaced">A prognosticBiomarkerFor P</span> indicates that changes in or detection of A is used in some way to be a prognostic biomarker for the subsequent development of pathology or biological process P.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_ratelimitingstepof">7.5.8. rateLimitingStepOf</h4>
+<div class="paragraph"><p>For process, activity, or transformation term A and process term B, <span class="monospaced">A rateLimitingStepOf B</span> indicates both:</p></div>
+<div class="paragraph"><p><span class="monospaced">A subProcessOf B</span></p></div>
+<div class="paragraph"><p>and</p></div>
+<div class="paragraph"><p><span class="monospaced">A -&gt; B</span></p></div>
+<div class="paragraph"><p>For example, the catalytic activity of HMG CoA reductase is a rate-limiting step for cholesterol biosynthesis:</p></div>
+<div class="paragraph"><p><span class="monospaced">cat(p(HGNC:HMGCR)) rateLimitingStepOf bp(GO:"cholesterol biosynthetic process")</span></p></div>
+</div>
+<div class="sect3">
+<h4 id="_subprocessof">7.5.9. subProcessOf</h4>
+<div class="paragraph"><p>For process, activity, or transformation term A and process term B, <span class="monospaced">A subProcessOf B</span> indicates that instances of process B, by default, include one or more instances of A in their composition. For example, the reduction of HMG-CoA to mevalonate is a subprocess of cholesterol biosynthesis:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>rxn(reactants(a(CHEBI:"(S)-3-hydroxy-3-methylglutaryl-CoA"),a(CHEBI:NADPH), a(CHEBI:hydron)),\
+ products(a(CHEBI:mevalonate), a(CHEBI:"CoA-SH"), a(CHEBI:"NADP(+)"))) subProcessOf\
+ bp(GO:"cholesterol biosynthetic process")</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_direct_relationships_injected_by_the_compiler">7.6. Direct Relationships Injected by the Compiler</h3>
+<div class="paragraph"><p>These relationships are introduced by the BEL compiler. They cannot be used in BEL documents.</p></div>
+<div class="sect3">
+<h4 id="_actsin">7.6.1. actsIn</h4>
+<div class="paragraph"><p>This relationship links an abundance term to the activity term for the same abundance. This relationship is direct because it is a <em>self</em> relationship, the abundance acts in its own activity. For protein abundance <span class="monospaced">p(A)</span> and its molecular activity <span class="monospaced">kin(p(A))</span>, <span class="monospaced">p(A) actsIn kin(p(A))</span>. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_hasproduct">7.6.2. hasProduct</h4>
+<div class="paragraph"><p>This relationship links abundance terms from the <span class="monospaced">products(&lt;list&gt;)</span> in a reaction to the reaction. For example:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>rxn(reactants(a(CHEBI:superoxide), a(CHEBI:hydron)),\
+ products(a(CHEBI:"hydrogen peroxide"), a(CHEBI:dioxygen))) hasProduct\
+ a(CHEBI:"hydrogen peroxide")</pre>
+</div></div>
+<div class="paragraph"><p>This is a direct relationship because it is a <em>self</em> relationship. Products are produced directly by a reaction. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_hasvariant">7.6.3. hasVariant</h4>
+<div class="paragraph"><p>This relationship links abundance terms modified by the <span class="monospaced">substitution()</span>, <span class="monospaced">fusion()</span>, or <span class="monospaced">truncation()</span> functions to the unmodified abundance term. For example:</p></div>
+<div class="paragraph"><p><span class="monospaced">p(HGNC:KRAS) hasVariant p(HGNC:KRAS, sub(G, 12, V))</span></p></div>
+<div class="paragraph"><p>This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_hasmodification">7.6.4. hasModification</h4>
+<div class="paragraph"><p>This relationship links abundance terms modified by the <span class="monospaced">pmod()</span> function to the unmodified abundance term. For example:</p></div>
+<div class="paragraph"><p><span class="monospaced">p(HGNC:AKT1) hasModification p(HGNC:AKT1, pmod(P, S, 473))</span></p></div>
+<div class="paragraph"><p>This is a direct relationship because it is a <em>self</em> relationship. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_reactantin">7.6.5. reactantIn</h4>
+<div class="paragraph"><p>This relationship links abundance terms from the <span class="monospaced">reactants(&lt;list&gt;)</span> in a reaction to the reaction. For example:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>a(CHEBI:superoxide) reactantIn\
+ rxn(reactants(a(CHEBI:superoxide), a(CHEBI:hydron)),\
+ products(a(CHEBI:"hydrogen peroxide"), a(CHEBI:dioxygen)))</pre>
+</div></div>
+<div class="paragraph"><p>This is a direct relationship because it is a <em>self</em> relationship. Reactants are consumed directly by a reaction. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_translocates">7.6.6. translocates</h4>
+<div class="paragraph"><p>This relationship links a translocation term to the abundance term that is translocated. For example:</p></div>
+<div class="paragraph"><p><span class="monospaced">sec(p(HGNC:IL6)) translocates p(HGNC:IL6)</span></p></div>
+<div class="paragraph"><p>This relationship is direct because it is a <em>self</em> relationship. The translocated abundance is directly acted on by the translocation process. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_includes">7.6.7. includes</h4>
+<div class="paragraph"><p>This relationship links each individual abundance term in a <span class="monospaced">compositeAbundance(&lt;list&gt;)</span> to the composite abundance. For example:</p></div>
+<div class="paragraph"><p><span class="monospaced">compositeAbundance(A,B) includes A</span></p></div>
+<div class="paragraph"><p><span class="monospaced">compositeAbundance(A,B) includes B</span></p></div>
+<div class="paragraph"><p>This relationship is direct because it is a <em>self</em> relationship. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bel_examples">8. BEL Examples</h2>
+<div class="sectionbody">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_glossary">9. Glossary</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>A glossary of BEL terminology.</p></div>
 <div class="dlist glossary"><dl>
@@ -2194,7 +2407,7 @@ BEL Statement
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2015-10-08 15:06:58 EDT
+Last updated 2015-10-13 07:15:04 EDT
 </div>
 </div>
 </body>

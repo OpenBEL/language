@@ -8,10 +8,6 @@ This is the home of the BEL Language Documentation v 1.0
 Please cite the BEL v1.0 language documentation as "BEL v1.0 Language
 Documentation, http://wiki.openbel.org/", along with the date accessed.
 
-All canonical BEL Language Documentation is maintained as wiki pages.
-You can export these pages as PDF via the Browse->Space Operations->PDF
-Export.
-
 :numbered!:
 [[overview]]
 Overview

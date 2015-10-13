@@ -55,7 +55,7 @@ predicate is one of the BEL Relationship types describing the
 relationship between the subject BEL Term and the object.
 
 .Structure of a BEL Statement
-image::/home/tony/projects/openbel/language/version_1.0/bel_statement.jpg["Structure of a BEL Statement",align="center"]
+image::bel_statement.jpg["Structure of a BEL Statement",align="center"]
 
 BEL Terms are composed of BEL Functions and entity definitions
 referenced using BEL Namespace identifiers. Each BEL Term represents

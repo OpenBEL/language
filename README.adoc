@@ -6,20 +6,18 @@ The specification(s) for the Biological Expression Language.
 Motivations
 ~~~~~~~~~~~
 
-* Track changes
-* Collaboration
-* Discuss Issues
+* Track changes with source control
+* Collaborate on specification through GitHub issues and comments
 
 Design
 ~~~~~~
 
-Each specification is captured in an individual http://asciidoc.org[asciidoc]-formatted file that is rendered (manually) to HTML.
+Each specification is captured in an individual http://asciidoc.org[asciidoc]-formatted file.
 
-The repository has a GitHub website available at http://openbel.github.io/language/[http://openbel.github.io/language/]. Changes need to be pushed to the _gh-pages_ branch in order to change the site.
+Currently the http://build.openbel.org/browse/BEL-BLS[OpenBEL Build Server] renders the language specifications to HTML. The latest built HTML artifact can be obtained http://build.openbel.org/browse/BEL-BLS/latestSuccessful/artifact/shared/BEL-v1.0-HTML/bel_specification_version_1.0.html[here].
 
 Work Required
 ~~~~~~~~~~~~~
 
 * Port BEL, version 2.0 to asciidoc.
-* Automate rendering of BEL specifications?
 * Collaboration recommendation.

@@ -3255,6 +3255,41 @@ cat(p(HGNC:HSD11B1)) => \
 
 The top statement represents the forward reaction and the bottom statement represents the reverse reaction.
 
+Implementation
+--------------
+
+Formats
+~~~~~~~
+
+BEL Script (ANTLR Grammars)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+BEL Script is a syntax and format for encoding BEL Statements and associated annotations as human-readable documents that can also be efficiently processed.
+
+include::ANTLR/README.adoc[]
+
+BEL Script (Ragel Parser)
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The http://www.colm.net/open-source/ragel/[Ragel] parser files can be found https://github.com/OpenBEL/bel.rb/tree/master/lib/bel/ragel[here]. The http://www.colm.net/open-source/ragel/[Ragel] files can be used to create a parser in a http://www.colm.net/open-source/ragel/[Ragel]-supported language. For example to compile for Ruby you would execute +ragel -F0 -L -R bel.rl+.
+
+XBEL
+^^^^
+
+include::XML/README.adoc[]
+
+Tools
+~~~~~
+
+Java
+^^^^
+
+The https://github.com/OpenBEL/openbel-framework[OpenBEL Framework] implements a BEL Script and XBEL parser in the Java library https://github.com/OpenBEL/openbel-framework/tree/experimental/org.openbel.framework.common[org.openbel.framework.common].
+
+Ruby
+^^^^
+
+The https://rubygems.org/gems/bel[bel] Ruby gem parses BEL Script and XBEL.
 
 [glossary]
 Glossary

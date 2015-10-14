@@ -10,12 +10,16 @@ https://github.com/OpenBEL/openbel-framework[framework].
 BELScript.g
 ^^^^^^^^^^^
 
-_Not used_
+Parse grammar that emits an ANTLR Abstract Syntax Tree. Syntax warnings and errors are caught in this step.
+
+Used by OpenBEL Framework 2.0 / 3.0. See https://github.com/OpenBEL/openbel-framework/blob/experimental/org.openbel.framework.common/src/main/java/org/openbel/framework/common/bel/parser/BELParser.java[BELParser.java].
 
 BELScriptWalker.g
 ^^^^^^^^^^^^^^^^^
 
-Grammar used by the legacy Java BEL Framework.
+Walks the AST and transforms into BEL Java Objects (org.openbel.framework.common.model package).
+
+Used by OpenBEL Framework 2.0 / 3.0. See https://github.com/OpenBEL/openbel-framework/blob/experimental/org.openbel.framework.common/src/main/java/org/openbel/framework/common/bel/parser/BELParser.java[BELParser.java].
 
 BELScriptWalker_v1.g
 ^^^^^^^^^^^^^^^^^^^^
@@ -40,5 +44,6 @@ _Not used_
 BELStatement.g
 ^^^^^^^^^^^^^^
 
-_Not used_
+Parses a BEL Statement into a BELStatement Java Object (org.openbel.framework.common.model.BELStatement).
 
+Used by OpenBEL Framework 2.0 / 3.0. See https://github.com/OpenBEL/openbel-framework/blob/experimental/org.openbel.framework.common/src/main/java/org/openbel/framework/common/bel/parser/BELParser.java[BELParser.java].

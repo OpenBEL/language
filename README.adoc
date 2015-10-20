@@ -3,7 +3,7 @@ BEL Language
 
 The specification(s) for the Biological Expression Language.
 
-Web view: http://openbel.github.io/language/
+http://openbel.github.io/language/[Web view]
 
 == Motivations
 ~~~~~~~~~~~

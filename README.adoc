@@ -1,9 +1,11 @@
-language
+BEL Language
 --------
 
 The specification(s) for the Biological Expression Language.
 
-Motivations
+Web view: http://openbel.github.io/language/
+
+== Motivations
 ~~~~~~~~~~~
 
 * Track changes with source control

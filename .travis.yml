@@ -1,2 +1,5 @@
+before_install:
+  - sudo apt-get install asciidoctor
+
 script:   'tools/scripts/build-html.sh'
 language: shell

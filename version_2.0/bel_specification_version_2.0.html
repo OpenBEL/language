@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
 <meta name="author" content="Natalie Catlett">
-<title>BEL Specification</title>
+<title>BEL 2.0 Specification</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -420,7 +420,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>BEL Specification</h1>
+<h1>BEL 2.0 Specification</h1>
 <div class="details">
 <span id="author" class="author">Natalie Catlett</span><br>
 <span id="email" class="email"><a href="mailto:ncatlett@selventa.com">ncatlett@selventa.com</a></span><br>
@@ -460,10 +460,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_abundance_functions">2.1. Abundance Functions</a></li>
 <li><a href="#_abundance_modifier_functions">2.2. Abundance Modifier Functions</a></li>
 <li><a href="#_variants_2">2.3. Variants</a></li>
-<li><a href="#_variant_var">2.4. variant(), var()</a></li>
-<li><a href="#_proteolytic_fragments">2.5. Proteolytic fragments</a></li>
-<li><a href="#_fragment_frag">2.6. fragment(), frag()</a></li>
-<li><a href="#_location_loc">2.7. location(), loc()</a></li>
+<li><a href="#_proteolytic_fragments">2.4. Proteolytic fragments</a></li>
+<li><a href="#_fragment_frag">2.5. fragment(), frag()</a></li>
+<li><a href="#_location_loc">2.6. location(), loc()</a></li>
 </ul>
 </li>
 <li><a href="#_process_functions">3. Process Functions</a>
@@ -629,10 +628,10 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <p>Now represent multiple substitutions within the same gene/RNA/protein</p>
 </li>
 <li>
-<p>New BEL abundance modifier function <a href="http://wiki.openbel.org/display/BLVD/Variants"><code>variant()</code>/<code>var()</code></a> is used for most variant types, replacing <code>substitution()</code>/<code>sub()</code> and <code>truncation()</code>/<code>trunc()</code>. <a href="http://www.hgvs.org/rec.html">Human Genome Variation Society</a> (HGVS) nomenclature adopted to describe variants (<a href="http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291098-1004%28200001%2915:1%3C7::AID-HUMU4%3E3.0.CO;2-N/pdf">Dunnen and Antonarakis, 2000</a>) within the <code>var()</code> modifier function, expanding supported types of variation to include insertions, deletions, duplications as well as non-specific variants.</p>
+<p>New BEL abundance modifier function <a href="http://wiki.openbel.org/display/BLVD/Variants">variant()/var()</a> is used for most variant types, replacing substitution()/sub() and truncation()/trunc(). <a href="http://www.hgvs.org/rec.html">Human Genome Variation Society</a> (HGVS) nomenclature adopted to describe variants (<a href="http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291098-1004%28200001%2915:1%3C7::AID-HUMU4%3E3.0.CO;2-N/pdf">Dunnen and Antonarakis, 2000</a>) within the var() modifier function, expanding supported types of variation to include insertions, deletions, duplications as well as non-specific variants.</p>
 </li>
 <li>
-<p>Usage of <code><a href="http://wiki.openbel.org/display/BLVD/Other+Functions">fus()</a></code> changed. Instead of a modifier function for a gene/RNA/protein abundance, <code>fus()</code> is used to compose new entities that can be used in place of a namespace value for abundance functions.</p>
+<p>Usage of http://wiki.openbel.org/display/BLVD/Other+Functions[fus()] changed. Instead of a modifier function for a gene/RNA/protein abundance, fus() is used to compose new entities that can be used in place of a namespace value for abundance functions.</p>
 </li>
 </ul>
 </div>
@@ -642,7 +641,7 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <div class="ulist">
 <ul>
 <li>
-<p>New abundance modifier function <a href="http://wiki.openbel.org/display/BLVD/Proteolytic+fragments"><code>fragment()</code>/<code>frag()</code></a> to be used within protein abundances to specify protein fragments based on amino acid sequence range.</p>
+<p>New abundance modifier function <a href="http://wiki.openbel.org/display/BLVD/Proteolytic+fragments">fragment()/frag()</a> to be used within protein abundances to specify protein fragments based on amino acid sequence range.</p>
 </li>
 </ul>
 </div>
@@ -652,10 +651,10 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <div class="ulist">
 <ul>
 <li>
-<p>The <a href="http://wiki.openbel.org/display/BLVD/Protein+Modifications"><code>proteinModification()</code>/<code>pmod()</code></a> abundance modifier function can now use external vocabularies (e.g., <a href="http://psidev.cvs.sourceforge.net/viewvc/psidev/psi/mod/data/PSI-MOD.obo">PSI-MOD</a>) for modification types, enabling users to add types without requiring a language change.</p>
+<p>The <a href="http://wiki.openbel.org/display/BLVD/Protein+Modifications">proteinModification()/pmod()</a> abundance modifier function can now use external vocabularies (e.g., <a href="http://psidev.cvs.sourceforge.net/viewvc/psidev/psi/mod/data/PSI-MOD.obo">PSI-MOD</a>) for modification types, enabling users to add types without requiring a language change.</p>
 </li>
 <li>
-<p>Now multiple <code>pmod()</code> expressions can be used within a protein abundance.</p>
+<p>Now multiple pmod() expressions can be used within a protein abundance.</p>
 </li>
 </ul>
 </div>
@@ -665,10 +664,10 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <div class="ulist">
 <ul>
 <li>
-<p>New abundance modifier function to specify location - <a href="http://wiki.openbel.org/display/BLVD/Cellular+location"><code>location()</code>/<code>loc()</code></a><code>.</code></p>
+<p>New abundance modifier function to specify location - <a href="http://wiki.openbel.org/display/BLVD/Cellular+location">location()/loc()</a>.</p>
 </li>
 <li>
-<p>Change in <a href="http://wiki.openbel.org/display/BLVD/Transformation+Functions"><code>translocation()</code>/<code>tloc()</code></a> function format, to explicitly add BEL location functions to location arguments.</p>
+<p>Change in <a href="http://wiki.openbel.org/display/BLVD/Transformation+Functions">translocation()/tloc()</a> function format, to explicitly add BEL location functions to location arguments.</p>
 </li>
 </ul>
 </div>
@@ -678,10 +677,10 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <div class="ulist">
 <ul>
 <li>
-<p>The ten distinct BEL activity functions, e.g., <code>kinaseActivity()</code>/<code>kin()</code>, <code>catalyticActivity()</code>/<code>cat()</code>, <code>transcriptionalActivity()</code>/<code>tscript()</code>, are consolidated to a single activity function <a href="http://wiki.openbel.org/display/BLVD/Process+Functions#ProcessFunctions-act()"><code>activity()</code>/<code>act()</code></a></p>
+<p>The ten distinct BEL activity functions, e.g., kinaseActivity()/kin(), catalyticActivity()/cat(), transcriptionalActivity()/tscript(), are consolidated to a single activity function <a href="http://wiki.openbel.org/display/BLVD/Process+Functions#ProcessFunctions-act()">activity()/act()</a></p>
 </li>
 <li>
-<p>New modifier function <a href="http://wiki.openbel.org/display/BLVD/Process+Modifier+Function"><code>molecularActivity()</code>/<code>ma()</code></a> can be used to specify specific activity types, using external vocabularies, e.g., <a href="http://www.geneontology.org/GO.function.guidelines.shtml">GO Molecular Function</a>, or a default BEL vocabulary.</p>
+<p>New modifier function <a href="http://wiki.openbel.org/display/BLVD/Process+Modifier+Function">molecularActivity()/ma()</a> can be used to specify specific activity types, using external vocabularies, e.g., <a href="http://www.geneontology.org/GO.function.guidelines.shtml">GO Molecular Function</a>, or a default BEL vocabulary.</p>
 </li>
 </ul>
 </div>
@@ -691,7 +690,7 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <div class="ulist">
 <ul>
 <li>
-<p>New causal relationship <code>regulates</code> to represent cases where A is reported to affect B, but it cannot be determined if A increases or decreases B.</p>
+<p>New causal relationship regulates to represent cases where A is reported to affect B, but it cannot be determined if A increases or decreases B.</p>
 </li>
 </ul>
 </div>
@@ -721,7 +720,7 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <h2 id="LanguageStructure">1. Language Structure</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Knowledge in BEL is expressed as <a href="http://wiki.openbel.org/display/BLVD/Statements"><strong>BEL Statements</strong></a>.  Generally, BEL Statements have the form of a <em>subject</em> - <em>predicate</em> - <em>object</em> triple, where the subject is a BEL Term, the predicate is one of the BEL relationship types (e.g., <strong><code><em>increases</em></code></strong>),  and the object can be either a BEL Term or a BEL Statement. A BEL Statement may also be comprised of a subject term only.</p>
+<p>Knowledge in BEL is expressed as <a href="http://wiki.openbel.org/display/BLVD/Statements"><strong>BEL Statements</strong></a>.  Generally, BEL Statements have the form of a <em>subject</em> - <em>predicate</em> - <em>object</em> triple, where the subject is a BEL Term, the predicate is one of the BEL relationship types (e.g., <strong>__increases__</strong>),  and the object can be either a BEL Term or a BEL Statement. A BEL Statement may also be comprised of a subject term only.</p>
 </div>
 <div class="paragraph">
 <p><strong><a href="http://wiki.openbel.org/display/BLVD/Terms">BEL Terms</a></strong> are composed of BEL Functions applied to concepts referenced using <strong><a href="http://wiki.openbel.org/display/BLVD/Namespaces">Namespace</a></strong> identifiers. Each BEL Term represents either an abundance of a biological entity, e.g., human AKT1 protein, or a process such as apoptosis.</p>
@@ -735,12 +734,12 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <p>BEL is specifically designed to adopt external vocabularies and ontologies, and represent life-science knowledge in the language and schema of the organization collecting or using the knowledge. Thus, BEL Terms are defined by reference to concepts in external vocabularies, which provide a set of well-known domain values, such as the official human gene symbols provided by HGNC (<a href="http://www.genenames.org/">http://www.genenames.org/</a>) . While we consider it good practice to define biological entities with respect to well-defined domains such as public ontologies, no specific vocabulary is essential to the use of BEL, and users are free to define and reference their own vocabularies as needed.</p>
 </div>
 <div class="paragraph">
-<p>BEL uses Namespaces to unambiguously reference concepts. The user associates a Namespace prefix with an external vocabulary and uses the prefix to refer to elements of the vocabulary. For example, if we associate the Namespace prefix HGNC with the vocabulary of symbols managed by the HGNC committee, we can then compose BEL Terms by referencing the HGNC Namespace prefix and any concept from the HGNC namespace together with a relevant BEL Function, e.g., <code>proteinAbundance(HGNC:AKT1)</code> or <code>rnaAbundance(HGNC:TNF)</code>.</p>
+<p>BEL uses Namespaces to unambiguously reference concepts. The user associates a Namespace prefix with an external vocabulary and uses the prefix to refer to elements of the vocabulary. For example, if we associate the Namespace prefix HGNC with the vocabulary of symbols managed by the HGNC committee, we can then compose BEL Terms by referencing the HGNC Namespace prefix and any concept from the HGNC namespace together with a relevant BEL Function, e.g., proteinAbundance(HGNC:AKT1) or rnaAbundance(HGNC:TNF).</p>
 </div>
 <div class="sect3">
 <h4 id="_equivalencing_between_namespaces">1.1.1. Equivalencing between Namespaces</h4>
 <div class="paragraph">
-<p>Values from different Namespaces may correspond to the same biological concept. For example, the name AKT1 in the HGNC Namespace refers to the same gene referenced with ID 207 in the EGID (Entrez Gene Identifier) Namespace. The BEL Framework assembles knowledge into a cohesive network, mapping equivalent BEL Terms, e.g., <code>proteinAbundance(HGNC:AKT1)</code> and+proteinAbundance(EGID:207)+, to a single node in the network. This correspondence of Namespace values is handled in the BEL Framework separately from BEL knowledge representation.</p>
+<p>Values from different Namespaces may correspond to the same biological concept. For example, the name AKT1 in the HGNC Namespace refers to the same gene referenced with ID 207 in the EGID (Entrez Gene Identifier) Namespace. The BEL Framework assembles knowledge into a cohesive network, mapping equivalent BEL Terms, e.g., proteinAbundance(HGNC:AKT1) and+proteinAbundance(EGID:207)+, to a single node in the network. This correspondence of Namespace values is handled in the BEL Framework separately from BEL knowledge representation.</p>
 </div>
 </div>
 </div>
@@ -770,10 +769,10 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <p>BEL Terms are denoted by expressions composed of a BEL Function and a list of arguments. BEL v2.0 specifies a set of approximately 20 functions allowed in term expressions.</p>
 </div>
 <div class="paragraph">
-<p>The combination of a BEL function and its arguments fully specifies a BEL Term. The BEL Term expression <code>f(a)</code> denotes a BEL Term defined by function <code>f()</code> applied to an argument <code>a</code>. Wherever the same function is applied to the same arguments, the resulting BEL Term references the same biological entity.</p>
+<p>The combination of a BEL function and its arguments fully specifies a BEL Term. The BEL Term expression f(a) denotes a BEL Term defined by function f() applied to an argument a. Wherever the same function is applied to the same arguments, the resulting BEL Term references the same biological entity.</p>
 </div>
 <div class="paragraph">
-<p>The semantics of a BEL Term are determined by the function used in the term expression. For example, the function <code>proteinAbundance()</code> is defined such that any term expression using+proteinAbundance()+ represents a class of abundance of protein. Many BEL functions take only single values as arguments, providing a structured method of using ontologies and vocabularies in BEL. For example, values in the HUGO Gene Nomenclature Committee (HGNC) vocabulary of official human gene symbols can be used to designate gene, RNA, and protein abundances. The function <code>proteinAbundance()</code> could then be applied to an HGNC gene symbol, <em>AKT1</em> for example, to indicate the class of protein abundances produced by the AKT1 gene, producing the BEL Term <code>proteinAbundance(HGNC:AKT1)</code>.</p>
+<p>The semantics of a BEL Term are determined by the function used in the term expression. For example, the function proteinAbundance() is defined such that any term expression using+proteinAbundance()+ represents a class of abundance of protein. Many BEL functions take only single values as arguments, providing a structured method of using ontologies and vocabularies in BEL. For example, values in the HUGO Gene Nomenclature Committee (HGNC) vocabulary of official human gene symbols can be used to designate gene, RNA, and protein abundances. The function proteinAbundance() could then be applied to an HGNC gene symbol, <em>AKT1</em> for example, to indicate the class of protein abundances produced by the AKT1 gene, producing the BEL Term proteinAbundance(HGNC:AKT1).</p>
 </div>
 </div>
 </div>
@@ -870,12 +869,12 @@ Examples of annotations that could be associated with a BEL Statement are the:</
 <div class="sect2">
 <h3 id="_abundance_functions">2.1. Abundance Functions</h3>
 <div class="paragraph">
-<p>The following BEL Functions represent classes of abundances of specific types of biological entities like RNAs, proteins, post-translationally modified proteins, and small molecules. Biological experiments frequently involve the manipulation and measurement of entities in samples. These BEL functions specify the type of entity referred to by a namespace value. For example,<code><strong>geneAbundance(HGNC:AKT1</strong>)</code>, <strong><code>rnaAbundance(HGNC:AKT1)</code></strong>, and <strong><code>proteinAbundance(HGNC:AKT1)</code></strong>, represent the abundances of the AKT1 gene, RNA, and protein, respectively.</p>
+<p>The following BEL Functions represent classes of abundances of specific types of biological entities like RNAs, proteins, post-translationally modified proteins, and small molecules. Biological experiments frequently involve the manipulation and measurement of entities in samples. These BEL functions specify the type of entity referred to by a namespace value. For example,**geneAbundance(HGNC:AKT1**), <strong>rnaAbundance(HGNC:AKT1)</strong>, and <strong>proteinAbundance(HGNC:AKT1)</strong>, represent the abundances of the AKT1 gene, RNA, and protein, respectively.</p>
 </div>
 <div class="sect3">
 <h4 id="_abundance_a">2.1.1. abundance(), a()</h4>
 <div class="paragraph">
-<p><strong><code>abundance(ns:v)</code></strong> or <code><strong>a(ns:v)</strong></code> denotes the abundance of the entity designated by the value <code><strong>v</strong></code> in the namespace <code><strong>ns</strong></code>. abundance is a general abundance term that can be used for chemicals or other molecules not defined by a more specific abundance function. Gene, RNA, protein, and microRNA abundances should be represented using the appropriate specific abundance function.</p>
+<p><strong>abundance(ns:v)</strong> or **a(ns:v)** denotes the abundance of the entity designated by the value **v** in the namespace **ns**. abundance is a general abundance term that can be used for chemicals or other molecules not defined by a more specific abundance function. Gene, RNA, protein, and microRNA abundances should be represented using the appropriate specific abundance function.</p>
 </div>
 <div class="sect4">
 <h5 id="_examples_small_molecule_and_chemical">Examples - small molecule and chemical</h5>
@@ -890,10 +889,10 @@ a(CHEBI:thapsigargin)</code></pre>
 <div class="sect3">
 <h4 id="_complexabundance_complex">2.1.2. complexAbundance(), complex()</h4>
 <div class="paragraph">
-<p>The <code><strong>complexAbundance()</strong></code> or <code><strong> complex()</strong></code> function can be used with either a namespace value or with a list of abundance terms.</p>
+<p>The **complexAbundance()** or ** complex()** function can be used with either a namespace value or with a list of abundance terms.</p>
 </div>
 <div class="paragraph">
-<p><code><strong>complexAbundance(ns:v)</strong></code> or <code><strong>complex(ns:v)</strong></code> denotes the abundance of the molecular complex designated by the value <code><strong>v</strong></code> in the namespace <code><strong>ns</strong></code>. This form is generally used to identify abundances of named complexes.</p>
+<p>**complexAbundance(ns:v)** or **complex(ns:v)** denotes the abundance of the molecular complex designated by the value **v** in the namespace **ns**. This form is generally used to identify abundances of named complexes.</p>
 </div>
 <div class="sect4">
 <h5 id="_example_named_complex">Example - named complex</h5>
@@ -903,7 +902,7 @@ a(CHEBI:thapsigargin)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code><strong>complexAbundance(&lt;abundance term list&gt;)</strong></code> denotes the abundance of the molecular complex of members of the abundances denoted by <code><strong>&lt;abundance term list&gt;</strong></code>, a list of abundance terms supplied as arguments. The list is unordered, thus different orderings of the arguments should be interpreted as the same term. Members of a molecular complex retain their individual identities. The <code><strong>complexAbundance()</strong></code> function does not specify the duration or stability of the interaction of the members of the complex.</p>
+<p>**complexAbundance(&lt;abundance term list&gt;)** denotes the abundance of the molecular complex of members of the abundances denoted by **&lt;abundance term list&gt;**, a list of abundance terms supplied as arguments. The list is unordered, thus different orderings of the arguments should be interpreted as the same term. Members of a molecular complex retain their individual identities. The **complexAbundance()** function does not specify the duration or stability of the interaction of the members of the complex.</p>
 </div>
 </div>
 <div class="sect4">
@@ -918,8 +917,8 @@ a(CHEBI:thapsigargin)</code></pre>
 <div class="sect3">
 <h4 id="_compositeabundance_composite">2.1.3. compositeAbundance(), composite()</h4>
 <div class="paragraph">
-<p>The <code><strong>compositeAbundance(&lt;abundance term list&gt;)</strong></code> function takes a list of abundance terms.
-The <code><strong>compositeAbundance()</strong></code> or <code><strong>composite()</strong></code> function is used to represent cases where multiple abundances synergize to produce an effect. The list is unordered, thus different orderings of the arguments should be interpreted as the same term. This function should not be used if any of the abundances alone are reported to cause the effect. <code><strong>compositeAbundance()</strong></code> terms should be used only as subjects of statements, not as objects.</p>
+<p>The **compositeAbundance(&lt;abundance term list&gt;)** function takes a list of abundance terms.
+The **compositeAbundance()** or **composite()** function is used to represent cases where multiple abundances synergize to produce an effect. The list is unordered, thus different orderings of the arguments should be interpreted as the same term. This function should not be used if any of the abundances alone are reported to cause the effect. **compositeAbundance()** terms should be used only as subjects of statements, not as objects.</p>
 </div>
 <div class="sect4">
 <h5 id="_example_bel_statement_with_compositeabundance_term">Example - BEL Statement with compositeAbundance term</h5>
@@ -936,7 +935,7 @@ The <code><strong>compositeAbundance()</strong></code> or <code><strong>composit
 <div class="sect3">
 <h4 id="_geneabundance_g">2.1.4. geneAbundance(), g()</h4>
 <div class="paragraph">
-<p><code><strong>geneAbundance(ns:v)</strong></code> or <code><strong>g(ns:v)</strong></code> denotes the abundance of the gene designated by the value v in the namespace ns. <code><strong>geneAbundance()</strong></code> terms are used to represent the DNA encoding the specified gene. <strong><code>geneAbundance()</code></strong> is considered decreased in the case of a homozygous or heterozygous gene deletion, and increased in the case of a DNA amplification mutation. Events in which a protein binds to the promoter of a gene can be represented using the <code><strong>geneAbundance()</strong></code> function.</p>
+<p>**geneAbundance(ns:v)** or **g(ns:v)** denotes the abundance of the gene designated by the value v in the namespace ns. **geneAbundance()** terms are used to represent the DNA encoding the specified gene. <strong>geneAbundance()</strong> is considered decreased in the case of a homozygous or heterozygous gene deletion, and increased in the case of a DNA amplification mutation. Events in which a protein binds to the promoter of a gene can be represented using the **geneAbundance()** function.</p>
 </div>
 <div class="sect4">
 <h5 id="_example_promoter_binding_event_represented_using_geneabundance">Example - promoter binding event represented using geneAbundance</h5>
@@ -953,7 +952,7 @@ The <code><strong>compositeAbundance()</strong></code> or <code><strong>composit
 <div class="sect3">
 <h4 id="_micrornaabundance_m">2.1.5. microRNAAbundance(), m()</h4>
 <div class="paragraph">
-<p><code><strong>microRNAAbundance(ns:v)</strong></code> or <code><strong>m(ns:v)</strong></code> denotes the abundance of the processed, functional microRNA designated by the value <code>v</code> in the namespace <code>ns</code>.</p>
+<p>**microRNAAbundance(ns:v)** or **m(ns:v)** denotes the abundance of the processed, functional microRNA designated by the value v in the namespace ns.</p>
 </div>
 <div class="sect4">
 <h5 id="_example_microrna_abundance">Example - microRNA abundance</h5>
@@ -967,7 +966,7 @@ The <code><strong>compositeAbundance()</strong></code> or <code><strong>composit
 <div class="sect3">
 <h4 id="_proteinabundance_p">2.1.6. proteinAbundance(), p()</h4>
 <div class="paragraph">
-<p><code><strong>proteinAbundance(ns:v)</strong></code> or <code><strong>p(ns:v)</strong></code> denotes the abundance of the protein designated by the value <code>v</code> in the namespace <code>ns</code>, where <code>v</code> references a gene or a named protein family.</p>
+<p>**proteinAbundance(ns:v)** or **p(ns:v)** denotes the abundance of the protein designated by the value v in the namespace ns, where v references a gene or a named protein family.</p>
 </div>
 <div class="sect4">
 <h5 id="_examples_protein_abundances">Examples - protein abundances</h5>
@@ -982,7 +981,7 @@ p(SFAM:"AKT Family")</code></pre>
 <div class="sect3">
 <h4 id="_rnaabundance_r">2.1.7. rnaAbundance(), r()</h4>
 <div class="paragraph">
-<p><code><strong>rnaAbundance(ns:v)</strong></code> or <code><strong> r(ns:v)</strong></code> denotes the abundance of the RNA designated by the value v in the namespace <code>ns</code>, where <code>v</code> references a gene. This function refers to all RNA designated by <code>ns:v</code>, regardless of splicing, editing, or polyadenylation stage.</p>
+<p>**rnaAbundance(ns:v)** or ** r(ns:v)** denotes the abundance of the RNA designated by the value v in the namespace ns, where v references a gene. This function refers to all RNA designated by ns:v, regardless of splicing, editing, or polyadenylation stage.</p>
 </div>
 <div class="sect4">
 <h5 id="_example_rna_abundance">Example - RNA abundance</h5>
@@ -1004,7 +1003,7 @@ p(SFAM:"AKT Family")</code></pre>
 <div class="sect4">
 <h5 id="_proteinmodification_pmod">proteinModification(),  pmod()</h5>
 <div class="paragraph">
-<p>The <strong><code>proteinModification()</code></strong> or <strong><code>pmod()</code></strong> function can be used only as an argument within a <strong><code>proteinAbundance()</code></strong> function to indicate modification of the specified protein. Multiple modifications can be applied to the same protein abundance. Modified protein abundance term expressions have the general form:</p>
+<p>The <strong>proteinModification()</strong> or <strong>pmod()</strong> function can be used only as an argument within a <strong>proteinAbundance()</strong> function to indicate modification of the specified protein. Multiple modifications can be applied to the same protein abundance. Modified protein abundance term expressions have the general form:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1012,7 +1011,7 @@ p(SFAM:"AKT Family")</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong><code>type_value</code></strong> (required) is a namespace value for the type of modification , <strong><code>&lt;code&gt;</code></strong> (optional) is a single-letter or three-letter code for one of the twenty standard amino acids, and <code><strong>&lt;pos&gt;</strong></code> (optional) is the position at which the modification occurs based on the reference sequence for the protein. If <strong><code>&lt;pos&gt;</code></strong> is omitted, then the position of the modification is unspecified. If both <strong><code>&lt;code&gt;</code></strong> and <strong><code>&lt;pos&gt;</code></strong> are omitted, then the residue and position of the modification are unspecified. NOTE - A <a href="http://wiki.openbel.org/display/BLVD/Modification+Types+Provided+in+Default+BEL+Namespace">default BEL namespace</a> includes commonly used protein modification types.</p>
+<p><strong>type_value</strong> (required) is a namespace value for the type of modification , <strong>&lt;code&gt;</strong> (optional) is a single-letter or three-letter code for one of the twenty standard amino acids, and **&lt;pos&gt;** (optional) is the position at which the modification occurs based on the reference sequence for the protein. If <strong>&lt;pos&gt;</strong> is omitted, then the position of the modification is unspecified. If both <strong>&lt;code&gt;</strong> and <strong>&lt;pos&gt;</strong> are omitted, then the residue and position of the modification are unspecified. NOTE - A <a href="http://wiki.openbel.org/display/BLVD/Modification+Types+Provided+in+Default+BEL+Namespace">default BEL namespace</a> includes commonly used protein modification types.</p>
 </div>
 <div class="sect5">
 <h6 id="_examples">Examples</h6>
@@ -1330,36 +1329,35 @@ p(SFAM:"AKT Family")</code></pre>
 </div>
 <div class="sect2">
 <h3 id="_variants_2">2.3. Variants</h3>
-
-</div>
-<div class="sect2">
-<h3 id="_variant_var">2.4. variant(), var()</h3>
-<div class="paragraph">
-<p>The <strong><code>variant(&lt;expression&gt;)</code></strong> or <code><strong>var(&lt;expression&gt;)</strong></code> function can be used as an argument within a <code>geneAbundance()</code>, <code>rnaAbundance()</code>, <code>microRNAAbundance()</code>, or <code>proteinAbundance()</code> to indicate a sequence variant of the specified abundance. The <code>var()</code> function takes <a href="http://www.hgvs.org/mutnomen/">HGVS</a> variant description expression, e.g., for a substitution, insertion, or deletion variant. Multiple <code>var()</code> arguments may be applied to an abundance term.</p>
-</div>
 <div class="sect3">
-<h4 id="_protein_examples">2.4.1. Protein examples</h4>
+<h4 id="_variant_var">2.3.1. variant(), var()</h4>
+<div class="paragraph">
+<p>The <strong>variant(&lt;expression&gt;)</strong> or **var(&lt;expression&gt;)** function can be used as an argument within a geneAbundance(), rnaAbundance(), microRNAAbundance(), or proteinAbundance() to indicate a sequence variant of the specified abundance. The var() function takes <a href="http://www.hgvs.org/mutnomen/">HGVS</a> variant description expression, e.g., for a substitution, insertion, or deletion variant. Multiple var() arguments may be applied to an abundance term.</p>
+</div>
 <div class="sect4">
-<h5 id="_reference_allele">reference allele</h5>
+<h5 id="_protein_examples">Protein examples</h5>
+<div class="paragraph">
+<p><strong>reference allele</strong>*</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">p(HGNC:CFTR, var(=))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is different than <code>p(HGNC:CFTR)</code>, the root protein abundance, which includes all variants.</p>
+<p>This is different than p(HGNC:CFTR), the root protein abundance, which includes all variants.</p>
 </div>
+<div class="paragraph">
+<p><strong>unspecified variant</strong></p>
 </div>
-<div class="sect4">
-<h5 id="_unspecified_variant">unspecified variant</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">p(HGNC:CFTR, var(?))</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p><strong>substitution</strong></p>
 </div>
-<div class="sect4">
-<h5 id="_substitution">substitution</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">p(HGNC:CFTR, var(p.Gly576Ala))
@@ -1367,11 +1365,11 @@ p(REF:NP_000483.3, var(p.Gly576Ala))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>CFTR substitution variant Glycine 576 Alanine (HGVS <em>NP_000483.3:p.Gly576Ala</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var()</code> expression indicates that the numbering is based on a protein sequence.</p>
+<p>CFTR substitution variant Glycine 576 Alanine (HGVS <em>NP_000483.3:p.Gly576Ala</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the var() expression indicates that the numbering is based on a protein sequence.</p>
 </div>
+<div class="paragraph">
+<p><strong>deletion</strong></p>
 </div>
-<div class="sect4">
-<h5 id="_deletion">deletion</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">p(HGNC:CFTR, var(p.Phe508del))
@@ -1379,11 +1377,11 @@ p(REF:NP_000483.3, var(p.Phe508del))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>CFTR ΔF508 variant (HGVS <em>NP_000483.3:p.Phe508del</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var()</code> expression indicates that the numbering is based on a protein reference sequence.</p>
+<p>CFTR ΔF508 variant (HGVS <em>NP_000483.3:p.Phe508del</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the var() expression indicates that the numbering is based on a protein reference sequence.</p>
 </div>
+<div class="paragraph">
+<p><strong>frameshift</strong></p>
 </div>
-<div class="sect4">
-<h5 id="_frameshift">frameshift</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">p(HGNC:CFTR, var(p.Thr1220Lysfs))
@@ -1391,33 +1389,33 @@ p(REF:NP_000483.3, var(p.Thr1220Lysfs))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>CFTR frameshift variant <em>(</em>HGVS<em> NP_000483.3:p.Thr1220Lysfs*7). </em>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var()</code> expression indicates that the numbering is based on a protein reference sequence.</p>
+<p>CFTR frameshift variant <em>(</em>HGVS<em> NP_000483.3:p.Thr1220Lysfs*7). </em>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the var() expression indicates that the numbering is based on a protein reference sequence.</p>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_dna_gene_examples">2.4.2. DNA (gene) examples</h4>
+<div class="sect4">
+<h5 id="_dna_gene_examples">DNA (gene) examples</h5>
 <div class="paragraph">
 <p>These are all representations of CFTR <em>ΔF508</em>.</p>
 </div>
-<div class="sect4">
-<h5 id="_snp">SNP</h5>
+<div class="paragraph">
+<p><strong>SNP</strong></p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">g(SNP:rs113993960, var(delCTT))</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p><strong>chromosome</strong></p>
 </div>
-<div class="sect4">
-<h5 id="_chromosome">chromosome</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">g(REF:NC_000007.13, var(g.117199646_117199648delCTT))</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p><strong>gene - coding DNA reference sequence</strong></p>
 </div>
-<div class="sect4">
-<h5 id="_gene_coding_dna_reference_sequence">gene - coding DNA reference sequence</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">g(HGNC:CFTR, var(c.1521_1523delCTT))
@@ -1428,14 +1426,14 @@ g(REF:NM_000492.3, var(c.1521_1523delCTT))</code></pre>
 <p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>c.</em> within the +var()+expression indicates that the numbering is based on a coding DNA reference sequence.The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.</p>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_rna_examples">2.4.3. RNA examples</h4>
+<div class="sect4">
+<h5 id="_rna_examples">RNA examples</h5>
 <div class="paragraph">
 <p>These are all representations of CFTR <em>ΔF508</em>.</p>
 </div>
-<div class="sect4">
-<h5 id="_coding_reference_sequence">coding reference sequence</h5>
+<div class="paragraph">
+<p><strong>coding reference sequence</strong></p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">r(HGNC:CFTR, var(c.1521_1523delCTT))
@@ -1443,7 +1441,7 @@ r(REF:NM_000492.3, var(c.1521_1523delCTT))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>c.</em> within the <code>var()</code> expression indicates that the numbering is based on a coding DNA reference sequence. The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.</p>
+<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>c.</em> within the var() expression indicates that the numbering is based on a coding DNA reference sequence. The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1461,13 +1459,13 @@ r(REF:NM_000492.3, var(r.1653_1655delcuu))</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_proteolytic_fragments">2.5. Proteolytic fragments</h3>
+<h3 id="_proteolytic_fragments">2.4. Proteolytic fragments</h3>
 
 </div>
 <div class="sect2">
-<h3 id="_fragment_frag">2.6. fragment(), frag()</h3>
+<h3 id="_fragment_frag">2.5. fragment(), frag()</h3>
 <div class="paragraph">
-<p>The <strong><code>fragment()</code></strong> or <code><strong>frag()</strong></code> function can be used within a <code>proteinAbundance()</code> term to specify a protein fragment, e.g., a product of proteolytic cleavage. Protein fragment expressions take the general form:</p>
+<p>The <strong>fragment()</strong> or **frag()** function can be used within a proteinAbundance() term to specify a protein fragment, e.g., a product of proteolytic cleavage. Protein fragment expressions take the general form:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1475,12 +1473,12 @@ r(REF:NM_000492.3, var(r.1653_1655delcuu))</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>&lt;range&gt;</code> (required) is an amino acid range, and &lt;descriptor&gt; (optional) is any additional distinguishing information like fragment size or name.</p>
+<p>where &lt;range&gt; (required) is an amino acid range, and &lt;descriptor&gt; (optional) is any additional distinguishing information like fragment size or name.</p>
 </div>
 <div class="sect3">
-<h4 id="_examples_2">2.6.1. Examples</h4>
+<h4 id="_examples_2">2.5.1. Examples</h4>
 <div class="paragraph">
-<p>For these examples, <em>HGNC:YFG</em> is ‘your favorite gene’. For the first four examples, only the <code>&lt;range&gt;</code> argument is used. The last examples include use of the optional <code>&lt;descriptor&gt;</code>.</p>
+<p>For these examples, <em>HGNC:YFG</em> is ‘your favorite gene’. For the first four examples, only the &lt;range&gt; argument is used. The last examples include use of the optional &lt;descriptor&gt;.</p>
 </div>
 <div class="sect4">
 <h5 id="_fragment_with_known_start_stop">fragment with known start/stop</h5>
@@ -1524,14 +1522,14 @@ r(REF:NM_000492.3, var(r.1653_1655delcuu))</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_cellular_location">2.6.2. Cellular location</h4>
+<h4 id="_cellular_location">2.5.2. Cellular location</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_location_loc">2.7. location(), loc()</h3>
+<h3 id="_location_loc">2.6. location(), loc()</h3>
 <div class="paragraph">
-<p><code>location()</code> or <code>loc()</code> can be used as an argument within any abundance function except <code>compositeAbundance()</code> to represent a distinct subset of the abundance at that location. Location subsets of abundances have the general form:</p>
+<p>location() or loc() can be used as an argument within any abundance function except compositeAbundance() to represent a distinct subset of the abundance at that location. Location subsets of abundances have the general form:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1539,7 +1537,7 @@ r(REF:NM_000492.3, var(r.1653_1655delcuu))</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_examples_3">2.7.1. Examples</h4>
+<h4 id="_examples_3">2.6.1. Examples</h4>
 <div class="sect4">
 <h5 id="_cytoplasmic_pool_of_akt1_protein">Cytoplasmic pool of AKT1 protein</h5>
 <div class="listingblock">
@@ -1569,7 +1567,7 @@ r(REF:NM_000492.3, var(r.1653_1655delcuu))</code></pre>
 <div class="sect2">
 <h3 id="_biologicalprocess_bp">3.1. biologicalProcess(), bp()</h3>
 <div class="paragraph">
-<p><strong><code>biologicalProcess(ns:v)</code></strong> or <strong><code>bp(ns:v)</code></strong> denotes the process or population of events designated by the value <code>v</code> in the namespace <code>ns</code>.</p>
+<p><strong>biologicalProcess(ns:v)</strong> or <strong>bp(ns:v)</strong> denotes the process or population of events designated by the value v in the namespace ns.</p>
 </div>
 <div class="sect3">
 <h4 id="_examples_4">3.1.1. Examples</h4>
@@ -1584,7 +1582,7 @@ bp(GOBP:angiogenesis)</code></pre>
 <div class="sect2">
 <h3 id="_pathology_path">3.2. pathology(), path()</h3>
 <div class="paragraph">
-<p><strong><code>pathology(ns:v)</code></strong> or <strong><code>path(ns:v)</code></strong> denotes the disease or pathology process designated by the value <code>v</code> in the namespace <code>ns</code>. The <code>pathology()</code> function is included to facilitate the distinction of pathologies from other biological processes because of their importance in many potential applications in the life sciences.</p>
+<p><strong>pathology(ns:v)</strong> or <strong>path(ns:v)</strong> denotes the disease or pathology process designated by the value v in the namespace ns. The pathology() function is included to facilitate the distinction of pathologies from other biological processes because of their importance in many potential applications in the life sciences.</p>
 </div>
 <div class="sect3">
 <h4 id="_examples_5">3.2.1. Examples</h4>
@@ -1599,7 +1597,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <div class="sect2">
 <h3 id="_activity_act">3.3. activity(), act()</h3>
 <div class="paragraph">
-<p><strong><code>activity(&lt;abundance&gt;)</code></strong> or <strong><code>act(&lt;abundance)</code></strong> is used to specify events resulting from the molecular activity of an abundance. The <strong><code>activity()</code></strong> function provides distinct terms that enable differentiation of the increase or decrease of the molecular activity of a protein from changes in the abundance of the protein. <strong><code>activity()</code></strong> can be applied to a protein, complex, or RNA abundance term, and modified with a <a href="http://wiki.openbel.org/display/BLVD/Process+Modifier+Function#ProcessModifierFunction-ma()">molecularActivity()</a> argument to indicate a specific type of molecular activity.</p>
+<p><strong>activity(&lt;abundance&gt;)</strong> or <strong>act(&lt;abundance)</strong> is used to specify events resulting from the molecular activity of an abundance. The <strong>activity()</strong> function provides distinct terms that enable differentiation of the increase or decrease of the molecular activity of a protein from changes in the abundance of the protein. <strong>activity()</strong> can be applied to a protein, complex, or RNA abundance term, and modified with a <a href="http://wiki.openbel.org/display/BLVD/Process+Modifier+Function#ProcessModifierFunction-ma()">molecularActivity()</a> argument to indicate a specific type of molecular activity.</p>
 </div>
 <div class="sect3">
 <h4 id="_example">3.3.1. Example</h4>
@@ -1618,7 +1616,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <div class="sect2">
 <h3 id="_molecularactivity_ma">4.1. molecularActivity(), ma()</h3>
 <div class="paragraph">
-<p><strong><code>molecularActivity(ns:v)</code></strong> or <strong><code>ma(ns:v)</code></strong> is used to denote a specific type of activity function within an <strong><code>activity()</code></strong> term.</p>
+<p><strong>molecularActivity(ns:v)</strong> or <strong>ma(ns:v)</strong> is used to denote a specific type of activity function within an <strong>activity()</strong> term.</p>
 </div>
 <div class="paragraph">
 <p>NOTE - The default BEL namespace includes commonly used molecular activity types, mapping directly to the BEL v1.0 activity functions.</p>
@@ -1665,7 +1663,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <h2 id="_transformation_functions">5. Transformation Functions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following BEL functions represent transformations. Transformations are processes or events in which one class of abundance is transformed or changed into a second class of abundance by translocation, degradation, or participation in a reaction. All types of abundance terms except componsiteAbundance() may be used within these transformation functions.</p>
+<p>The following BEL functions represent transformations. Transformations are processes or events in which one class of abundance is transformed or changed into a second class of abundance by translocation, degradation, or participation in a reaction. All types of abundance terms <strong>except compositeAbundance()</strong> may be used within these transformation functions.</p>
 </div>
 </div>
 </div>
@@ -1673,12 +1671,12 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <h2 id="_translocations">6. Translocations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>BEL translocation functions include <strong><code>translocation()</code></strong> as well as <strong><code>cellSurfaceExpression()</code></strong> and<strong>+ cellSecretion()+</strong>, two functions intended to provide a simple, standard means of expressing commonly represented translocations.</p>
+<p>BEL translocation functions include <strong>translocation()</strong> as well as <strong>cellSurfaceExpression()</strong> and <strong>cellSecretion()</strong>, two functions intended to provide a simple, standard means of expressing commonly represented translocations.</p>
 </div>
 <div class="sect2">
 <h3 id="_translocation_tloc">6.1. translocation(), tloc()</h3>
 <div class="paragraph">
-<p>For the abundance term A, <strong><code>translocation(&lt;abundance&gt;, fromLoc(ns1:v1), toLoc(ns2:v2))</code></strong> or <strong><code>tloc(&lt;abundance&gt;, fromLoc(ns1:v1), toLoc(ns2:v2))</code></strong> denotes the frequency or number of events in which members of <code>&lt;abundance&gt;</code> move from the location designated by the value <code>v1</code> in the namespace <code>ns1</code> to the location designated by the value <code>v2</code> in the namespace <code>ns2</code>. Translocation is applied to represent events on the cellular scale, like endocytosis, protein secretion (see <a href="http://wiki.openbel.org/display/BLVD/Transformation+Functions#TransformationFunctions-sec()">cellSecretion()</a>), and movement of transcription factors from the cytoplasm to the nucleus.</p>
+<p>For the abundance term A, <strong>translocation(&lt;abundance&gt;, fromLocation(ns1:v1), toLocation(ns2:v2))</strong> or <strong>tloc(&lt;abundance&gt;, fromLoc(ns1:v1), toLoc(ns2:v2))</strong> denotes the frequency or number of events in which members of &lt;abundance&gt; move from the location designated by the value v1 in the namespace ns1 to the location designated by the value v2 in the namespace ns2. Translocation is applied to represent events on the cellular scale, like endocytosis and movement of transcription factors from the cytoplasm to the nucleus.  Special case translocations are handled by the BEL functions: cellSecretion(), cellSurfaceExpression().</p>
 </div>
 <div class="sect3">
 <h4 id="_example_2">6.1.1. Example</h4>
@@ -1695,7 +1693,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <div class="sect2">
 <h3 id="_cellsecretion_sec">6.2. cellSecretion(), sec()</h3>
 <div class="paragraph">
-<p>For the abundance term A, <strong><code>cellSecretion(&lt;abundance&gt;)</code></strong> or <strong><code>sec(&lt;abundance&gt;)</code></strong> denotes the frequency or number of events in which members of <code>&lt;abundance&gt;</code> move from cells to regions outside of the cells. <code>cellSecretion(&lt;abundance&gt;)</code> can be equivalently expressed as:</p>
+<p>For the abundance term A, <strong>cellSecretion(&lt;abundance&gt;)</strong> or <strong>sec(&lt;abundance&gt;)</strong> denotes the frequency or number of events in which members of &lt;abundance&gt; move from cells to regions outside of the cells. cellSecretion(&lt;abundance&gt;) can be equivalently expressed as:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1703,13 +1701,13 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The intent of the <code>cellSecretion()</code> function is to provide a simple, standard means of expressing a commonly represented translocation.</p>
+<p>The intent of the cellSecretion() function is to provide a simple, standard means of expressing a commonly represented translocation.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_cellsurfaceexpression_surf">6.3. cellSurfaceExpression(), surf()</h3>
 <div class="paragraph">
-<p><strong><code>cellSurfaceExpression(&lt;abundance&gt;)</code></strong> or <strong><code>surf(&lt;abundance&gt;)</code></strong> denotes the frequency or abundance of events in which members of <code>&lt;abundance&gt;</code> move to the surface of cells. <code>cellSurfaceExpression(&lt;abundance&gt;)</code> can be equivalently expressed as:</p>
+<p><strong>cellSurfaceExpression(&lt;abundance&gt;)</strong> or <strong>surf(&lt;abundance&gt;)</strong> denotes the frequency or abundance of events in which members of &lt;abundance&gt; move to the surface of cells. cellSurfaceExpression(&lt;abundance&gt;) can be equivalently expressed as:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1717,7 +1715,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The intent of the <code>cellSurfaceExpression()</code> function is to provide a simple, standard means of expressing a commonly represented translocation.</p>
+<p>The intent of the cellSurfaceExpression() function is to provide a simple, standard means of expressing a commonly represented translocation.</p>
 </div>
 </div>
 </div>
@@ -1726,7 +1724,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <h2 id="_degradation_deg">7. degradation(), deg()</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong><code>degradation(&lt;abundance&gt;)</code></strong> or <strong><code>deg(&lt;abundance&gt;)</code></strong> denotes the frequency or number of events in which a member of <code>&lt;abundance&gt;</code> is degraded in some way such that it is no longer a member of+&lt;abundance&gt;+. For example, <code>degradation()</code> is used to represent proteasome-mediated proteolysis. The BEL Framework automatically connects <code>deg(&lt;abundance&gt;)</code> to <code>&lt;abundance&gt;</code> such that:</p>
+<p><strong>degradation(&lt;abundance&gt;)</strong> or <strong>deg(&lt;abundance&gt;)</strong> denotes the frequency or number of events in which a member of &lt;abundance&gt; is degraded in some way such that it is no longer a member of+&lt;abundance&gt;. For example, +degradation() is used to represent proteasome-mediated proteolysis. The BEL Framework automatically connects deg(&lt;abundance&gt;) to &lt;abundance&gt; such that:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1739,7 +1737,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <h2 id="_reaction_rxn">8. reaction(), rxn()</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><code>reaction(reactants(&lt;abundance term list1&gt;), products(&lt;abundance term list2&gt;))</code> denotes the frequency or abundance of events in which members of the abundances in <code>&lt;abundance term list1&gt;</code> (the reactants) are transformed into members of the abundances in <code>&lt;abundance term list2&gt;</code> (the products).</p>
+<p>reaction(reactants(&lt;abundance term list1&gt;), products(&lt;abundance term list2&gt;)) denotes the frequency or abundance of events in which members of the abundances in &lt;abundance term list1&gt; (the reactants) are transformed into members of the abundances in &lt;abundance term list2&gt; (the products).</p>
 </div>
 <div class="sect2">
 <h3 id="_example_3">8.1. Example</h3>
@@ -1760,7 +1758,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <div class="sect2">
 <h3 id="_fusion_fus">9.1. fusion(), fus()</h3>
 <div class="paragraph">
-<p><strong><code>fusion()</code></strong> or <strong><code>fus()</code></strong> expressions can be used in place of a namespace value within a gene, RNA, or protein abundance function to represent a hybrid gene, or gene product formed from two previously separate genes. <strong><code>fusion()</code></strong> expressions take the general form:</p>
+<p><strong>fusion()</strong> or <strong>fus()</strong> expressions can be used in place of a namespace value within a gene, RNA, or protein abundance function to represent a hybrid gene, or gene product formed from two previously separate genes. <strong>fusion()</strong> expressions take the general form:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1768,7 +1766,7 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>ns5':v5'</code> is a namespace and value for the 5' fusion partner, <code>range5'</code> is the sequence coordinates of the 5' partner, <code>ns3':v3'</code> is a namespace and value for the 3' partner, and <code>range3'</code> is the sequence coordinates for the 3' partner.</p>
+<p>where ns5':v5' is a namespace and value for the 5' fusion partner, range5' is the sequence coordinates of the 5' partner, ns3':v3' is a namespace and value for the 3' partner, and range3' is the sequence coordinates for the 3' partner.</p>
 </div>
 <div class="sect3">
 <h4 id="_example_4">9.1.1. Example</h4>
@@ -1834,23 +1832,23 @@ pathology(MESHD:adenocarcinoma)</code></pre>
 <div class="sect2">
 <h3 id="_increases">11.1. increases, &#8594;</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A increases B</code></strong> or <strong><code>A &#8594; B</code></strong> indicate that increases in A have been observed to cause increases in B.
-<code>A increases B</code> also represents cases where decreases in A have been observed to cause decreases in B, for example, in recording the results of gene deletion or other inhibition experiments.
+<p>For terms A and B, <strong>A increases B</strong> or <strong>A -&gt; B</strong> indicate that increases in A have been observed to cause increases in B.
+A increases B also represents cases where decreases in A have been observed to cause decreases in B, for example, in recording the results of gene deletion or other inhibition experiments.
 A is a BEL Term and B is either a BEL Term or a BEL Statement.
-The <code>increases</code> relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.</p>
+The increases relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_directlyincreases">11.2. directlyIncreases, &#8658;</h3>
 <div class="paragraph">
-<p>For terms A and B, <code><strong>A directlyIncreases B</strong></code> or <strong><code>A &#8658; B</code></strong> indicates that increases in A have been observed to cause increases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <a href="http://wiki.openbel.org/display/BLVD/Direct+Relationships">direct</a> version of the increases relationship.</p>
+<p>For terms A and B, **A directlyIncreases B<strong> or </strong>A =&gt; B** indicates that increases in A have been observed to cause increases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <a href="http://wiki.openbel.org/display/BLVD/Direct+Relationships">direct</a> version of the increases relationship.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_decreases">11.3. decreases, -|</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A decreases B</code></strong> or <strong><code>A -| B</code></strong> indicate that increases in A have been observed to cause decreases in B.
-<code>A decreases B</code> also represents cases where decreases in A have been observed to cause increases in B, for example, in recording the results of gene deletion or other inhibition experiments.
+<p>For terms A and B, <strong>A decreases B</strong> or <strong>A -| B</strong> indicate that increases in A have been observed to cause decreases in B.
+A decreases B also represents cases where decreases in A have been observed to cause increases in B, for example, in recording the results of gene deletion or other inhibition experiments.
 A is a BEL Term and B is either a BEL Term or a BEL Statement.
 The+ decreases+ relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.</p>
 </div>
@@ -1858,13 +1856,13 @@ The+ decreases+ relationship does not indicate that the changes in A are either 
 <div class="sect2">
 <h3 id="_directlydecreases">11.4. directlyDecreases, =|</h3>
 <div class="paragraph">
-<p>For terms A and B,<strong>+ A directlyDecreases B+</strong> or <strong><code>A =| B</code></strong> indicates that increases in A have been observed to cause decreases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <a href="http://wiki.openbel.org/display/BLVD/Direct+Relationships">direct</a> version of the decreases relationship.</p>
+<p>For terms A and B, <strong>A directlyDecreases B</strong> or <strong>A =| B</strong> indicates that increases in A have been observed to cause decreases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <a href="http://wiki.openbel.org/display/BLVD/Direct+Relationships">direct</a> version of the decreases relationship.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_ratelimitingstepof">11.5. rateLimitingStepOf</h3>
 <div class="paragraph">
-<p>For process, activity, or transformation term A and process term P, <strong><code>A rateLimitingStepOf P</code></strong> indicates both:</p>
+<p>For process, activity, or transformation term A and process term P, <strong>A rateLimitingStepOf P</strong> indicates both:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1887,14 +1885,14 @@ A -&gt; B</code></pre>
 <div class="sect2">
 <h3 id="_causesnochange_cnc">11.6. causesNoChange, cnc</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A causesNoChange B</code></strong> or <strong><code>A cnc B</code></strong> indicate that B was observed not to change in response to changes in A.
+<p>For terms A and B, <strong>A causesNoChange B</strong> or <strong>A cnc B</strong> indicate that B was observed not to change in response to changes in A.
 Statements using this relationship correspond to cases where explicit measurement of B demonstrates lack of significant change, not for cases where the state of B is unknown.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_regulates_reg">11.7. regulates, reg</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A regulates B</code></strong> or <strong><code>A reg B</code></strong> indicate that A is reported to have an effect on B, but information is missing about whether A increases B or A decreases B. This relationship provides more information than <strong><code><a href="http://wiki.openbel.org/display/BLVD/Correlative+Relationships#CorrelativeRelationships---">association</a></code></strong>, because the upstream entity (source term) and downstream entity (target term) can be assigned.</p>
+<p>For terms A and B, <strong>A regulates B</strong> or <strong>A reg B</strong> indicate that A is reported to have an effect on B, but information is missing about whether A increases B or A decreases B. This relationship provides more information than <strong>http://wiki.openbel.org/display/BLVD/Correlative+Relationships#CorrelativeRelationships---[association]</strong>, because the upstream entity (source term) and downstream entity (target term) can be assigned.</p>
 </div>
 </div>
 </div>
@@ -1933,7 +1931,7 @@ Statements using this relationship correspond to cases where explicit measuremen
 <h2 id="_direct_causal_relationships">13. Direct causal relationships</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The direct casual relationships included in BEL v2.0 are <strong><code>directlyIncreases</code></strong> (<strong><code>&#8658;</code></strong>) and <strong><code>directlyDecreases</code></strong> (<strong><code>=|</code></strong>).
+<p>The direct casual relationships included in BEL v2.0 are <strong>directlyIncreases</strong> (<strong>=&gt;</strong>) and <strong>directlyDecreases</strong> (<strong>=|</strong>).
 The direct casual relationships are causal relationships where the mechanism of the causal relationship is based on the physical interaction of entities related to the BEL Statement subject and object terms.
 If A or B is an abundance, then members of the abundance are part of the interaction. If A or B are activities, then members of the abundances performing the activities physically interact.</p>
 </div>
@@ -1998,19 +1996,19 @@ If A or B is an abundance, then members of the abundance are part of the interac
 <div class="sect2">
 <h3 id="_negativecorrelation_neg">14.1. negativeCorrelation, neg</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A negativeCorrelation B</code></strong> or <code><strong>A neg B</strong></code> indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus <code>B negativeCorrelation A</code> is equivalent to <code>A negativeCorrelation B</code>.</p>
+<p>For terms A and B, <strong>A negativeCorrelation B</strong> or <strong>A neg B</strong> indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus B negativeCorrelation A is equivalent to A negativeCorrelation B.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_positivecorrelation_pos">14.2. positiveCorrelation, pos</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A positiveCorrelation B</code></strong> or <strong><code>A pos B</code></strong> indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus <code>B positiveCorrelation A</code> is equivalent to <code>A positiveCorrelation B</code>.</p>
+<p>For terms A and B, <strong>A positiveCorrelation B</strong> or <strong>A pos B</strong> indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus B positiveCorrelation A is equivalent to A positiveCorrelation B.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_association">14.3. association,&#8201;&#8212;&#8201;</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A association B</code></strong> or <strong><code>A&#8201;&#8212;&#8201;B</code></strong> indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like <code>increases</code> or <code>positiveCorrelation</code>. The order of the subject and object does not affect the interpretation of the statement, thus <code>B&#8201;&#8212;&#8201;A</code> is equivalent to <code>A&#8201;&#8212;&#8201;B</code>.</p>
+<p>For terms A and B, <strong>A association B</strong> or <strong>A -- B</strong> indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like increases or positiveCorrelation. The order of the subject and object does not affect the interpretation of the statement, thus B -- A is equivalent to A -- B.</p>
 </div>
 </div>
 </div>
@@ -2019,14 +2017,14 @@ If A or B is an abundance, then members of the abundance are part of the interac
 <h2 id="_genomic_relationships">15. Genomic Relationships</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>These relationship types link related terms, like orthologous terms from two different species or the <code>geneAbundance()</code> and <code>rnaAbundance()</code> terms for the same namespace value.
+<p>These relationship types link related terms, like orthologous terms from two different species or the geneAbundance() and rnaAbundance() terms for the same namespace value.
 Icon
 In most cases, these relationships will be introduced by the BEL Namespace resources, and are not needed for creation of BEL Statements and BEL Documents.</p>
 </div>
 <div class="sect2">
 <h3 id="_orthologous">15.1. orthologous</h3>
 <div class="paragraph">
-<p>For terms A and B, <code>A orthologous B</code> indicates that A and B represent entities in different species which are sequence similar and which are therefore presumed to share a common ancestor. For example,</p>
+<p>For terms A and B, A orthologous B indicates that A and B represent entities in different species which are sequence similar and which are therefore presumed to share a common ancestor. For example,</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2040,7 +2038,7 @@ In most cases, these relationships will be introduced by the BEL Namespace resou
 <div class="sect2">
 <h3 id="_transcribedto">15.2. transcribedTo, :&gt;</h3>
 <div class="paragraph">
-<p>For RNA abundance term R and gene abundance term G, <code>G transcribedTo R</code> or <code>G :&gt; R</code> indicates that members of R are produced by the transcription of members of G. For example:</p>
+<p>For RNA abundance term R and gene abundance term G, G transcribedTo R or G :&gt; R indicates that members of R are produced by the transcription of members of G. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2054,7 +2052,7 @@ In most cases, these relationships will be introduced by the BEL Namespace resou
 <div class="sect2">
 <h3 id="_translatedto">15.3. translatedTo, &gt;&gt;</h3>
 <div class="paragraph">
-<p>For RNA abundance term R and protein abundance term P, <code>R translatedTo P</code> or <code>R &gt;&gt; P</code> indicates that members of P are produced by the translation of members of R. For example:</p>
+<p>For RNA abundance term R and protein abundance term P, R translatedTo P or R &gt;&gt; P indicates that members of P are produced by the translation of members of R. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2078,44 +2076,44 @@ In most cases, these relationships will be introduced by the BEL Namespace resou
 <div class="sect2">
 <h3 id="_hasmember">16.1. hasMember</h3>
 <div class="paragraph">
-<p>For term abundances A and B, <strong><code>A hasMember B</code></strong> designates B as a member class of A. A member class is a distinguished sub-class. A is defined as a group by all of the members assigned to it. The member classes may or may not be overlapping and may or may not entirely cover all instances of A. A term may not appear in both the subject and object of the same hasMember statement</p>
+<p>For term abundances A and B, <strong>A hasMember B</strong> designates B as a member class of A. A member class is a distinguished sub-class. A is defined as a group by all of the members assigned to it. The member classes may or may not be overlapping and may or may not entirely cover all instances of A. A term may not appear in both the subject and object of the same hasMember statement</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_hasmembers">16.2. hasMembers</h3>
 <div class="paragraph">
-<p>The <strong><code>hasMembers</code></strong> relationship is a special form which enables the assignment of multiple member classes in a single statement where the object of the statement is a set of abundance terms. A statement using <code>hasMembers</code> is exactly equivalent to multiple <code>hasMember</code> statements. A term may not appear in both the subject and object of the same <code>hasMembers</code> statement.
-For the abundance terms A, B, C and D, <code>A hasMembers list(B, C, D)</code> indicates that A is defined by its member abundance classes B, C and D.</p>
+<p>The <strong>hasMembers</strong> relationship is a special form which enables the assignment of multiple member classes in a single statement where the object of the statement is a set of abundance terms. A statement using hasMembers is exactly equivalent to multiple hasMember statements. A term may not appear in both the subject and object of the same hasMembers statement.
+For the abundance terms A, B, C and D, A hasMembers list(B, C, D) indicates that A is defined by its member abundance classes B, C and D.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_hascomponent">16.3. hasComponent</h3>
 <div class="paragraph">
-<p>For complex abundance term A and abundance term B, <strong><code>A hasComponent B</code></strong> designates B as a component of A, that complexes that are instances of A have instances of B as possible components. Note that, the stoichiometry of A is not described, nor is it stated that B is a required component.
+<p>For complex abundance term A and abundance term B, <strong>A hasComponent B</strong> designates B as a component of A, that complexes that are instances of A have instances of B as possible components. Note that, the stoichiometry of A is not described, nor is it stated that B is a required component.
 The use of+ hasComponent+ relationships is complementary to the use of functionally composed complexes and is intended to enable the assignment of components to complexes designated by names in external vocabularies. The assignment of components can potentially enable the reconciliation of equivalent complexes at knowledge assembly time.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_hascomponents">16.4. hasComponents</h3>
 <div class="paragraph">
-<p>The <strong><code>hasComponents</code></strong> relationship is a special form which enables the assignment of multiple complex components in a single statement where the object of the statement is a set of abundance terms. A statement using <code>hasComponents</code> is exactly equivalent to multiple <code>hasComponent</code> statements. A term may not appear in both the subject and object of the same <code>hasComponents</code> statement.
-For the abundance terms A, B, C and D, <code>A hasComponents list(B, C, D)</code> indicates that A has components B, C and D.</p>
+<p>The <strong>hasComponents</strong> relationship is a special form which enables the assignment of multiple complex components in a single statement where the object of the statement is a set of abundance terms. A statement using hasComponents is exactly equivalent to multiple hasComponent statements. A term may not appear in both the subject and object of the same hasComponents statement.
+For the abundance terms A, B, C and D, A hasComponents list(B, C, D) indicates that A has components B, C and D.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_isa">16.5. isA</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A isA B</code></strong> indicates that A is a subset of B.
+<p>For terms A and B, <strong>A isA B</strong> indicates that A is a subset of B.
 All terms in BEL 1.0 represent classes, but given that classes implicitly have instances,+ A isA B+ is interpreted to mean that any instance of A must also be an instance of B. This relationship can be used to represent GO and MeSH hierarchies:</p>
 </div>
 <div class="paragraph">
-<p><code>pathology(MESH:Psoriasis) isA pathology(MESH:"Skin Diseases")</code></p>
+<p>pathology(MESH:Psoriasis) isA pathology(MESH:"Skin Diseases")</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_subprocessof">16.6. subProcessOf</h3>
 <div class="paragraph">
-<p>For process, activity, or transformation term A and process term P, <strong><code>A subProcessOf P</code></strong> indicates that instances of process P, by default, include one or more instances of A in their composition. For example, the reduction of HMG-CoA to mevalonate is a subprocess of cholesterol biosynthesis:</p>
+<p>For process, activity, or transformation term A and process term P, <strong>A subProcessOf P</strong> indicates that instances of process P, by default, include one or more instances of A in their composition. For example, the reduction of HMG-CoA to mevalonate is a subprocess of cholesterol biosynthesis:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2136,19 +2134,19 @@ All terms in BEL 1.0 represent classes, but given that classes implicitly have i
 <div class="sect2">
 <h3 id="_analogous">17.1. analogous</h3>
 <div class="paragraph">
-<p>For terms A and B, <strong><code>A analogousTo B</code></strong> indicates that A and B represent abundances or molecular activities which function in a similar manner, but do not share sequence similarity or a common ancestor.</p>
+<p>For terms A and B, <strong>A analogousTo B</strong> indicates that A and B represent abundances or molecular activities which function in a similar manner, but do not share sequence similarity or a common ancestor.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_biomarkerfor">17.2. biomarkerFor</h3>
 <div class="paragraph">
-<p>For term A and process term P, <strong><code>A biomarkerFor P</code></strong> indicates that changes in or detection of A is used in some way to be a biomarker for pathology or biological process P.</p>
+<p>For term A and process term P, <strong>A biomarkerFor P</strong> indicates that changes in or detection of A is used in some way to be a biomarker for pathology or biological process P.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_prognosticbiomarkerfor">17.3. prognosticBiomarkerFor</h3>
 <div class="paragraph">
-<p>For term A and process term P, <strong><code>A prognosticBiomarkerFor P</code></strong> indicates that changes in or detection of A is used in some way to be a prognostic biomarker for the subsequent development of pathology or biological process P.</p>
+<p>For term A and process term P, <strong>A prognosticBiomarkerFor P</strong> indicates that changes in or detection of A is used in some way to be a prognostic biomarker for the subsequent development of pathology or biological process P.</p>
 </div>
 </div>
 </div>
@@ -2449,7 +2447,7 @@ All terms in BEL 1.0 represent classes, but given that classes implicitly have i
 <div id="footer">
 <div id="footer-text">
 Version 2.0<br>
-Last updated 2016-04-05 14:01:36 EDT
+Last updated 2016-04-08 09:25:58 EDT
 </div>
 </div>
 </body>

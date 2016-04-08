@@ -1,4 +1,4 @@
-BEL Specification
+BEL 1.0 Specification
 =================
 Natalie Catlett <ncatlett@selventa.com>
 v1.0, 2012-07
@@ -295,7 +295,7 @@ The SET action instantiates an object of a given type and assigns specific prope
 Usage
 +++++
 
-Sets an annotation value, statement group name, or a document level property. Document-level properties must be set before all other annotations and BEL Statements.   
+Sets an annotation value, statement group name, or a document level property. Document-level properties must be set before all other annotations and BEL Statements.
 Once set, document-level properties cannot be cleared. If the same document-level property is set multiple times, the last value takes precedence.
 
 If a statement group is set, all following statements will be associated with the statement group. If no statement group is set, all statements will be associated with the default (unnamed) statement group.
@@ -418,7 +418,7 @@ This example will UNSET the current Statement Group
 ----
 UNSET STATEMENT_GROUP
 ----
-  
+
 
 Language Characteristics
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -433,7 +433,7 @@ The following keywords are reserved for use in BEL Script documents:
 | ALL | ANNOTATION | AS | DEFAULT
 | DEFINE | DOCUMENT | LIST | NAMESPACE
 | PATTERN | SET | STATEMENT_GROUP | UNSET
-| URL |   |   |  
+| URL |   |   |
 |====
 
 Case Sensitivity
@@ -565,18 +565,18 @@ Example BEL Script
 
 The following is an example of a BEL Script document created from a PubMed abstract.
 
-Additional BEL Script examples can be found http://resource.belframework.org/belframework/1.0/knowledge/[here].  
+Additional BEL Script examples can be found http://resource.belframework.org/belframework/1.0/knowledge/[here].
 
 [source,java]
 ----
 ##############################################################################
-#                                                                          
 #
-# Example BEL Script.                                                      
 #
-#                                                                           
+# Example BEL Script.
+#
+#
 # This BEL Script encodes BEL Statements extracted from PubMed ID 11340296   #
-#                                                                          
+#
 #
 ##############################################################################
 
@@ -721,7 +721,7 @@ abundance(), a()
 
 complexAbundance(), complex()
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The +complexAbundance()+ or+ complex()+ function can take a list of one or more namespace values.   
+The +complexAbundance()+ or+ complex()+ function can take a list of one or more namespace values.
 +complexAbundance(ns:v)+ denotes the abundance of the molecular complex designated by the value +v+ in the namespace +ns+. This form is generally used to identify abundances of named complexes, for example the activator protein 1 (AP-1) transcription complex can be represented as:
 [source,java]
 ----
@@ -746,7 +746,7 @@ Members of a molecular complex retain their individual identities. The +complexA
 
 compositeAbundance(), composite()
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The +compositeAbundance(<abundance term list>)+ function takes a list of abundances.   
+The +compositeAbundance(<abundance term list>)+ function takes a list of abundances.
 The +compositeAbundance()+ or +composite() +function is used to represent cases where multiple abundances synergize to produce an effect. For example "treatment with A and B together increases C", where can be represented as:
 
 [source,java]
@@ -813,7 +813,7 @@ The proteinModification() or pmod() function can be used only as an argument wit
 p(ns:v, pmod(<type>, <code>, <pos>))
 ----
 
-Where +<type>+ is one of a set of 9 covalent protein modification types, +<code>+ is one of the 20 single-letter amino acid codes, and <pos> is the position at which the modification occurs based on the reference sequence for the protein.  
+Where +<type>+ is one of a set of 9 covalent protein modification types, +<code>+ is one of the 20 single-letter amino acid codes, and <pos> is the position at which the modification occurs based on the reference sequence for the protein.
 If +<pos>+ is omitted, then the position of the modification is unspecified. If both+ <code>+ and +<pos>+ are omitted, then the residue and position of the modification are unspecified.
 
 An example of a protein modification code would be "P", denoting phosphorylation:
@@ -923,7 +923,7 @@ fusion(), fus()
 +++++++++++++++
 Expressions indicating the abundance of genes, proteins, and rna with fusion modifications have the form: +x(ns1:v1, fus(ns2:v2, a, b))+ Where x is either a proteinAbundance, a geneAbundance or a rnaAbundance, ns1:v1 is the 5' (left side) partner gene and ns2:v2 is the 3' (right side) partner gene, a and b are the breakpoints for the 5' and 3' genes respectively.
 
-If a and b are omitted, the position of the 5' and 3' breakpoints are unspecified.  
+If a and b are omitted, the position of the 5' and 3' breakpoints are unspecified.
 The following example of a fusion modification+:+
 
 [source,java]
@@ -931,7 +931,7 @@ The following example of a fusion modification+:+
 g(HGNC:TMPRSS2, fusion(HGNC:ERG, 365, 38))
 ----
 
-defines the abundance of human TMPRSS2-ERG fusion gene which encodes nucleotide 1-365 of TMPRSS2 fused to nucleotide 38-3097 of ERG.  
+defines the abundance of human TMPRSS2-ERG fusion gene which encodes nucleotide 1-365 of TMPRSS2 fused to nucleotide 38-3097 of ERG.
 If the breakpoint were unknown or unspecified the fusion gene would be represented as:
 
 [source,java]
@@ -946,7 +946,7 @@ Activity functions are applied to protein, complex, and RNA abundances to specif
 
 catalyticActivity(), cat()
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-For the abundance term A, +catalyticActivity(A)+ or +cat(A)+ denotes the frequency or abundance of events in which a member of A acts as an enzymatic catalyst of biochemical reactions; A should represent an abundance of a protein, molecular complex, or ribozyme with catalytic activity, such as super oxide dismutase 1 (+p(HGNC:SOD1)+) or the RNA polymerase II complex (+complex(NCH:"RNA polymerase II complex")+ ).  
+For the abundance term A, +catalyticActivity(A)+ or +cat(A)+ denotes the frequency or abundance of events in which a member of A acts as an enzymatic catalyst of biochemical reactions; A should represent an abundance of a protein, molecular complex, or ribozyme with catalytic activity, such as super oxide dismutase 1 (+p(HGNC:SOD1)+) or the RNA polymerase II complex (+complex(NCH:"RNA polymerase II complex")+ ).
 
 In BEL V1.0, certain types of catalytic activity are represented by a more specific activity function. These include kinase (phosphotransferase), ADP-ribosylase, phosphatase, and peptidase (protease). To represent these types of activities, the more specific function should be used.
 
@@ -956,7 +956,7 @@ For the abundance term A, +chaperoneActivity(A)+ or +chap(A)+ denotes the freque
 
 gtpBoundActivity(), gtp()
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-For the protein abundance term A, +gtpBoundActivity(A)+ or +gtp(A)+ denotes the frequency or abundance of events that a member of the protein abundance A acts in due to its being in the active, GTP-bound state. A should represent the protein abundance of a GTP-binding protein, such as G-ALPHA-q (+p(HGNC:GNAQ)+), KRAS (+p(HGNC:KRAS)+) or CDC42 (+p(HGNC:CDC42)+).  
+For the protein abundance term A, +gtpBoundActivity(A)+ or +gtp(A)+ denotes the frequency or abundance of events that a member of the protein abundance A acts in due to its being in the active, GTP-bound state. A should represent the protein abundance of a GTP-binding protein, such as G-ALPHA-q (+p(HGNC:GNAQ)+), KRAS (+p(HGNC:KRAS)+) or CDC42 (+p(HGNC:CDC42)+).
 +gtpBoundActivity()+ represents the signaling activity of G-proteins, not GTPase Activity. GTPase activity catalyzes the hydrolysis of bound GTP to GDP, which leaves the G-protein inactive.
 
 kinaseActivity(), kin()
@@ -965,7 +965,7 @@ For the abundance term A, +kinaseActivity(A)+ or +kin(A+) denotes the frequency 
 
 molecularActivity(), act()
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-For the abundance term A, +molecularActivity(A)+ or +act(A)+ denotes the frequency or abundance of events in which a member of A acts as a causal agent at the molecular scale. The nature of the activity is unspecified.   
+For the abundance term A, +molecularActivity(A)+ or +act(A)+ denotes the frequency or abundance of events in which a member of A acts as a causal agent at the molecular scale. The nature of the activity is unspecified.
 This term function may be used to represent activities of molecular entities in cases where the mechanism of action the entity is unknown or is not represented by another activity function. For example, the toll-like receptor TLR4 does not have a specific enzymatic activity, but signal transduction downstream from TLR4 protein, such as that activated by TLR4 binding its ligand lipopolysaccharide, can be represented as +molecularActivity(p(HGNC:TLR4))+.
 
 peptidaseActivity(), pep()
@@ -982,7 +982,7 @@ For the abundance term A, +ribosylationActivity(A)+ or +ribo(A)+ denotes the fre
 
 transcriptionalActivity(), tscript()
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-For the abundance term A, +transcriptionalActivity(A)+ or +tscript(A)+ denotes the frequency or abundance of events in which a member of A directly acts to control transcription, the copying of DNA into RNA. A should represent the abundance of a protein or molecular complex with transcriptional activity, such as the glucocorticoid receptor (+p(HGNC:NR3C1)+) or the AP-1 transcription complex (+complex(NCH:"AP-1 complex")+).  
+For the abundance term A, +transcriptionalActivity(A)+ or +tscript(A)+ denotes the frequency or abundance of events in which a member of A directly acts to control transcription, the copying of DNA into RNA. A should represent the abundance of a protein or molecular complex with transcriptional activity, such as the glucocorticoid receptor (+p(HGNC:NR3C1)+) or the AP-1 transcription complex (+complex(NCH:"AP-1 complex")+).
 Activities represented using this term function include the activities of abundances of proteins or molecular complexes that bind DNA directly and act as transcription factors, as well as transcriptional corepressors and coactivators which directly regulate transcription factor activity.
 
 transportActivity(), tport()
@@ -1000,9 +1000,9 @@ biologicalProcess(), bp()
 
 pathology(), path()
 ^^^^^^^^^^^^^^^^^^^
-+pathology(ns:v)+ or +path(ns:v)+ denotes the disease or pathology process designated by the value +v+ in the namespace +ns+. Examples of pathologies are +pathology(MESHD:"Pulmonary Disease, Chronic Obstructive")+ and +pathology(MESHD:adenocarcinoma)+.  
++pathology(ns:v)+ or +path(ns:v)+ denotes the disease or pathology process designated by the value +v+ in the namespace +ns+. Examples of pathologies are +pathology(MESHD:"Pulmonary Disease, Chronic Obstructive")+ and +pathology(MESHD:adenocarcinoma)+.
 BEL 1.0 includes the pathology term function to facilitate the distinction of pathologies from other biological processes because of their importance in many potential applications in the life sciences.
-  
+
 Transformations
 ~~~~~~~~~~~~~~~
 
@@ -1074,9 +1074,9 @@ These relationship types denote a causal relationship, or the absence of a causa
 decreases, -|
 ^^^^^^^^^^^^^
 
-For terms A and B, +A decreases B+ or +A -| B+ indicate that increases in A have been observed to cause decreases in B.   
-+A decreases B+ also represents cases where decreases in A have been observed to cause increases in B, for example, in recording the results of gene deletion or other inhibition experiments.   
-A is a BEL Term and B is either a BEL Term or a BEL Statement.  
+For terms A and B, +A decreases B+ or +A -| B+ indicate that increases in A have been observed to cause decreases in B.
++A decreases B+ also represents cases where decreases in A have been observed to cause increases in B, for example, in recording the results of gene deletion or other inhibition experiments.
+A is a BEL Term and B is either a BEL Term or a BEL Statement.
 The +decreases+ relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.
 
 directlyDecreases, =|
@@ -1087,9 +1087,9 @@ For terms A and B, +A directlyDecreases B+ or +A =| B+ indicates that increases 
 increases, \->
 ^^^^^^^^^^^^^^
 
-For terms A and B, +A increases B+ or +A \-> B+ indicate that increases in A have been observed to cause increases in B.   
-+A increases B+ also represents cases where decreases in A have been observed to cause decreases in B, for example, in recording the results of gene deletion or other inhibition experiments.   
-A is a BEL Term and B is either a BEL Term or a BEL Statement.  
+For terms A and B, +A increases B+ or +A \-> B+ indicate that increases in A have been observed to cause increases in B.
++A increases B+ also represents cases where decreases in A have been observed to cause decreases in B, for example, in recording the results of gene deletion or other inhibition experiments.
+A is a BEL Term and B is either a BEL Term or a BEL Statement.
 The +increases+ relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.
 
 directlyIncreases, \=>
@@ -1100,7 +1100,7 @@ For terms A and B, +A directlyIncreases B+ or +A \=> B+ indicates that increases
 causesNoChange
 ^^^^^^^^^^^^^^
 
-For terms A and B, +A causesNoChange B+ indicates that B was observed not to change in response to changes in A.   
+For terms A and B, +A causesNoChange B+ indicates that B was observed not to change in response to changes in A.
 Statements using this relationship correspond to cases where explicit measurement of B demonstrates lack of significant change, not for cases where the state of B is unknown.
 
 
@@ -1133,8 +1133,8 @@ Direct relationships include direct causal relationships and non-causal relation
 Direct causal relationships
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The direct casual relationships included in BEL V1.0 are +directlyIncreases+ (notational form,+\=>+) and +directlyDecreases+ (notational form, +=|+).   
-The direct casual relationships are causal relationships where the mechanism of the causal relationship is based on the physical interaction of entities related to the BEL Statement subject and object terms.   
+The direct casual relationships included in BEL V1.0 are +directlyIncreases+ (notational form,+\=>+) and +directlyDecreases+ (notational form, +=|+).
+The direct casual relationships are causal relationships where the mechanism of the causal relationship is based on the physical interaction of entities related to the BEL Statement subject and object terms.
 If A or B is an abundance, then members of the abundance are part of the interaction. If A or B are activities, then members of the abundances performing the activities physically interact. For example, inhibition of the Patched 1 receptor signaling activity by Hedgehog is represented as direct, because Hedgehog and Patched 1 physically interact:
 
 +p(PFH:"Hedgehog Family") =| act(p(HGNC:PTCH1))+
@@ -1209,25 +1209,25 @@ For term abundances A and B, +A hasMember B+ designates B as a member class of A
 hasMembers
 ^^^^^^^^^^
 
-The +hasMembers+ relationship is a special form which enables the assignment of multiple member classes in a single statement where the object of the statement is a set of abundance terms. A statement using +hasMembers+ is exactly equivalent to multiple +hasMember+ statements. A term may not appear in both the subject and object of the same +hasMembers+ statement.   
+The +hasMembers+ relationship is a special form which enables the assignment of multiple member classes in a single statement where the object of the statement is a set of abundance terms. A statement using +hasMembers+ is exactly equivalent to multiple +hasMember+ statements. A term may not appear in both the subject and object of the same +hasMembers+ statement.
 For the abundance terms A, B, C and D, +A hasMembers list(B, C, D)+ indicates that A is defined by its member abundance classes B, C and D.
 
 hasComponent
 ^^^^^^^^^^^^
 
-For complex abundance term A and abundance term B, +A hasComponent B+ designates B as a component of A, that complexes that are instances of A have instances of B as possible components. Note that, the stoichiometry of A is not described, nor is it stated that B is a required component.   
+For complex abundance term A and abundance term B, +A hasComponent B+ designates B as a component of A, that complexes that are instances of A have instances of B as possible components. Note that, the stoichiometry of A is not described, nor is it stated that B is a required component.
 The use of +hasComponent+ relationships is complementary to the use of functionally composed complexes and is intended to enable the assignment of components to complexes designated by names in external vocabularies. The assignment of components can potentially enable the reconciliation of equivalent complexes at knowledge assembly time.
 
 hasComponents
 ^^^^^^^^^^^^^
 
-The +hasComponents+ relationship is a special form which enables the assignment of multiple complex components in a single statement where the object of the statement is a set of abundance terms. A statement using +hasComponents+ is exactly equivalent to multiple +hasComponent+ statements. A term may not appear in both the subject and object of the same +hasComponents+ statement.   
+The +hasComponents+ relationship is a special form which enables the assignment of multiple complex components in a single statement where the object of the statement is a set of abundance terms. A statement using +hasComponents+ is exactly equivalent to multiple +hasComponent+ statements. A term may not appear in both the subject and object of the same +hasComponents+ statement.
 For the abundance terms A, B, C and D, +A hasComponents list(B, C, D)+ indicates that A has components B, C and D.
 
 isA
 ^^^
 
-For terms A and B, +A isA B+ indicates that A is a subset of B.  
+For terms A and B, +A isA B+ indicates that A is a subset of B.
 All terms in BEL 1.0 represent classes, but given that classes implicitly have instances, +A isA B+ is interpreted to mean that any instance of A must also be an instance of B. This relationship can be used to represent GO and MeSH hierarchies:
 
 +pathology(MESH:Psoriasis) isA pathology(MESH:"Skin Diseases")+
@@ -1315,7 +1315,7 @@ This relationship links abundance terms from the +reactants(<list>)+ in a reacti
 ----
 a(CHEBI:superoxide) reactantIn\
  rxn(reactants(a(CHEBI:superoxide), a(CHEBI:hydron)),\
- products(a(CHEBI:"hydrogen peroxide"), a(CHEBI:dioxygen))) 
+ products(a(CHEBI:"hydrogen peroxide"), a(CHEBI:dioxygen)))
 ----
 
 This is a direct relationship because it is a _self_ relationship. Reactants are consumed directly by a reaction. This relationship is introduced by the BEL Compiler and does not need to be specified by statements in BEL Documents.
@@ -1499,7 +1499,7 @@ composite(p(HGNC:TGFB1), p(HGNC:IL6))
 ----
 
 This term represents the combined abundances of TGFB1 and IL6 proteins.
-  
+
 Post-Translationally Modified Proteins
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1643,7 +1643,7 @@ p(HGNC:BCR, fus(HGNC:JAK2))
 ----
 
 The +fusion()+ function can also be used within +geneAbundance+ and +rnaAbundance+ terms to represent genes and RNAs modified by fusion mutations.
-  
+
 
 Activities
 ~~~~~~~~~~
@@ -1653,7 +1653,7 @@ Term activity functions are applied to protein, complex, and RNA abundances to s
 Catalytic activities
 ^^^^^^^^^^^^^^^^^^^^
 
-The +catalyticActivity()+ or +cat()+ function is used to represent the frequency of events in which the molecular activity of proteins, complexes, or ribozymes act as an enzymatic catalyst of biochemical reactions. Kinase, phosphatase, peptidase, and ADP-ribosylase activities are represented by the more specific catalytic activity functions, +kinaseActivity()+,+ phosphataseActivity()+,+ribosylaseActivity()+, and +peptidaseActivity()+, respectively.   
+The +catalyticActivity()+ or +cat()+ function is used to represent the frequency of events in which the molecular activity of proteins, complexes, or ribozymes act as an enzymatic catalyst of biochemical reactions. Kinase, phosphatase, peptidase, and ADP-ribosylase activities are represented by the more specific catalytic activity functions, +kinaseActivity()+,+ phosphataseActivity()+,+ribosylaseActivity()+, and +peptidaseActivity()+, respectively.
 For example, an activity like super oxide dismutase can be represented using the general +catalyticActivity()+ function:
 
 [source,java]
@@ -1668,7 +1668,7 @@ short form:
 cat(p(RGD:Sod1))
 ----
 
-This term represents the frequency of events in which the protein abundance of rat Sod1 acts as a catalyst.   
+This term represents the frequency of events in which the protein abundance of rat Sod1 acts as a catalyst.
 The activity of proteases to hydrolyze peptide bonds can be represented using the more specific +peptidaseActivity()+ or +pep()+ function:
 
 [source,java]
@@ -1779,7 +1779,7 @@ act(p(HGNC:TLR7))
 ----
 
 This term represents the ligand-bound activity of the human non-catalytic receptor protein TLR7.
-  
+
 
 Processes
 ~~~~~~~~~
@@ -1911,7 +1911,7 @@ deg(r(HGNC:MYC))
 ----
 
 This term represents the degradation of the human MYC RNA. Degradation decreases the amount of the abundance - when degradation statements are compiled, a directlyDecreases relationship edge is added between the degradation term and the degraded entity.
-  
+
 
 Binding Interactions
 ~~~~~~~~~~~~~~~~~~~~
@@ -2015,7 +2015,7 @@ complex(a(CHEBI:"1-phosphatidyl-1D-myo-inositol 3,4,5-trisphosphate"), p(HGNC:AK
 ----
 
 This statement represents that PIP3 binds AKT1 protein.
-  
+
 
 Causal Statements
 ~~~~~~~~~~~~~~~~~
@@ -2415,7 +2415,7 @@ The statement represents that abundance of protein designated by the name Nr2f2 
 Representation of Ontology Statements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-BEL Statements can be used to represent the relationships of biological process and pathology terms within ontologies like MeSH and GO using the +isA+ relationship.  
+BEL Statements can be used to represent the relationships of biological process and pathology terms within ontologies like MeSH and GO using the +isA+ relationship.
 This example shows a representation of a MeSH tree:
 
 [source,java]
@@ -2455,7 +2455,7 @@ The BEL Framework adds family members to protein families and complex components
 Protein Family
 ^^^^^^^^^^^^^^
 
-In this example, members of a protein family are assigned using the +hasMembers+ and +hasMember+ relationships.   
+In this example, members of a protein family are assigned using the +hasMembers+ and +hasMember+ relationships.
 The+ hasMembers+ relationship is used to assign a list of protein abundances as members of a protein family.
 
 [source,java]
@@ -2477,7 +2477,7 @@ The +hasMembers+ relationship is a syntactic convenience that is equivalent to t
 Complex Component
 ^^^^^^^^^^^^^^^^^
 
-In this example components are assigned to a named protein complex using the +hasComponents+ and +hasComponent+ relationships.   
+In this example components are assigned to a named protein complex using the +hasComponents+ and +hasComponent+ relationships.
 The+ hasComponents+ relationship is similar to the +hasMembers+ relationship and is used to assign a list of abundances as components of a complex.
 
 [source,java]
@@ -2546,7 +2546,7 @@ g(EG:1) :> r(EG:1)
 r(EG:1) >> p(EG:1)
 ----
 
-These statements express that the gene alpha-1-B glycoprotein (A1BG), identified by Entrez Gene ID 1, transcribes to RNA, and this RNA translates to protein.   
+These statements express that the gene alpha-1-B glycoprotein (A1BG), identified by Entrez Gene ID 1, transcribes to RNA, and this RNA translates to protein.
 In some cases, genes do not encode proteins, and the protein abundance term is not valid:
 
 [source,java]
@@ -2572,7 +2572,7 @@ Citations are a special type of annotation that references the knowledge source 
 SET citation = {"PubMed", "Genes Cancer. 2010 Jun;1(6):560-567.", "21533016"}
 ----
 
-The document name is a text string containing the reference information, the type is PubMed, and the document reference is the PubMed ID.  
+The document name is a text string containing the reference information, the type is PubMed, and the document reference is the PubMed ID.
 The citation for a Reactome pathway would be encoded as:
 
 [source,java]
@@ -2749,7 +2749,7 @@ While it would be technically correct to represent overexpressions achieved via 
 When should I use the protein abundance vs. the activity of a protein?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Many experimental perturbations involve the overexpression or knockdown of protein abundance. We generally represent this type of experiment using a protein abundance as the subject term instead of an activity (e.g., kinase or phosphatase) of the protein. While many proteins have a known activity, this activity is not always responsible for all downstream effects of overexpression or knockdown; the same effects occur when either wild-type or catalytically inactive forms are expressed.  
+Many experimental perturbations involve the overexpression or knockdown of protein abundance. We generally represent this type of experiment using a protein abundance as the subject term instead of an activity (e.g., kinase or phosphatase) of the protein. While many proteins have a known activity, this activity is not always responsible for all downstream effects of overexpression or knockdown; the same effects occur when either wild-type or catalytically inactive forms are expressed.
 Below are examples of BEL statements for cases where:
 
 1.  the effects of increased or decreased protein abundance are not due to the catalytic activity of the protein,
@@ -2796,7 +2796,7 @@ Because both Met and the Met ligand are required for the increase in gene expres
 Not enough information is available
 +++++++++++++++++++++++++++++++++++
 
-Genes are differentially expressed in the pancreas of mice with a pancreas-specific beta-catenin deletion (http://www.ncbi.nlm.nih.gov/pubmed/17222338[PMID 17222338]). 
+Genes are differentially expressed in the pancreas of mice with a pancreas-specific beta-catenin deletion (http://www.ncbi.nlm.nih.gov/pubmed/17222338[PMID 17222338]).
 These include decreased expression of the hedgehog interacting protein Hhip in the knock-out compared to wild-type.
 
 [source,java]
@@ -2853,7 +2853,7 @@ The artificial (laboratory) creation of sequence variants is often used to inves
 Non-phosphorylatable mutant
 +++++++++++++++++++++++++++
 
-In this example, mutation of FOXO1 serine 256 to alanine is used to block phosphorylation at 256 (S256A), a site phosphorylated by AKT. The S256A mutation was found to impair phosphorylation of threonine 24 and serine 319 by AKT (http://www.ncbi.nlm.nih.gov/pubmed?term=11237865[PMID 11237865]).   
+In this example, mutation of FOXO1 serine 256 to alanine is used to block phosphorylation at 256 (S256A), a site phosphorylated by AKT. The S256A mutation was found to impair phosphorylation of threonine 24 and serine 319 by AKT (http://www.ncbi.nlm.nih.gov/pubmed?term=11237865[PMID 11237865]).
 We could represent this observation as follows:
 
 [source,java]
@@ -2876,7 +2876,7 @@ p(HGNC:FOXO1, pmod(P, S, 256)) =>(p(PFH:"AKT Family") => p(HGNC:FOXO1, pmod(P, T
 p(HGNC:FOXO1, pmod(P, S, 256)) =>(p(PFH:"AKT Family") => p(HGNC:FOXO1, pmod(P, S, 319)))
 ----
 
-Here, the statements indicate that phosphorylation of FOXO1 at S256 increases the phosphorylation of T24 and S319 by the kinase activity of AKT.   
+Here, the statements indicate that phosphorylation of FOXO1 at S256 increases the phosphorylation of T24 and S319 by the kinase activity of AKT.
 
 While both representations are accurate, the second version is better suited to integrating other information about the role of FOXO1 phosphorylation at S256 into a cohesive, traversable model.
 
@@ -2907,7 +2907,7 @@ Correlative relationships are more appropriate than causal relationships to repr
 Correlative
 +++++++++++
 
-If the observation comes from the comparison of human tumors grouped by the occurrence of a specific mutation, then the relationship should generally be expressed as correlative. In this case there is no experimental perturbation.  
+If the observation comes from the comparison of human tumors grouped by the occurrence of a specific mutation, then the relationship should generally be expressed as correlative. In this case there is no experimental perturbation.
 
 In this example, most patient tumor samples with an EGFR L858R mutation were observed to exhibit a reduction in ERBB2 tyrosine 1248 phosphorylation compared to wild-type samples (http://www.ncbi.nlm.nih.gov/pubmed/?term=18687633[PMID 18687633]):
 
@@ -2983,7 +2983,7 @@ Here are some common questions and answers on representation of protein modifica
 How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Removal of a specific protein modification is represented simply as a decrease in the abundance of the modified protein. 
+Removal of a specific protein modification is represented simply as a decrease in the abundance of the modified protein.
 
 Deubiquitination
 ++++++++++++++++
@@ -3014,7 +3014,7 @@ Similar to deubiquitination, dephosphorylation is represented simply as a decrea
 How do I represent a protein modification within a complex?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In many cases, complexes include proteins with post-translational modifications and these modifications influence complex formation. For example, HIF1A that has been hydroxylated on proline residues 402 and 564 interacts with VHL (http://www.ncbi.nlm.nih.gov/pubmed?term=17925579[PMID 17925579]).  
+In many cases, complexes include proteins with post-translational modifications and these modifications influence complex formation. For example, HIF1A that has been hydroxylated on proline residues 402 and 564 interacts with VHL (http://www.ncbi.nlm.nih.gov/pubmed?term=17925579[PMID 17925579]).
 Our general practice is to represent this type of event as a causal statement in BEL, with the modified protein as the subject term and the complex with no specified modifications as the object term. Because the modified protein is a component of the complex, we use a direct causal relationship:
 
 [source,java]
@@ -3071,7 +3071,7 @@ Because the kinase mediating the second phosphorylation is known, this relations
 p(HGNC:CTNNB1, pmod(P, S, 45)) => \
     (kin(p(PFH:"GSK3 Family")) => (HGNC:CTNNB1, pmod(P, T, 41)))
 ----
-  
+
 
 [[situation_multiple_phosphorylations_required_for_a_proteins_activity]]
 How do I represent a situation where multiple phosphorylations are required for a protein's activity?
@@ -3122,9 +3122,9 @@ p(HGNC:AKT1, pmod(P))
 
 This term represents human AKT1 protein that has been modified by phosphorylation at an unspecified amino acid residue.
 
-As a general rule, if specific information is available, it should be used. In some cases, this involves investigation sections of a paper outside of the evidence text or other referenced papers to determine which specific modifications have been measured.  
-Non-specific protein modification terms have limited value in the context of a Knowledge Assembly Model (KAM). For example, phosphorylation at different sites of the same protein can have opposing effects.  
-For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 and is targeted for proteasomal degradation" (http://www.ncbi.nlm.nih.gov/pubmed?term=15917664[PMID 15917664])  
+As a general rule, if specific information is available, it should be used. In some cases, this involves investigation sections of a paper outside of the evidence text or other referenced papers to determine which specific modifications have been measured.
+Non-specific protein modification terms have limited value in the context of a Knowledge Assembly Model (KAM). For example, phosphorylation at different sites of the same protein can have opposing effects.
+For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 and is targeted for proteasomal degradation" (http://www.ncbi.nlm.nih.gov/pubmed?term=15917664[PMID 15917664])
 
 Recommended
 +++++++++++
@@ -3201,7 +3201,7 @@ complex(p(MGI:Dhh), p(MGI:Hhip))
 ----
 
 In this case, all three hedgehog family members are reported to bind to the hedgehog interacting protein (Hhip). Statements can be modeled using the family as well as each individual member.
-  
+
 
 [[Reaction]]
 Reaction
@@ -3211,7 +3211,7 @@ Reaction
 When and why should I use a reaction term?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When should I use a reaction term?  
+When should I use a reaction term?
 ++++++++++++++++++++++++++++++++++
 
 Reaction terms allow the representation of a transformation of a list of reactants into a list of products. In this example, the superoxide dismutase SOD1 converts superoxide to hydrogen peroxide:

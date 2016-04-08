@@ -1,4 +1,4 @@
-BEL Specification
+BEL 2.0 Specification
 =================
 Natalie Catlett <ncatlett@selventa.com>
 v2.0, 2014-06

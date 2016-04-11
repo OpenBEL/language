@@ -674,7 +674,7 @@ where `ns5':v5'` is a namespace and value for the 5' fusion partner, `range5'` i
 
  r(fus(HGNC:TMPRSS2, r.1_79, HGNC:ERG, r.312_5034))
 
-The __r.__ designation in the range fields indicates that the numbering uses the RNA sequence as the reference. RNA sequence numbering starts at the transcription initiation site.
+The __r.__ designation in the range fields indicates that the numbering uses the RNA sequence as the reference. RNA sequence numbering starts at the transcription initiation site.  You use __c.___ for g() fusions and __p.___ for p() fusions.  These __r.__, __c.__, and __p.__ designations come from http://www.hgvs.org[HGVS variation description] convention.
 
 ====== RNA abundance of fusion with unspecified breakpoints
 

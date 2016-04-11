@@ -1874,11 +1874,11 @@ The citation for a Reactome pathway would be encoded as:
 
 In this case, the document name is the pathway name, the type is _Online Resource_, and the reference is the Reactome identifier.
 
-====== SupportingText
+====== Support (previously known as Supporting Text)
 
-SupportingText annotations provide the specific text that the statement is derived from. Text should come directly from the abstract or full text of the source referenced by the citation annotation. For example, a supporting text line from the Reactome pathway cited above is:
+Support annotations provide the specific text that the statement is derived from. Text should come directly from the abstract or full text of the source referenced by the citation annotation. For example, a support line from the Reactome pathway cited above is:
 
- SET SupportingText = "The p53 protein activates the transcription of cyclin-dependent kinase inhibitor, p21.
+ SET Supporting = "The p53 protein activates the transcription of cyclin-dependent kinase inhibitor, p21.
  p21 inactivates the CyclinE:Cdk2 complexes, and prevent entry of the cell into S phase, leading to G1 arrest."
 
 ====== Species
@@ -2461,13 +2461,17 @@ In this case, all three hedgehog family members are reported to bind to the hedg
 == Implementation
 
 
-== Formats
+=== Formats
 
 
-=== BEL Script
+==== BEL Script
 
 
-=== XBEL
+==== XBEL
+
+==== Evidence JSON
+
+==== JSON Graph Format (JGF)
 
 
 == Tools
@@ -2479,12 +2483,6 @@ In this case, all three hedgehog family members are reported to bind to the hedg
 === Ruby
 
 
-[glossary]
-== Glossary
-
-A glossary of BEL terminology.
-
-[glossary]
 BEL Parameter::
   The corresponding (indented) definition.
 

@@ -703,7 +703,11 @@ b.conum * { color: inherit !important; }
 <li><a href="#overview">Overview</a></li>
 <li><a href="#language_structure">1. Language Structure</a>
 <ul class="sectlevel2">
-<li><a href="#Namespaces">1.1. Namespaces</a></li>
+<li><a href="#Namespaces">1.1. Namespaces</a>
+<ul class="sectlevel3">
+<li><a href="#_equivalencing_between_namespaces">1.1.1. Equivalencing between Namespaces</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_bel_terms">2. BEL Terms</a>
@@ -729,68 +733,309 @@ b.conum * { color: inherit !important; }
 </li>
 <li><a href="#bel-script">5. BEL Script, Version 1.0 Format</a>
 <ul class="sectlevel2">
-<li><a href="#_overview">5.1. Overview</a></li>
-<li><a href="#_control_records">5.2. Control Records</a></li>
-<li><a href="#_language_characteristics">5.3. Language Characteristics</a></li>
+<li><a href="#_overview">5.1. Overview</a>
+<ul class="sectlevel3">
+<li><a href="#_bel_script_overview">5.1.1. BEL Script Overview</a></li>
+<li><a href="#_bel_script_sections">5.1.2. BEL Script Sections</a></li>
+<li><a href="#_properties_section">5.1.3. Properties Section</a></li>
+<li><a href="#_definitions_section">5.1.4. Definitions Section</a></li>
+<li><a href="#_statement_section">5.1.5. Statement Section</a></li>
+</ul>
+</li>
+<li><a href="#_control_records">5.2. Control Records</a>
+<ul class="sectlevel3">
+<li><a href="#_set">5.2.1. SET</a></li>
+<li><a href="#_define">5.2.2. DEFINE</a></li>
+<li><a href="#_unset">5.2.3. UNSET</a></li>
+</ul>
+</li>
+<li><a href="#_language_characteristics">5.3. Language Characteristics</a>
+<ul class="sectlevel3">
+<li><a href="#_reserved_keywords">5.3.1. Reserved Keywords</a></li>
+<li><a href="#_case_sensitivity">5.3.2. Case Sensitivity</a></li>
+<li><a href="#_blank_lines">5.3.3. Blank Lines</a></li>
+<li><a href="#_quotes">5.3.4. Quotes</a></li>
+<li><a href="#_escape_sequences_in_quotes">5.3.5. Escape Sequences in Quotes</a></li>
+<li><a href="#_object_identifiers">5.3.6. Object Identifiers</a></li>
+<li><a href="#_list_operator">5.3.7. List Operator</a></li>
+<li><a href="#_line_continuation_operator">5.3.8. Line Continuation Operator</a></li>
+<li><a href="#_comments">5.3.9. Comments</a></li>
+<li><a href="#_document_comments">5.3.10. Document Comments</a></li>
+<li><a href="#_statement_comments">5.3.11. Statement Comments</a></li>
+</ul>
+</li>
 <li><a href="#_example_bel_script">5.4. Example BEL Script</a></li>
 </ul>
 </li>
 <li><a href="#_bel_functions">6. BEL Functions</a>
 <ul class="sectlevel2">
-<li><a href="#_abundance_functions">6.1. Abundance functions</a></li>
-<li><a href="#_modifications">6.2. Modifications</a></li>
-<li><a href="#_activities">6.3. Activities</a></li>
-<li><a href="#_processes_2">6.4. Processes</a></li>
-<li><a href="#_transformations">6.5. Transformations</a></li>
+<li><a href="#_abundance_functions">6.1. Abundance functions</a>
+<ul class="sectlevel3">
+<li><a href="#_abundance_a">6.1.1. abundance(), a()</a></li>
+<li><a href="#_complexabundance_complex">6.1.2. complexAbundance(), complex()</a></li>
+<li><a href="#_compositeabundance_composite">6.1.3. compositeAbundance(), composite()</a></li>
+<li><a href="#_geneabundance_g">6.1.4. geneAbundance(), g()</a></li>
+<li><a href="#_micrornaabundance_m">6.1.5. microRNAAbundance(), m()</a></li>
+<li><a href="#_proteinabundance_p">6.1.6. proteinAbundance(), p()</a></li>
+<li><a href="#_rnaabundance_r">6.1.7. rnaAbundance(), r()</a></li>
+</ul>
+</li>
+<li><a href="#_modifications">6.2. Modifications</a>
+<ul class="sectlevel3">
+<li><a href="#_covalent_modifications">6.2.1. Covalent modifications</a></li>
+<li><a href="#_sequence_variations">6.2.2. Sequence Variations</a></li>
+</ul>
+</li>
+<li><a href="#_activities">6.3. Activities</a>
+<ul class="sectlevel3">
+<li><a href="#_catalyticactivity_cat">6.3.1. catalyticActivity(), cat()</a></li>
+<li><a href="#_chaperoneactivity_chap">6.3.2. chaperoneActivity(), chap()</a></li>
+<li><a href="#_gtpboundactivity_gtp">6.3.3. gtpBoundActivity(), gtp()</a></li>
+<li><a href="#_kinaseactivity_kin">6.3.4. kinaseActivity(), kin()</a></li>
+<li><a href="#_molecularactivity_act">6.3.5. molecularActivity(), act()</a></li>
+<li><a href="#_peptidaseactivity_pep">6.3.6. peptidaseActivity(), pep()</a></li>
+<li><a href="#_phosphataseactivity_phos">6.3.7. phosphataseActivity(), phos()</a></li>
+<li><a href="#_ribosylationactivity_ribo">6.3.8. ribosylationActivity(), ribo()</a></li>
+<li><a href="#_transcriptionalactivity_tscript">6.3.9. transcriptionalActivity(), tscript()</a></li>
+<li><a href="#_transportactivity_tport">6.3.10. transportActivity(), tport()</a></li>
+</ul>
+</li>
+<li><a href="#_processes_2">6.4. Processes</a>
+<ul class="sectlevel3">
+<li><a href="#_biologicalprocess_bp">6.4.1. biologicalProcess(), bp()</a></li>
+<li><a href="#_pathology_path">6.4.2. pathology(), path()</a></li>
+</ul>
+</li>
+<li><a href="#_transformations">6.5. Transformations</a>
+<ul class="sectlevel3">
+<li><a href="#_translocations">6.5.1. Translocations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_bel_relationships">7. BEL Relationships</a>
 <ul class="sectlevel2">
-<li><a href="#_causal_relationships">7.1. Causal Relationships</a></li>
-<li><a href="#_correlative_relationships">7.2. Correlative Relationships</a></li>
-<li><a href="#_direct_relationships">7.3. Direct Relationships</a></li>
-<li><a href="#_genomic_relationships">7.4. Genomic Relationships</a></li>
-<li><a href="#_other_relationships">7.5. Other Relationships</a></li>
-<li><a href="#_direct_relationships_injected_by_the_compiler">7.6. Direct Relationships Injected by the Compiler</a></li>
+<li><a href="#_causal_relationships">7.1. Causal Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_decreases">7.1.1. decreases, -|</a></li>
+<li><a href="#_directlydecreases">7.1.2. directlyDecreases, =|</a></li>
+<li><a href="#_increases">7.1.3. increases, -&gt;</a></li>
+<li><a href="#_directlyincreases">7.1.4. directlyIncreases, =&gt;</a></li>
+<li><a href="#_causesnochange">7.1.5. causesNoChange</a></li>
+</ul>
+</li>
+<li><a href="#_correlative_relationships">7.2. Correlative Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_negativecorrelation">7.2.1. negativeCorrelation</a></li>
+<li><a href="#_positivecorrelation">7.2.2. positiveCorrelation</a></li>
+<li><a href="#_association">7.2.3. association,&#8201;&#8212;&#8201;</a></li>
+</ul>
+</li>
+<li><a href="#_direct_relationships">7.3. Direct Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_direct_causal_relationships">7.3.1. Direct causal relationships</a></li>
+</ul>
+</li>
+<li><a href="#_genomic_relationships">7.4. Genomic Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_analogous">7.4.1. analogous</a></li>
+<li><a href="#_orthologous">7.4.2. orthologous</a></li>
+<li><a href="#_transcribedto">7.4.3. transcribedTo, :&gt;</a></li>
+<li><a href="#_translatedto">7.4.4. translatedTo, &gt;&gt;</a></li>
+</ul>
+</li>
+<li><a href="#_other_relationships">7.5. Other Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_biomarkerfor">7.5.1. biomarkerFor</a></li>
+<li><a href="#_hasmember">7.5.2. hasMember</a></li>
+<li><a href="#_hasmembers">7.5.3. hasMembers</a></li>
+<li><a href="#_hascomponent">7.5.4. hasComponent</a></li>
+<li><a href="#_hascomponents">7.5.5. hasComponents</a></li>
+<li><a href="#_isa">7.5.6. isA</a></li>
+<li><a href="#_prognosticbiomarkerfor">7.5.7. prognosticBiomarkerFor</a></li>
+<li><a href="#_ratelimitingstepof">7.5.8. rateLimitingStepOf</a></li>
+<li><a href="#_subprocessof">7.5.9. subProcessOf</a></li>
+</ul>
+</li>
+<li><a href="#_direct_relationships_injected_by_the_compiler">7.6. Direct Relationships Injected by the Compiler</a>
+<ul class="sectlevel3">
+<li><a href="#_actsin">7.6.1. actsIn</a></li>
+<li><a href="#_hasproduct">7.6.2. hasProduct</a></li>
+<li><a href="#_hasvariant">7.6.3. hasVariant</a></li>
+<li><a href="#_hasmodification">7.6.4. hasModification</a></li>
+<li><a href="#_reactantin">7.6.5. reactantIn</a></li>
+<li><a href="#_translocates">7.6.6. translocates</a></li>
+<li><a href="#_includes">7.6.7. includes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_bel_examples">8. BEL Examples</a>
 <ul class="sectlevel2">
-<li><a href="#_abundances_2">8.1. Abundances</a></li>
-<li><a href="#_post_translationally_modified_proteins">8.2. Post-Translationally Modified Proteins</a></li>
-<li><a href="#_mutated_proteins">8.3. Mutated Proteins</a></li>
-<li><a href="#_activities_2">8.4. Activities</a></li>
+<li><a href="#_abundances_2">8.1. Abundances</a>
+<ul class="sectlevel3">
+<li><a href="#_chemicals_and_small_molecules">8.1.1. Chemicals and Small Molecules</a></li>
+<li><a href="#_genes_rnas_and_proteins">8.1.2. Genes, RNAs, and proteins</a></li>
+<li><a href="#_protein_families">8.1.3. Protein families</a></li>
+<li><a href="#_micrornas">8.1.4. microRNAs</a></li>
+<li><a href="#_complexes">8.1.5. Complexes</a></li>
+<li><a href="#_composite_abundances">8.1.6. Composite abundances</a></li>
+</ul>
+</li>
+<li><a href="#_post_translationally_modified_proteins">8.2. Post-Translationally Modified Proteins</a>
+<ul class="sectlevel3">
+<li><a href="#_hydroxylation">8.2.1. Hydroxylation</a></li>
+<li><a href="#_phosphorylation">8.2.2. Phosphorylation</a></li>
+<li><a href="#_acetylation">8.2.3. Acetylation</a></li>
+<li><a href="#_glycosylation">8.2.4. Glycosylation</a></li>
+<li><a href="#_methylation">8.2.5. Methylation</a></li>
+<li><a href="#_ubiquitination">8.2.6. Ubiquitination</a></li>
+</ul>
+</li>
+<li><a href="#_mutated_proteins">8.3. Mutated Proteins</a>
+<ul class="sectlevel3">
+<li><a href="#_amino_acid_substitutions">8.3.1. Amino Acid Substitutions</a></li>
+<li><a href="#_truncated_proteins">8.3.2. Truncated Proteins</a></li>
+<li><a href="#_fusion_proteins">8.3.3. Fusion Proteins</a></li>
+</ul>
+</li>
+<li><a href="#_activities_2">8.4. Activities</a>
+<ul class="sectlevel3">
+<li><a href="#_catalytic_activities">8.4.1. Catalytic activities</a></li>
+<li><a href="#_g_proteins_in_the_active_gtp_bound_state">8.4.2. G-proteins in the active (GTP-bound) state</a></li>
+<li><a href="#_transporter_activity">8.4.3. Transporter activity</a></li>
+<li><a href="#_chaperone_activity">8.4.4. Chaperone activity</a></li>
+<li><a href="#_transcription_activity">8.4.5. Transcription activity</a></li>
+<li><a href="#_other_activities">8.4.6. Other activities</a></li>
+</ul>
+</li>
 <li><a href="#_processes_3">8.5. Processes</a></li>
-<li><a href="#_transformations_2">8.6. Transformations</a></li>
-<li><a href="#_binding_interactions">8.7. Binding Interactions</a></li>
-<li><a href="#_causal_statements">8.8. Causal Statements</a></li>
-<li><a href="#_direct_causal_statements">8.9. Direct Causal Statements</a></li>
+<li><a href="#_transformations_2">8.6. Transformations</a>
+<ul class="sectlevel3">
+<li><a href="#_reactions">8.6.1. Reactions</a></li>
+<li><a href="#_translocations_2">8.6.2. Translocations</a></li>
+<li><a href="#_degradation">8.6.3. Degradation</a></li>
+</ul>
+</li>
+<li><a href="#_binding_interactions">8.7. Binding Interactions</a>
+<ul class="sectlevel3">
+<li><a href="#_protein_protein_interactions">8.7.1. Protein – Protein Interactions</a></li>
+<li><a href="#_protein_dna_interactions">8.7.2. Protein – DNA Interactions</a></li>
+<li><a href="#_protein_small_molecule_interactions">8.7.3. Protein – Small Molecule Interactions</a></li>
+</ul>
+</li>
+<li><a href="#_causal_statements">8.8. Causal Statements</a>
+<ul class="sectlevel3">
+<li><a href="#_causal_increase">8.8.1. Causal Increase</a></li>
+<li><a href="#_causal_decrease">8.8.2. Causal Decrease</a></li>
+<li><a href="#_causes_no_change">8.8.3. Causes No Change</a></li>
+</ul>
+</li>
+<li><a href="#_direct_causal_statements">8.9. Direct Causal Statements</a>
+<ul class="sectlevel3">
+<li><a href="#_ligand_and_receptor">8.9.1. Ligand and Receptor</a></li>
+<li><a href="#_kinase_and_substrate">8.9.2. Kinase and Substrate</a></li>
+<li><a href="#_catalyst_and_reaction">8.9.3. Catalyst and Reaction</a></li>
+<li><a href="#_self_referential_relationships">8.9.4. Self-Referential Relationships</a></li>
+<li><a href="#_direct_transcriptional_control">8.9.5. Direct Transcriptional Control</a></li>
+</ul>
+</li>
 <li><a href="#_nested_statements">8.10. Nested Statements</a></li>
 <li><a href="#_correlative_relationship_statements">8.11. Correlative Relationship Statements</a></li>
-<li><a href="#_biomarker_statements">8.12. Biomarker Statements</a></li>
+<li><a href="#_biomarker_statements">8.12. Biomarker Statements</a>
+<ul class="sectlevel3">
+<li><a href="#_biomarkers">8.12.1. Biomarkers</a></li>
+<li><a href="#_prognostic_biomarkers">8.12.2. Prognostic Biomarkers</a></li>
+</ul>
+</li>
 <li><a href="#_unspecified_association_relationship_statements">8.13. Unspecified Association Relationship Statements</a></li>
 <li><a href="#_representation_of_ontology_statements">8.14. Representation of Ontology Statements</a></li>
-<li><a href="#_assignment_of_membership_statements">8.15. Assignment of Membership Statements</a></li>
-<li><a href="#_orthology_relationship_statements">8.16. Orthology Relationship Statements</a></li>
+<li><a href="#_assignment_of_membership_statements">8.15. Assignment of Membership Statements</a>
+<ul class="sectlevel3">
+<li><a href="#_protein_family">8.15.1. Protein Family</a></li>
+<li><a href="#_complex_component">8.15.2. Complex Component</a></li>
+</ul>
+</li>
+<li><a href="#_orthology_relationship_statements">8.16. Orthology Relationship Statements</a>
+<ul class="sectlevel3">
+<li><a href="#_orthologous_genes">8.16.1. Orthologous Genes</a></li>
+</ul>
+</li>
 <li><a href="#_representation_of_genomic_relationship_statements">8.17. Representation of Genomic Relationship Statements</a></li>
-<li><a href="#_statement_annotations">8.18. Statement Annotations</a></li>
+<li><a href="#_statement_annotations">8.18. Statement Annotations</a>
+<ul class="sectlevel3">
+<li><a href="#_citation_2">8.18.1. Citation</a></li>
+<li><a href="#_evidence_2">8.18.2. Evidence</a></li>
+<li><a href="#_species">8.18.3. Species</a></li>
+<li><a href="#_other_annotation_types">8.18.4. Other Annotation Types</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_bel_best_practices">9. BEL Best Practices</a>
 <ul class="sectlevel2">
-<li><a href="#Subject_Terms">9.1. Subject Terms (Perturbations)</a></li>
-<li><a href="#Object_Terms">9.2. Object terms (measurements)</a></li>
-<li><a href="#Relationships">9.3. Relationships</a></li>
-<li><a href="#Complexes">9.4. Complexes</a></li>
-<li><a href="#Protein_Modifications">9.5. Protein Modifications</a></li>
-<li><a href="#Protein_Families">9.6. Protein families</a></li>
-<li><a href="#Reaction">9.7. Reaction</a></li>
+<li><a href="#Subject_Terms">9.1. Subject Terms (Perturbations)</a>
+<ul class="sectlevel3">
+<li><a href="#RNAi_experiments">9.1.1. How should I represent gene knock out or RNAi experiments?</a></li>
+<li><a href="#chemical_inhibitor_experiments">9.1.2. How should I represent chemical inhibitor experiments?</a></li>
+<li><a href="#overexpression_experiments">9.1.3. How should I represent overexpression experiments?</a></li>
+<li><a href="#protein_abundance_vs_activity_of_a_protein">9.1.4. When should I use the protein abundance vs. the activity of a protein?</a></li>
+<li><a href="#observations_two_or_more_entities">9.1.5. How do I represent observations resulting from manipulation of two or more entities?</a></li>
+<li><a href="#experiments_site_directed_mutants">9.1.6. How do I represent experiments that use site-directed mutants?</a></li>
+</ul>
+</li>
+<li><a href="#Object_Terms">9.2. Object terms (measurements)</a>
+<ul class="sectlevel3">
+<li><a href="#microarray_data">9.2.1. How should I represent microarray data?</a></li>
+</ul>
+</li>
+<li><a href="#Relationships">9.3. Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#correlative_relationship">9.3.1. When should I use a correlative relationship?</a></li>
+</ul>
+</li>
+<li><a href="#Complexes">9.4. Complexes</a>
+<ul class="sectlevel3">
+<li><a href="#physical_interaction_between_two_entities">9.4.1. How do I represent a physical interaction between two entities?</a></li>
+</ul>
+</li>
+<li><a href="#Protein_Modifications">9.5. Protein Modifications</a>
+<ul class="sectlevel3">
+<li><a href="#removal_of_a_protein_modification">9.5.1. How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?</a></li>
+<li><a href="#protein_modification_within_a_complex">9.5.2. How do I represent a protein modification within a complex?</a></li>
+<li><a href="#situation_one_protein_modification_initiates_additional_modifications">9.5.3. How do I represent a situation where one protein modification initiates additional modifications?</a></li>
+<li><a href="#situation_multiple_phosphorylations_required_for_a_proteins_activity">9.5.4. How do I represent a situation where multiple phosphorylations are required for a protein&#8217;s activity?</a></li>
+<li><a href="#protein_modification_specific_information_not_available">9.5.5. How do I represent a protein modification when specific information is not available?</a></li>
+</ul>
+</li>
+<li><a href="#Protein_Families">9.6. Protein families</a>
+<ul class="sectlevel3">
+<li><a href="#protein_family_instead_of_a_specific_protein">9.6.1. When should I use a protein family instead of a specific protein?</a></li>
+</ul>
+</li>
+<li><a href="#Reaction">9.7. Reaction</a>
+<ul class="sectlevel3">
+<li><a href="#reaction_term">9.7.1. When and why should I use a reaction term?</a></li>
+<li><a href="#reversible_metabolic_reaction">9.7.2. How can I represent a reversible metabolic reaction?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_implementation">10. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#_formats">10.1. Formats</a></li>
-<li><a href="#_tools">10.2. Tools</a></li>
+<li><a href="#_formats">10.1. Formats</a>
+<ul class="sectlevel3">
+<li><a href="#_bel_script_antlr_grammars">10.1.1. BEL Script (ANTLR Grammars)</a></li>
+<li><a href="#_bel_script_ragel_parser">10.1.2. BEL Script (Ragel Parser)</a></li>
+<li><a href="#_xbel">10.1.3. XBEL</a></li>
+</ul>
+</li>
+<li><a href="#_tools">10.2. Tools</a>
+<ul class="sectlevel3">
+<li><a href="#_java">10.2.1. Java</a></li>
+<li><a href="#_ruby">10.2.2. Ruby</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_glossary">11. Glossary</a></li>
@@ -5117,7 +5362,7 @@ Framework.</p>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2016-04-11 11:28:57 EDT
+Last updated 2016-04-11 16:00:22 EDT
 </div>
 </div>
 </body>

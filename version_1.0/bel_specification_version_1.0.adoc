@@ -2,6 +2,7 @@
 Natalie Catlett <ncatlett@selventa.com>
 v1.0, 2012-07
 :toc: right
+:toclevels: 3
 
 This is the home of the BEL Language Documentation v1.0.
 

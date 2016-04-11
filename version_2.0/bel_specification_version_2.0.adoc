@@ -2,7 +2,7 @@
 Natalie Catlett <ncatlett@selventa.com>
 v2.0, 2014-06
 :toc: right
-:toclevels: 3
+:toclevels: 4
 
 This is the home of the BEL Language Documentation v2.0.
 
@@ -264,7 +264,7 @@ In the above example, the p53 protein binds the CDKN1A gene.
  p(HGNC:AKT1)
  p(SFAM:"AKT Family")
 
-==== [[XrnaA]]} rnaAbundance(), r()
+==== [[XrnaA]] rnaAbundance(), r()
 
 `rnaAbundance(ns:v)` or `r(ns:v)` denotes the abundance of the RNA designated by the value v in the namespace +ns+, where +v+ references a gene. This function refers to all RNA designated by +ns:v+, regardless of splicing, editing, or polyadenylation stage.
 

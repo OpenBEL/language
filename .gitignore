@@ -1,9 +1,8 @@
-# ignore doc artifacts
-index.html
-ANTLR
-XML
-bel_specification_version_*
-openbel-custom.css
-bel_statement.jpg
-
-index.html
+# don't ignore doc artifacts
+# but ignore top-level dirs
+conversion
+rdf-schema
+tools
+version_1.0
+version_2.0
+web

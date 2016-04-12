@@ -14,4 +14,4 @@ asciidoctor-pdf bel_specification_version_1.0.adoc
 asciidoctor -a stylesheet=openbel-custom.css bel_specification_version_2.0.adoc
 asciidoctor-pdf bel_specification_version_2.0.adoc
 
-for x in *.pdf *.html *.css; do cp "$x" $TOP; done
+for x in *.pdf *.html *.css *.ico *.jpg *.png; do cp "$x" $TOP; done

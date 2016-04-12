@@ -6,8 +6,7 @@ v2.0, 2014-06
 
 This is the home of the BEL Language Documentation v2.0.
 
-_Please cite the BEL v2.0 language documentation as "BEL v2.0 Language
-Documentation, https://github.com/OpenBEL/language", along with the date accessed._
+_Please cite the BEL v2.0 language documentation as "BEL v2.0 Language Documentation, https://github.com/OpenBEL/language ", along with the date accessed._
 
 :numbered!:
 [[overview]]

@@ -1,2 +1,2 @@
-# don't ignore doc artifacts in web directory on gh-pages
+/version*
 

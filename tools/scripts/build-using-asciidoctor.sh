@@ -1,17 +1,26 @@
 #!/usr/bin/env bash
-
 set -e
+top="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"/../../
 
-TOP="$(pwd)"
+# web is served by GitHub on the gh-pages branch
+web="${top}"/web
+cd "${web}" || exit 1
 
-cp -r version_1.0/* web
-cp version_2.0/bel_specification_version_2.0.adoc web
+# remove any old versions in web (our CWD)
+rm -fr version*
 
-cd $TOP/web
-asciidoctor -a stylesheet=openbel-custom.css bel_specification_version_1.0.adoc
-asciidoctor-pdf bel_specification_version_1.0.adoc
+# copy all versions we find to web (our CWD)
+for x in "${top}"/version*; do
+    cp -a "${x}" .
+done
 
-asciidoctor -a stylesheet=openbel-custom.css bel_specification_version_2.0.adoc
-asciidoctor-pdf bel_specification_version_2.0.adoc
+# build each version
+for x in version*; do
+    cd "$x"
+    for y in *.adoc; do
+        asciidoctor -a stylesheet=../css/openbel-custom.css "$y"
+        asciidoctor-pdf "$y"
+    done
+    cd ..
+done
 
-for x in *.pdf *.html *.css *.ico *.jpg *.png; do cp "$x" $TOP; done

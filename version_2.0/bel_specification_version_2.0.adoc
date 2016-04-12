@@ -1,7 +1,5 @@
 = BEL 2.0 Specification
 
-Test v2
-
 Authored by: Natalie Catlett
 
 Contact: info@openbel.org

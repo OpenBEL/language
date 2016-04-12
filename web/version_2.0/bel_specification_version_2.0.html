@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<meta name="author" content="Authored by: Natalie Catlett">
+<meta name="author" content="Natalie Catlett">
 <title>BEL 2.0 Specification</title>
 <style>
 @import url(http://red-hat-overpass-fonts.s3.amazonaws.com/overpass.css);
@@ -2482,29 +2482,357 @@ body {
 
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-right">
 <div id="header">
 <h1>BEL 2.0 Specification</h1>
 <div class="details">
-<span id="author" class="author">Authored by: Natalie Catlett</span><br>
-<span id="revdate">Contact</span>
-<br><span id="revremark">info@openbel.org</span>
+<span id="author" class="author">Natalie Catlett</span><br>
+<span id="email" class="email"><a href="mailto:info@openbel.org">info@openbel.org</a></span><br>
+<span id="revnumber">version 2.0,</span>
+<span id="revdate">2014-06</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#overview">Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_bel_history">BEL History</a></li>
+<li><a href="#_bel_version_history">BEL Version History</a></li>
+</ul>
+</li>
+<li><a href="#_summary_of_changes_for_bel_v2_0">Summary of Changes for BEL v2.0</a>
+<ul class="sectlevel2">
+<li><a href="#_variants">Variants</a></li>
+<li><a href="#_protein_cleavage_fragments">Protein Cleavage Fragments</a></li>
+<li><a href="#_post_translational_protein_modifications">Post-Translational Protein Modifications</a></li>
+<li><a href="#_translocations_and_cellular_location">Translocations and Cellular Location</a></li>
+<li><a href="#_activity_functions">Activity Functions</a></li>
+<li><a href="#_regulates_relationship">Regulates Relationship</a></li>
+<li><a href="#_bel_script_format_changes">BEL Script Format Changes</a></li>
+</ul>
+</li>
+<li><a href="#LanguageStructure">1. Language Structure</a>
+<ul class="sectlevel2">
+<li><a href="#_namespaces">1.1. Namespaces</a>
+<ul class="sectlevel3">
+<li><a href="#_equivalencing_between_namespaces">1.1.1. Equivalencing between Namespaces</a></li>
+</ul>
+</li>
+<li><a href="#_terms">1.2. Terms</a>
+<ul class="sectlevel3">
+<li><a href="#_abundances">1.2.1. Abundances</a></li>
+<li><a href="#_processes">1.2.2. Processes</a></li>
+<li><a href="#_bel_terms_as_functional_expressions">1.2.3. BEL Terms as Functional Expressions</a></li>
+</ul>
+</li>
+<li><a href="#_statements">1.3. Statements</a>
+<ul class="sectlevel3">
+<li><a href="#_example_bel_statements">1.3.1. Example BEL Statements</a>
+<ul class="sectlevel4">
+<li><a href="#_subject_term_only">Subject Term Only</a></li>
+<li><a href="#_causal">Causal</a></li>
+<li><a href="#_causal_2">Causal</a></li>
+<li><a href="#_nested_statement_object_term_is_statement">Nested Statement - Object Term is Statement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_annotations">1.4. Annotations</a></li>
+</ul>
+</li>
+<li><a href="#_bel_functions">2. BEL Functions</a>
+<ul class="sectlevel2">
+<li><a href="#_abundance_functions">2.1. Abundance Functions</a>
+<ul class="sectlevel3">
+<li><a href="#Xabundancea">2.1.1. abundance(), a()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_small_molecule_and_chemical">Examples - small molecule and chemical</a></li>
+</ul>
+</li>
+<li><a href="#XcomplexA">2.1.2. complexAbundance(), complex()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_named_complex">Example - named complex</a></li>
+<li><a href="#_example_composed_complex">Example - composed complex</a></li>
+</ul>
+</li>
+<li><a href="#XcompositeA">2.1.3. compositeAbundance(), composite()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_bel_statement_with_compositeabundance_term">Example - BEL Statement with compositeAbundance term</a></li>
+</ul>
+</li>
+<li><a href="#XgeneA">2.1.4. geneAbundance(), g()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_promoter_binding_event_represented_using_geneabundance">Example - promoter binding event represented using geneAbundance</a></li>
+</ul>
+</li>
+<li><a href="#XmicroRNAA">2.1.5. microRNAAbundance(), m()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_microrna_abundance">Example - microRNA abundance</a></li>
+</ul>
+</li>
+<li><a href="#XproteinA">2.1.6. proteinAbundance(), p()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_protein_abundances">Examples - protein abundances</a></li>
+</ul>
+</li>
+<li><a href="#XrnaA">2.1.7. rnaAbundance(), r()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_rna_abundance">Example - RNA abundance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_abundance_modifier_functions">2.2. Abundance Modifier Functions</a>
+<ul class="sectlevel3">
+<li><a href="#_protein_modifications">2.2.1. Protein Modifications</a>
+<ul class="sectlevel4">
+<li><a href="#_proteinmodification_pmod">proteinModification(),  pmod()</a></li>
+<li><a href="#_examples">Examples</a></li>
+<li><a href="#_modification_types_provided_in_default_bel_namespace">Modification Types Provided in Default BEL Namespace</a></li>
+<li><a href="#_supported_one_and_three_letter_amino_acid_codes">Supported One- and Three-letter Amino Acid Codes</a></li>
+</ul>
+</li>
+<li><a href="#_variants_2">2.2.2. Variants</a>
+<ul class="sectlevel4">
+<li><a href="#_variant_var">variant(), var()</a></li>
+<li><a href="#_protein_examples">Protein examples</a></li>
+<li><a href="#_dna_gene_examples">DNA (gene) examples</a></li>
+<li><a href="#_rna_examples">RNA examples</a></li>
+<li><a href="#_rna_reference_sequence">RNA reference sequence</a></li>
+</ul>
+</li>
+<li><a href="#_proteolytic_fragments">2.2.3. Proteolytic fragments</a>
+<ul class="sectlevel4">
+<li><a href="#_fragment_frag">fragment(), frag()</a></li>
+<li><a href="#_examples_2">Examples</a></li>
+</ul>
+</li>
+<li><a href="#_cellular_location">2.2.4. Cellular location</a>
+<ul class="sectlevel4">
+<li><a href="#_location_loc">location(), loc()</a></li>
+<li><a href="#_examples_3">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_process_functions">2.3. Process Functions</a>
+<ul class="sectlevel3">
+<li><a href="#_biologicalprocess_bp">2.3.1. biologicalProcess(), bp()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_4">Examples</a></li>
+</ul>
+</li>
+<li><a href="#_pathology_path">2.3.2. pathology(), path()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_5">Examples</a></li>
+</ul>
+</li>
+<li><a href="#Xactivity">2.3.3. activity(), act()</a>
+<ul class="sectlevel4">
+<li><a href="#_example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_process_modifier_function">2.4. Process Modifier Function</a>
+<ul class="sectlevel3">
+<li><a href="#XmolecularA">2.4.1. molecularActivity(), ma()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_6">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_transformation_functions">2.5. Transformation Functions</a>
+<ul class="sectlevel3">
+<li><a href="#_translocations">2.5.1. Translocations</a>
+<ul class="sectlevel4">
+<li><a href="#_translocation_tloc">translocation(), tloc()</a></li>
+<li><a href="#_example_2">Example</a></li>
+<li><a href="#_cellsecretion_sec">cellSecretion(), sec()</a></li>
+<li><a href="#_cellsurfaceexpression_surf">cellSurfaceExpression(), surf()</a></li>
+</ul>
+</li>
+<li><a href="#_degradation_deg">2.5.2. degradation(), deg()</a></li>
+<li><a href="#_reaction_rxn">2.5.3. reaction(), rxn()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_3">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_other_functions">2.6. Other Functions</a>
+<ul class="sectlevel3">
+<li><a href="#_fusion_fus">2.6.1. fusion(), fus()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_4">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_bel_relationships">3. BEL Relationships</a>
+<ul class="sectlevel2">
+<li><a href="#_causal_relationships">3.1. Causal Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#Xincreases">3.1.1. increases, &#8594;</a></li>
+<li><a href="#XdIncreases">3.1.2. directlyIncreases, &#8658;</a></li>
+<li><a href="#Xdecreases">3.1.3. decreases, -|</a></li>
+<li><a href="#XdDecreases">3.1.4. directlyDecreases, =|</a></li>
+<li><a href="#_ratelimitingstepof">3.1.5. rateLimitingStepOf</a>
+<ul class="sectlevel4">
+<li><a href="#_example_5">Example</a></li>
+</ul>
+</li>
+<li><a href="#Xcnc">3.1.6. causesNoChange, cnc</a></li>
+<li><a href="#_regulates_reg">3.1.7. regulates, reg</a>
+<ul class="sectlevel4">
+<li><a href="#__strong_direct_relationships_strong"><strong>Direct Relationships</strong></a></li>
+<li><a href="#_direct_causal_relationships">Direct causal relationships</a></li>
+<li><a href="#_examples_7">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#XcorRels">3.2. Correlative Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#XnegCor">3.2.1. negativeCorrelation, neg</a></li>
+<li><a href="#XposCor">3.2.2. positiveCorrelation, pos</a></li>
+<li><a href="#Xassociation">3.2.3. association,&#8201;&#8212;&#8201;</a></li>
+</ul>
+</li>
+<li><a href="#_genomic_relationships">3.3. Genomic Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_orthologous">3.3.1. orthologous</a></li>
+<li><a href="#_transcribedto">3.3.2. transcribedTo, :&gt;</a></li>
+<li><a href="#_translatedto">3.3.3. translatedTo, &gt;&gt;</a></li>
+</ul>
+</li>
+<li><a href="#_other_relationships">3.4. Other Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_hasmember">3.4.1. hasMember</a></li>
+<li><a href="#_hasmembers">3.4.2. hasMembers</a></li>
+<li><a href="#_hascomponent">3.4.3. hasComponent</a></li>
+<li><a href="#_hascomponents">3.4.4. hasComponents</a></li>
+<li><a href="#_isa">3.4.5. isA</a></li>
+<li><a href="#_subprocessof">3.4.6. subProcessOf</a></li>
+</ul>
+</li>
+<li><a href="#_deprecated_relationships">3.5. Deprecated Relationships</a>
+<ul class="sectlevel3">
+<li><a href="#_analogous">3.5.1. analogous</a></li>
+<li><a href="#_biomarkerfor">3.5.2. biomarkerFor</a></li>
+<li><a href="#_prognosticbiomarkerfor">3.5.3. prognosticBiomarkerFor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_appendices">4. Appendices</a>
+<ul class="sectlevel2">
+<li><a href="#_namespaces_used_in_examples">4.1. Namespaces Used in Examples</a></li>
+<li><a href="#_bel_examples">4.2. BEL Examples</a>
+<ul class="sectlevel3">
+<li><a href="#_bel_term_examples">4.2.1. BEL Term Examples</a>
+<ul class="sectlevel4">
+<li><a href="#_abundance_term_examples">Abundance Term Examples</a></li>
+<li><a href="#_activity_term_examples">Activity Term Examples</a></li>
+<li><a href="#_binding_interaction_term_examples">Binding Interaction Term Examples</a></li>
+<li><a href="#_biological_processes_and_pathologies_term_examples">Biological Processes and Pathologies Term Examples</a></li>
+<li><a href="#_post_translationally_modified_protein_term_examples">Post-Translationally Modified Protein Term Examples</a></li>
+<li><a href="#Xtte">Transformation Term Examples (Reactions, Translocations, Degradation)</a></li>
+<li><a href="#_variant_mutant_protein_examples">Variant (Mutant) Protein Examples</a></li>
+</ul>
+</li>
+<li><a href="#_bel_statement_examples">4.2.2. BEL Statement Examples</a>
+<ul class="sectlevel4">
+<li><a href="#_causal_statement_examples">Causal Statement Examples</a></li>
+<li><a href="#_correlative_statement_examples">Correlative Statement Examples</a></li>
+<li><a href="#_direct_causal_statement_examples">Direct Causal Statement Examples</a></li>
+<li><a href="#_nested_statement_example">Nested Statement Example</a></li>
+</ul>
+</li>
+<li><a href="#_other_examples">4.2.3. Other Examples</a>
+<ul class="sectlevel4">
+<li><a href="#_bel_statement_annotation_examples">BEL Statement Annotation Examples</a></li>
+<li><a href="#_membership_assignment_examples">Membership Assignment Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_bel_best_practices_updated_for_bel_v2">4.3. BEL Best Practices - Updated for BEL v2</a>
+<ul class="sectlevel3">
+<li><a href="#_representation_of_experimental_data">4.3.1. Representation of Experimental Data</a>
+<ul class="sectlevel4">
+<li><a href="#_subject_terms_perturbations">Subject Terms (Perturbations)</a></li>
+<li><a href="#_relationships">Relationships</a></li>
+<li><a href="#_object_terms_measurements">Object Terms (Measurements)</a></li>
+</ul>
+</li>
+<li><a href="#_statement_annotations">4.3.2. Statement Annotations</a>
+<ul class="sectlevel4">
+<li><a href="#_how_do_i_annotate_a_relationship_observed_in_multiple_biological_contexts">How do I annotate a relationship observed in multiple biological contexts?</a></li>
+</ul>
+</li>
+<li><a href="#_modified_proteins">4.3.3. Modified Proteins</a>
+<ul class="sectlevel4">
+<li><a href="#_how_do_i_represent_a_protein_modification_when_specific_information_is_not_available">How do I represent a protein modification when specific information is not available?</a></li>
+<li><a href="#_how_do_i_represent_a_protein_modification_within_a_complex">How do I represent a protein modification within a complex?</a></li>
+<li><a href="#Xmultphosphforprotein">How do I represent a situation where multiple phosphorylations are required for a protein&#8217;s activity?</a></li>
+<li><a href="#_how_do_i_represent_a_situation_where_one_protein_modification_initiates_additional_modifications">How do I represent a situation where one protein modification initiates additional modifications?</a></li>
+<li><a href="#Xremovalofproteinmod">How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?</a></li>
+</ul>
+</li>
+<li><a href="#_reactions_2">4.3.4. Reactions</a>
+<ul class="sectlevel4">
+<li><a href="#_how_can_i_represent_a_reversible_metabolic_reaction">How can I represent a reversible metabolic reaction?</a></li>
+<li><a href="#_when_and_why_should_i_use_a_reaction_term">When and why should I use a reaction term?</a></li>
+</ul>
+</li>
+<li><a href="#_protein_protein_interactions_2">4.3.5. Protein-Protein Interactions</a>
+<ul class="sectlevel4">
+<li><a href="#_how_do_i_represent_a_physical_interaction_between_two_entities">How do I represent a physical interaction between two entities?</a></li>
+</ul>
+</li>
+<li><a href="#_protein_families_2">4.3.6. Protein Families</a>
+<ul class="sectlevel4">
+<li><a href="#_when_should_i_use_a_protein_family_instead_of_a_specific_protein">When should I use a protein family instead of a specific protein?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_implementation">5. Implementation</a>
+<ul class="sectlevel2">
+<li><a href="#_formats">5.1. Formats</a>
+<ul class="sectlevel3">
+<li><a href="#_bel_script">5.1.1. BEL Script</a></li>
+<li><a href="#_xbel">5.1.2. XBEL</a></li>
+<li><a href="#_evidence_json">5.1.3. Evidence JSON</a></li>
+<li><a href="#_json_graph_format_jgf">5.1.4. JSON Graph Format (JGF)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_tools">6. Tools</a>
+<ul class="sectlevel2">
+<li><a href="#_java">6.1. Java</a></li>
+<li><a href="#_ruby">6.2. Ruby</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>v2.0, 2014-06
-:toc: right
-:toclevels: 4</p>
-</div>
-<div class="paragraph">
 <p>This is the home of the BEL Language Documentation v2.0.</p>
 </div>
 <div class="paragraph">
 <p><em>Please cite the BEL v2.0 language documentation as "BEL v2.0 Language
-Documentation, <a href="https://github.com/OpenBEL/language/" class="bare">https://github.com/OpenBEL/language/</a>]", along with the date accessed.</em></p>
+Documentation, <a href="https://github.com/OpenBEL/language"" class="bare">https://github.com/OpenBEL/language"</a>, along with the date accessed.</em></p>
 </div>
 </div>
 </div>
@@ -7050,7 +7378,8 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-04-12 21:42:10 UTC
+Version 2.0<br>
+Last updated 2016-04-12 21:46:58 UTC
 </div>
 </div>
 </body>

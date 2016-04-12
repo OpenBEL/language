@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-cd ../..
+set -e
 
-./node_modules/.bin/ttl rdf-schema/belRdfSchema-1.0.ttl
-EXIT_CODE = $?
+TOP="$(pwd)"
 
-./node_modules/.bin/ttl rdf-schema/belRdfSchema-2.0.ttl
+cd $TOP/rdf-schema
 
-EXIT_CODE = $?
-if [ $EXIT_CODE -ne 0 ]; then
-    echo "Error for BEL 2.0 Turtle RDF"
-fi
+echo "#################################################"
+echo "##  Validating RDF Turtle files                ##"
+echo "#################################################"
+for x in *.ttl; do rapper -i turtle -o ntriples "$x" > /dev/null; echo $?; done

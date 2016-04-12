@@ -1,18 +1,14 @@
 = BEL 2.0 Specification
-
 Authored by: Natalie Catlett
-
 Contact: info@openbel.org
-
 v2.0, 2014-06
-
 :toc: right
 :toclevels: 4
 
 This is the home of the BEL Language Documentation v2.0.
 
 _Please cite the BEL v2.0 language documentation as "BEL v2.0 Language
-Documentation, http://wiki.openbel.org/[http://wiki.openbel.org/]", along with the date accessed._
+Documentation, https://github.com/OpenBEL/language/]", along with the date accessed._
 
 :numbered!:
 [[overview]]

@@ -1,4 +1,5 @@
 # ignore doc artifacts
+index.html
 ANTLR
 XML
 bel_specification_version_*

@@ -8,7 +8,7 @@ cd "$dir" || exit 1
 cur=$(git rev-parse HEAD) || exit 1
 
 # Clone the current GitHub repo
-git clone $(git config --get remote.origin.url language) || exit 1
+git clone github.com:OpenBEL/language.git language || exit 1
 
 # Hard reset to $cur on the clone (in case of fast-forwards)
 cd language || exit 1

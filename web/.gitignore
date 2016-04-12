@@ -1,8 +1,2 @@
 # don't ignore doc artifacts in web directory on gh-pages
-/ANTLR
-/XML
-/*.jpg
-/*.pdf
-/*.adoc
-/*.html
 

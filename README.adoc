@@ -19,8 +19,20 @@ Currently the http://build.openbel.org/browse/BEL-BLS[OpenBEL Build Server] rend
 
 https://github.com/OpenBEL/language/blob/master/LICENSE[Apache License 2.0]
 
-== Work Required
+== Deployment to http://openbel.github.io/language
 
+All development is done in the master branch.  The resulting files are used to
+build the http://openbel.github.io/language site from master on the Bamboo build server.
 
-* Port BEL, version 2.0 to asciidoc.
-* Collaboration recommendation.
+The OpenBEL Build server http://build.openbel.org/browse/BEL-BLS builds the
+Asciidoc files from the version_X directories after copying them into the master:./web directory
+using asciidoctor and asciidoctor-pdf.  The resulting html and pdf files in the master:./web directory
+along with the index.html and images are merged
+from the master branch to the gh-pages branch of the github repo:
+https://github.com/OpenBEL/language
+
+All images and the openbel-custom.css are in the same directory as the asciidoc files when built
+and then copied into the same directory to be served fromhttp://openbel.github.io/language.
+
+The build script is:  `tools/scripts/build-using-asciidoctor.sh`
+

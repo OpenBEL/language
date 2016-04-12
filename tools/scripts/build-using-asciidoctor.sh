@@ -4,13 +4,14 @@ set -e
 
 TOP="$(pwd)"
 
-cp tools/asciidoctor-stylesheets/openbel-custom.css version_2.0
-cp tools/asciidoctor-stylesheets/openbel-custom.css version_1.0
+cp -r version_1.0 web
+cp version_2.0/bel_specification_version_2.0.adoc web
 
-cd $TOP/version_1.0
+cd $TOP/web
 asciidoctor -a stylesheet=openbel-custom.css bel_specification_version_1.0.adoc
 asciidoctor-pdf bel_specification_version_1.0.adoc
 
-cd $TOP/version_2.0
 asciidoctor -a stylesheet=openbel-custom.css bel_specification_version_2.0.adoc
 asciidoctor-pdf bel_specification_version_2.0.adoc
+
+for x in *.pdf *.html *.css; do cp "$x" $TOP; done

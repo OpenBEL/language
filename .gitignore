@@ -1,0 +1,7 @@
+# ignore doc artifacts
+ANTLR
+XML
+bel_specification_version_*
+openbel-custom.css
+bel_statement.jpg
+

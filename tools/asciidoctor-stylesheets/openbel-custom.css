@@ -2462,7 +2462,9 @@ a:active {
 #header .details {
 	border-bottom: none;
 }
-
+body {
+	background-color: #fff;
+}
 #content {
 	border-top: 1px dashed #FDC975;
 }

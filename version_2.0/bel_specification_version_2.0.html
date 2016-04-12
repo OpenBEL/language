@@ -7,45 +7,7 @@
 <meta name="generator" content="Asciidoctor 1.5.4">
 <meta name="author" content="Natalie Catlett">
 <title>BEL 2.0 Specification</title>
-<link rel="stylesheet" type="text/css" href="../tools/asciidoctor-stylesheets/rocket-panda.css">
-<style>
-@media only screen and (min-width: 768px) {
-	#toc.toc2 {
-		background-color: #f4f4f4;
-	}
-}
-#content {
-	margin-top: 0;
-}
-h1, h2, h3, h4, h5, h6 {
-	color: #25777D;
-}
-h1, h2, h3 {
-	border-bottom: 1px dotted #FDC975;
-}
-a {
-	color: #0C91A5;
-}
-a:hover,
-a:focus,
-a:active {
-	text-decoration: none;
-	color: #25777D;
-	border-bottom: 1px dotted #FDC975;
-}
-#toc a:active {
-    text-decoration: none;
-}
-#header .details {
-	border-bottom: none;
-}
-
-#content {
-	border-top: 1px dashed #FDC975;
-}
-
-
-</style>
+<link rel="stylesheet" href="./openbel-custom.css">
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
@@ -78,7 +40,7 @@ a:active {
 </li>
 <li><a href="#LanguageStructure">1. Language Structure</a>
 <ul class="sectlevel2">
-<li><a href="#Namespaces">1.1. Namespaces</a>
+<li><a href="#_namespaces">1.1. Namespaces</a>
 <ul class="sectlevel3">
 <li><a href="#_equivalencing_between_namespaces">1.1.1. Equivalencing between Namespaces</a></li>
 </ul>
@@ -92,7 +54,14 @@ a:active {
 </li>
 <li><a href="#_statements">1.3. Statements</a>
 <ul class="sectlevel3">
-<li><a href="#_example_bel_statements">1.3.1. Example BEL Statements</a></li>
+<li><a href="#_example_bel_statements">1.3.1. Example BEL Statements</a>
+<ul class="sectlevel4">
+<li><a href="#_subject_term_only">Subject Term Only</a></li>
+<li><a href="#_causal">Causal</a></li>
+<li><a href="#_causal_2">Causal</a></li>
+<li><a href="#_nested_statement_object_term_is_statement">Nested Statement - Object Term is Statement</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_annotations">1.4. Annotations</a></li>
@@ -102,45 +71,130 @@ a:active {
 <ul class="sectlevel2">
 <li><a href="#_abundance_functions">2.1. Abundance Functions</a>
 <ul class="sectlevel3">
-<li><a href="#__a_id_xabundancea_a_abundance_a">2.1.1. abundance(), a()</a><a id="Xabundancea"></a></li>
-<li><a href="#__a_id_xcomplexa_a_complexabundance_complex">2.1.2. complexAbundance(), complex()</a><a id="XcomplexA"></a></li>
-<li><a href="#__a_id_xcompositea_a_compositeabundance_composite">2.1.3. compositeAbundance(), composite()</a><a id="XcompositeA"></a> </li>
-<li><a href="#__a_id_xgenea_a_geneabundance_g">2.1.4. geneAbundance(), g()</a><a id="XgeneA"></a></li>
-<li><a href="#__a_id_xmicrornaa_a_micrornaabundance_m">2.1.5. microRNAAbundance(), m()</a><a id="XmicroRNAA"></a></li>
-<li><a href="#__a_id_xproteina_a_proteinabundance_p">2.1.6. proteinAbundance(), p()</a> <a id="XproteinA"></a></li>
-<li><a href="#__a_id_xrnaa_a_rnaabundance_r">2.1.7. rnaAbundance(), r()</a> <a id="XrnaA"></a></li>
+<li><a href="#Xabundancea">2.1.1. abundance(), a()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_small_molecule_and_chemical">Examples - small molecule and chemical</a></li>
+</ul>
+</li>
+<li><a href="#XcomplexA">2.1.2. complexAbundance(), complex()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_named_complex">Example - named complex</a></li>
+<li><a href="#_example_composed_complex">Example - composed complex</a></li>
+</ul>
+</li>
+<li><a href="#XcompositeA">2.1.3. compositeAbundance(), composite()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_bel_statement_with_compositeabundance_term">Example - BEL Statement with compositeAbundance term</a></li>
+</ul>
+</li>
+<li><a href="#XgeneA">2.1.4. geneAbundance(), g()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_promoter_binding_event_represented_using_geneabundance">Example - promoter binding event represented using geneAbundance</a></li>
+</ul>
+</li>
+<li><a href="#XmicroRNAA">2.1.5. microRNAAbundance(), m()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_microrna_abundance">Example - microRNA abundance</a></li>
+</ul>
+</li>
+<li><a href="#XproteinA">2.1.6. proteinAbundance(), p()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_protein_abundances">Examples - protein abundances</a></li>
+</ul>
+</li>
+<li><a href="#XrnaA">2.1.7. rnaAbundance(), r()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_rna_abundance">Example - RNA abundance</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_abundance_modifier_functions">2.2. Abundance Modifier Functions</a>
 <ul class="sectlevel3">
-<li><a href="#_protein_modifications">2.2.1. Protein Modifications</a></li>
-<li><a href="#_variants_2">2.2.2. Variants</a></li>
-<li><a href="#_proteolytic_fragments">2.2.3. Proteolytic fragments</a></li>
-<li><a href="#_cellular_location">2.2.4. Cellular location</a></li>
+<li><a href="#_protein_modifications">2.2.1. Protein Modifications</a>
+<ul class="sectlevel4">
+<li><a href="#_proteinmodification_pmod">proteinModification(),  pmod()</a></li>
+<li><a href="#_examples">Examples</a></li>
+<li><a href="#_modification_types_provided_in_default_bel_namespace">Modification Types Provided in Default BEL Namespace</a></li>
+<li><a href="#_supported_one_and_three_letter_amino_acid_codes">Supported One- and Three-letter Amino Acid Codes</a></li>
+</ul>
+</li>
+<li><a href="#_variants_2">2.2.2. Variants</a>
+<ul class="sectlevel4">
+<li><a href="#_variant_var">variant(), var()</a></li>
+<li><a href="#_protein_examples">Protein examples</a></li>
+<li><a href="#_dna_gene_examples">DNA (gene) examples</a></li>
+<li><a href="#_rna_examples">RNA examples</a></li>
+<li><a href="#_rna_reference_sequence">RNA reference sequence</a></li>
+</ul>
+</li>
+<li><a href="#_proteolytic_fragments">2.2.3. Proteolytic fragments</a>
+<ul class="sectlevel4">
+<li><a href="#_fragment_frag">fragment(), frag()</a></li>
+<li><a href="#_examples_2">Examples</a></li>
+</ul>
+</li>
+<li><a href="#_cellular_location">2.2.4. Cellular location</a>
+<ul class="sectlevel4">
+<li><a href="#_location_loc">location(), loc()</a></li>
+<li><a href="#_examples_3">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_process_functions">2.3. Process Functions</a>
 <ul class="sectlevel3">
-<li><a href="#_biologicalprocess_bp">2.3.1. biologicalProcess(), bp()</a></li>
-<li><a href="#_pathology_path">2.3.2. pathology(), path()</a></li>
-<li><a href="#__a_id_xactivity_a_activity_act">2.3.3. activity(), act()</a> <a id="Xactivity"></a></li>
+<li><a href="#_biologicalprocess_bp">2.3.1. biologicalProcess(), bp()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_4">Examples</a></li>
+</ul>
+</li>
+<li><a href="#_pathology_path">2.3.2. pathology(), path()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_5">Examples</a></li>
+</ul>
+</li>
+<li><a href="#Xactivity">2.3.3. activity(), act()</a>
+<ul class="sectlevel4">
+<li><a href="#_example">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_process_modifier_function">2.4. Process Modifier Function</a>
 <ul class="sectlevel3">
-<li><a href="#__a_id_xmoleculara_a_molecularactivity_ma">2.4.1. molecularActivity(), ma()</a><a id="XmolecularA"></a> </li>
+<li><a href="#XmolecularA">2.4.1. molecularActivity(), ma()</a>
+<ul class="sectlevel4">
+<li><a href="#_examples_6">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_transformation_functions">2.5. Transformation Functions</a>
 <ul class="sectlevel3">
-<li><a href="#_translocations">2.5.1. Translocations</a></li>
+<li><a href="#_translocations">2.5.1. Translocations</a>
+<ul class="sectlevel4">
+<li><a href="#_translocation_tloc">translocation(), tloc()</a></li>
+<li><a href="#_example_2">Example</a></li>
+<li><a href="#_cellsecretion_sec">cellSecretion(), sec()</a></li>
+<li><a href="#_cellsurfaceexpression_surf">cellSurfaceExpression(), surf()</a></li>
+</ul>
+</li>
 <li><a href="#_degradation_deg">2.5.2. degradation(), deg()</a></li>
-<li><a href="#_reaction_rxn">2.5.3. reaction(), rxn()</a></li>
+<li><a href="#_reaction_rxn">2.5.3. reaction(), rxn()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_3">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_other_functions">2.6. Other Functions</a>
 <ul class="sectlevel3">
-<li><a href="#_fusion_fus">2.6.1. fusion(), fus()</a></li>
+<li><a href="#_fusion_fus">2.6.1. fusion(), fus()</a>
+<ul class="sectlevel4">
+<li><a href="#_example_4">Example</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -149,13 +203,23 @@ a:active {
 <ul class="sectlevel2">
 <li><a href="#_causal_relationships">3.1. Causal Relationships</a>
 <ul class="sectlevel3">
-<li><a href="#__a_id_xincreases_a_increases">3.1.1. increases, &#8594;</a> <a id="Xincreases"></a></li>
-<li><a href="#__a_id_xdincreases_a_directlyincreases">3.1.2. directlyIncreases, &#8658;</a> <a id="XdIncreases"></a></li>
-<li><a href="#__a_id_xdecreases_a_decreases">3.1.3. decreases, -|</a> <a id="Xdecreases"></a></li>
-<li><a href="#__a_id_xddecreases_a_directlydecreases">3.1.4. directlyDecreases, =|</a><a id="XdDecreases"></a> </li>
-<li><a href="#_ratelimitingstepof">3.1.5. rateLimitingStepOf</a></li>
-<li><a href="#__a_id_xcnc_a_causesnochange_cnc">3.1.6. causesNoChange, cnc</a> <a id="Xcnc"></a></li>
-<li><a href="#_regulates_reg">3.1.7. regulates, reg</a></li>
+<li><a href="#Xincreases">3.1.1. increases, &#8594;</a></li>
+<li><a href="#XdIncreases">3.1.2. directlyIncreases, &#8658;</a></li>
+<li><a href="#Xdecreases">3.1.3. decreases, -|</a></li>
+<li><a href="#XdDecreases">3.1.4. directlyDecreases, =|</a></li>
+<li><a href="#_ratelimitingstepof">3.1.5. rateLimitingStepOf</a>
+<ul class="sectlevel4">
+<li><a href="#_example_5">Example</a></li>
+</ul>
+</li>
+<li><a href="#Xcnc">3.1.6. causesNoChange, cnc</a></li>
+<li><a href="#_regulates_reg">3.1.7. regulates, reg</a>
+<ul class="sectlevel4">
+<li><a href="#__strong_direct_relationships_strong"><strong>Direct Relationships</strong></a></li>
+<li><a href="#_direct_causal_relationships">Direct causal relationships</a></li>
+<li><a href="#_examples_7">Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#XcorRels">3.2. Correlative Relationships</a>
@@ -196,19 +260,72 @@ a:active {
 <li><a href="#_namespaces_used_in_examples">4.1. Namespaces Used in Examples</a></li>
 <li><a href="#_bel_examples">4.2. BEL Examples</a>
 <ul class="sectlevel3">
-<li><a href="#_bel_term_examples">4.2.1. BEL Term Examples</a></li>
-<li><a href="#_bel_statement_examples">4.2.2. BEL Statement Examples</a></li>
-<li><a href="#_other_examples">4.2.3. Other Examples</a></li>
+<li><a href="#_bel_term_examples">4.2.1. BEL Term Examples</a>
+<ul class="sectlevel4">
+<li><a href="#_abundance_term_examples">Abundance Term Examples</a></li>
+<li><a href="#_activity_term_examples">Activity Term Examples</a></li>
+<li><a href="#_binding_interaction_term_examples">Binding Interaction Term Examples</a></li>
+<li><a href="#_biological_processes_and_pathologies_term_examples">Biological Processes and Pathologies Term Examples</a></li>
+<li><a href="#_post_translationally_modified_protein_term_examples">Post-Translationally Modified Protein Term Examples</a></li>
+<li><a href="#Xtte">Transformation Term Examples (Reactions, Translocations, Degradation)</a></li>
+<li><a href="#_variant_mutant_protein_examples">Variant (Mutant) Protein Examples</a></li>
+</ul>
+</li>
+<li><a href="#_bel_statement_examples">4.2.2. BEL Statement Examples</a>
+<ul class="sectlevel4">
+<li><a href="#_causal_statement_examples">Causal Statement Examples</a></li>
+<li><a href="#_correlative_statement_examples">Correlative Statement Examples</a></li>
+<li><a href="#_direct_causal_statement_examples">Direct Causal Statement Examples</a></li>
+<li><a href="#_nested_statement_example">Nested Statement Example</a></li>
+</ul>
+</li>
+<li><a href="#_other_examples">4.2.3. Other Examples</a>
+<ul class="sectlevel4">
+<li><a href="#_bel_statement_annotation_examples">BEL Statement Annotation Examples</a></li>
+<li><a href="#_membership_assignment_examples">Membership Assignment Examples</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_bel_best_practices_updated_for_bel_v2">4.3. BEL Best Practices - Updated for BEL v2</a>
 <ul class="sectlevel3">
-<li><a href="#_representation_of_experimental_data">4.3.1. Representation of Experimental Data</a></li>
-<li><a href="#_statement_annotations">4.3.2. Statement Annotations</a></li>
-<li><a href="#_modified_proteins">4.3.3. Modified Proteins</a></li>
-<li><a href="#_reactions_2">4.3.4. Reactions</a></li>
-<li><a href="#_protein_protein_interactions_2">4.3.5. Protein-Protein Interactions</a></li>
-<li><a href="#_protein_families_2">4.3.6. Protein Families</a></li>
+<li><a href="#_representation_of_experimental_data">4.3.1. Representation of Experimental Data</a>
+<ul class="sectlevel4">
+<li><a href="#_subject_terms_perturbations">Subject Terms (Perturbations)</a></li>
+<li><a href="#_relationships">Relationships</a></li>
+<li><a href="#_object_terms_measurements">Object Terms (Measurements)</a></li>
+</ul>
+</li>
+<li><a href="#_statement_annotations">4.3.2. Statement Annotations</a>
+<ul class="sectlevel4">
+<li><a href="#_how_do_i_annotate_a_relationship_observed_in_multiple_biological_contexts">How do I annotate a relationship observed in multiple biological contexts?</a></li>
+</ul>
+</li>
+<li><a href="#_modified_proteins">4.3.3. Modified Proteins</a>
+<ul class="sectlevel4">
+<li><a href="#_how_do_i_represent_a_protein_modification_when_specific_information_is_not_available">How do I represent a protein modification when specific information is not available?</a></li>
+<li><a href="#_how_do_i_represent_a_protein_modification_within_a_complex">How do I represent a protein modification within a complex?</a></li>
+<li><a href="#Xmultphosphforprotein">How do I represent a situation where multiple phosphorylations are required for a protein&#8217;s activity?</a></li>
+<li><a href="#_how_do_i_represent_a_situation_where_one_protein_modification_initiates_additional_modifications">How do I represent a situation where one protein modification initiates additional modifications?</a></li>
+<li><a href="#Xremovalofproteinmod">How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?</a></li>
+</ul>
+</li>
+<li><a href="#_reactions_2">4.3.4. Reactions</a>
+<ul class="sectlevel4">
+<li><a href="#_how_can_i_represent_a_reversible_metabolic_reaction">How can I represent a reversible metabolic reaction?</a></li>
+<li><a href="#_when_and_why_should_i_use_a_reaction_term">When and why should I use a reaction term?</a></li>
+</ul>
+</li>
+<li><a href="#_protein_protein_interactions_2">4.3.5. Protein-Protein Interactions</a>
+<ul class="sectlevel4">
+<li><a href="#_how_do_i_represent_a_physical_interaction_between_two_entities">How do I represent a physical interaction between two entities?</a></li>
+</ul>
+</li>
+<li><a href="#_protein_families_2">4.3.6. Protein Families</a>
+<ul class="sectlevel4">
+<li><a href="#_when_should_i_use_a_protein_family_instead_of_a_specific_protein">When should I use a protein family instead of a specific protein?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -397,7 +514,7 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <p><a href="http://wiki.openbel.org/display/BLVD/Annotations">BEL Annotations</a> are applied to BEL Statements to optionally express additional information about the statement itself such as the citation for the publication reporting the observation, or the context in which the observation was made (e.g., species, tissue, cell line).</p>
 </div>
 <div class="sect2">
-<h3 id="Namespaces">1.1. Namespaces</h3>
+<h3 id="_namespaces">1.1. Namespaces</h3>
 <div class="paragraph">
 <p>BEL is specifically designed to adopt external vocabularies and ontologies, and represent life-science knowledge in the language and schema of the organization collecting or using the knowledge. Thus, BEL Terms are defined by reference to concepts in external vocabularies, which provide a set of well-known domain values, such as the official human gene symbols provided by HGNC (<a href="http://www.genenames.org/">http://www.genenames.org/</a>) . While we consider it good practice to define biological entities with respect to well-defined domains such as public ontologies, no specific vocabulary is essential to the use of BEL, and users are free to define and reference their own vocabularies as needed.</p>
 </div>
@@ -546,7 +663,7 @@ Documentation, <a href="http://wiki.openbel.org/">http://wiki.openbel.org/</a>",
 <p>The following BEL Functions represent classes of abundances of specific types of biological entities like RNAs, proteins, post-translationally modified proteins, and small molecules. Biological experiments frequently involve the manipulation and measurement of entities in samples. These BEL functions specify the type of entity referred to by a namespace value. For example,<code>geneAbundance(HGNC:AKT1)</code>, <code>rnaAbundance(HGNC:AKT1)</code>, and <code>proteinAbundance(HGNC:AKT1)</code>, represent the abundances of the AKT1 gene, RNA, and protein, respectively.</p>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xabundancea_a_abundance_a">2.1.1. <a id="Xabundancea"></a> abundance(), a()</h4>
+<h4 id="Xabundancea">2.1.1. abundance(), a()</h4>
 <div class="paragraph">
 <p><code>abundance(ns:v)</code> or <code>a(ns:v)</code> denotes the abundance of the entity designated by the value <code>v</code> in the namespace <code>ns</code>. abundance is a general abundance term that can be used for chemicals or other molecules not defined by a more specific abundance function. Gene, RNA, protein, and microRNA abundances should be represented using the appropriate specific abundance function.</p>
 </div>
@@ -561,7 +678,7 @@ a(CHEBI:thapsigargin)</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xcomplexa_a_complexabundance_complex">2.1.2. <a id="XcomplexA"></a> complexAbundance(), complex()</h4>
+<h4 id="XcomplexA">2.1.2. complexAbundance(), complex()</h4>
 <div class="paragraph">
 <p>The <code>complexAbundance()</code> or <code>complex()</code> function can be used with either a namespace value or with a list of abundance terms.</p>
 </div>
@@ -589,7 +706,7 @@ a(CHEBI:thapsigargin)</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xcompositea_a_compositeabundance_composite">2.1.3. <a id="XcompositeA"></a> compositeAbundance(), composite()</h4>
+<h4 id="XcompositeA">2.1.3. compositeAbundance(), composite()</h4>
 <div class="paragraph">
 <p>The <code>compositeAbundance(&lt;abundance term list&gt;)</code> function takes a list of abundance terms.
 The <code>compositeAbundance()</code> or <code>composite()</code> function is used to represent cases where multiple abundances synergize to produce an effect. The list is unordered, thus different orderings of the arguments should be interpreted as the same term. This function should not be used if any of the abundances alone are reported to cause the effect. <code>compositeAbundance()</code> terms should be used only as subjects of statements, not as objects.</p>
@@ -607,7 +724,7 @@ The <code>compositeAbundance()</code> or <code>composite()</code> function is us
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xgenea_a_geneabundance_g">2.1.4. <a id="XgeneA"></a> geneAbundance(), g()</h4>
+<h4 id="XgeneA">2.1.4. geneAbundance(), g()</h4>
 <div class="paragraph">
 <p><code>geneAbundance(ns:v)</code> or <code>g(ns:v)</code> denotes the abundance of the gene designated by the value v in the namespace ns. <code>geneAbundance()</code> terms are used to represent the DNA encoding the specified gene. <code>geneAbundance()</code> is considered decreased in the case of a homozygous or heterozygous gene deletion, and increased in the case of a DNA amplification mutation. Events in which a protein binds to the promoter of a gene can be represented using the <code>geneAbundance()</code> function.</p>
 </div>
@@ -624,7 +741,7 @@ The <code>compositeAbundance()</code> or <code>composite()</code> function is us
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xmicrornaa_a_micrornaabundance_m">2.1.5. <a id="XmicroRNAA"></a> microRNAAbundance(), m()</h4>
+<h4 id="XmicroRNAA">2.1.5. microRNAAbundance(), m()</h4>
 <div class="paragraph">
 <p><code>microRNAAbundance(ns:v)</code> or <code>m(ns:v)</code> denotes the abundance of the processed, functional microRNA designated by the value v in the namespace ns.</p>
 </div>
@@ -638,7 +755,7 @@ The <code>compositeAbundance()</code> or <code>composite()</code> function is us
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xproteina_a_proteinabundance_p">2.1.6. <a id="XproteinA"></a> proteinAbundance(), p()</h4>
+<h4 id="XproteinA">2.1.6. proteinAbundance(), p()</h4>
 <div class="paragraph">
 <p><code>proteinAbundance(ns:v)</code> or <code>p(ns:v)</code> denotes the abundance of the protein designated by the value v in the namespace ns, where v references a gene or a named protein family.</p>
 </div>
@@ -653,7 +770,7 @@ p(SFAM:"AKT Family")</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xrnaa_a_rnaabundance_r">2.1.7. <a id="XrnaA"></a> rnaAbundance(), r()</h4>
+<h4 id="XrnaA">2.1.7. rnaAbundance(), r()</h4>
 <div class="paragraph">
 <p><code>rnaAbundance(ns:v)</code> or <code>r(ns:v)</code> denotes the abundance of the RNA designated by the value v in the namespace ns, where v references a gene. This function refers to all RNA designated by ns:v, regardless of splicing, editing, or polyadenylation stage.</p>
 </div>
@@ -1264,7 +1381,7 @@ pathology(MESHD:adenocarcinoma)</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xactivity_a_activity_act">2.3.3. <a id="Xactivity"></a> activity(), act()</h4>
+<h4 id="Xactivity">2.3.3. activity(), act()</h4>
 <div class="paragraph">
 <p><code>activity(&lt;abundance&gt;)</code> or <code>act(&lt;abundance)</code> is used to specify events resulting from the molecular activity of an abundance. The <code>activity()</code> function provides distinct terms that enable differentiation of the increase or decrease of the molecular activity of a protein from changes in the abundance of the protein. <code>activity()</code> can be applied to a protein, complex, or RNA abundance term, and modified with a <a href="http://wiki.openbel.org/display/BLVD/Process+Modifier+Function#ProcessModifierFunction-ma()">molecularActivity()</a> argument to indicate a specific type of molecular activity.</p>
 </div>
@@ -1281,7 +1398,7 @@ pathology(MESHD:adenocarcinoma)</pre>
 <div class="sect2">
 <h3 id="_process_modifier_function">2.4. Process Modifier Function</h3>
 <div class="sect3">
-<h4 id="__a_id_xmoleculara_a_molecularactivity_ma">2.4.1. <a id="XmolecularA"></a> molecularActivity(), ma()</h4>
+<h4 id="XmolecularA">2.4.1. molecularActivity(), ma()</h4>
 <div class="paragraph">
 <p><code>molecularActivity(ns:v)</code> or <code>ma(ns:v)</code> is used to denote a specific type of activity function within an <code>activity()</code> term.</p>
 </div>
@@ -1485,7 +1602,7 @@ pathology(MESHD:adenocarcinoma)</pre>
 <p>These relationship types denote a causal relationship, or the absence of a causal relationship between a subject and an object term.</p>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xincreases_a_increases">3.1.1. <a id="Xincreases"></a> increases, &#8594;</h4>
+<h4 id="Xincreases">3.1.1. increases, &#8594;</h4>
 <div class="paragraph">
 <p>For terms A and B, <code>A increases B</code> or <code>A &#8594; B</code> indicate that increases in A have been observed to cause increases in B.</p>
 </div>
@@ -1500,13 +1617,13 @@ pathology(MESHD:adenocarcinoma)</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xdincreases_a_directlyincreases">3.1.2. <a id="XdIncreases"></a> directlyIncreases, &#8658;</h4>
+<h4 id="XdIncreases">3.1.2. directlyIncreases, &#8658;</h4>
 <div class="paragraph">
 <p>For terms A and B, <code>A directlyIncreases B</code> or <code>A &#8658; B</code> indicates that increases in A have been observed to cause increases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <a href="#Direct Relationships">direct</a> version of the increases relationship.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xdecreases_a_decreases">3.1.3. <a id="Xdecreases"></a> decreases, -|</h4>
+<h4 id="Xdecreases">3.1.3. decreases, -|</h4>
 <div class="paragraph">
 <p>For terms A and B, <code>A decreases B</code> or <code>A -| B</code> indicate that increases in A have been observed to cause decreases in B.</p>
 </div>
@@ -1521,7 +1638,7 @@ pathology(MESHD:adenocarcinoma)</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xddecreases_a_directlydecreases">3.1.4. <a id="XdDecreases"></a> directlyDecreases, =|</h4>
+<h4 id="XdDecreases">3.1.4. directlyDecreases, =|</h4>
 <div class="paragraph">
 <p>For terms A and B, <code>A directlyDecreases B</code> or <code>A =| B</code> indicates that increases in A have been observed to cause decreases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <a href="#Direct Relationships">direct</a> version of the decreases relationship.</p>
 </div>
@@ -1550,7 +1667,7 @@ A -&gt; B</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__a_id_xcnc_a_causesnochange_cnc">3.1.6. <a id="Xcnc"></a> causesNoChange, cnc</h4>
+<h4 id="Xcnc">3.1.6. causesNoChange, cnc</h4>
 <div class="paragraph">
 <p>For terms A and B, <code>A causesNoChange B</code> or <code>A cnc B</code> indicate that B was observed not to change in response to changes in A.</p>
 </div>
@@ -1635,33 +1752,25 @@ A -&gt; B</pre>
 </div>
 <div class="sect2">
 <h3 id="XcorRels">3.2. Correlative Relationships</h3>
-<div class="literalblock">
-<div class="content">
-<pre>These relationship types link abundances and biological processes when no causal relationship is known. The order of subject and object terms does not matter in a statement with a correlative relationship, unlike a statement with a causal relationship.</pre>
-</div>
+<div class="paragraph">
+<p>These relationship types link abundances and biological processes when no causal relationship is known. The order of subject and object terms does not matter in a statement with a correlative relationship, unlike a statement with a causal relationship.</p>
 </div>
 <div class="sect3">
 <h4 id="XnegCor">3.2.1. negativeCorrelation, neg</h4>
-<div class="literalblock">
-<div class="content">
-<pre>For terms A and B, `A negativeCorrelation B` or `A neg B` indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus `B negativeCorrelation A` is equivalent to `A negativeCorrelation B`.</pre>
-</div>
+<div class="paragraph">
+<p>For terms A and B, <code>A negativeCorrelation B</code> or <code>A neg B</code> indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus <code>B negativeCorrelation A</code> is equivalent to <code>A negativeCorrelation B</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="XposCor">3.2.2. positiveCorrelation, pos</h4>
-<div class="literalblock">
-<div class="content">
-<pre>For terms A and B, `A positiveCorrelation B` or `A pos B` indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus `B positiveCorrelation A` is equivalent to `A positiveCorrelation B`.</pre>
-</div>
+<div class="paragraph">
+<p>For terms A and B, <code>A positiveCorrelation B</code> or <code>A pos B</code> indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus <code>B positiveCorrelation A</code> is equivalent to <code>A positiveCorrelation B</code>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="Xassociation">3.2.3. association,&#8201;&#8212;&#8201;</h4>
-<div class="literalblock">
-<div class="content">
-<pre>For terms A and B, `A association B` or `A -- B` indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like `increases` or `positiveCorrelation`. The order of the subject and object does not affect the interpretation of the statement, thus `B -- A` is equivalent to `A -- B`.</pre>
-</div>
+<div class="paragraph">
+<p>For terms A and B, <code>A association B</code> or <code>A&#8201;&#8212;&#8201;B</code> indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like <code>increases</code> or <code>positiveCorrelation</code>. The order of the subject and object does not affect the interpretation of the statement, thus <code>B&#8201;&#8212;&#8201;A</code> is equivalent to <code>A&#8201;&#8212;&#8201;B</code>.</p>
 </div>
 </div>
 </div>
@@ -2005,7 +2114,7 @@ The use of <code>hasComponent</code> relationships is complementary to the use o
 
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em"><em>Long Form</em></h6>
+<h6 id="_long_form">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>abundance(CHEBI:"nitrogen atom")
@@ -2014,7 +2123,7 @@ abundance(CHEBI:"prostaglandin J2")</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em"><em>Short Form</em></h6>
+<h6 id="_short_form">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>a(CHEBI:"nitrogen atom")
@@ -2025,11 +2134,11 @@ a(CHEBI:"prostaglandin J2")</pre>
 <p>These BEL Terms represent the abundance of the entities specified by <em>nitrogen atom</em> and by <em>prostaglandin J2</em> in the CHEBI namespace.</p>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="__a_id_xgenesrnasproteins_a_genes_rnas_and_proteins"><a id="Xgenesrnasproteins"></a> Genes, RNAs, and proteins</h5>
+<div class="sect5">
+<h6 id="Xgenesrnasproteins">Genes, RNAs, and proteins</h6>
 <div class="paragraph">
 <p>The abundance functions <code><a href="#XgeneA">geneAbundance()</a></code>, <code><a href="#XrnaA">rnaAbundance()</a></code>, and <code><a href="#XproteinA">proteinAbundance()</a></code> are used with namespace values like HGNC human gene symbols, EntrezGene IDs, SwissProt accession numbers to designate the type of molecule represented.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_examples_9">Examples</h6>
@@ -2038,7 +2147,7 @@ a(CHEBI:"prostaglandin J2")</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_2"><em>Long Form</em></h6>
+<h6 id="_long_form_2">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>geneAbundance(HGNC:AKT1)
@@ -2048,7 +2157,7 @@ proteinAbundance(HGNC:AKT1)</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_2"><em>Short Form</em></h6>
+<h6 id="_short_form_2">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>g(HGNC:AKT1)
@@ -2069,11 +2178,11 @@ r(SP:P31749)</pre>
 <p>The BEL Framework identifies and merges corresponding terms created using different namespaces into a single term through namespace equivalencing.</p>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_protein_families">Protein families</h5>
+<div class="sect5">
+<h6 id="_protein_families">Protein families</h6>
 <div class="paragraph">
 <p>Protein families are used to represent a group of functionally similar proteins. For example, AKT1, AKT2, and AKT3 together form the AKT family. Like other proteins, abundances of protein families are represented using the <code><a href="#XproteinA">proteinAbundance()</a></code> function, with namespace values from the Selventa named protein families namespace.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_6">Example</h6>
@@ -2086,11 +2195,11 @@ r(SP:P31749)</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_micrornas">microRNAs</h5>
+<div class="sect5">
+<h6 id="_micrornas">microRNAs</h6>
 <div class="paragraph">
 <p>The abundance function <code><a href="#XmicroRNAA">microRNAAbundance()</a></code> is used to represent the fully processed, active form of a microRNA. The specific abundance functions allow distinct representations of the gene, RNA, and microRNA abundances for a given namespace value.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_7">Example</h6>
@@ -2099,7 +2208,7 @@ r(SP:P31749)</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_3"><em>Long Form</em></h6>
+<h6 id="_long_form_3">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>geneAbundance(MGI:Mir21)
@@ -2109,7 +2218,7 @@ microRNAAbundance(MGI:Mir21)</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_3"><em>Short Form</em></h6>
+<h6 id="_short_form_3">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>g(MGI:Mir21)
@@ -2118,11 +2227,11 @@ m(MGI:Mir21)</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_complexes">Complexes</h5>
+<div class="sect5">
+<h6 id="_complexes">Complexes</h6>
 <div class="paragraph">
 <p>The abundances of molecular complexes are represented using the <code><a href="#XcomplexA">complexAbundance()</a></code> function. This function can take either a list of abundance terms or a value from a namespace of molecular complexes as its argument.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_8">Example</h6>
@@ -2131,7 +2240,7 @@ m(MGI:Mir21)</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_4"><em>Long Form</em></h6>
+<h6 id="_long_form_4">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>complexAbundance(GOCC:"IkappaB kinase complex")
@@ -2140,7 +2249,7 @@ complexAbundance(proteinAbundance(HGNC:CHUK), proteinAbundance(HGNC:IKBKB), prot
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_4"><em>Short Form</em></h6>
+<h6 id="_short_form_4">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>complex(GOCC:"IkappaB kinase complex")
@@ -2148,11 +2257,11 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_composite_abundances">Composite abundances</h5>
+<div class="sect5">
+<h6 id="_composite_abundances">Composite abundances</h6>
 <div class="paragraph">
 <p>Multiple abundance terms can be represented together as the subject of a BEL Statement by using the <code><a href="#XcompositeA">compositeAbundance()</a></code> function. This function takes a list of abundances as its argument and is used when the individual abundances do not act alone, but rather synergize to produce an effect.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_9">Example</h6>
@@ -2161,7 +2270,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_5"><em>Long Form</em></h6>
+<h6 id="_long_form_5">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>compositeAbundance(proteinAbundance(HGNC:TGFB1), proteinAbundance(HGNC:IL6))</pre>
@@ -2169,7 +2278,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_5"><em>Short Form</em></h6>
+<h6 id="_short_form_5">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>composite(p(HGNC:TGFB1), p(HGNC:IL6))</pre>
@@ -2214,7 +2323,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_6"><em>Long Form</em></h6>
+<h6 id="_long_form_6">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(HGNC:TLR7))</pre>
@@ -2222,7 +2331,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_6"><em>Short Form</em></h6>
+<h6 id="_short_form_6">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(HGNC:TLR7))</pre>
@@ -2239,7 +2348,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_default_bel_namespace_em"><em>Long Form - default BEL namespace</em></h6>
+<h6 id="_long_form_default_bel_namespace">Long Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(RGD:Sod1), ma(cat))</pre>
@@ -2247,7 +2356,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_go_molecular_function_gomf_namespace_em"><em>Long Form - GO Molecular Function (GOMF) namespace</em></h6>
+<h6 id="_long_form_go_molecular_function_gomf_namespace">Long Form - GO Molecular Function (GOMF) namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(RGD:Sod1), molecularActivity(GOMF:"catalytic activity"))</pre>
@@ -2255,7 +2364,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_default_bel_namespace_em"><em>Short Form - default BEL namespace</em></h6>
+<h6 id="_short_form_default_bel_namespace">Short Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(RGD:Sod1), ma(cat))</pre>
@@ -2263,7 +2372,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_go_molecular_function_namespace_em"><em>short Form - GO Molecular Function namespace</em></h6>
+<h6 id="_short_form_go_molecular_function_namespace">short Form - GO Molecular Function namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(RGD:Sod1), ma(GOMF:"catalytic activity"))</pre>
@@ -2277,7 +2386,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_default_bel_namespace_em_2"><em>Long Form - default BEL namespace</em></h6>
+<h6 id="_long_form_default_bel_namespace_2">Long Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(MGI:Casp3), molecularActivity(pep))</pre>
@@ -2285,7 +2394,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_go_molecular_function_namespace_em"><em>Long Form - GO Molecular Function namespace</em></h6>
+<h6 id="_long_form_go_molecular_function_namespace">Long Form - GO Molecular Function namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(MGI:Casp3), molecularActivity(GOMF:"peptidase activity"))</pre>
@@ -2293,7 +2402,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_default_bel_namespace_em_2"><em>Short Form - default BEL namespace</em></h6>
+<h6 id="_short_form_default_bel_namespace_2">Short Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(MGI:Casp3), ma(pep))</pre>
@@ -2301,7 +2410,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_go_molecular_function_namespace_em_2"><em>Short Form - GO Molecular Function namespace</em></h6>
+<h6 id="_short_form_go_molecular_function_namespace_2">Short Form - GO Molecular Function namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(MGI:Casp3), ma(GOMF:"peptidase activity"))</pre>
@@ -2315,7 +2424,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_default_bel_namespace_em_3"><em>Long Form - default BEL namespace</em></h6>
+<h6 id="_long_form_default_bel_namespace_3">Long Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(SFAM:"RAS Family"), molecularActivity(gtp))</pre>
@@ -2323,7 +2432,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_go_molecular_function_namespace_em_2"><em>Long Form - GO Molecular Function namespace</em></h6>
+<h6 id="_long_form_go_molecular_function_namespace_2">Long Form - GO Molecular Function namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(SFAM:"RAS Family"), molecularActivity(GOMF:"GTP binding"))</pre>
@@ -2331,7 +2440,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_default_bel_namespace_em_3"><em>Short Form - default BEL namespace</em></h6>
+<h6 id="_short_form_default_bel_namespace_3">Short Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(SFAM:"RAS Family"), ma(gtp))</pre>
@@ -2339,7 +2448,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_go_molecular_function_namespace_em_3"><em>Short Form - GO Molecular Function namespace</em></h6>
+<h6 id="_short_form_go_molecular_function_namespace_3">Short Form - GO Molecular Function namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(SFAM:"RAS Family"), ma(GOMF:"GTP binding"))</pre>
@@ -2353,7 +2462,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_default_bel_namespace_em_4"><em>Long Form - default BEL namespace</em></h6>
+<h6 id="_long_form_default_bel_namespace_4">Long Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(tport))</pre>
@@ -2361,7 +2470,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_go_molecular_function_namespace_em_3"><em>Long Form - GO Molecular Function namespace</em></h6>
+<h6 id="_long_form_go_molecular_function_namespace_3">Long Form - GO Molecular Function namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(GOMF:"transporter activity"))</pre>
@@ -2369,7 +2478,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_default_bel_namespace_em_4"><em>Short Form - default BEL namespace</em></h6>
+<h6 id="_short_form_default_bel_namespace_4">Short Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(complex(NCH:"ENaC Complex"), ma(tport))</pre>
@@ -2377,7 +2486,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_go_molecular_function_namespace_em_4"><em>Short Form - GO Molecular Function namespace</em></h6>
+<h6 id="_short_form_go_molecular_function_namespace_4">Short Form - GO Molecular Function namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(complex(NCH:"ENaC Complex"), ma(GOMF:"transporter activity"))</pre>
@@ -2391,7 +2500,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_default_bel_namespace_em_5"><em>Long Form - default BEL namespace</em></h6>
+<h6 id="_long_form_default_bel_namespace_5">Long Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(HGNC:CANX), molecularActivity(chap))</pre>
@@ -2399,7 +2508,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_default_bel_namespace_em_5"><em>Short Form - default BEL namespace</em></h6>
+<h6 id="_short_form_default_bel_namespace_5">Short Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(HGNC:CANX), ma(chap))</pre>
@@ -2413,7 +2522,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_default_bel_namespace_em_6"><em>Long Form - default BEL namespace</em></h6>
+<h6 id="_long_form_default_bel_namespace_6">Long Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(MGI:Trp53), molecularActivity(tscript))</pre>
@@ -2421,7 +2530,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_go_molecular_function_namespace_em_4"><em>Long Form - GO Molecular Function Namespace</em></h6>
+<h6 id="_long_form_go_molecular_function_namespace_4">Long Form - GO Molecular Function Namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>activity(proteinAbundance(MGI:Trp53), molecularActivity(GOMF:"nucleic acid binding transcription factor activity"))</pre>
@@ -2429,7 +2538,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_default_bel_namespace_em_6"><em>Short Form - default BEL namespace</em></h6>
+<h6 id="_short_form_default_bel_namespace_6">Short Form - default BEL namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(MGI:Trp53), ma(tscript))</pre>
@@ -2437,7 +2546,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_go_molecular_function_namespace_em_5"><em>Long Form - GO Molecular Function Namespace</em></h6>
+<h6 id="_long_form_go_molecular_function_namespace_5">Long Form - GO Molecular Function Namespace</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(MGI:Trp53), ma(GOMF:"nucleic acid binding transcription factor activity"))</pre>
@@ -2474,7 +2583,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_7"><em>Long Form</em></h6>
+<h6 id="_long_form_7">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Nat Cell Biol 2007 Mar 9(3) 316-23", "17277771"}</pre>
@@ -2498,7 +2607,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_7"><em>Short Form</em></h6>
+<h6 id="_short_form_7">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>complex(p(HGNC:AKT1S1), p(HGNC:MTOR))</pre>
@@ -2512,7 +2621,7 @@ complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_8"><em>Long Form</em></h6>
+<h6 id="_long_form_8">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "J Cell Biol. 2003 Jun 9;161(5):911-21.", "12796477"}</pre>
@@ -2532,7 +2641,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_8"><em>Short Form</em></h6>
+<h6 id="_short_form_8">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:BMP4) -&gt; complex(p(HGNC:MTOR), p(HGNC:STAT3))</pre>
@@ -2550,7 +2659,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_9"><em>Long Form</em></h6>
+<h6 id="_long_form_9">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "J Immunol 2009 Mar 15 182(6) 3357-65", "19265112"}</pre>
@@ -2570,7 +2679,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_9"><em>Short Form</em></h6>
+<h6 id="_short_form_9">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:IL17A) -&gt; complex(p(HGNC:STAT3), g(HGNC:CCL11))</pre>
@@ -2588,7 +2697,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_10"><em>Long Form</em></h6>
+<h6 id="_long_form_10">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Breast Cancer Res 2005 7(4) R394-401", "15987444"}</pre>
@@ -2611,7 +2720,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_10"><em>Short Form</em></h6>
+<h6 id="_short_form_10">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>complex(a(CHEBI:"1-phosphatidyl-1D-myo-inositol 3,4,5-trisphosphate"), p(HGNC:AKT1))</pre>
@@ -2641,7 +2750,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_11"><em>Long Form</em></h6>
+<h6 id="_long_form_11">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>biologicalProcess(GOBP:"cellular senescence")</pre>
@@ -2649,7 +2758,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_11"><em>Short Form</em></h6>
+<h6 id="_short_form_11">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>bp(GOBP:"cellular senescence")</pre>
@@ -2663,7 +2772,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_12"><em>Long Form</em></h6>
+<h6 id="_long_form_12">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>pathology(MESHD:"Muscle Hypotonia")</pre>
@@ -2671,7 +2780,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_12"><em>Short Form</em></h6>
+<h6 id="_short_form_12">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>path(MESHD:"Muscle Hypotonia")</pre>
@@ -2713,7 +2822,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_13"><em>Long Form</em></h6>
+<h6 id="_long_form_13">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>proteinAbundance(HGNC:HIF1A, proteinModification(Hy, Asn, 803))</pre>
@@ -2721,7 +2830,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_13"><em>Short Form</em></h6>
+<h6 id="_short_form_13">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:HIF1A, pmod(Hy, N, 803))</pre>
@@ -2785,7 +2894,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="__a_id_xtte_a_transformation_term_examples_reactions_translocations_degradation"><a id="Xtte"></a> Transformation Term Examples (Reactions, Translocations, Degradation)</h5>
+<h5 id="Xtte">Transformation Term Examples (Reactions, Translocations, Degradation)</h5>
 <div class="ulist">
 <ul>
 <li>
@@ -2812,7 +2921,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_14"><em>Long Form</em></h6>
+<h6 id="_long_form_14">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>reaction(reactants(abundance(CHEBI:phosphoenolpyruvate), abundance(CHEBI:ADP)),\
@@ -2821,7 +2930,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_14"><em>Short Form</em></h6>
+<h6 id="_short_form_14">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>rxn(reactants(a(CHEBI:phophoenolpyruvate), a(CHEBI:ADP)),\
@@ -2842,7 +2951,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_15"><em>Long Form</em></h6>
+<h6 id="_long_form_15">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>translocation(proteinAbundance(HGNC:NFE2L2), fromLoc(MESHCS:Cytoplasm), toLoc(MESHCS:"Cell Nucleus"))</pre>
@@ -2850,7 +2959,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_15"><em>Short Form</em></h6>
+<h6 id="_short_form_15">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>tloc(p(HGNC:NFE2L2), fromLoc(MESHCL:Cytoplasm), toLoc(MESHCL:"Cell Nucleus"))</pre>
@@ -2864,7 +2973,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_16"><em>Long Form</em></h6>
+<h6 id="_long_form_16">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>cellSecretion(proteinAbundance(MGI:Il6))</pre>
@@ -2872,7 +2981,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_16"><em>Short Form</em></h6>
+<h6 id="_short_form_16">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>sec(p(MGI:Il6))</pre>
@@ -2886,7 +2995,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_17"><em>Long Form</em></h6>
+<h6 id="_long_form_17">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>cellSurfaceExpression(proteinAbudance(RGD:Fas))</pre>
@@ -2894,7 +3003,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_17"><em>Short Form</em></h6>
+<h6 id="_short_form_17">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>surf(p(RGD:Fas))</pre>
@@ -2914,7 +3023,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_18"><em>Long Form</em></h6>
+<h6 id="_long_form_18">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>degradation(rnaAbundance(HGNC:MYC))</pre>
@@ -2922,7 +3031,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_18"><em>Short Form</em></h6>
+<h6 id="_short_form_18">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>deg(r(HGNC:MYC))</pre>
@@ -2948,18 +3057,18 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_amino_acid_substitutions">Amino Acid Substitutions</h5>
+<div class="sect5">
+<h6 id="_amino_acid_substitutions">Amino Acid Substitutions</h6>
 <div class="paragraph">
 <p>The abundances of proteins with amino acid sequence variations, such as those resulting from missense mutations or polymorphisms can be specified by using the <code>variant()</code> or <code>var()</code> function within a protein abundance term.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_13">Example</h6>
 
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_19"><em>Long Form</em></h6>
+<h6 id="_long_form_19">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>proteinAbundance(HGNC:PIK3CA, variant(p.Glu545Lys))</pre>
@@ -2967,7 +3076,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_19"><em>Short Form</em></h6>
+<h6 id="_short_form_19">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:PIK3CA, var(p.Glu545Lys))</pre>
@@ -2977,18 +3086,18 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <p>This term represents the abundance of the human PIK3CA protein in which the glutamic acid residue at position 545 has been substituted with a lysine.</p>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_truncated_proteins">Truncated Proteins</h5>
+<div class="sect5">
+<h6 id="_truncated_proteins">Truncated Proteins</h6>
 <div class="paragraph">
 <p>The abundances of proteins that are truncated by the introduction of a stop codon can be specified by using the <code>variant()</code> or <code>var()</code> function within a protein abundance term.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_14">Example</h6>
 
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_20"><em>Long Form</em></h6>
+<h6 id="_long_form_20">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>proteinAbundance(HGNC:ABCA1, variant(p.Arg1851*))</pre>
@@ -2996,7 +3105,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_20"><em>Short Form</em></h6>
+<h6 id="_short_form_20">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:ABCA1, var(p.Arg1851*))</pre>
@@ -3006,18 +3115,18 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <p>This term represents the abundance of human ABCA1 protein that has been truncated by substitution of Arginine 1851 with a stop codon.</p>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_fusion_proteins">Fusion Proteins</h5>
+<div class="sect5">
+<h6 id="_fusion_proteins">Fusion Proteins</h6>
 <div class="paragraph">
 <p>The abundances of fusion proteins resulting from chromosomal translocation mutations can be specified by using the <code>fusion()</code> or <code>fus()</code> function within a protein abundance term.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_15">Example</h6>
 
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_21"><em>Long Form</em></h6>
+<h6 id="_long_form_21">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>proteinAbundance(fusion(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))</pre>
@@ -3025,7 +3134,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_21"><em>Short Form</em></h6>
+<h6 id="_short_form_21">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(fus(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))</pre>
@@ -3081,9 +3190,10 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </li>
 </ul>
 </div>
+<div class="sect5">
+<h6 id="_causal_increase">Causal increase</h6>
+
 </div>
-<div class="sect4">
-<h5 id="_causal_increase">Causal increase</h5>
 <div class="sect5">
 <h6 id="_example_16">Example</h6>
 <div class="paragraph">
@@ -3091,7 +3201,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_22"><em>Long Form</em></h6>
+<h6 id="_long_form_22">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Int J Oncol 1999 Jul 15(1) 173-8", "10375612"}</pre>
@@ -3134,7 +3244,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_22"><em>Short Form</em></h6>
+<h6 id="_short_form_22">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:IL6) -&gt; r(HGNC:ENO1)</pre>
@@ -3146,9 +3256,10 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 </div>
+<div class="sect5">
+<h6 id="_causal_decrease">Causal decrease</h6>
+
 </div>
-<div class="sect4">
-<h5 id="_causal_decrease">Causal decrease</h5>
 <div class="sect5">
 <h6 id="_example_17">Example</h6>
 <div class="paragraph">
@@ -3156,7 +3267,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_23"><em>Long Form</em></h6>
+<h6 id="_long_form_23">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "J Mol Med. 2003 Mar;81(3):168-74. Epub 2003 Mar 14.", "12682725"}</pre>
@@ -3187,18 +3298,18 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_23"><em>Short Form</em></h6>
+<h6 id="_short_form_23">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>a(CHEBI:corticosteroid) -| path(MESHD:Inflammation)</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_causes_no_change">Causes no change</h5>
+<div class="sect5">
+<h6 id="_causes_no_change">Causes no change</h6>
 <div class="paragraph">
 <p>The <code><a href="#Xcnc">causesNoChange</a></code> relationship can be used to record the lack of an observed effect.</p>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_example_18">Example</h6>
@@ -3207,7 +3318,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_24"><em>Long Form</em></h6>
+<h6 id="_long_form_24">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Mol Cancer Res 2007 Aug 5(8) 847-61", "17670913"}</pre>
@@ -3237,7 +3348,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_24"><em>Short Form</em></h6>
+<h6 id="_short_form_24">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:AREG) -&gt; act(complex(GOCC:"NF-kappaB complex"), ma(tscript))</pre>
@@ -3265,9 +3376,8 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_negativecorrelation">negativeCorrelation</h5>
+<div class="sect5">
+<h6 id="_negativecorrelation">negativeCorrelation</h6>
 <div class="paragraph">
 <p>This statement expresses that an increase in cytoplasmic FGF2 protein positively correlates with an increase in the pathology Chronic Obstructive Pulmonary Disease. The subject and object terms of correlative statements are interchangeable. The <code><a href="#XnegCor">negativeCorrelation</a></code> relationship is used to represent inverse correlative relationships, i.e., a decrease in A is correlated with an increase in B.</p>
 </div>
@@ -3297,16 +3407,17 @@ controls."</pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="__a_id_xassociationcr_a_association"><a id="XassociationCR"></a> association</h5>
+<div class="sect5">
+<h6 id="XassociationCR">association</h6>
 <div class="paragraph">
 <p>The direction of causal effect or correlation of two abundance or biological process terms is not always specified. The <code><a href="#Xassociation">association</a></code> relationship can be used in these cases.</p>
 </div>
 <div class="paragraph">
 <p>This statement represents that abundance of protein designated by the name Nr2f2 in the MGI namespace is associated in an unspecified manner with the biological process angiogenesis.</p>
 </div>
+</div>
 <div class="sect5">
-<h6 id="__em_long_form_em_25"><em>Long Form</em></h6>
+<h6 id="_long_form_25">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Mech Ageing Dev. 2004 Oct-Nov;125(10-11):719-32.", "15541767"}</pre>
@@ -3334,7 +3445,7 @@ controls."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_25"><em>Short Form</em></h6>
+<h6 id="_short_form_25">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(MGI:NR2F2) -- bp(GOBP:angiogenesis)</pre>
@@ -3366,14 +3477,14 @@ controls."</pre>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_example_ligand_and_receptor">Example - Ligand and Receptor</h5>
+<div class="sect5">
+<h6 id="_example_ligand_and_receptor">Example - Ligand and Receptor</h6>
 <div class="paragraph">
 <p>In this example, the <code><a href="#XdIncreases">directlyIncreases</a></code> relationship is used to represent activation of a receptor by its ligand. This statement expresses that amphiregulin (AREG) activates its receptor, the Epidermal Growth Factor Receptor (EGFR). This relationship is direct because ligands directly interact with their receptors.</p>
 </div>
+</div>
 <div class="sect5">
-<h6 id="__em_long_form_em_26"><em>Long Form</em></h6>
+<h6 id="_long_form_26">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Mol Cancer Res 2007 Aug 5(8) 847-61", "17670913"}</pre>
@@ -3401,21 +3512,21 @@ controls."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_26"><em>Short Form</em></h6>
+<h6 id="_short_form_26">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:AREG) =&gt; act(p(HGNC:EGFR), ma(kin))</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_example_kinase_and_substrate">Example - Kinase and Substrate</h5>
+<div class="sect5">
+<h6 id="_example_kinase_and_substrate">Example - Kinase and Substrate</h6>
 <div class="paragraph">
 <p>In this example, the <code><a href="#XdIncreases">directlyIncreases</a></code> relationship is used to represent the phosphorylation of a protein substrate by a kinase. This statement expresses that the kinase activity of CDK1 protein causes an increase in the modification of FOXO1 protein by phosphorylation at serine 249. The relationship is direct because the kinase physically interacts with its target.</p>
 </div>
+</div>
 <div class="sect5">
-<h6 id="__em_long_form_em_27"><em>Long Form</em></h6>
+<h6 id="_long_form_27">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Science 2008 Mar 21 319(5870) 1665-8.", "18356527"}</pre>
@@ -3435,21 +3546,21 @@ controls."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_27"><em>Short Form</em></h6>
+<h6 id="_short_form_27">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(HGNC:CDK1), ma(kin)) =&gt; p(HGNC:FOXO1, pmod(Ph, S, 249))</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_example_catalyst_and_reaction">Example - Catalyst and Reaction</h5>
+<div class="sect5">
+<h6 id="_example_catalyst_and_reaction">Example - Catalyst and Reaction</h6>
 <div class="paragraph">
 <p>In this example, the direct activation of a reaction by a catalytic enzyme is represented. The statement indicates that an increase in the catalytic activity of ALOX5 increase the transformation of the reactant '5(S)-HPETE' to the products 'leukotriene A4' and 'water'. The relationship is considered direct because ALOX5 protein is the catalyzing enzyme.</p>
 </div>
+</div>
 <div class="sect5">
-<h6 id="__em_long_form_em_28"><em>Long Form</em></h6>
+<h6 id="_long_form_28">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"Other", "Reactome: Leukotriene synthesis", "REACT_15354.1"}</pre>
@@ -3471,21 +3582,21 @@ controls."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_28"><em>Short Form</em></h6>
+<h6 id="_short_form_28">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(HGNC:ALOX5), ma(cat)) =&gt; rxn(reactants(a(CHEBI:"5(S)-HPETE")), products(a(CHEBI:"leukotriene A4"), a(CHEBI:water)))</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_example_self_referential_relationships">Example - Self-Referential Relationships</h5>
+<div class="sect5">
+<h6 id="_example_self_referential_relationships">Example - Self-Referential Relationships</h6>
 <div class="paragraph">
 <p>In this example, the <code><a href="#XdDecreases">directlyDecreases</a></code> relationship is used to represent the effect of a protein modification on the activity of the same protein. These statements express that the modification of GSK3A and GSK3B protein by phosphorylation on serines 9 and 21, respectively, inhibits the activity of GSK3A and GSK3B. These relationships are considered direct, because they are self-referential. The modification of the protein abundance by phosphorylation inhibits the activity of the same protein abundance.</p>
 </div>
+</div>
 <div class="sect5">
-<h6 id="__em_long_form_em_29"><em>Long Form</em></h6>
+<h6 id="_long_form_29">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Proc Natl Acad Sci U S A 2000 Oct 24 97(22) 11960-5", "11035810"}</pre>
@@ -3511,7 +3622,7 @@ controls."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_29"><em>Short Form</em></h6>
+<h6 id="_short_form_29">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:GSK3A, pmod(Ph, S, 21)) =| act(p(HGNC:GSK3A))</pre>
@@ -3523,14 +3634,14 @@ controls."</pre>
 </div>
 </div>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_example_direct_transcriptional_control">Example - Direct Transcriptional Control</h5>
+<div class="sect5">
+<h6 id="_example_direct_transcriptional_control">Example - Direct Transcriptional Control</h6>
 <div class="paragraph">
 <p>In this example, the direct activation of a RNA transcription is encoded. The statement expresses that increases in the transcriptional activity of FOXO1 protein directly increase the RNA abundance of CEBPB. This relationship is considered direct because the transcription factor, FOXO1, directly binds the promoter of the CEBPB gene, increasing the expression of CEBPB RNA.</p>
 </div>
+</div>
 <div class="sect5">
-<h6 id="__em_long_form_em_30"><em>Long Form</em></h6>
+<h6 id="_long_form_30">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Biochem Biophys Res Commun. 2009 Jan 9;378(2):290-5. Epub 2008 Nov 21.", "19026986"}</pre>
@@ -3552,7 +3663,7 @@ controls."</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_30"><em>Short Form</em></h6>
+<h6 id="_short_form_30">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>act(p(HGNC:FOXO1), ma(tscript)) =&gt; r(HGNC:CEBPB)</pre>
@@ -3567,7 +3678,7 @@ controls."</pre>
 In the relationship described by the evidence text, CLSPN specifically increases the activity of ATR to phosphorylate the target protein CHEK1 and does not affect the kinase activity of ATR towards its other targets. The use of the nested statement allows the representation of the information that CLSPN increases the phosphorylation of CHEK1 via the kinase activity of ATR, without incorrectly indicating that CLSPN generally increases the kinase activity of ATR.</p>
 </div>
 <div class="sect5">
-<h6 id="__em_long_form_em_31"><em>Long Form</em></h6>
+<h6 id="_long_form_31">Long Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>SET Citation = {"PubMed", "Mol Cell Biol 2006 Aug 26(16) 6056-64.", "16880517"}</pre>
@@ -3593,7 +3704,7 @@ In the relationship described by the evidence text, CLSPN specifically increases
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_short_form_em_31"><em>Short Form</em></h6>
+<h6 id="_short_form_31">Short Form</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:CLSPN) -&gt; (act(p(HGNC:ATR), ma(kin)) =&gt; p(HGNC:CHEK1, pmod(Ph)))</pre>
@@ -3760,9 +3871,8 @@ SET Anatomy = "Pulmonary Artery"</pre>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_protein_family">Protein Family</h5>
+<div class="sect5">
+<h6 id="_protein_family">Protein Family</h6>
 <div class="paragraph">
 <p>In this example, members of a protein family are assigned using the <code><a href="#_hasmember">hasMember</a></code> and <code><a href="#_hasmembers">hasMembers</a></code> relationships.</p>
 </div>
@@ -3788,8 +3898,8 @@ SET Anatomy = "Pulmonary Artery"</pre>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_complex_component">Complex Component</h5>
+<div class="sect5">
+<h6 id="_complex_component">Complex Component</h6>
 <div class="paragraph">
 <p>In this example components are assigned to a named protein complex using the <a href="#_hascomponent">hasComponent</a> and <a href="#_hascomponents">hasComponents</a> relationships.</p>
 </div>
@@ -3821,6 +3931,7 @@ SET Anatomy = "Pulmonary Artery"</pre>
 </div>
 <div class="paragraph">
 <p>The single <code>hasComponents</code> statement is equivalent to the set of three <code>hasComponent</code> statements.</p>
+</div>
 </div>
 </div>
 </div>
@@ -3923,7 +4034,7 @@ SET Anatomy = "Pulmonary Artery"</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_non_phosphorylatable_mutant_em"><em>Non-phosphorylatable mutant</em></h6>
+<h6 id="_non_phosphorylatable_mutant">Non-phosphorylatable mutant</h6>
 <div class="paragraph">
 <p>In this example, mutation of FOXO1 serine 256 to alanine is used to block phosphorylation at 256 (S256A), a site phosphorylated by AKT. The S256A mutation was found to impair phosphorylation of threonine 24 and serine 319 by AKT (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=11237865">PMID 11237865</a>).
 We could represent this observation as follows:</p>
@@ -4024,7 +4135,7 @@ While both representations are accurate, the second version is better suited to 
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_gene_knockouts_em"><em>Gene knockouts</em></h6>
+<h6 id="_gene_knockouts">Gene knockouts</h6>
 <div class="paragraph">
 <p>In this example, mice with a gene deletion of Nfe2l2 express reduced mRNA of the glutathione S transferase Gsta1 compared to wild-type mice (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=11991805">PMID 11991805</a>):</p>
 </div>
@@ -4035,7 +4146,7 @@ While both representations are accurate, the second version is better suited to 
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_rna_interference_em"><em>RNA interference</em></h6>
+<h6 id="_rna_interference">RNA interference</h6>
 <div class="paragraph">
 <p>In this example, knockdown of PTEN using RNA interference results in increased CDKN1A protein levels (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=17300726">PMID 17300726</a>):</p>
 </div>
@@ -4094,7 +4205,7 @@ While both representations are accurate, the second version is better suited to 
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_effects_are_not_due_to_the_catalytic_activity_of_the_protein_em"><em>Effects are not due to the catalytic activity of the protein</em></h6>
+<h6 id="_effects_are_not_due_to_the_catalytic_activity_of_the_protein">Effects are not due to the catalytic activity of the protein</h6>
 <div class="paragraph">
 <p><em>Example 1.</em> A mutant telomerase (TERT) protein lacking telomerase activity retains its effects on keratinocyte proliferation (<a href="http://www.ncbi.nlm.nih.gov/pubmed/18208333">PMID 18208333</a>):</p>
 </div>
@@ -4123,7 +4234,7 @@ While both representations are accurate, the second version is better suited to 
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_effects_are_likely_due_to_the_activity_of_the_protein_em"><em>Effects are likely due to the activity of the protein</em></h6>
+<h6 id="_effects_are_likely_due_to_the_activity_of_the_protein">Effects are likely due to the activity of the protein</h6>
 <div class="paragraph">
 <p><em>Example.</em> Genes are differentially expressed in wild-type vs. Met knock out mouse hepatocytes, only after treatment with Hgf, the Met ligand (<a href="http://www.ncbi.nlm.nih.gov/pubmed/16710476">PMID 16710476</a>). These genes include integrins Itgav, Itga3, and Itgb1.</p>
 </div>
@@ -4147,7 +4258,7 @@ While both representations are accurate, the second version is better suited to 
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_not_enough_information_is_available_em"><em>Not enough information is available</em></h6>
+<h6 id="_not_enough_information_is_available">Not enough information is available</h6>
 <div class="paragraph">
 <p><em>Example.</em> Genes are differentially expressed in the pancreas of mice with a pancreas-specific beta-catenin deletion (<a href="http://www.ncbi.nlm.nih.gov/pubmed/17222338">PMID 17222338</a>). These include decreased expression of the hedgehog interacting protein Hhip in the knock-out compared to wild-type.</p>
 </div>
@@ -4170,7 +4281,7 @@ While both representations are accurate, the second version is better suited to 
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_correlative_em"><em>Correlative</em></h6>
+<h6 id="_correlative">Correlative</h6>
 <div class="paragraph">
 <p>If the observation comes from the comparison of human tumors grouped by the occurrence of a specific mutation, then the relationship should generally be expressed as correlative. In this case there is no experimental perturbation.
 In this example, most patient tumor samples with an EGFR L858R mutation were observed to exhibit a reduction in ERBB2 tyrosine 1248 phosphorylation compared to wild-type samples (<a href="http://www.ncbi.nlm.nih.gov/pubmed/?term=18687633">PMID 18687633</a>):</p>
@@ -4185,7 +4296,7 @@ In this example, most patient tumor samples with an EGFR L858R mutation were obs
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_causal_em"><em>Causal</em></h6>
+<h6 id="_causal_3">Causal</h6>
 <div class="paragraph">
 <p>If the observation comes from the comparison of experimentally controlled states, like gene deletion, overexpression, or introduction of a mutant allele into a cell line or animal, the experimental perturbation can generally be represented as the subject term of a causal statement.
 In this example, DUSP6 RNA is observed to be upregulated in immortalized human bronchial epithelial cells transfected with EGFR mutant L858R, as compared to WT EGFR (<a href="http://www.ncbi.nlm.nih.gov/pubmed/16489012">PMID 16489012</a>):</p>
@@ -4227,7 +4338,7 @@ In this example, DUSP6 RNA is observed to be upregulated in immortalized human b
 <p>Our general practice is to represent each observation with a separate statement. Several annotations can be used to describe the same context, e.g., 'lung' and 'fibroblast', but distinct BEL statements should be used to describe each experimental context that the relationship is observed in.</p>
 </div>
 <div class="sect5">
-<h6 id="__em_example_em"><em>Example</em></h6>
+<h6 id="_example_19">Example</h6>
 <div class="paragraph">
 <p><a href="http://www.ncbi.nlm.nih.gov/pubmed/18650932">PMID 18650932</a> - siRNA knockdown of the atypical PKC-interacting protein Par-4 (PAWR) increases phosphorlyation of AKT at Serine 473 in both human 293 and A549 cells.</p>
 </div>
@@ -4311,7 +4422,7 @@ In this example, DUSP6 RNA is observed to be upregulated in immortalized human b
 <p>BEL terms for <a href="#_protein_modifications">post-translational modifications</a> of proteins specify the type of modification, the modified amino acid, and the position of the modified amino acid. The modified amino acid and position are not required, so protein modifications can be represented with less specific information.</p>
 </div>
 <div class="sect5">
-<h6 id="__em_example_em_2"><em>Example</em></h6>
+<h6 id="_example_20">Example</h6>
 <div class="paragraph">
 <p>Human AKT1 protein modified by phosphorylation at serine 473</p>
 </div>
@@ -4345,7 +4456,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_example_em_3"><em>Example</em></h6>
+<h6 id="_example_21">Example</h6>
 <div class="paragraph">
 <p>Recommended:</p>
 </div>
@@ -4452,7 +4563,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 </div>
 </div>
 <div class="sect4">
-<h5 id="__a_id_xmultphosphforprotein_a_how_do_i_represent_a_situation_where_multiple_phosphorylations_are_required_for_a_protein_s_activity"><a id="Xmultphosphforprotein"></a> How do I represent a situation where multiple phosphorylations are required for a protein&#8217;s activity?</h5>
+<h5 id="Xmultphosphforprotein">How do I represent a situation where multiple phosphorylations are required for a protein&#8217;s activity?</h5>
 <div class="paragraph">
 <p>In many cases two or more distinct modifications are required simultaneously for protein activity, and neither modification alone is sufficient. For example, MAPK3 must be phosphorylated at two sites, Threonine 202 and Tyrosine 204, to be active. Our general practice is to take the simple, most general approach, and model the effect of each site separately:</p>
 </div>
@@ -4499,7 +4610,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 </div>
 </div>
 <div class="sect4">
-<h5 id="__a_id_xremovalofproteinmod_a_how_do_i_represent_removal_of_a_protein_modification_e_g_dephosphorylation_deubiquitination"><a id="Xremovalofproteinmod"></a> How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?</h5>
+<h5 id="Xremovalofproteinmod">How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?</h5>
 <div class="paragraph">
 <p>Removal of a specific protein modification is represented simply as a decrease in the abundance of the modified protein.</p>
 </div>
@@ -4572,7 +4683,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 <div class="sect4">
 <h5 id="_when_and_why_should_i_use_a_reaction_term">When and why should I use a reaction term?</h5>
 <div class="sect5">
-<h6 id="__em_when_em_should_i_use_a_reaction_term"><em>When</em> should I use a reaction term?</h6>
+<h6 id="_when_should_i_use_a_reaction_term">When_ should I use a reaction term</h6>
 <div class="paragraph">
 <p>Reaction terms allow the representation of a transformation of a list of reactants into a list of products. In this example, the superoxide dismutase SOD1 converts superoxide to hydrogen peroxide:</p>
 </div>
@@ -4586,7 +4697,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_why_em_should_i_use_a_reaction_term"><em>Why</em> should I use a reaction term?</h6>
+<h6 id="_why_should_i_use_a_reaction_term">Why_ should I use a reaction term</h6>
 <div class="paragraph">
 <p>It is possible to represent the above reaction with separate statements linking the activity of SOD1 to decreased abundances of the reactants and increased abundances of the products:</p>
 </div>
@@ -4624,7 +4735,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 </table>
 </div>
 <div class="sect5">
-<h6 id="__em_examples_em"><em>Examples</em></h6>
+<h6 id="_examples_10">Examples</h6>
 <div class="paragraph">
 <p>EPOR physically interacts with CSF2RB, the common beta-receptor (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=15456912">PMID 15456912</a>)</p>
 </div>
@@ -4668,7 +4779,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 <p>Protein families can be used to represent protein abundances in cases where the information presented by the source does not allow identification of the specific protein. For example:</p>
 </div>
 <div class="sect5">
-<h6 id="__em_example_1_em"><em>Example 1:</em></h6>
+<h6 id="_example_1">Example 1:</h6>
 <div class="paragraph">
 <p>"Akt physically associates with MDM2 and phosphorylates it at Ser166 and Ser186." (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=11715018">PMID 11715018</a>)</p>
 </div>
@@ -4687,7 +4798,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_example_2_em"><em>Example 2:</em></h6>
+<h6 id="_example_2_2">Example 2:</h6>
 <div class="paragraph">
 <p>"We show that Siah2 is subject to phosphorylation by p38 MAPK &#8230;&#8203; Phosphopeptide mapping identified T24 and S29 as the primary phospho-acceptor sites." (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=17003045">PMID 17003045</a>)</p>
 </div>
@@ -4706,7 +4817,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="__em_example_3_em"><em>Example 3:</em></h6>
+<h6 id="_example_3_2">Example 3:</h6>
 <div class="paragraph">
 <p>"Hip encodes a membrane glycoprotein that binds to all three mammalian Hedgehog proteins." (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=10050855">PMID 10050855</a>)</p>
 </div>
@@ -4795,7 +4906,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.0<br>
-Last updated 2016-04-11 16:10:23 EDT
+Last updated 2016-04-12 11:14:02 EDT
 </div>
 </div>
 </body>

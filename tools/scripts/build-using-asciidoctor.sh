@@ -9,7 +9,7 @@ if [ $EXIT_CODE -ne 0 ]; then
     echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 fi
 
-asciidoctor -a stylesheet=../tools/asciidoctor-stylesheets/foundation.css version_2.0/bel_specification_version_2.0.adoc
+
 EXIT_CODE=$?
 if [ $EXIT_CODE -ne 0 ]; then
     # error with v2.0
@@ -37,3 +37,8 @@ if [ $EXIT_CODE -ne 0 ]; then
 fi
 
 exit $EXIT_CODE
+
+
+
+# New code to convert to html: 
+# asciidoctor -a stylesheet=openbel-custom.css -a stylesdir=. bel_specification_version_2.0.adoc 

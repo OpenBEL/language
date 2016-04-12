@@ -3,6 +3,9 @@ Natalie Catlett <ncatlett@selventa.com>
 v2.0, 2014-06
 :toc: right
 :toclevels: 4
+:stylesdir: /asciidoctor-stylesheets/
+:stylesheet: openbel-custom.css
+:linkcss:
 
 This is the home of the BEL Language Documentation v2.0.
 
@@ -92,7 +95,6 @@ http://wiki.openbel.org/display/BLVD/Terms[BEL Terms] are composed of BEL Functi
 http://wiki.openbel.org/display/BLVD/Annotations[BEL Annotations] are applied to BEL Statements to optionally express additional information about the statement itself such as the citation for the publication reporting the observation, or the context in which the observation was made (e.g., species, tissue, cell line).
 
 
-[[Namespaces]]
 === Namespaces
 
 BEL is specifically designed to adopt external vocabularies and ontologies, and represent life-science knowledge in the language and schema of the organization collecting or using the knowledge. Thus, BEL Terms are defined by reference to concepts in external vocabularies, which provide a set of well-known domain values, such as the official human gene symbols provided by HGNC (http://www.genenames.org/[http://www.genenames.org/]) . While we consider it good practice to define biological entities with respect to well-defined domains such as public ontologies, no specific vocabulary is essential to the use of BEL, and users are free to define and reference their own vocabularies as needed.
@@ -194,7 +196,8 @@ This section provides a listing and explanation of all BEL functions that are in
 
 The following BEL Functions represent classes of abundances of specific types of biological entities like RNAs, proteins, post-translationally modified proteins, and small molecules. Biological experiments frequently involve the manipulation and measurement of entities in samples. These BEL functions specify the type of entity referred to by a namespace value. For example,`geneAbundance(HGNC:AKT1)`, `rnaAbundance(HGNC:AKT1)`, and `proteinAbundance(HGNC:AKT1)`, represent the abundances of the AKT1 gene, RNA, and protein, respectively.
 
-==== [[Xabundancea]] abundance(), a()
+[[Xabundancea]]
+==== abundance(), a()
 
 `abundance(ns:v)` or `a(ns:v)` denotes the abundance of the entity designated by the value `v` in the namespace `ns`. abundance is a general abundance term that can be used for chemicals or other molecules not defined by a more specific abundance function. Gene, RNA, protein, and microRNA abundances should be represented using the appropriate specific abundance function.
 
@@ -204,7 +207,8 @@ The following BEL Functions represent classes of abundances of specific types of
  a(CHEBI:"oxygen atom")
  a(CHEBI:thapsigargin)
 
-==== [[XcomplexA]] complexAbundance(), complex()
+[[XcomplexA]]
+==== complexAbundance(), complex()
 
 The `complexAbundance()` or `complex()` function can be used with either a namespace value or with a list of abundance terms.
 
@@ -222,7 +226,9 @@ The `complexAbundance()` or `complex()` function can be used with either a names
 
  complex(p(HGNC:FOS), p(HGNC:JUN))
 
-==== [[XcompositeA]] compositeAbundance(), composite()
+
+[[XcompositeA]]
+==== compositeAbundance(), composite()
 
 The `compositeAbundance(<abundance term list>)` function takes a list of abundance terms.
 The `compositeAbundance()` or `composite()` function is used to represent cases where multiple abundances synergize to produce an effect. The list is unordered, thus different orderings of the arguments should be interpreted as the same term. This function should not be used if any of the abundances alone are reported to cause the effect. `compositeAbundance()` terms should be used only as subjects of statements, not as objects.
@@ -234,7 +240,9 @@ The `compositeAbundance()` or `composite()` function is used to represent cases 
 
 In the above example, IL-6 and IL-23 synergistically induce Th17 differentiation.
 
-==== [[XgeneA]] geneAbundance(), g()
+
+[[XgeneA]]
+==== geneAbundance(), g()
 
 `geneAbundance(ns:v)` or `g(ns:v)` denotes the abundance of the gene designated by the value v in the namespace ns. `geneAbundance()` terms are used to represent the DNA encoding the specified gene. `geneAbundance()` is considered decreased in the case of a homozygous or heterozygous gene deletion, and increased in the case of a DNA amplification mutation. Events in which a protein binds to the promoter of a gene can be represented using the `geneAbundance()` function.
 
@@ -245,7 +253,8 @@ In the above example, IL-6 and IL-23 synergistically induce Th17 differentiation
 
 In the above example, the p53 protein binds the CDKN1A gene.
 
-==== [[XmicroRNAA]] microRNAAbundance(), m()
+[[XmicroRNAA]]
+==== microRNAAbundance(), m()
 
 `microRNAAbundance(ns:v)` or `m(ns:v)` denotes the abundance of the processed, functional microRNA designated by the value +v+ in the namespace +ns+.
 
@@ -254,7 +263,9 @@ In the above example, the p53 protein binds the CDKN1A gene.
 
  m(HGNC:MIR21)
 
-==== [[XproteinA]] proteinAbundance(), p()
+
+[[XproteinA]]
+==== proteinAbundance(), p()
 
 `proteinAbundance(ns:v)` or `p(ns:v)` denotes the abundance of the protein designated by the value +v+ in the namespace +ns+, where +v+ references a gene or a named protein family.
 
@@ -264,7 +275,8 @@ In the above example, the p53 protein binds the CDKN1A gene.
  p(HGNC:AKT1)
  p(SFAM:"AKT Family")
 
-==== [[XrnaA]] rnaAbundance(), r()
+[[XrnaA]]
+==== rnaAbundance(), r()
 
 `rnaAbundance(ns:v)` or `r(ns:v)` denotes the abundance of the RNA designated by the value v in the namespace +ns+, where +v+ references a gene. This function refers to all RNA designated by +ns:v+, regardless of splicing, editing, or polyadenylation stage.
 
@@ -562,7 +574,8 @@ The following BEL Functions represent classes of events or phenomena taking plac
  pathology(MESHD:"Pulmonary Disease, Chronic Obstructive")
  pathology(MESHD:adenocarcinoma)
 
-==== [[Xactivity]] activity(), act()
+[[Xactivity]]
+==== activity(), act()
 
 `activity(<abundance>)` or `act(<abundance)` is used to specify events resulting from the molecular activity of an abundance. The `activity()` function provides distinct terms that enable differentiation of the increase or decrease of the molecular activity of a protein from changes in the abundance of the protein. `activity()` can be applied to a protein, complex, or RNA abundance term, and modified with a http://wiki.openbel.org/display/BLVD/Process+Modifier+Function#ProcessModifierFunction-ma()[molecularActivity()] argument to indicate a specific type of molecular activity.
 
@@ -574,7 +587,8 @@ The following BEL Functions represent classes of events or phenomena taking plac
 === Process Modifier Function
 
 
-==== [[XmolecularA]] molecularActivity(), ma()
+[[XmolecularA]]
+==== molecularActivity(), ma()
 
 `molecularActivity(ns:v)` or `ma(ns:v)` is used to denote a specific type of activity function within an `activity()` term.
 
@@ -699,7 +713,8 @@ The most used BEL relationships should be the <<Causal Relationships, causal>> a
 
 These relationship types denote a causal relationship, or the absence of a causal relationship between a subject and an object term.
 
-==== [[Xincreases]] increases, ->
+[[Xincreases]]
+==== increases, ->
 
 For terms A and B, `A increases B` or `A -> B` indicate that increases in A have been observed to cause increases in B.
 
@@ -709,11 +724,13 @@ A is a BEL Term and B is either a BEL Term or a BEL Statement.
 
 The `increases` relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.
 
-==== [[XdIncreases]] directlyIncreases, =>
+[[XdIncreases]]
+==== directlyIncreases, =>
 
 For terms A and B, `A directlyIncreases B` or `A => B` indicates that increases in A have been observed to cause increases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <<Direct Relationships, direct>> version of the increases relationship.
 
-==== [[Xdecreases]] decreases, -|
+[[Xdecreases]]
+==== decreases, -|
 
 For terms A and B, `A decreases B` or `A -| B` indicate that increases in A have been observed to cause decreases in B.
 
@@ -723,7 +740,8 @@ A is a BEL Term and B is either a BEL Term or a BEL Statement.
 
 The `decreases` relationship does not indicate that the changes in A are either necessary for changes in B, nor does it indicate that changes in A are sufficient to cause changes in B.
 
-==== [[XdDecreases]] directlyDecreases, =|
+[[XdDecreases]]
+==== directlyDecreases, =|
 
 For terms A and B, `A directlyDecreases B` or `A =| B` indicates that increases in A have been observed to cause decreases in B and that the mechanism of the causal relationship is based on physical interaction of entities related to A and B. This is a <<Direct Relationships, direct>> version of the decreases relationship.
 
@@ -742,7 +760,8 @@ The catalytic activity of HMG CoA reductase is a rate-limiting step for choleste
 
  act(p(HGNC:HMGCR), ma(cat)) rateLimitingStepOf bp(GOBP:"cholesterol biosynthetic process")
 
-==== [[Xcnc]] causesNoChange, cnc
+[[Xcnc]]
+==== causesNoChange, cnc
 
 For terms A and B, `A causesNoChange B` or `A cnc B` indicate that B was observed not to change in response to changes in A.
 
@@ -800,22 +819,22 @@ Self-referential causal relationships are generally represented as direct. For e
 [[XcorRels]]
 === Correlative Relationships
 
- These relationship types link abundances and biological processes when no causal relationship is known. The order of subject and object terms does not matter in a statement with a correlative relationship, unlike a statement with a causal relationship.
+These relationship types link abundances and biological processes when no causal relationship is known. The order of subject and object terms does not matter in a statement with a correlative relationship, unlike a statement with a causal relationship.
 
 [[XnegCor]]
 ==== negativeCorrelation, neg
 
- For terms A and B, `A negativeCorrelation B` or `A neg B` indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus `B negativeCorrelation A` is equivalent to `A negativeCorrelation B`.
+For terms A and B, `A negativeCorrelation B` or `A neg B` indicates that changes in A and B have been observed to be negatively correlated. The order of the subject and object does not affect the interpretation of the statement, thus `B negativeCorrelation A` is equivalent to `A negativeCorrelation B`.
 
 [[XposCor]]
 ==== positiveCorrelation, pos
 
- For terms A and B, `A positiveCorrelation B` or `A pos B` indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus `B positiveCorrelation A` is equivalent to `A positiveCorrelation B`.
+For terms A and B, `A positiveCorrelation B` or `A pos B` indicates that changes in A and B have been observed to be positively correlated. The order of the subject and object does not affect the interpretation of the statement, thus `B positiveCorrelation A` is equivalent to `A positiveCorrelation B`.
 
 [[Xassociation]]
 ==== association, --
 
- For terms A and B, `A association B` or `A -- B` indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like `increases` or `positiveCorrelation`. The order of the subject and object does not affect the interpretation of the statement, thus `B -- A` is equivalent to `A -- B`.
+For terms A and B, `A association B` or `A -- B` indicates that A and B are associated in an unspecified manner. This relationship is used when not enough information about the association is available to describe it using more specific relationships, like `increases` or `positiveCorrelation`. The order of the subject and object does not affect the interpretation of the statement, thus `B -- A` is equivalent to `A -- B`.
 
 === Genomic Relationships
 
@@ -996,19 +1015,20 @@ The general abundance function `<<Xabundancea, abundance()>>` is used to represe
 
 ====== Examples
 
-====== _Long Form_
+====== Long Form
 
  abundance(CHEBI:"nitrogen atom")
  abundance(CHEBI:"prostaglandin J2")
 
-====== _Short Form_
+====== Short Form
 
  a(CHEBI:"nitrogen atom")
  a(CHEBI:"prostaglandin J2")
 
 These BEL Terms represent the abundance of the entities specified by _nitrogen atom_ and by _prostaglandin J2_ in the CHEBI namespace.
 
-===== [[Xgenesrnasproteins]] Genes, RNAs, and proteins
+[[Xgenesrnasproteins]]
+====== Genes, RNAs, and proteins
 
 The abundance functions `<<XgeneA, geneAbundance()>>`, `<<XrnaA, rnaAbundance()>>`, and `<<XproteinA, proteinAbundance()>>` are used with namespace values like HGNC human gene symbols, EntrezGene IDs, SwissProt accession numbers to designate the type of molecule represented.
 
@@ -1016,13 +1036,13 @@ The abundance functions `<<XgeneA, geneAbundance()>>`, `<<XrnaA, rnaAbundance()>
 
 Abundances of the gene, RNA, and protein encoded by the human AKT1 gene are represented as:
 
-====== _Long Form_
+====== Long Form
 
  geneAbundance(HGNC:AKT1)
  rnaAbundance(HGNC:AKT1)
  proteinAbundance(HGNC:AKT1)
 
-====== _Short Form_
+====== Short Form
 
  g(HGNC:AKT1)
  r(HGNC:AKT1)
@@ -1035,7 +1055,7 @@ These BEL Terms represent the gene, RNA, and protein abundances of the entity sp
 
 The BEL Framework identifies and merges corresponding terms created using different namespaces into a single term through namespace equivalencing.
 
-===== Protein families
+====== Protein families
 
 Protein families are used to represent a group of functionally similar proteins. For example, AKT1, AKT2, and AKT3 together form the AKT family. Like other proteins, abundances of protein families are represented using the `<<XproteinA, proteinAbundance()>>` function, with namespace values from the Selventa named protein families namespace.
 
@@ -1045,7 +1065,7 @@ This term represents the protein abundance of the AKT protein family.
 
  p(SFAM:"AKT Family")
 
-===== microRNAs
+====== microRNAs
 
 The abundance function `<<XmicroRNAA, microRNAAbundance()>>` is used to represent the fully processed, active form of a microRNA. The specific abundance functions allow distinct representations of the gene, RNA, and microRNA abundances for a given namespace value.
 
@@ -1053,19 +1073,19 @@ The abundance function `<<XmicroRNAA, microRNAAbundance()>>` is used to represen
 
 These BEL Terms represent the abundances of the gene, RNA, and processed microRNA, respectively, for the entity specified by _Mir21_ in the MGI mouse gene symbol namespace.
 
-====== _Long Form_
+====== Long Form
 
  geneAbundance(MGI:Mir21)
  rnaAbundance(MGI:Mir21)
  microRNAAbundance(MGI:Mir21)
 
-====== _Short Form_
+====== Short Form
 
  g(MGI:Mir21)
  r(MGI:Mir21)
  m(MGI:Mir21)
 
-===== Complexes
+====== Complexes
 
 The abundances of molecular complexes are represented using the `<<XcomplexA, complexAbundance()>>` function. This function can take either a list of abundance terms or a value from a namespace of molecular complexes as its argument.
 
@@ -1073,17 +1093,17 @@ The abundances of molecular complexes are represented using the `<<XcomplexA, co
 
 Both BEL Terms represent the IkappaB kinase complex. The first by referencing a named protein complex within the http://geneontology.org/page/cellular-component-ontology-guidelines[GO Cellular Component namespace], and the second by enumerating the individual protein abundances that compose the IkappaB kinase complex, CHUK, IKBKB, and IKBKG.
 
-====== _Long Form_
+====== Long Form
 
  complexAbundance(GOCC:"IkappaB kinase complex")
  complexAbundance(proteinAbundance(HGNC:CHUK), proteinAbundance(HGNC:IKBKB), proteinAbundance(HGNC:IKBKG))
 
-====== _Short Form_
+====== Short Form
 
  complex(GOCC:"IkappaB kinase complex")
  complex(p(HGNC:CHUK), p(HGNC:IKBKB), p(HGNC:IKBKG))
 
-===== Composite abundances
+====== Composite abundances
 
 Multiple abundance terms can be represented together as the subject of a BEL Statement by using the `<<XcompositeA, compositeAbundance()>>` function. This function takes a list of abundances as its argument and is used when the individual abundances do not act alone, but rather synergize to produce an effect.
 
@@ -1091,11 +1111,11 @@ Multiple abundance terms can be represented together as the subject of a BEL Sta
 
 This term represents the combined abundances of TGFB1 and IL6 proteins.
 
-====== _Long Form_
+====== Long Form
 
  compositeAbundance(proteinAbundance(HGNC:TGFB1), proteinAbundance(HGNC:IL6))
 
-====== _Short Form_
+====== Short Form
 
  composite(p(HGNC:TGFB1), p(HGNC:IL6))
 
@@ -1116,11 +1136,11 @@ Term activity functions are applied to protein, complex, and RNA abundances to s
 
 If the type of molecular activity is not reported, it does not need to be specified. The `activity()` function is sufficient for distinguishing the frequency of events mediated by an abundance from the amount of the abundance. This term represents the ligand-bound activity of the human non-catalytic receptor protein TLR7.
 
-====== _Long Form_
+====== Long Form
 
  activity(proteinAbundance(HGNC:TLR7))
 
-====== _Short Form_
+====== Short Form
 
  act(p(HGNC:TLR7))
 
@@ -1130,19 +1150,19 @@ A protein, complex, or ribozymes has catalytic activity when it acts as an enzym
 
 This term represents the frequency of events in which the protein abundance of rat Sod1 acts as a catalyst.
 
-====== _Long Form - default BEL namespace_
+====== Long Form - default BEL namespace
 
  activity(proteinAbundance(RGD:Sod1), ma(cat))
 
-====== _Long Form - GO Molecular Function (GOMF) namespace_
+====== Long Form - GO Molecular Function (GOMF) namespace
 
  activity(proteinAbundance(RGD:Sod1), molecularActivity(GOMF:"catalytic activity"))
 
-====== _Short Form - default BEL namespace_
+====== Short Form - default BEL namespace
 
  act(p(RGD:Sod1), ma(cat))
 
-====== _short Form - GO Molecular Function namespace_
+====== short Form - GO Molecular Function namespace
 
  act(p(RGD:Sod1), ma(GOMF:"catalytic activity"))
 
@@ -1150,19 +1170,19 @@ This term represents the frequency of events in which the protein abundance of r
 
 This term represents the frequency of events in which the protein abundance of mouse Casp3 acts as a peptidase.The more specific GO Molecular Function term "cysteine-type endopeptidase activity" is also applicable.
 
-====== _Long Form - default BEL namespace_
+====== Long Form - default BEL namespace
 
  activity(proteinAbundance(MGI:Casp3), molecularActivity(pep))
 
-====== _Long Form - GO Molecular Function namespace_
+====== Long Form - GO Molecular Function namespace
 
  activity(proteinAbundance(MGI:Casp3), molecularActivity(GOMF:"peptidase activity"))
 
-====== _Short Form - default BEL namespace_
+====== Short Form - default BEL namespace
 
  act(p(MGI:Casp3), ma(pep))
 
-====== _Short Form - GO Molecular Function namespace_
+====== Short Form - GO Molecular Function namespace
 
  act(p(MGI:Casp3), ma(GOMF:"peptidase activity"))
 
@@ -1170,19 +1190,19 @@ This term represents the frequency of events in which the protein abundance of m
 
 The activity of guanine nucleotide-binding proteins (G-proteins) like RAS in the active, GTP-bound state. This term represents the frequency of events caused by the active, GTP-bound form of the RAS protein family.
 
-====== _Long Form - default BEL namespace_
+====== Long Form - default BEL namespace
 
  activity(proteinAbundance(SFAM:"RAS Family"), molecularActivity(gtp))
 
-====== _Long Form - GO Molecular Function namespace_
+====== Long Form - GO Molecular Function namespace
 
  activity(proteinAbundance(SFAM:"RAS Family"), molecularActivity(GOMF:"GTP binding"))
 
-====== _Short Form - default BEL namespace_
+====== Short Form - default BEL namespace
 
  act(p(SFAM:"RAS Family"), ma(gtp))
 
-====== _Short Form - GO Molecular Function namespace_
+====== Short Form - GO Molecular Function namespace
 
  act(p(SFAM:"RAS Family"), ma(GOMF:"GTP binding"))
 
@@ -1190,19 +1210,19 @@ The activity of guanine nucleotide-binding proteins (G-proteins) like RAS in the
 
 Molecular translocation events mediated by transporter proteins like ion channels or glucose transporters. This term represents the frequency of ion transport events mediated by the epithelial sodium channel (ENaC) complex.
 
-====== _Long Form - default BEL namespace_
+====== Long Form - default BEL namespace
 
  activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(tport))
 
-====== _Long Form - GO Molecular Function namespace_
+====== Long Form - GO Molecular Function namespace
 
  activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(GOMF:"transporter activity"))
 
-====== _Short Form - default BEL namespace_
+====== Short Form - default BEL namespace
 
  act(complex(NCH:"ENaC Complex"), ma(tport))
 
-====== _Short Form - GO Molecular Function namespace_
+====== Short Form - GO Molecular Function namespace
 
  act(complex(NCH:"ENaC Complex"), ma(GOMF:"transporter activity"))
 
@@ -1210,11 +1230,11 @@ Molecular translocation events mediated by transporter proteins like ion channel
 
 This term represents the events in which the human Calnexin protein functions as a chaperone to aid the folding of other proteins.
 
-====== _Long Form - default BEL namespace_
+====== Long Form - default BEL namespace
 
  activity(proteinAbundance(HGNC:CANX), molecularActivity(chap))
 
-====== _Short Form - default BEL namespace_
+====== Short Form - default BEL namespace
 
  act(p(HGNC:CANX), ma(chap))
 
@@ -1222,19 +1242,19 @@ This term represents the events in which the human Calnexin protein functions as
 
 Events in which a protein or molecular complex acts to directly control transcription, including proteins acting directly as transcription factors, as well as transcriptional co-activators and co-repressors. This term represents the frequency of events in which the mouse p53 protein controls RNA expression.
 
-====== _Long Form - default BEL namespace_
+====== Long Form - default BEL namespace
 
  activity(proteinAbundance(MGI:Trp53), molecularActivity(tscript))
 
-====== _Long Form - GO Molecular Function Namespace_
+====== Long Form - GO Molecular Function Namespace
 
  activity(proteinAbundance(MGI:Trp53), molecularActivity(GOMF:"nucleic acid binding transcription factor activity"))
 
-====== _Short Form - default BEL namespace_
+====== Short Form - default BEL namespace
 
  act(p(MGI:Trp53), ma(tscript))
 
-====== _Long Form - GO Molecular Function Namespace_
+====== Long Form - GO Molecular Function Namespace
 
  act(p(MGI:Trp53), ma(GOMF:"nucleic acid binding transcription factor activity"))
 
@@ -1253,7 +1273,7 @@ The `<<XcomplexA, complexAbundance()>>` function can be used to specify molecula
 
 This statement represents that MTOR and AKT1S1 proteins physically interact. Note that this statement has only an object term and no subject term and relationship.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Nat Cell Biol 2007 Mar 9(3) 316-23", "17277771"}
 
@@ -1264,7 +1284,7 @@ This statement represents that MTOR and AKT1S1 proteins physically interact. Not
 
  complexAbundance(proteinAbundance(HGNC:AKT1S1), proteinAbundance(HGNC:MTOR))
 
-====== _Short Form_
+====== Short Form
 
  complex(p(HGNC:AKT1S1), p(HGNC:MTOR))
 
@@ -1272,7 +1292,7 @@ This statement represents that MTOR and AKT1S1 proteins physically interact. Not
 
 Here, a protein-protein interaction is the object of a BEL Statement.This statement expresses that the MTOR and STAT3 proteins associate and that increases in the protein abundance of BMP4 can increase the abundance of the complex comprised of MTOR and STAT3.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "J Cell Biol. 2003 Jun 9;161(5):911-21.", "12796477"}
 
@@ -1282,7 +1302,7 @@ Here, a protein-protein interaction is the object of a BEL Statement.This statem
 
  proteinAbundance(HGNC:BMP4) increases complexAbundance(proteinAbundance(HGNC:MTOR), proteinAbundance(HGNC:STAT3))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:BMP4) -> complex(p(HGNC:MTOR), p(HGNC:STAT3))
 
@@ -1292,7 +1312,7 @@ Here, a protein-protein interaction is the object of a BEL Statement.This statem
 
 This statement expresses that STAT3 protein binds to the CCL11 gene DNA, and that this association is increased by IL17A.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "J Immunol 2009 Mar 15 182(6) 3357-65", "19265112"}
 
@@ -1302,7 +1322,7 @@ This statement expresses that STAT3 protein binds to the CCL11 gene DNA, and tha
  proteinAbundance(HGNC:IL17A) increases \
   complexAbundance(proteinAbundance(HGNC:STAT3), geneAbundance(HGNC:CCL11))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:IL17A) -> complex(p(HGNC:STAT3), g(HGNC:CCL11))
 
@@ -1312,7 +1332,7 @@ This statement expresses that STAT3 protein binds to the CCL11 gene DNA, and tha
 
 This statement represents that PIP3 binds AKT1 protein.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Breast Cancer Res 2005 7(4) R394-401", "15987444"}
 
@@ -1322,7 +1342,7 @@ This statement represents that PIP3 binds AKT1 protein.
 
  complexAbundance(abundance(CHEBI:"1-phosphatidyl-1D-myo-inositol 3,4,5-trisphosphate"), proteinAbundance(HGNC:AKT1))
 
-====== _Short Form_
+====== Short Form
 
  complex(a(CHEBI:"1-phosphatidyl-1D-myo-inositol 3,4,5-trisphosphate"), p(HGNC:AKT1))
 
@@ -1339,11 +1359,11 @@ Biological phenomena that occur at the level of the cell or the organism are con
 
 Cellular senescence can be represented by:
 
-====== _Long Form_
+====== Long Form
 
  biologicalProcess(GOBP:"cellular senescence")
 
-====== _Short Form_
+====== Short Form
 
  bp(GOBP:"cellular senescence")
 
@@ -1351,11 +1371,11 @@ Cellular senescence can be represented by:
 
 Disease pathologies like muscle hypotonia can be represented by:
 
-====== _Long Form_
+====== Long Form
 
  pathology(MESHD:"Muscle Hypotonia")
 
-====== _Short Form_
+====== Short Form
 
  path(MESHD:"Muscle Hypotonia")
 
@@ -1376,11 +1396,11 @@ The `proteinModification()` or `pmod()` function is used within a protein abunda
 
 This term represents the abundance of human HIF1A protein hydroxylated at asparagine 803.
 
-====== _Long Form_
+====== Long Form
 
  proteinAbundance(HGNC:HIF1A, proteinModification(Hy, Asn, 803))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:HIF1A, pmod(Hy, N, 803))
 
@@ -1415,7 +1435,8 @@ This term represents the abundance of human MYC protein ubiquitinated at an unsp
  p(HGNC:MYC, pmod(Ub, Lys))
 
 
-===== [[Xtte]] Transformation Term Examples (Reactions, Translocations, Degradation)
+[[Xtte]]
+===== Transformation Term Examples (Reactions, Translocations, Degradation)
 
 * <<Reactions>>
 * <<Translocations>>
@@ -1429,12 +1450,12 @@ The `reaction()` or `rxn()` function expresses the transformation of products in
 
 This BEL Term represents the reaction in which the reactants phosphoenolpyruvate and ADP are converted into pyruvate and ATP.
 
-====== _Long Form_
+====== Long Form
 
  reaction(reactants(abundance(CHEBI:phosphoenolpyruvate), abundance(CHEBI:ADP)),\
   products(abundance(CHEBI:pyruvate), abundance(CHEBI:ATP)))
 
-====== _Short Form_
+====== Short Form
 
  rxn(reactants(a(CHEBI:phophoenolpyruvate), a(CHEBI:ADP)),\
   products(a(CHEBI:pyruvate), a(CHEBI:ATP)))
@@ -1447,12 +1468,12 @@ Translocations, or the movement of abundances from one location to another, are 
 
 This term represents the event in which human NFE2L2 protein is translocated from the cytoplasm to the nucleus.
 
-====== _Long Form_
+====== Long Form
 
  translocation(proteinAbundance(HGNC:NFE2L2), fromLoc(MESHCS:Cytoplasm), toLoc(MESHCS:"Cell Nucleus"))
 
 
-====== _Short Form_
+====== Short Form
 
  tloc(p(HGNC:NFE2L2), fromLoc(MESHCL:Cytoplasm), toLoc(MESHCL:"Cell Nucleus"))
 
@@ -1461,12 +1482,12 @@ This term represents the event in which human NFE2L2 protein is translocated fro
 
 This term represents secretion of mouse IL6 protein.
 
-====== _Long Form_
+====== Long Form
 
  cellSecretion(proteinAbundance(MGI:Il6))
 
 
-====== _Short Form_
+====== Short Form
 
  sec(p(MGI:Il6))
 
@@ -1475,12 +1496,12 @@ This term represents secretion of mouse IL6 protein.
 
 This term represents cell surface expression of rat Fas protein.
 
-====== _Long Form_
+====== Long Form
 
  cellSurfaceExpression(proteinAbudance(RGD:Fas))
 
 
-====== _Short Form_
+====== Short Form
 
  surf(p(RGD:Fas))
 
@@ -1492,11 +1513,11 @@ Events in which an abundance is degraded can be represented by the `degradation(
 
 This term represents the degradation of MYC RNA. Degradation decreases the amount of the abundance - when degradation statements are compiled, a directlyDecreases relationship edge is added between the degradation term and the degraded entity.
 
-====== _Long Form_
+====== Long Form
 
  degradation(rnaAbundance(HGNC:MYC))
 
-====== _Short Form_
+====== Short Form
 
  deg(r(HGNC:MYC))
 
@@ -1509,49 +1530,49 @@ The abundances of mutated and variant proteins can be represented in BEL using t
 * <<Truncated Proteins>>
 * <<Fusion Proteins>>
 
-===== Amino Acid Substitutions
+====== Amino Acid Substitutions
 
 The abundances of proteins with amino acid sequence variations, such as those resulting from missense mutations or polymorphisms can be specified by using the `variant()` or `var()` function within a protein abundance term.
 
 ====== Example
 
-====== _Long Form_
+====== Long Form
 
  proteinAbundance(HGNC:PIK3CA, variant(p.Glu545Lys))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:PIK3CA, var(p.Glu545Lys))
 
 This term represents the abundance of the human PIK3CA protein in which the glutamic acid residue at position 545 has been substituted with a lysine.
 
-===== Truncated Proteins
+====== Truncated Proteins
 
 The abundances of proteins that are truncated by the introduction of a stop codon can be specified by using the `variant()` or `var()` function within a protein abundance term.
 
 ====== Example
 
-====== _Long Form_
+====== Long Form
 
  proteinAbundance(HGNC:ABCA1, variant(p.Arg1851*))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:ABCA1, var(p.Arg1851*))
 
 This term represents the abundance of human ABCA1 protein that has been truncated by substitution of Arginine 1851 with a stop codon.
 
-===== Fusion Proteins
+====== Fusion Proteins
 
 The abundances of fusion proteins resulting from chromosomal translocation mutations can be specified by using the `fusion()` or `fus()` function within a protein abundance term.
 
 ====== Example
 
-====== _Long Form_
+====== Long Form
 
  proteinAbundance(fusion(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))
 
-====== _Short Form_
+====== Short Form
 
  p(fus(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))
 
@@ -1577,13 +1598,13 @@ Causal statements connect subject and object terms with a causal `<<Xincreases, 
 * <<Causal decrease>>
 * <<Causes no change>>
 
-===== Causal increase
+====== Causal increase
 
 ====== Example
 
 These statements use the causal `<<Xincreases, increases>>` relationship. These statements are annotated with a citation and supporting evidence text, as well as with the cell line and species context for the experimental observations represented by the statements. These two statements represent the observation that increases in IL6 protein abundance cause increases in the RNA abundance of ENO1 and XBP1. These statements are annotated with CellLine and Species to indicate that the experimental observation was made in the context of the cell line "U266" and species "9606" (Homo sapiens).
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Int J Oncol 1999 Jul 15(1) 173-8", "10375612"}
 
@@ -1604,19 +1625,19 @@ These statements use the causal `<<Xincreases, increases>>` relationship. These 
 
  proteinAbundance(HGNC:IL6) increases rnaAbundance(HGNC:XBP1)
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:IL6) -> r(HGNC:ENO1)
 
  p(HGNC:IL6) -> r(HGNC:XBP1)
 
-===== Causal decrease
+====== Causal decrease
 
 ====== Example
 
 This statement demonstrates a causal statement using the `<<Xdecreases, decreases>>` relationship. The statement expresses that increases in the abundance of corticosteroid molecules cause decreases in the frequency or intensity of the biological process inflammation. This statement is annotated with an Anatomy and Disease to indicate that the relationship was observed in the context of the _cardiovascular system_ and the disease _Stroke_.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "J Mol Med. 2003 Mar;81(3):168-74. Epub 2003 Mar 14.", "12682725"}
 
@@ -1631,11 +1652,11 @@ This statement demonstrates a causal statement using the `<<Xdecreases, decrease
 
  abundance(CHEBI:corticosteroid) decreases biologicalProcess(MESHD:Inflammation)
 
-====== _Short Form_
+====== Short Form
 
  a(CHEBI:corticosteroid) -| path(MESHD:Inflammation)
 
-===== Causes no change
+====== Causes no change
 
 The `<<Xcnc, causesNoChange>>` relationship can be used to record the lack of an observed effect.
 
@@ -1643,7 +1664,7 @@ The `<<Xcnc, causesNoChange>>` relationship can be used to record the lack of an
 
 The epidermal growth factor receptor (EGFR) ligand amphiregulin (AREG) is observed to increase NF-kappaB transcriptional activity while the EGFR ligand EGF has no effect.These statements express that an increase of AREG protein abundance causes an observed increase in the transcriptional activity of the NF-kappaB complex, and that an increase EGF does not.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Mol Cancer Res 2007 Aug 5(8) 847-61", "17670913"}
 
@@ -1657,7 +1678,7 @@ The epidermal growth factor receptor (EGFR) ligand amphiregulin (AREG) is observ
 
  proteinAbundance(HGNC:EGF) causesNoChange activity(complexAbundance(GOCC:"NF-kappaB complex"), molecularActivity(tscript))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:AREG) -> act(complex(GOCC:"NF-kappaB complex"), ma(tscript))
 
@@ -1671,7 +1692,7 @@ The epidermal growth factor receptor (EGFR) ligand amphiregulin (AREG) is observ
 * <<negativeCorrelation>>
 * <<XassociationCR, association>>
 
-===== negativeCorrelation
+====== negativeCorrelation
 
 This statement expresses that an increase in cytoplasmic FGF2 protein positively correlates with an increase in the pathology Chronic Obstructive Pulmonary Disease. The subject and object terms of correlative statements are interchangeable. The `<<XnegCor, negativeCorrelation>>` relationship is used to represent inverse correlative relationships, i.e., a decrease in A is correlated with an increase in B.
 
@@ -1688,13 +1709,14 @@ This statement expresses that an increase in cytoplasmic FGF2 protein positively
  proteinAbundance(HGNC:FGF2, location(GOCC:cytoplasm)) positiveCorrelation \
   pathology(MESHD:"Pulmonary Disease, Chronic Obstructive")
 
-===== [[XassociationCR]] association
+[[XassociationCR]]
+====== association
 
 The direction of causal effect or correlation of two abundance or biological process terms is not always specified. The `<<Xassociation, association>>` relationship can be used in these cases.
 
 This statement represents that abundance of protein designated by the name Nr2f2 in the MGI namespace is associated in an unspecified manner with the biological process angiogenesis.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Mech Ageing Dev. 2004 Oct-Nov;125(10-11):719-32.", "15541767"}
 
@@ -1706,7 +1728,7 @@ This statement represents that abundance of protein designated by the name Nr2f2
 
  proteinAbundance(MGI:Nr2f2) association biologicalProcess(GOBP:angiogenesis)
 
-====== _Short Form_
+====== Short Form
 
  p(MGI:NR2F2) -- bp(GOBP:angiogenesis)
 
@@ -1723,11 +1745,11 @@ The following examples demonstrate the use of <<Direct causal relationships, dir
 * <<Example - Direct Transcriptional Control>>
 
 
-===== Example - Ligand and Receptor
+====== Example - Ligand and Receptor
 
 In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used to represent activation of a receptor by its ligand. This statement expresses that amphiregulin (AREG) activates its receptor, the Epidermal Growth Factor Receptor (EGFR). This relationship is direct because ligands directly interact with their receptors.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Mol Cancer Res 2007 Aug 5(8) 847-61", "17670913"}
 
@@ -1739,15 +1761,15 @@ In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used t
 
  proteinAbundance(HGNC:AREG) directlyIncreases activity(proteinAbundance(HGNC:EGFR), molecularActivity(kin))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:AREG) => act(p(HGNC:EGFR), ma(kin))
 
-===== Example - Kinase and Substrate
+====== Example - Kinase and Substrate
 
 In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used to represent the phosphorylation of a protein substrate by a kinase. This statement expresses that the kinase activity of CDK1 protein causes an increase in the modification of FOXO1 protein by phosphorylation at serine 249. The relationship is direct because the kinase physically interacts with its target.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Science 2008 Mar 21 319(5870) 1665-8.", "18356527"}
 
@@ -1757,15 +1779,15 @@ In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used t
  activity(proteinAbundance(HGNC:CDK1), molecularActivity(kin)) directlyIncreases \
   proteinAbundance(HGNC:FOXO1, proteinModification(Ph, Ser, 249))
 
-====== _Short Form_
+====== Short Form
 
  act(p(HGNC:CDK1), ma(kin)) => p(HGNC:FOXO1, pmod(Ph, S, 249))
 
-===== Example - Catalyst and Reaction
+====== Example - Catalyst and Reaction
 
 In this example, the direct activation of a reaction by a catalytic enzyme is represented. The statement indicates that an increase in the catalytic activity of ALOX5 increase the transformation of the reactant '5(S)-HPETE' to the products 'leukotriene A4' and 'water'. The relationship is considered direct because ALOX5 protein is the catalyzing enzyme.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"Other", "Reactome: Leukotriene synthesis", "REACT_15354.1"}
 
@@ -1777,15 +1799,15 @@ In this example, the direct activation of a reaction by a catalytic enzyme is re
   reaction(reactants(abundance(CHEBI:"5(S)-HPETE")), \
   products(abundance(CHEBI:"leukotriene A4"), abundance(CHEBI:water)))
 
-====== _Short Form_
+====== Short Form
 
  act(p(HGNC:ALOX5), ma(cat)) => rxn(reactants(a(CHEBI:"5(S)-HPETE")), products(a(CHEBI:"leukotriene A4"), a(CHEBI:water)))
 
-===== Example - Self-Referential Relationships
+====== Example - Self-Referential Relationships
 
 In this example, the `<<XdDecreases, directlyDecreases>>` relationship is used to represent the effect of a protein modification on the activity of the same protein. These statements express that the modification of GSK3A and GSK3B protein by phosphorylation on serines 9 and 21, respectively, inhibits the activity of GSK3A and GSK3B. These relationships are considered direct, because they are self-referential. The modification of the protein abundance by phosphorylation inhibits the activity of the same protein abundance.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Proc Natl Acad Sci U S A 2000 Oct 24 97(22) 11960-5", "11035810"}
 
@@ -1798,17 +1820,17 @@ In this example, the `<<XdDecreases, directlyDecreases>>` relationship is used t
  proteinAbundance(HGNC:GSK3B, proteinModification(Ph, Ser, 9)) \
   directlyDecreases activity(proteinAbundance(HGNC:GSK3B))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:GSK3A, pmod(Ph, S, 21)) =| act(p(HGNC:GSK3A))
 
  p(HGNC:GSK3B, pmod(Ph, S, 9)) =| act(p(HGNC:GSK3B))
 
-===== Example - Direct Transcriptional Control
+====== Example - Direct Transcriptional Control
 
 In this example, the direct activation of a RNA transcription is encoded. The statement expresses that increases in the transcriptional activity of FOXO1 protein directly increase the RNA abundance of CEBPB. This relationship is considered direct because the transcription factor, FOXO1, directly binds the promoter of the CEBPB gene, increasing the expression of CEBPB RNA.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Biochem Biophys Res Commun. 2009 Jan 9;378(2):290-5. Epub 2008 Nov 21.", "19026986"}
 
@@ -1820,7 +1842,7 @@ In this example, the direct activation of a RNA transcription is encoded. The st
  activity(proteinAbundance(HGNC:FOXO1), molecularActivity(tscript)) \
   directlyIncreases rnaAbundance(HGNC:CEBPB)
 
-====== _Short Form_
+====== Short Form
 
  act(p(HGNC:FOXO1), ma(tscript)) => r(HGNC:CEBPB)
 
@@ -1830,7 +1852,7 @@ In this example, the direct activation of a RNA transcription is encoded. The st
 This example demonstrates use of a nested causal statement in which the object of a causal statement is itself a causal statement.
 In the relationship described by the evidence text, CLSPN specifically increases the activity of ATR to phosphorylate the target protein CHEK1 and does not affect the kinase activity of ATR towards its other targets. The use of the nested statement allows the representation of the information that CLSPN increases the phosphorylation of CHEK1 via the kinase activity of ATR, without incorrectly indicating that CLSPN generally increases the kinase activity of ATR.
 
-====== _Long Form_
+====== Long Form
 
  SET Citation = {"PubMed", "Mol Cell Biol 2006 Aug 26(16) 6056-64.", "16880517"}
 
@@ -1843,7 +1865,7 @@ In the relationship described by the evidence text, CLSPN specifically increases
  proteinAbundance(HGNC:CLSPN) increases \
  (activity(proteinAbundance(HGNC:ATR), molecularActivity(kin)) directlyIncreases proteinAbundance(HGNC:CHEK1, proteinModification(Ph)))
 
-====== _Short Form_
+====== Short Form
 
  p(HGNC:CLSPN) -> (act(p(HGNC:ATR), ma(kin)) => p(HGNC:CHEK1, pmod(Ph)))
 
@@ -1924,7 +1946,7 @@ The BEL Framework adds family members to protein families and complex components
 * <<Protein Family>>
 * <<Complex Component>>
 
-===== Protein Family
+====== Protein Family
 
 In this example, members of a protein family are assigned using the `<<hasMember>>` and `<<hasMembers>>` relationships.
 
@@ -1938,7 +1960,7 @@ The `hasMember` relationship is used to assign individual protein abundances to 
 
  p(SFAM:"MAPK JNK Family") hasMember p(HGNC:MAPK9)
 
-===== Complex Component
+====== Complex Component
 
 In this example components are assigned to a named protein complex using the <<hasComponent>> and <<hasComponents>> relationships.
 
@@ -2006,7 +2028,7 @@ In a case where more information is available, the protein activity targeted by 
 
 The artificial (laboratory) creation of sequence variants is often used to investigate the effects of protein activity or specific post-translational modifications. These include proteins altered to be constitutively active or dominant negative, as well as proteins with specific amino acid residues altered to prevent phosphorylation. While many of these sequence alterations can be precisely represented with BEL, this may not be the best approach to capturing the observations from experiments that use these constructs.
 
-====== _Non-phosphorylatable mutant_
+====== Non-phosphorylatable mutant
 
 In this example, mutation of FOXO1 serine 256 to alanine is used to block phosphorylation at 256 (S256A), a site phosphorylated by AKT. The S256A mutation was found to impair phosphorylation of threonine 24 and serine 319 by AKT (http://www.ncbi.nlm.nih.gov/pubmed?term=11237865[PMID 11237865]).
 We could represent this observation as follows:
@@ -2062,13 +2084,13 @@ Because Hgf binds to and directly activates Met, the effect of Met and Hgf toget
 
 Our general practice is to represent the subject term for experiments where the perturbation is a gene deletion or RNAi knockdown as the abundance of the corresponding protein.
 
-====== _Gene knockouts_
+====== Gene knockouts
 
 In this example, mice with a gene deletion of Nfe2l2 express reduced mRNA of the glutathione S transferase Gsta1 compared to wild-type mice (http://www.ncbi.nlm.nih.gov/pubmed?term=11991805[PMID 11991805]):
 
  p(MGI:Nfe2l2) -> r(MGI:Gsta1)
 
-====== _RNA interference_
+====== RNA interference
 
 In this example, knockdown of PTEN using RNA interference results in increased CDKN1A protein levels (http://www.ncbi.nlm.nih.gov/pubmed?term=17300726[PMID 17300726]):
 
@@ -2100,7 +2122,7 @@ Below are examples of BEL statements for cases where:
 . effects are likely due to an increase or decrease in the activity of the protein, and
 . not enough information is available.
 
-====== _Effects are not due to the catalytic activity of the protein_
+====== Effects are not due to the catalytic activity of the protein
 
 _Example 1._ A mutant telomerase (TERT) protein lacking telomerase activity retains its effects on keratinocyte proliferation (http://www.ncbi.nlm.nih.gov/pubmed/18208333[PMID 18208333]):
 
@@ -2114,7 +2136,7 @@ _Example 2._ The serine-threonine kinase RIPK1 activates NF-kappaB through a mec
 
  act(p(HGNC:RIPK1), ma(kin)) causesNoChange act(p(GOCC:"NF-kappaB complex"), ma(tscript))
 
-====== _Effects are likely due to the activity of the protein_
+====== Effects are likely due to the activity of the protein
 
 _Example._ Genes are differentially expressed in wild-type vs. Met knock out mouse hepatocytes, only after treatment with Hgf, the Met ligand (http://www.ncbi.nlm.nih.gov/pubmed/16710476[PMID 16710476]). These genes include integrins Itgav, Itga3, and Itgb1.
 
@@ -2126,7 +2148,7 @@ _Example._ Genes are differentially expressed in wild-type vs. Met knock out mou
 
 Because both Met and the Met ligand are required for the increase in gene expression, we use the activity of Met as the subject term.
 
-====== _Not enough information is available_
+====== Not enough information is available
 
 _Example._ Genes are differentially expressed in the pancreas of mice with a pancreas-specific beta-catenin deletion (http://www.ncbi.nlm.nih.gov/pubmed/17222338[PMID 17222338]). These include decreased expression of the hedgehog interacting protein Hhip in the knock-out compared to wild-type.
 
@@ -2141,7 +2163,7 @@ In this case, not enough information is available to determine if the change in 
 
 <<Correlative Relationships, Correlative relationships>> are more appropriate than <<Causal Relationships, causal relationships>> to represent observations that do not clearly result from an experimental perturbation. BEL causal relationships include `increases`, `decreases`, `directlyIncreases`, `directlyDecreases`, and `regulates`. Correlative relationships include `positiveCorrelation` and `negativeCorrelation`.
 
-====== _Correlative_
+====== Correlative
 
 If the observation comes from the comparison of human tumors grouped by the occurrence of a specific mutation, then the relationship should generally be expressed as correlative. In this case there is no experimental perturbation.
 In this example, most patient tumor samples with an EGFR L858R mutation were observed to exhibit a reduction in ERBB2 tyrosine 1248 phosphorylation compared to wild-type samples (http://www.ncbi.nlm.nih.gov/pubmed/?term=18687633[PMID 18687633]):
@@ -2150,7 +2172,7 @@ In this example, most patient tumor samples with an EGFR L858R mutation were obs
 
 In this case, no evidence is presented to suggest that the differences in ERBB2 phosphorylation are causally related to the EGFR mutation, only that the two observations are inversely correlated. Note that the subject and object terms are interchangeable for correlative relationships.
 
-====== _Causal_
+====== Causal
 
 If the observation comes from the comparison of experimentally controlled states, like gene deletion, overexpression, or introduction of a mutant allele into a cell line or animal, the experimental perturbation can generally be represented as the subject term of a causal statement.
 In this example, DUSP6 RNA is observed to be upregulated in immortalized human bronchial epithelial cells transfected with EGFR mutant L858R, as compared to WT EGFR (http://www.ncbi.nlm.nih.gov/pubmed/16489012[PMID 16489012]):
@@ -2181,7 +2203,7 @@ Often, the scientific literature reports a relationship as occurring across seve
 
 Our general practice is to represent each observation with a separate statement. Several annotations can be used to describe the same context, e.g., 'lung' and 'fibroblast', but distinct BEL statements should be used to describe each experimental context that the relationship is observed in.
 
-====== _Example_
+====== Example
 
 http://www.ncbi.nlm.nih.gov/pubmed/18650932[PMID 18650932] - siRNA knockdown of the atypical PKC-interacting protein Par-4 (PAWR) increases phosphorlyation of AKT at Serine 473 in both human 293 and A549 cells.
 
@@ -2221,7 +2243,7 @@ Recommended:
 
 BEL terms for <<Protein Modifications, post-translational modifications>> of proteins specify the type of modification, the modified amino acid, and the position of the modified amino acid. The modified amino acid and position are not required, so protein modifications can be represented with less specific information.
 
-====== _Example_
+====== Example
 
 Human AKT1 protein modified by phosphorylation at serine 473
 
@@ -2240,7 +2262,7 @@ As a general rule, if specific information is available, it should be used. In s
 Non-specific protein modification terms have limited value in the context of a knowledge network. For example, phosphorylation at different sites of the same protein can have opposing effects.
 For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 and is targeted for proteasomal degradation" (http://www.ncbi.nlm.nih.gov/pubmed?term=15917664[PMID 15917664])
 
-====== _Example_
+====== Example
 
 Recommended:
 
@@ -2299,7 +2321,8 @@ One exception to our general practice of not specifying protein modifications wi
 In this example, the modification of the histone by trimethylation does not affect its binding to the gene DKK1. In addition, cigarette smoke does not increase or decrease the overall abundance of the modified histone, only the abundance of the modified histone at the DKK1 promoter.
 
 
-===== [[Xmultphosphforprotein]] How do I represent a situation where multiple phosphorylations are required for a protein's activity?
+[[Xmultphosphforprotein]]
+===== How do I represent a situation where multiple phosphorylations are required for a protein's activity?
 
 In many cases two or more distinct modifications are required simultaneously for protein activity, and neither modification alone is sufficient. For example, MAPK3 must be phosphorylated at two sites, Threonine 202 and Tyrosine 204, to be active. Our general practice is to take the simple, most general approach, and model the effect of each site separately:
 
@@ -2325,7 +2348,8 @@ Because the kinase mediating the second phosphorylation is known, this relations
     (kin(p(SFAM:"GSK3 Family")) => p(HGNC:CTNNB1, pmod(Ph, Thr, 41)))
 
 
-===== [[Xremovalofproteinmod]] How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?
+[[Xremovalofproteinmod]]
+===== How do I represent removal of a protein modification (e.g., dephosphorylation, deubiquitination)?
 
 Removal of a specific protein modification is represented simply as a decrease in the abundance of the modified protein.
 
@@ -2368,7 +2392,7 @@ The top statement represents the forward reaction and the bottom statement repre
 
 ===== When and why should I use a reaction term?
 
-====== _When_ should I use a reaction term?
+====== When_ should I use a reaction term
 
 Reaction terms allow the representation of a transformation of a list of reactants into a list of products. In this example, the superoxide dismutase SOD1 converts superoxide to hydrogen peroxide:
 
@@ -2376,7 +2400,7 @@ Reaction terms allow the representation of a transformation of a list of reactan
 
 It is not necessary to include all reactants and products, especially if they are ubiquitous small molecules. In the above example the reactant hydrogen and product oxygen have been omitted from the reaction.
 
-====== _Why_ should I use a reaction term?
+====== Why_ should I use a reaction term
 
 It is possible to represent the above reaction with separate statements linking the activity of SOD1 to decreased abundances of the reactants and increased abundances of the products:
 
@@ -2399,7 +2423,7 @@ The order in which the members of the complex are listed is not important.
 
 ====
 
-====== _Examples_
+====== Examples
 
 EPOR physically interacts with CSF2RB, the common beta-receptor (http://www.ncbi.nlm.nih.gov/pubmed?term=15456912[PMID 15456912])
 
@@ -2424,7 +2448,7 @@ The AP-1 transcription complex binds the CCL23 promoter (http://www.ncbi.nlm.nih
 
 Protein families can be used to represent protein abundances in cases where the information presented by the source does not allow identification of the specific protein. For example:
 
-====== _Example 1:_
+====== Example 1:
 
 "Akt physically associates with MDM2 and phosphorylates it at Ser166 and Ser186." (http://www.ncbi.nlm.nih.gov/pubmed?term=11715018[PMID 11715018])
 
@@ -2434,7 +2458,7 @@ Protein families can be used to represent protein abundances in cases where the 
 
 Here, Akt may refer to AKT1, AKT2, and/or AKT3.
 
-====== _Example 2:_
+====== Example 2:
 
 "We show that Siah2 is subject to phosphorylation by p38 MAPK ... Phosphopeptide mapping identified T24 and S29 as the primary phospho-acceptor sites." (http://www.ncbi.nlm.nih.gov/pubmed?term=17003045[PMID 17003045])
 
@@ -2444,7 +2468,7 @@ Here, Akt may refer to AKT1, AKT2, and/or AKT3.
 
 Here, it is not clear which specific p38 MAPK is responsible (MAPK11, MAPK12, MAPK13, or MAPK14).
 
-====== _Example 3:_
+====== Example 3:
 
 "Hip encodes a membrane glycoprotein that binds to all three mammalian Hedgehog proteins." (http://www.ncbi.nlm.nih.gov/pubmed?term=10050855[PMID 10050855])
 

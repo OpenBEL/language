@@ -2459,7 +2459,7 @@ a:active {
 #toc a:active {
     text-decoration: none;
 }
-#header .details {
+#header h1 {
 	border-bottom: none;
 }
 body {

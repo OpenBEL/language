@@ -1,11 +1,13 @@
 = BEL 2.0 Specification
-Natalie Catlett <ncatlett@selventa.com>
+
+Authored by: Natalie Catlett
+
+Contact: info@openbel.org
+
 v2.0, 2014-06
+
 :toc: right
 :toclevels: 4
-:stylesdir: /asciidoctor-stylesheets/
-:stylesheet: openbel-custom.css
-:linkcss:
 
 This is the home of the BEL Language Documentation v2.0.
 

@@ -1,8 +1,0 @@
-# don't ignore doc artifacts
-# but ignore top-level dirs
-conversion
-rdf-schema
-tools
-version_1.0
-version_2.0
-web

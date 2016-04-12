@@ -4,6 +4,8 @@ v1.0, 2012-07
 :toc: right
 :toclevels: 3
 
+Test v1
+
 This is the home of the BEL Language Documentation v1.0.
 
 Please cite the BEL v1.0 language documentation as "BEL v1.0 Language

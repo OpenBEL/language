@@ -12,214 +12,249 @@
     belv:prefix     "default" ;
     skos:prefLabel  "Default BEL Namespace" .
 
-bel:Activity          a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Activity          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "activity" ;
     dcterms:title           "Molecular Activity" ;
     skos:altLabel           "act" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Molecular Activity" .
 
-bel:Catalytic          a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Catalytic          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "catalytic" ;
     dcterms:title           "Catalytic Activity" ;
     skos:altLabel           "cat" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Catalytic Activity" .
 
-bel:Chaperone          a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Chaperone          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "chaperone" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "chap" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Chaperone Activity" .
 
-bel:Gtpbound          a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Gtpbound          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "gtpbound" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "gtp" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Gtpbound Activity" .
 
-bel:Kinase          a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Kinase          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "kinase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "kin" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Kinase Activity" .
 
-bel:Peptidase a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Peptidase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "peptidase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "pep" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Peptidase Activity" .
 
-bel:Phosphatase a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Phosphatase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "phosphatase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "phos" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Phosphatase Activity" .
 
-bel:Ribosylase a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Ribosylase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "ribosylase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "ribo" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Ribosylase Activity" .
 
-bel:Transcriptase a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Transcriptase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "tscriptase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "tscript" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Transcriptase Activity" .
 
-bel:Transport a belv:Activity, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Transport a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "transport" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "tport" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Transport Activity" .
 
 ### Protein modifications
 
-bel:Acetylation      a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Acetylation      a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Acetylation" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "Ac" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Acetylation" .
 
-bel:ADP-ribosylation      a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:ADP-ribosylation      a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "ADP-ribosylation" ;
     dcterms:title           "ADP-ribosylation" ;
     skos:altLabel           "ADPRib", "ADP-rybosylation", "adenosine diphosphoribosyl" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "ADP-ribosylation" .
 
-bel:Farnesylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Farnesylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Farnesylation" ;
     dcterms:title           "Farnesylation" ;
     skos:altLabel           "Farn" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Farnesylation" .
 
-bel:Geranylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Geranylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Geranylation" ;
     dcterms:title           "Geranylation" ;
     skos:altLabel           "Gerger" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Geranylation" .
 
-bel:Glycosylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Glycosylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Glycosylation" ;
     dcterms:title           "Glycosylation" ;
     skos:altLabel           "Glyco" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Glycosylation" .
 
-bel:Hydroxylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Hydroxylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Hydroxylation" ;
     dcterms:title           "Hydroxylation" ;
     skos:altLabel           "Hy" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Hydroxylation" .
 
-bel:ISGylation       a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:ISGylation       a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "ISGylation" ;
     dcterms:title           "ISGylation" ;
     skos:altLabel           "ISG", "ISG15-protein conjugation" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "ISGylation" .
 
-bel:Methylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Methylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Methylation" ;
     dcterms:title           "Methylation" ;
     skos:altLabel           "Me" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Methylation" .
 
-bel:Monomethylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Monomethylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Monomethylation" ;
     dcterms:title           "Monomethylation" ;
     skos:altLabel           "Me1", "Mono-methylation" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Monomethylation" .
 
-bel:Dimethylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Dimethylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Dimethylation" ;
     dcterms:title           "Dimethylation" ;
     skos:altLabel           "Me2", "Di-methylation" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Dimethylation" .
 
-bel:Trimethylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Trimethylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Trimethylation" ;
     dcterms:title           "Trimethylation" ;
     skos:altLabel           "Me3", "Tri-methylation" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Trimethylation" .
 
-bel:Myristoylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Myristoylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Myristoylation" ;
     dcterms:title           "Myristoylation" ;
     skos:altLabel           "Myr" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Myristoylation" .
 
-bel:Neddylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Neddylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Neddylation" ;
     dcterms:title           "Neddylation" ;
     skos:altLabel           "Nedd" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Neddylation" .
 
-bel:N-linkedGlycosylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:N-linkedGlycosylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "N-linkedGlycosylation" ;
     dcterms:title           "N-linked glycosylation" ;
     skos:altLabel           "NGlyco" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "N-linked Glycosylation" .
 
-bel:Nitrosylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Nitrosylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Nitrosylation" ;
     dcterms:title           "Nitrosylation" ;
     skos:altLabel           "NO" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Nitrosylation" .
 
-bel:O-linkedGlycosylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:O-linkedGlycosylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "linkedGlycosylation" ;
     dcterms:title           "O-linked Glycosylation" ;
     skos:altLabel           "OGlyco" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "O-linked Glycosylation" .
 
-bel:Palmitoylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Palmitoylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Palmitoylation" ;
     dcterms:title           "Palmitoylation" ;
     skos:altLabel           "Palm" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Palmitoylation" .
 
-bel:Phosphorylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Phosphorylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Phosphorylation" ;
     dcterms:title           "Phosphorylation" ;
     skos:altLabel           "Ph" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Phosphorylation" .
 
-bel:Sulfation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Sulfation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Sulfation" ;
     dcterms:title           "Sulfation" ;
     skos:altLabel           "Sulf", "sulphation|sulfur addition", "sulphur addition", "sulfonation", "sulphonation";
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Sulfation" .
 
-bel:SUMOylation        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:SUMOylation        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "SUMOylation" ;
     dcterms:title           "SUMOylation" ;
     skos:altLabel           "Sumo" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "SUMOylation" .
 
-bel:Ubiquitination        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Ubiquitination        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Ubiquitination" ;
     dcterms:title           "Ubiquitination" ;
     skos:altLabel           "Ub", "ubiquitinylation", "ubiquitylation" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Ubiquitination" .
 
-bel:Lysine48-linkedPolyubiquitination        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Lysine48-linkedPolyubiquitination        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Lysine48-linkedPolyubiquitination" ;
     dcterms:title           "Lysine 48-linked Polyubiquitination" ;
     skos:altLabel           "UbK48" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Lysine 48-linked Polyubiquitination" .
 
-bel:Lysine63-linkedPolyubiquitination        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Lysine63-linkedPolyubiquitination        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Lysine63-linkedPolyubiquitination" ;
     dcterms:title           "Lysine 63-linked polyubiquitination" ;
     skos:altLabel           "UbK63" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Lysine 63-linked polyubiquitination" .
 
-bel:Monoubiquitination        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Monoubiquitination        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Monoubiquitination" ;
     dcterms:title           "Monoubiquitination" ;
     skos:altLabel           "UbMono" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Monoubiquitination" .
 
-bel:Polyubiquitination        a belv:Modification, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Polyubiquitination        a belv:ProteinModificationConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "Polyubiquitination" ;
     dcterms:title           "Polyubiquitination" ;
     skos:altLabel           "UbPoly" ;
+    skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Polyubiquitination" .

@@ -12,70 +12,70 @@
     belv:prefix     "default" ;
     skos:prefLabel  "Default BEL Namespace" .
 
-bel:Activity          a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Activity          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "activity" ;
     dcterms:title           "Molecular Activity" ;
     skos:altLabel           "act" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Molecular Activity" .
 
-bel:Catalytic          a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Catalytic          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "catalytic" ;
     dcterms:title           "Catalytic Activity" ;
     skos:altLabel           "cat" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Catalytic Activity" .
 
-bel:Chaperone          a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Chaperone          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "chaperone" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "chap" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Chaperone Activity" .
 
-bel:Gtpbound          a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Gtpbound          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "gtpbound" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "gtp" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Gtpbound Activity" .
 
-bel:Kinase          a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Kinase          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "kinase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "kin" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Kinase Activity" .
 
-bel:Peptidase a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Peptidase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "peptidase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "pep" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Peptidase Activity" .
 
-bel:Phosphatase a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Phosphatase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "phosphatase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "phos" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Phosphatase Activity" .
 
-bel:Ribosylase a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Ribosylase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "ribosylase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "ribo" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Ribosylase Activity" .
 
-bel:Transcriptase a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Transcriptase a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "tscriptase" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "tscript" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
     skos:prefLabel          "Transcriptase Activity" .
 
-bel:Transport a belv:MolecularyActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
+bel:Transport a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "transport" ;
     dcterms:title           "Acetylation" ;
     skos:altLabel           "tport" ;

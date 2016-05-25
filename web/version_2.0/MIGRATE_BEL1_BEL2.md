@@ -68,6 +68,14 @@ Just need to add fromLoc() and toLoc() to BEL 1.0 to convert to BEL 2.0
 
 All activity functions need to be copied from the <activityfunction>(target) format to act(target, ma(<activityfunction>)) format.
 
+    ACTIVITIES = {
+        'cat'=>'cat', 'catalyticActivity'=>'cat', 'chap'=>'chap', 'chaperoneActivity'=>'chap',
+        'gtp'=>'gtp', 'gtpBoundActivity'=>'gtp', 'kin' => 'kin', 'kinaseActivity' => 'kin',
+        'act'=>'act', 'molecularActivity'=>'act', 'pep'=>'pep', 'peptidaseActivity'=>'pep',
+        'phos'=>'phos', 'phosphataseActivity'=>'phos', 'ribo'=>'ribo', 'ribosylationActivity'=>'ribo',
+        'tscript'=>'tscript', 'transcriptionalActivity'=>'tscript', 'tport'=>'tport', 'transportActivity'=>'tport',
+    }
+
 ### BEL 1.0
 
     cat(p(RGD:Sod1))

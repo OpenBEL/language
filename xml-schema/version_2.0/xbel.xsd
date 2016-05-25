@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
-BEL document schema version 1.0. 
+<!--
+BEL document schema version 1.0.
 
 The "bel" namespace is required on all elements and attributes within
 instance documents.
@@ -68,7 +68,7 @@ instance documents.
             </xs:documentation>
         </xs:annotation>
     </xs:element>
-    
+
     <!-- BEL document license. -->
     <xs:element name="license" type="xs:string">
         <xs:annotation>
@@ -117,7 +117,7 @@ instance documents.
             <xs:enumeration value="hasMembers" />
             <xs:enumeration value="hasComponents" />
             <xs:enumeration value="hasMember" />
-            <xs:enumeration value="hasComponent" />            
+            <xs:enumeration value="hasComponent" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -141,20 +141,6 @@ instance documents.
                 <xs:annotation>
                     <xs:documentation>
                         The protein modification BEL function for a protein abundance.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="substitution">
-                <xs:annotation>
-                    <xs:documentation>
-                        The substitution BEL function for a protein abundance.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="truncation">
-                <xs:annotation>
-                    <xs:documentation>
-                        The truncation BEL function for a protein abundance.
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
@@ -277,76 +263,13 @@ instance documents.
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
-            <xs:enumeration value="catalyticActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The catalytic activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="kinaseActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The kinase activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="phosphataseActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The phosphatase activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="peptidaseActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The peptidase activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="ribosylationActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The ribosylation activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="transcriptionalActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The transcriptional activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="transportActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The transport activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="gtpBoundActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The gtp-bound activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
-            <xs:enumeration value="chaperoneActivity">
-                <xs:annotation>
-                    <xs:documentation>
-                        The chaperone activity BEL function.
-                    </xs:documentation>
-                </xs:annotation>
-            </xs:enumeration>
             <xs:enumeration value="list">
                 <xs:annotation>
                     <xs:documentation>
                         The list BEL function.
                     </xs:documentation>
                 </xs:annotation>
-            </xs:enumeration>            
+            </xs:enumeration>
         </xs:restriction>
     </xs:simpleType>
 
@@ -438,7 +361,7 @@ instance documents.
 
         <xs:restriction base="xs:NCName" />
     </xs:simpleType>
-    
+
     <!-- Parameter values. -->
     <xs:simpleType name="parameterValue">
         <xs:annotation>
@@ -446,12 +369,12 @@ instance documents.
                 Namespace values.
             </xs:documentation>
         </xs:annotation>
-        
+
         <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- URL values. -->
     <xs:simpleType name="url">
         <xs:annotation>
@@ -459,12 +382,12 @@ instance documents.
                 URL values.
             </xs:documentation>
         </xs:annotation>
-        
+
         <xs:restriction base="xs:anyURI">
             <xs:minLength value="1"/>
         </xs:restriction>
     </xs:simpleType>
-    
+
     <!-- Namespace resource location. -->
     <xs:simpleType name="resourceLocation">
         <xs:annotation>
@@ -504,7 +427,7 @@ instance documents.
         <xs:complexType>
             <xs:all>
                 <xs:element ref="bel:name" minOccurs="1" />
-                <xs:element ref="bel:description" minOccurs="1" /> 
+                <xs:element ref="bel:description" minOccurs="1" />
                 <xs:element ref="bel:version" minOccurs="1" />
                 <xs:element ref="bel:copyright" minOccurs="0" />
                 <xs:element ref="bel:disclaimer" minOccurs="0" />
@@ -537,7 +460,7 @@ instance documents.
                 type="bel:annotationDefinitionIdentifier" />
         </xs:complexType>
     </xs:element>
-    
+
     <!-- BEL external annotation definitions. -->
     <xs:element name="externalAnnotationDefinition">
         <xs:annotation>
@@ -546,13 +469,13 @@ instance documents.
                 statement.  The annotation values are defined by a URL.
             </xs:documentation>
         </xs:annotation>
-        
+
         <xs:complexType>
                 <xs:attribute name="url" use="required" type="bel:url"/>
                 <xs:attribute name="id" use="required"
                     type="bel:annotationDefinitionIdentifier" />
         </xs:complexType>
-        
+
     </xs:element>
 
     <!-- BEL statement annotation. -->
@@ -577,7 +500,7 @@ instance documents.
     <xs:element name="annotationGroup">
         <xs:annotation>
             <xs:documentation>
-                A grouping of annotations, evidences, and citations. 
+                A grouping of annotations, evidences, and citations.
             </xs:documentation>
         </xs:annotation>
 
@@ -599,7 +522,7 @@ instance documents.
                 Contains one or more document licenses.
             </xs:documentation>
         </xs:annotation>
-        
+
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="bel:license" maxOccurs="unbounded"/>
@@ -639,7 +562,7 @@ instance documents.
                     minOccurs="0"
                     maxOccurs="unbounded"/>
             </xs:sequence>
-        </xs:complexType>            
+        </xs:complexType>
     </xs:element>
 
     <!-- BEL document namespace. -->

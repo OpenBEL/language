@@ -87,6 +87,15 @@ instance documents.
         </xs:annotation>
     </xs:element>
 
+    <!-- BEL document language version. -->
+    <xs:element name="belVersion" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                Document BEL language version.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
     <!-- BEL relationships. -->
     <xs:simpleType name="relationship">
         <xs:annotation>
@@ -418,19 +427,6 @@ instance documents.
         </xs:restriction>
     </xs:simpleType>
 
-    <!-- URL values. -->
-    <xs:simpleType name="url">
-        <xs:annotation>
-            <xs:documentation>
-                URL values.
-            </xs:documentation>
-        </xs:annotation>
-
-        <xs:restriction base="xs:anyURI">
-            <xs:minLength value="1"/>
-        </xs:restriction>
-    </xs:simpleType>
-
     <!-- Namespace resource location. -->
     <xs:simpleType name="resourceLocation">
         <xs:annotation>
@@ -443,6 +439,38 @@ instance documents.
     </xs:simpleType>
 
     <!-- COMPLEX TYPES -->
+
+    <!-- URL values. -->
+    <xs:element name="url">
+        <xs:annotation>
+            <xs:documentation>
+                URL values.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:anyURI">
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- URI values. -->
+    <xs:element name="uri">
+        <xs:annotation>
+            <xs:documentation>
+                URI values.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:anyURI">
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
 
     <!-- Annotation type list. -->
     <xs:element name="listAnnotation">
@@ -514,9 +542,13 @@ instance documents.
         </xs:annotation>
 
         <xs:complexType>
-                <xs:attribute name="url" use="required" type="bel:url"/>
-                <xs:attribute name="id" use="required"
-                    type="bel:annotationDefinitionIdentifier" />
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="bel:resource" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id" use="required"
+                type="bel:annotationDefinitionIdentifier" />
         </xs:complexType>
 
     </xs:element>
@@ -543,7 +575,7 @@ instance documents.
     <xs:element name="annotationGroup">
         <xs:annotation>
             <xs:documentation>
-                A grouping of annotations, evidences, and citations.
+                A grouping of annotations, support, and citations.
             </xs:documentation>
         </xs:annotation>
 
@@ -551,7 +583,7 @@ instance documents.
             <xs:sequence>
                 <xs:choice minOccurs="1" maxOccurs="unbounded">
                     <xs:element ref="bel:annotation" maxOccurs="unbounded" />
-                    <xs:element ref="bel:evidence" maxOccurs="1" minOccurs="0"/>
+                    <xs:element ref="bel:support" maxOccurs="1" minOccurs="0"/>
                     <xs:element ref="bel:citation" maxOccurs="1" minOccurs="0"/>
                 </xs:choice>
             </xs:sequence>
@@ -588,6 +620,22 @@ instance documents.
         </xs:complexType>
     </xs:element>
 
+    <!-- BEL resource. -->
+    <xs:element name="resource">
+        <xs:annotation>
+            <xs:documentation>
+                Identifies a BEL resource.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="bel:uri" />
+                <xs:element ref="bel:url" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
     <!-- BEL annotation definition group. -->
     <xs:element name="annotationDefinitionGroup">
         <xs:annotation>
@@ -619,7 +667,7 @@ instance documents.
 
         <xs:complexType>
             <xs:attribute name="prefix" use="required" type="bel:prefix" />
-            <xs:attribute name="resourceLocation" use="required"
+            <xs:attribute name="resource" use="required"
                 type="bel:resourceLocation" />
         </xs:complexType>
     </xs:element>

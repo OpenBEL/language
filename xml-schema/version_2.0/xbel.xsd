@@ -383,25 +383,6 @@ instance documents.
         </xs:annotation>
     </xs:attribute>
 
-    <!-- Namespace default resource location. -->
-    <xs:attribute name="defaultResourceLocation" type="xs:anyURI">
-        <xs:annotation>
-            <xs:documentation>
-                Resource location of the default namespace used by
-                the document.
-            </xs:documentation>
-        </xs:annotation>
-    </xs:attribute>
-
-    <!-- Namespace attribute. -->
-    <xs:attribute name="namespace" type="bel:resourceLocation">
-        <xs:annotation>
-            <xs:documentation>
-                Associated namespace.
-            </xs:documentation>
-        </xs:annotation>
-    </xs:attribute>
-
     <!-- Namespace prefix. -->
     <xs:simpleType name="prefix">
         <xs:annotation>
@@ -425,17 +406,6 @@ instance documents.
         <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
         </xs:restriction>
-    </xs:simpleType>
-
-    <!-- Namespace resource location. -->
-    <xs:simpleType name="resourceLocation">
-        <xs:annotation>
-            <xs:documentation>
-                the URI of the resource defining a namespace.
-            </xs:documentation>
-        </xs:annotation>
-
-        <xs:restriction base="xs:anyURI" />
     </xs:simpleType>
 
     <!-- COMPLEX TYPES -->
@@ -656,6 +626,23 @@ instance documents.
         </xs:complexType>
     </xs:element>
 
+    <!-- BEL document default namespace. -->
+    <xs:element name="defaultNamespace">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies a default namespace whose values may be used in
+                statements.
+            </xs:documentation>
+        </xs:annotation>
+
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="bel:resource" />
+            </xs:sequence>
+            <xs:attribute name="prefix" use="required" type="bel:prefix" />
+        </xs:complexType>
+    </xs:element>
+
     <!-- BEL document namespace. -->
     <xs:element name="namespace">
         <xs:annotation>
@@ -666,9 +653,10 @@ instance documents.
         </xs:annotation>
 
         <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="bel:resource" />
+            </xs:sequence>
             <xs:attribute name="prefix" use="required" type="bel:prefix" />
-            <xs:attribute name="resource" use="required"
-                type="bel:resourceLocation" />
         </xs:complexType>
     </xs:element>
 
@@ -684,8 +672,9 @@ instance documents.
             <xs:sequence>
                 <xs:element ref="bel:namespace" minOccurs="0"
                     maxOccurs="unbounded" />
+                <xs:element ref="bel:defaultNamespace" minOccurs="0"
+                    maxOccurs="1" />
             </xs:sequence>
-            <xs:attribute name="defaultResourceLocation" type="bel:resourceLocation" />
         </xs:complexType>
     </xs:element>
 

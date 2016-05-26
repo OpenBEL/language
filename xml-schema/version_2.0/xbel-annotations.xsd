@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- BEL annotation definitions schema version 1.0. The "belanno" namespace 
+<!-- BEL annotation definitions schema version 1.0. The "belanno" namespace
     is required on all elements and attributes within instance documents. -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified" attributeFormDefault="qualified"
-    targetNamespace="http://belframework.org/schema/1.0/xbel"
-    xmlns:bel="http://belframework.org/schema/1.0/xbel">
+    targetNamespace="http://resources.openbel.org/v2.0/lang/xml-schema/version_2.0/xbel"
+    xmlns:bel="http://resources.openbel.org/v2.0/lang/xml-schema/version_2.0/xbel">
 
-    <!-- Definition of statement evidence text. -->
-    <xs:element name="evidence">
+    <!-- Definition of statement support text. -->
+    <xs:element name="support">
         <xs:simpleType>
             <xs:restriction base="xs:string">
                 <xs:maxLength value="4000" />
@@ -29,10 +29,10 @@
                     The citation annotation type to capture the knowledge source details.
                 </xs:documentation>
             </xs:annotation>
-        
+
             <xs:sequence>
                 <xs:element name="reference" type="xs:string" minOccurs="1" maxOccurs="1" />
-                <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+                <xs:element name="name" type="xs:string" minOccurs="0" maxOccurs="1" />
                 <xs:element name="comment" type="xs:string" minOccurs="0" maxOccurs="1" />
                 <xs:element name="date" type="xs:date" minOccurs="0" maxOccurs="1" />
                 <xs:element name="authorGroup" minOccurs="0" maxOccurs="1">
@@ -41,7 +41,7 @@
                             Contains one or more citation authors.
                         </xs:documentation>
                     </xs:annotation>
-                
+
                     <xs:complexType>
                         <xs:annotation>
                             <xs:documentation>
@@ -61,7 +61,7 @@
     <xs:simpleType name="citationType">
         <xs:annotation>
             <xs:documentation>
-                Citation type (e.g., book, journal, online resource, other, pubmed) 
+                Citation type (e.g., book, journal, online resource, other, pubmed)
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
@@ -70,6 +70,8 @@
             <xs:enumeration value="Online Resource" />
             <xs:enumeration value="Other" />
             <xs:enumeration value="PubMed" />
+            <xs:enumeration value="DOI" />
+            <xs:enumeration value="URL" />
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

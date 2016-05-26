@@ -9,8 +9,8 @@ instance documents.
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified"
     attributeFormDefault="qualified"
-    targetNamespace="http://belframework.org/schema/1.0/xbel"
-    xmlns:bel="http://belframework.org/schema/1.0/xbel">
+    targetNamespace="http://resources.openbel.org/v2.0/lang/xml-schema/version_2.0/xbel"
+    xmlns:bel="http://resources.openbel.org/v2.0/lang/xml-schema/version_2.0/xbel">
 
     <xs:include schemaLocation="xbel-annotations.xsd"/>
 
@@ -118,6 +118,7 @@ instance documents.
             <xs:enumeration value="hasComponents" />
             <xs:enumeration value="hasMember" />
             <xs:enumeration value="hasComponent" />
+            <xs:enumeration value="regulates" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -267,6 +268,48 @@ instance documents.
                 <xs:annotation>
                     <xs:documentation>
                         The list BEL function.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="activity">
+                <xs:annotation>
+                    <xs:documentation>
+                        The activity BEL function.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="fragment">
+                <xs:annotation>
+                    <xs:documentation>
+                        The fragment BEL function.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="fromLocation">
+                <xs:annotation>
+                    <xs:documentation>
+                        The fromLocation BEL function.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="toLocation">
+                <xs:annotation>
+                    <xs:documentation>
+                        The toLocation BEL function.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="location">
+                <xs:annotation>
+                    <xs:documentation>
+                        The location BEL function.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="variant">
+                <xs:annotation>
+                    <xs:documentation>
+                        The variant BEL function.
                     </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>

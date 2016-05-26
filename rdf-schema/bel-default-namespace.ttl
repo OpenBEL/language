@@ -38,7 +38,7 @@ bel:Gtpbound          a belv:MolecularActivityConcept, belv:NamespaceConcept, sk
     dcterms:title           "Acetylation" ;
     skos:altLabel           "gtp" ;
     skos:inScheme           <http://www.openbel.org/bel/namespace/default> ;
-    skos:prefLabel          "Gtpbound Activity" .
+    skos:prefLabel          "GTP-bound Activity" .
 
 bel:Kinase          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;
     dcterms:identifier      "kinase" ;

@@ -200,8 +200,9 @@ belv:hasAnnotation rdf:type rdf:Property ;
 belv:hasCitation rdf:type rdf:Property ;
  rdfs:domain belv:Evidence ;
  rdfs:range  rdfs:Resource .
-belv:hasEvidenceText rdfs:range xsd:string ;
- rdfs:domain belv:Evidence .
+belv:hasSupport rdf:type rdf:Property ;
+ rdfs:domain belv:Evidence ;
+ rdfs:range  xsd:string .
 belv:hasStatement rdf:type rdf:Property ;
  rdfs:range belv:Statement ;
  rdfs:domain belv:Evidence .

@@ -126,21 +126,21 @@ belv:ModifiedProteinAbundance rdfs:subClassOf belv:ProteinAbundance .
 belv:ProteinModification rdf:type rdfs:Class .
 belv:hasModifiedProteinAbundance rdf:type rdf:Property ;
   rdfs:domain belv:ProteinAbundance ;
-  rdfs:range belv:ModifiedProteinAbundance .
+  rdfs:range  belv:ModifiedProteinAbundance .
 
 belv:hasProteinModification rdf:type rdf:Property ;
   rdfs:domain belv:ModifiedProteinAbundance ;
-  rdfs:range belv:ProteinModification .
+  rdfs:range  belv:ProteinModification .
 
 belv:hasProteinModificationType rdf:type rdf:Property ;
  rdfs:domain belv:ProteinModification ;
- rdfs:range belv:ProteinModificationConcept .
+ rdfs:range  belv:ProteinModificationConcept .
 belv:hasProteinResidue rdf:type rdf:Property ;
-  rdfs:range rdf:Literal ;
+  rdfs:range  rdfs:Literal ;
   rdfs:domain belv:ProteinModification .
 belv:hasSequencePosition rdf:type rdf:Property ;
  rdfs:domain belv:ProteinModification ;
- rdfs:range xsd:integer .
+ rdfs:range  xsd:integer .
 
 
 # Abundance Variants

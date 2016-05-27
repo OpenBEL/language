@@ -125,11 +125,11 @@ belv:ProteinModificationConcept rdfs:subClassOf belv:NamespaceConcept .  # Added
 belv:ModifiedProteinAbundance rdfs:subClassOf belv:ProteinAbundance .
 belv:ProteinModification rdf:type rdfs:Class .
 belv:hasModifiedProteinAbundance rdf:type rdf:Property ;
-  rdfs:domain rdf:ProteinAbundance ;
+  rdfs:domain belv:ProteinAbundance ;
   rdfs:range belv:ModifiedProteinAbundance .
 
 belv:hasProteinModification rdf:type rdf:Property ;
-  rdfs:domain rdf:ModifiedProteinAbundance ;
+  rdfs:domain belv:ModifiedProteinAbundance ;
   rdfs:range belv:ProteinModification .
 
 belv:hasProteinModificationType rdf:type rdf:Property ;
@@ -149,19 +149,23 @@ belv:hasVariant rdf:type rdf:Property ;  # Added
  rdfs:domain belv:GeneAbundance ;  # Added
  rdfs:domain belv:RNAAbundance ;  # Added
  rdfs:domain belv:MicroRNAAbundance ;  # Added
- rdfs:domain belv:ProteinAbundance .  # Added
+ rdfs:domain belv:ProteinAbundance ;  # Added
+ rdfs:range  xsd:string .  # Added
 belv:hasLocation rdf:type rdf:Property ;  # Added
  rdfs:domain belv:GeneAbundance ;  # Added
  rdfs:domain belv:RNAAbundance ;  # Added
  rdfs:domain belv:ProteinAbundance ;  # Added
  rdfs:domain belv:ComplexAbundance ;  # Added
- rdfs:domain belv:MicroRNAAbundance .  # Added
+ rdfs:domain belv:MicroRNAAbundance ;  # Added
+ rdfs:range  belv:LocationConcept .  # Added
 belv:hasFromLocation rdf:type rdf:Property;  # Added
   rdfs:subPropertyOf belv:hasLocation;  # Added
-  rdfs:domain belv:Translocation .  # Added
+  rdfs:domain belv:Translocation ;  # Added
+  rdfs:range  belv:LocationConcept .  # Added
 belv:hasToLocation rdf:type rdf:Property;  # Added
   rdfs:subPropertyOf belv:hasLocation;  # Added
-  rdfs:domain belv:Translocation .  # Added
+  rdfs:domain belv:Translocation ;  # Added
+  rdfs:range  belv:LocationConcept .  # Added
 
 
 # Properties
@@ -171,8 +175,12 @@ belv:hasChild rdf:type rdf:Property ;
 belv:hasConcept rdf:type rdf:Property ;
  rdfs:range belv:NamespaceConcept ;
  rdfs:domain belv:Term .
-belv:hasFragment rdf:type rdf:Property ;  # Added
- rdfs:domain belv:ProteinAbundance .  # Added
+belv:hasFragmentRange rdf:type rdf:Property ;  # Added
+ rdfs:domain belv:ProteinAbundance ;  # Added
+ rdfs:range  xsd:string .  # Added
+belv:hasFragmentDescriptor rdf:type rdf:Property ;  # Added
+ rdfs:domain belv:ProteinAbundance ;  # Added
+ rdfs:range  xsd:string .  # Added
 
 belv:hasEvidence rdf:type rdf:Property ;
  rdfs:range belv:Evidence ;

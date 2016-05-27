@@ -175,8 +175,12 @@ belv:hasChild rdf:type rdf:Property ;
 belv:hasConcept rdf:type rdf:Property ;
  rdfs:range belv:NamespaceConcept ;
  rdfs:domain belv:Term .
-belv:hasFragment rdf:type rdf:Property ;  # Added
- rdfs:domain belv:ProteinAbundance .  # Added
+belv:hasFragmentRange rdf:type rdf:Property ;  # Added
+ rdfs:domain belv:ProteinAbundance ;  # Added
+ rdfs:range  xsd:string .  # Added
+belv:hasFragmentDescriptor rdf:type rdf:Property ;  # Added
+ rdfs:domain belv:ProteinAbundance ;  # Added
+ rdfs:range  xsd:string .  # Added
 
 belv:hasEvidence rdf:type rdf:Property ;
  rdfs:range belv:Evidence ;

@@ -149,7 +149,8 @@ belv:hasVariant rdf:type rdf:Property ;  # Added
  rdfs:domain belv:GeneAbundance ;  # Added
  rdfs:domain belv:RNAAbundance ;  # Added
  rdfs:domain belv:MicroRNAAbundance ;  # Added
- rdfs:domain belv:ProteinAbundance .  # Added
+ rdfs:domain belv:ProteinAbundance ;  # Added
+ rdfs:range  xsd:string .  # Added
 belv:hasLocation rdf:type rdf:Property ;  # Added
  rdfs:domain belv:GeneAbundance ;  # Added
  rdfs:domain belv:RNAAbundance ;  # Added

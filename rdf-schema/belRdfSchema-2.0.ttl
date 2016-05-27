@@ -198,7 +198,8 @@ belv:hasAnnotation rdf:type rdf:Property ;
  rdfs:range belv:AnnotationConcept ;
  rdfs:domain belv:Evidence .
 belv:hasCitation rdf:type rdf:Property ;
- rdfs:domain belv:Evidence .
+ rdfs:domain belv:Evidence ;
+ rdfs:range  rdfs:Resource .
 belv:hasEvidenceText rdfs:range xsd:string ;
  rdfs:domain belv:Evidence .
 belv:hasStatement rdf:type rdf:Property ;

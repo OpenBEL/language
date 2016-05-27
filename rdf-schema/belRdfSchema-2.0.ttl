@@ -206,3 +206,9 @@ belv:hasSupport rdf:type rdf:Property ;
 belv:hasStatement rdf:type rdf:Property ;
  rdfs:range belv:Statement ;
  rdfs:domain belv:Nanopub .
+belv:hasProduct rdf:type rdf:Property ;
+ rdfs:range belv:Abundance ;
+ rdfs:domain belv:Reaction .
+belv:hasReactant rdf:type rdf:Property ;
+ rdfs:range belv:Abundance ;
+ rdfs:domain belv:Reaction .

@@ -156,13 +156,16 @@ belv:hasLocation rdf:type rdf:Property ;  # Added
  rdfs:domain belv:RNAAbundance ;  # Added
  rdfs:domain belv:ProteinAbundance ;  # Added
  rdfs:domain belv:ComplexAbundance ;  # Added
- rdfs:domain belv:MicroRNAAbundance .  # Added
+ rdfs:domain belv:MicroRNAAbundance ;  # Added
+ rdfs:range  belv:LocationConcept .  # Added
 belv:hasFromLocation rdf:type rdf:Property;  # Added
   rdfs:subPropertyOf belv:hasLocation;  # Added
-  rdfs:domain belv:Translocation .  # Added
+  rdfs:domain belv:Translocation ;  # Added
+  rdfs:range  belv:LocationConcept .  # Added
 belv:hasToLocation rdf:type rdf:Property;  # Added
   rdfs:subPropertyOf belv:hasLocation;  # Added
-  rdfs:domain belv:Translocation .  # Added
+  rdfs:domain belv:Translocation ;  # Added
+  rdfs:range  belv:LocationConcept .  # Added
 
 
 # Properties

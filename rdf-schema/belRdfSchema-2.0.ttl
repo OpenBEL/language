@@ -125,11 +125,11 @@ belv:ProteinModificationConcept rdfs:subClassOf belv:NamespaceConcept .  # Added
 belv:ModifiedProteinAbundance rdfs:subClassOf belv:ProteinAbundance .
 belv:ProteinModification rdf:type rdfs:Class .
 belv:hasModifiedProteinAbundance rdf:type rdf:Property ;
-  rdfs:domain rdf:ProteinAbundance ;
+  rdfs:domain belv:ProteinAbundance ;
   rdfs:range belv:ModifiedProteinAbundance .
 
 belv:hasProteinModification rdf:type rdf:Property ;
-  rdfs:domain rdf:ModifiedProteinAbundance ;
+  rdfs:domain belv:ModifiedProteinAbundance ;
   rdfs:range belv:ProteinModification .
 
 belv:hasProteinModificationType rdf:type rdf:Property ;

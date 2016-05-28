@@ -135,12 +135,12 @@ belv:hasProteinModification rdf:type rdf:Property ;
 belv:hasProteinModificationType rdf:type rdf:Property ;
  rdfs:domain belv:ProteinModification ;
  rdfs:range  belv:ProteinModificationConcept .
-belv:hasProteinResidue rdf:type rdf:Property ;
-  rdfs:range  rdfs:Literal ;
-  rdfs:domain belv:ProteinModification .
-belv:hasSequencePosition rdf:type rdf:Property ;
+belv:hasAminoAcid rdf:type rdf:Property ;
  rdfs:domain belv:ProteinModification ;
- rdfs:range  xsd:integer .
+ rdfs:range  xsd:string .
+belv:hasProteinResidue rdf:type rdf:Property ;
+  rdfs:domain belv:ProteinModification ;
+  rdfs:range  xsd:integer .
 
 
 # Abundance Variants

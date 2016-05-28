@@ -470,6 +470,7 @@ instance documents.
                 <xs:element ref="bel:name" minOccurs="1" />
                 <xs:element ref="bel:description" minOccurs="1" />
                 <xs:element ref="bel:version" minOccurs="1" />
+                <xs:element ref="bel:belVersion" minOccurs="1" />
                 <xs:element ref="bel:copyright" minOccurs="0" />
                 <xs:element ref="bel:disclaimer" minOccurs="0" />
                 <xs:element ref="bel:contactInfo" minOccurs="0" />

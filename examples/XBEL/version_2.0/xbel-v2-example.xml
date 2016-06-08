@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bel:document
+    xmlns:bel="http://resources.openbel.org/v2.0/lang/xml-schema/version_2.0/xbel"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://resources.openbel.org/v2.0/lang/xml-schema/version_2.0 xbel.xsd">
+    <bel:header>
+        <bel:name>XBEL v2 Example</bel:name>
+        <bel:description>XBEL v2 example document</bel:description>
+        <bel:version>2016-06-08</bel:version>
+        <bel:belVersion>2.0</bel:belVersion>
+        <bel:copyright>Copyright (c) 2011-2015, Selventa. All Rights Reserved.</bel:copyright>
+        <bel:contactInfo>support@belframework.org</bel:contactInfo>
+        <bel:authorGroup>
+            <bel:author>Selventa</bel:author>
+        </bel:authorGroup>
+        <bel:licenseGroup>
+            <bel:license>Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License</bel:license>
+        </bel:licenseGroup>
+    </bel:header>
+    <bel:namespaceGroup>
+        <bel:namespace bel:prefix="CHEBI"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/chebi.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="CHEBIID"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/chebi-ids.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="EGID"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/entrez-gene-ids.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="GOBP"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/go-biological-process.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="HGNC"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/hgnc-human-genes.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="MESHCS"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/mesh-cellular-structures.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="MESHD"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/mesh-diseases.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="MESHPP"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/mesh-processes.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="MGI"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/mgi-mouse-genes.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="RGD"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/rgd-rat-genes.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="SCHEM"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/selventa-legacy-chemicals.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="SCOMP"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/selventa-named-complexes.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="SDIS"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/selventa-legacy-diseases.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="SFAM"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/selventa-protein-families.belns</bel:url></bel:resource></bel:namespace>
+        <bel:namespace bel:prefix="SPID"><bel:resource><bel:url>http://resource.belframework.org/belframework/20150611/namespace/swissprot-ids.belns</bel:url></bel:resource></bel:namespace>
+    </bel:namespaceGroup>
+    <bel:annotationDefinitionGroup>
+        <bel:internalAnnotationDefinition bel:id="TextLocation">
+            <bel:description></bel:description>
+            <bel:usage></bel:usage>
+            <bel:listAnnotation>
+                <bel:listValue>Abstract</bel:listValue>
+                <bel:listValue>Results</bel:listValue>
+                <bel:listValue>Legend</bel:listValue>
+                <bel:listValue>Review</bel:listValue>
+            </bel:listAnnotation>
+        </bel:internalAnnotationDefinition>
+        <bel:externalAnnotationDefinition bel:id="Anatomy">
+            <bel:resource>
+                <bel:url>
+                    http://resource.belframework.org/belframework/20150611/annotation/anatomy.belanno
+                </bel:url>
+            </bel:resource>
+        </bel:externalAnnotationDefinition>
+        <bel:externalAnnotationDefinition bel:id="Cell">
+            <bel:resource>
+                <bel:url>
+                    http://resource.belframework.org/belframework/20150611/annotation/cell.belanno
+                </bel:url>
+            </bel:resource>
+        </bel:externalAnnotationDefinition>
+        <bel:externalAnnotationDefinition bel:id="CellLine">
+            <bel:resource>
+                <bel:url>
+                    http://resource.belframework.org/belframework/20150611/annotation/cell-line.belanno
+                </bel:url>
+            </bel:resource>
+        </bel:externalAnnotationDefinition>
+        <bel:externalAnnotationDefinition bel:id="CellStructure">
+            <bel:resource>
+                <bel:url>
+                    http://resource.belframework.org/belframework/20150611/annotation/cell-structure.belanno
+                </bel:url>
+            </bel:resource>
+        </bel:externalAnnotationDefinition>
+        <bel:externalAnnotationDefinition bel:id="Disease">
+            <bel:resource>
+                <bel:url>
+                    http://resource.belframework.org/belframework/20150611/annotation/disease.belanno
+                </bel:url>
+            </bel:resource>
+        </bel:externalAnnotationDefinition>
+        <bel:externalAnnotationDefinition bel:id="MeSHAnatomy">
+            <bel:resource>
+                <bel:url>
+                    http://resource.belframework.org/belframework/20150611/annotation/mesh-anatomy.belanno
+                </bel:url>
+            </bel:resource>
+        </bel:externalAnnotationDefinition>
+        <bel:externalAnnotationDefinition bel:id="Species">
+            <bel:resource>
+                <bel:url>
+                    http://resource.belframework.org/belframework/20150611/annotation/species-taxonomy-id.belanno
+                </bel:url>
+            </bel:resource>
+        </bel:externalAnnotationDefinition>
+    </bel:annotationDefinitionGroup>
+    <bel:statementGroup>
+        <bel:name>"Group 1"</bel:name>
+        <bel:statement bel:relationship="positiveCorrelation">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Oxidation and nitration of macromolecules, such as proteins, DNA and lipids, are prominent
+in atherosclerotic arteries.</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="pathology">
+                    <bel:parameter bel:ns="MESHD">Atherosclerosis</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">lipid oxidation</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="positiveCorrelation">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Oxidation and nitration of macromolecules, such as proteins, DNA and lipids, are prominent
+in atherosclerotic arteries.</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="pathology">
+                    <bel:parameter bel:ns="MESHD">Atherosclerosis</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">protein oxidation</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Arterial cells are highly susceptible to oxidative stress, which can induce both necrosis
+and apoptosis (programmed cell death) [1,2]</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">response to oxidative stress</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Arterial cells are highly susceptible to oxidative stress, which can induce both necrosis
+and apoptosis (programmed cell death) [1,2]</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">response to oxidative stress</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">necrosis</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>One such risk factor is oxLDL, which exert pro-apoptotic effects on a variety of cell
+lineages, including endothelial cells and VSMCs, both in cultured cells and
+in arteries [19–26]. Increased formation of oxygen radicals (and other radical
+species) facilitates LDL oxidation and influences oxidation-sensitive mechanisms
+[15].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">Oxidized Low Density Lipoprotein</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>One such risk factor is oxLDL, which exert pro-apoptotic effects on a variety of cell
+lineages, including endothelial cells and VSMCs, both in cultured cells and
+in arteries [19–26]. Increased formation of oxygen radicals (and other radical
+species) facilitates LDL oxidation and influences oxidation-sensitive mechanisms
+[15].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">Oxidized Low Density Lipoprotein</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>One such risk factor is oxLDL, which exert pro-apoptotic effects on a variety of cell
+lineages, including endothelial cells and VSMCs, both in cultured cells and
+in arteries [19–26]. Increased formation of oxygen radicals (and other radical
+species) facilitates LDL oxidation and influences oxidation-sensitive mechanisms
+[15].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">oxygen radical</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">Oxidized Low Density Lipoprotein</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Not surprisingly, high concentrations of exogenous reactive oxygen species (ROS),
+generated by enzymatic reactions or by radiation, also stimulate the apoptosis
+of endothelial cells in vitro [29–31].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">reactive oxygen species</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>The peptide hormone angiotensin II and pro-inflammatory cytokines also trigger the
+apoptotic program in endothelial cells [33,34].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">angiotensin II</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="positiveCorrelation">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Aging, one of the major predictors for atherosclerotic lesion formation, increases
+the sensitivity of endothelial cells to apoptosis induced by in vitro and in vivo
+stimuli [35–37].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">aging</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="pathology">
+                    <bel:parameter bel:ns="MESHD">Plaque, Atherosclerotic</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Aging, one of the major predictors for atherosclerotic lesion formation, increases
+the sensitivity of endothelial cells to apoptosis induced by in vitro and in vivo
+stimuli [35–37].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">aging</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Shear stress enhances expression of the gene encoding the endothelial nitric oxide
+synthase (eNOS) and further stimulates its enzymatic activity, leading to physiologic
+low concentrations of nitric oxide (NO) within endothelial cells [44–46].
+This continuous generation of NO prevents the apoptosis of endothelial cells,
+thereby protecting the endothelial monolayer from injury [47,48].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">response to fluid shear stress</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="rnaAbundance">
+                    <bel:parameter bel:ns="HGNC">NOS3</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Shear stress enhances expression of the gene encoding the endothelial nitric oxide
+synthase (eNOS) and further stimulates its enzymatic activity, leading to physiologic
+low concentrations of nitric oxide (NO) within endothelial cells [44–46].
+This continuous generation of NO prevents the apoptosis of endothelial cells,
+thereby protecting the endothelial monolayer from injury [47,48].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">response to fluid shear stress</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">NOS3</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="directlyIncreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Shear stress enhances expression of the gene encoding the endothelial nitric oxide
+synthase (eNOS) and further stimulates its enzymatic activity, leading to physiologic
+low concentrations of nitric oxide (NO) within endothelial cells [44–46].
+This continuous generation of NO prevents the apoptosis of endothelial cells,
+thereby protecting the endothelial monolayer from injury [47,48].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">NOS3</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">nitric oxide</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="decreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Shear stress enhances expression of the gene encoding the endothelial nitric oxide
+synthase (eNOS) and further stimulates its enzymatic activity, leading to physiologic
+low concentrations of nitric oxide (NO) within endothelial cells [44–46].
+This continuous generation of NO prevents the apoptosis of endothelial cells,
+thereby protecting the endothelial monolayer from injury [47,48].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">nitric oxide</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="decreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">artery</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>More importantly, intervention with L-arginine has induced beneficial effects on atherosclerosis
+in experimental and human studies [46,49].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">L-arginine</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="pathology">
+                    <bel:parameter bel:ns="MESHD">Atherosclerosis</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>OxLDL induces the generation of ROS in different vascular cell types [15,58], and
+might also promote a rise in ROS levels through a decrease in ROS degradation,
+because oxLDL induces a reduction in the antioxidant enzymes Cu/Zn superoxide dismutase
+[59] and glutathione peroxidase [60].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">Oxidized Low Density Lipoprotein</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">reactive oxygen species</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="decreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>OxLDL induces the generation of ROS in different vascular cell types [15,58], and
+might also promote a rise in ROS levels through a decrease in ROS degradation,
+because oxLDL induces a reduction in the antioxidant enzymes Cu/Zn superoxide dismutase
+[59] and glutathione peroxidase [60].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">Oxidized Low Density Lipoprotein</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="proteinAbundance">
+                    <bel:parameter bel:ns="HGNC">SOD1</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="decreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>OxLDL induces the generation of ROS in different vascular cell types [15,58], and
+might also promote a rise in ROS levels through a decrease in ROS degradation,
+because oxLDL induces a reduction in the antioxidant enzymes Cu/Zn superoxide dismutase
+[59] and glutathione peroxidase [60].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">Oxidized Low Density Lipoprotein</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="proteinAbundance">
+                    <bel:parameter bel:ns="SFAM">GPX Family</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>For instance, during 7-ketocholesterol-induced apoptosis of U937 cells, the cellular
+antioxidant content falls rapidly [64], but administration of two potent antioxidants,
+the aminothiols glutathione and N-acetylcysteine, can protect themonocytic
+cells from 7-ketocholesterol-induced apoptotic cell death [64].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">7-Ketocholesterol</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="negativeCorrelation">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>For instance, during 7-ketocholesterol-induced apoptosis of U937 cells, the cellular
+antioxidant content falls rapidly [64], but administration of two potent antioxidants,
+the aminothiols glutathione and N-acetylcysteine, can protect themonocytic
+cells from 7-ketocholesterol-induced apoptotic cell death [64].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="SCHEM">7-Ketocholesterol</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">antioxidant</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="decreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>For instance, during 7-ketocholesterol-induced apoptosis of U937 cells, the cellular
+antioxidant content falls rapidly [64], but administration of two potent antioxidants,
+the aminothiols glutathione and N-acetylcysteine, can protect themonocytic
+cells from 7-ketocholesterol-induced apoptotic cell death [64].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">antioxidant</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:statement bel:relationship="increases">
+                    <bel:subject>
+                        <bel:term bel:function="abundance">
+                            <bel:parameter bel:ns="SCHEM">7-Ketocholesterol</bel:parameter>
+                        </bel:term>
+                    </bel:subject>
+                    <bel:object>
+                        <bel:term bel:function="biologicalProcess">
+                            <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                        </bel:term>
+                    </bel:object>
+                </bel:statement>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>In addition, another oxygen-radical scavenger enzyme, catalase, can prevent VSMC apoptosis
+triggered by hydrogen peroxide [27,65].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">hydrogen peroxide</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="decreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>In addition, another oxygen-radical scavenger enzyme, catalase, can prevent VSMC apoptosis
+triggered by hydrogen peroxide [27,65].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="proteinAbundance">
+                    <bel:parameter bel:ns="HGNC">CAT</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:statement bel:relationship="increases">
+                    <bel:subject>
+                        <bel:term bel:function="abundance">
+                            <bel:parameter bel:ns="CHEBI">hydrogen peroxide</bel:parameter>
+                        </bel:term>
+                    </bel:subject>
+                    <bel:object>
+                        <bel:term bel:function="biologicalProcess">
+                            <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                        </bel:term>
+                    </bel:object>
+                </bel:statement>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>The proto-oncogene c-myc can promote cell death (probably mediated through p53) or
+cell proliferation, depending on its expression level. It functions as a nuclear
+phosphoprotein with particular properties of a transcription factor [68,69].
+In serum deprived cultures, cells overexpressing c-myc readily undergo apoptosis.
+In addition, deregulation of c-myc causes apoptosis of VSMCs deprived of growth
+factors or treated with cytokines such as interferon-g [70].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="proteinAbundance">
+                    <bel:parameter bel:ns="HGNC">MYC</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>The proto-oncogene c-myc can promote cell death (probably mediated through p53) or
+cell proliferation, depending on its expression level. It functions as a nuclear
+phosphoprotein with particular properties of a transcription factor [68,69].
+In serum deprived cultures, cells overexpressing c-myc readily undergo apoptosis.
+In addition, deregulation of c-myc causes apoptosis of VSMCs deprived of growth
+factors or treated with cytokines such as interferon-g [70].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="proteinAbundance">
+                    <bel:parameter bel:ns="HGNC">MYC</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">cell proliferation</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="directlyIncreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Tissue factor (TF) is a 47 kDa transmembrane glycoprotein that initiates blood coagulation
+by binding coagulation factor VII and its activated form (factor VIIa),
+to produce a high-affinity complex [72] that proteolytically activates factors
+IX and X, leading to thrombin generation.</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="complexAbundance">
+                        <bel:term bel:function="proteinAbundance">
+                            <bel:parameter bel:ns="HGNC">F3</bel:parameter>
+                        </bel:term>
+                        <bel:term bel:function="proteinAbundance">
+                            <bel:parameter bel:ns="HGNC">F7</bel:parameter>
+                        </bel:term>
+                    </bel:term>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">F9</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="directlyIncreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Tissue factor (TF) is a 47 kDa transmembrane glycoprotein that initiates blood coagulation
+by binding coagulation factor VII and its activated form (factor VIIa),
+to produce a high-affinity complex [72] that proteolytically activates factors
+IX and X, leading to thrombin generation.</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="complexAbundance">
+                        <bel:term bel:function="proteinAbundance">
+                            <bel:parameter bel:ns="HGNC">F3</bel:parameter>
+                        </bel:term>
+                        <bel:term bel:function="proteinAbundance">
+                            <bel:parameter bel:ns="HGNC">F7</bel:parameter>
+                        </bel:term>
+                    </bel:term>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">F10</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Tissue factor (TF) is a 47 kDa transmembrane glycoprotein that initiates blood coagulation
+by binding coagulation factor VII and its activated form (factor VIIa),
+to produce a high-affinity complex [72] that proteolytically activates factors
+IX and X, leading to thrombin generation.</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">F9</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">F2</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>Tissue factor (TF) is a 47 kDa transmembrane glycoprotein that initiates blood coagulation
+by binding coagulation factor VII and its activated form (factor VIIa),
+to produce a high-affinity complex [72] that proteolytically activates factors
+IX and X, leading to thrombin generation.</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">F10</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">F2</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:annotation bel:refID="CellStructure">Cell Membrane</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>TF works at the surface of cell membranes, and its activity is highly dependent on
+the presence of phosphatidylserine (PS), an anionic phospholipid that is redistributed
+on the cell surface during apoptotic death and confers a potent pro-coagulant
+activity to the apoptotic cell [74].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">phosphatidyl-L-serine</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="activity">
+                    <bel:term bel:function="proteinAbundance">
+                        <bel:parameter bel:ns="HGNC">F3</bel:parameter>
+                    </bel:term>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:annotation bel:refID="CellStructure">Cell Membrane</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>TF works at the surface of cell membranes, and its activity is highly dependent on
+the presence of phosphatidylserine (PS), an anionic phospholipid that is redistributed
+on the cell surface during apoptotic death and confers a potent pro-coagulant
+activity to the apoptotic cell [74].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">apoptotic process</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">phosphatidyl-L-serine</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="increases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:annotation bel:refID="CellStructure">Cell Membrane</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>TF works at the surface of cell membranes, and its activity is highly dependent on
+the presence of phosphatidylserine (PS), an anionic phospholipid that is redistributed
+on the cell surface during apoptotic death and confers a potent pro-coagulant
+activity to the apoptotic cell [74].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="abundance">
+                    <bel:parameter bel:ns="CHEBI">phosphatidyl-L-serine</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">coagulation</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+        <bel:statement bel:relationship="decreases">
+            <bel:annotationGroup>
+                <bel:annotation bel:refID="Disease">atherosclerosis</bel:annotation>
+                <bel:annotation bel:refID="Anatomy">cardiovascular system endothelium</bel:annotation>
+                <bel:annotation bel:refID="TextLocation">Review</bel:annotation>
+                <bel:annotation bel:refID="Cell">endothelial cell</bel:annotation>
+                <bel:annotation bel:refID="MeSHAnatomy">Muscle, Smooth, Vascular</bel:annotation>
+                <bel:annotation bel:refID="CellLine">U-937 cell</bel:annotation>
+                <bel:annotation bel:refID="CellStructure">Cell Membrane</bel:annotation>
+                <bel:citation bel:type="PubMed">
+                    <bel:reference>12928037</bel:reference>
+                    <bel:name>Trends in molecular medicine</bel:name>
+                    <bel:comment></bel:comment>
+                    <bel:authorGroup>
+                        <bel:author>de Nigris F</bel:author>
+                        <bel:author>Lerman A</bel:author>
+                        <bel:author>Ignarro LJ</bel:author>
+                        <bel:author>Williams-Ignarro S</bel:author>
+                        <bel:author>Sica V</bel:author>
+                        <bel:author>Baker AH</bel:author>
+                        <bel:author>Lerman LO</bel:author>
+                        <bel:author>Geng YJ</bel:author>
+                        <bel:author>Napoli C</bel:author>
+                    </bel:authorGroup>
+                </bel:citation>
+                <bel:support>TIMP-3 can be anti-angiogenic by direct binding to vascular endothelial growth factor
+(VEGF) receptor 2 in a matrix-metalloproteinase- independent manner [94].</bel:support>
+            </bel:annotationGroup>
+            <bel:subject>
+                <bel:term bel:function="proteinAbundance">
+                    <bel:parameter bel:ns="HGNC">TIMP3</bel:parameter>
+                </bel:term>
+            </bel:subject>
+            <bel:object>
+                <bel:term bel:function="biologicalProcess">
+                    <bel:parameter bel:ns="GOBP">angiogenesis</bel:parameter>
+                </bel:term>
+            </bel:object>
+        </bel:statement>
+    </bel:statementGroup>
+</bel:document>

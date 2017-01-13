@@ -9,7 +9,7 @@
 
 <http://www.openbel.org/bel/namespace/default>
     a               belv:NamespaceConceptScheme , skos:ConceptScheme ;
-    belv:prefix     "default" ;
+    belv:prefix     "DEFAULT" ;
     skos:prefLabel  "Default BEL Namespace" .
 
 bel:Activity          a belv:MolecularActivityConcept, belv:NamespaceConcept, skos:Concept, rdfs:Resource;

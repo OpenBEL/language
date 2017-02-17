@@ -2594,7 +2594,7 @@ body {
 </li>
 <li><a href="#_variants_2">2.2.2. Variants</a>
 <ul class="sectlevel4">
-<li><a href="#_variant_var">variant(), var()</a></li>
+<li><a href="#_variant_var">variant(""), var("")</a></li>
 <li><a href="#_protein_examples">Protein examples</a></li>
 <li><a href="#_dna_gene_examples">DNA (gene) examples</a></li>
 <li><a href="#_rna_examples">RNA examples</a></li>
@@ -2885,7 +2885,7 @@ body {
 <p>Now represent multiple substitutions within the same gene/RNA/protein</p>
 </li>
 <li>
-<p>New BEL abundance modifier function <a href="http://wiki.openbel.org/display/BLVD/Variants"><code>variant()</code></a> / <a href="http://wiki.openbel.org/display/BLVD/Variants"><code>var()</code></a> is used for most variant types, replacing <code>substitution()</code> / <code>sub()</code> and <code>truncation()</code> / <code>trunc()</code>. <a href="http://www.hgvs.org/rec.html">Human Genome Variation Society</a> (HGVS) nomenclature adopted to describe variants (<a href="http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291098-1004%28200001%2915:1%3C7::AID-HUMU4%3E3.0.CO;2-N/pdf">Dunnen and Antonarakis, 2000</a>) within the <code>var()</code> modifier function, expanding supported types of variation to include insertions, deletions, duplications as well as non-specific variants.</p>
+<p>New BEL abundance modifier function <a href="http://wiki.openbel.org/display/BLVD/Variants"><code>variant("")</code></a> / <a href="http://wiki.openbel.org/display/BLVD/Variants"><code>var("")</code></a> is used for most variant types, replacing <code>substitution()</code> / <code>sub()</code> and <code>truncation()</code> / <code>trunc()</code>. <a href="http://www.hgvs.org/rec.html">Human Genome Variation Society</a> (HGVS) nomenclature adopted to describe variants (<a href="http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291098-1004%28200001%2915:1%3C7::AID-HUMU4%3E3.0.CO;2-N/pdf">Dunnen and Antonarakis, 2000</a>) within the <code>var("")</code> modifier function, expanding supported types of variation to include insertions, deletions, duplications as well as non-specific variants.</p>
 </li>
 <li>
 <p>Usage of <a href="http://wiki.openbel.org/display/BLVD/Other+Functions"><code>fus()</code></a> changed. Instead of a modifier function for a gene/RNA/protein abundance, <code>fus()</code> is used to compose new entities that can be used in place of a namespace value for abundance functions.</p>
@@ -3592,9 +3592,9 @@ p(SFAM:"AKT Family")</pre>
 <div class="sect3">
 <h4 id="_variants_2">2.2.2. Variants</h4>
 <div class="sect4">
-<h5 id="_variant_var">variant(), var()</h5>
+<h5 id="_variant_var">variant(""), var("")</h5>
 <div class="paragraph">
-<p>The <code>variant(&lt;expression&gt;)</code> or <code>var(&lt;expression&gt;)</code> function can be used as an argument within a <code>geneAbundance()</code>, <code>rnaAbundance()</code>, <code>microRNAAbundance()</code>, or <code>proteinAbundance()</code> to indicate a sequence variant of the specified abundance. The <code>var()</code> function takes <a href="http://www.hgvs.org/mutnomen/">HGVS</a> variant description expression, e.g., for a substitution, insertion, or deletion variant. Multiple <code>var()</code> arguments may be applied to an abundance term.</p>
+<p>The <code>variant("&lt;expression&gt;")</code> or <code>var("&lt;expression&gt;")</code> function can be used as an argument within a <code>geneAbundance()</code>, <code>rnaAbundance()</code>, <code>microRNAAbundance()</code>, or <code>proteinAbundance()</code> to indicate a sequence variant of the specified abundance. The <code>var("")</code> function takes <a href="http://www.hgvs.org/mutnomen/">HGVS</a> variant description expression, e.g., for a substitution, insertion, or deletion variant. Multiple <code>var("")</code> arguments may be applied to an abundance term.</p>
 </div>
 </div>
 <div class="sect4">
@@ -3603,7 +3603,7 @@ p(SFAM:"AKT Family")</pre>
 <h6 id="_reference_allele">reference allele</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:CFTR, var(=))</pre>
+<pre>p(HGNC:CFTR, var("=""))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3614,7 +3614,7 @@ p(SFAM:"AKT Family")</pre>
 <h6 id="_unspecified_variant">unspecified variant</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:CFTR, var(?))</pre>
+<pre>p(HGNC:CFTR, var("?""))</pre>
 </div>
 </div>
 </div>
@@ -3622,36 +3622,36 @@ p(SFAM:"AKT Family")</pre>
 <h6 id="_substitution">substitution</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:CFTR, var(p.Gly576Ala))
-p(REF:NP_000483.3, var(p.Gly576Ala))</pre>
+<pre>p(HGNC:CFTR, var("p.Gly576Ala"))
+p(REF:NP_000483.3, var("p.Gly576Ala"))</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>CFTR substitution variant Glycine 576 Alanine (HGVS <em>NP_000483.3:p.Gly576Ala</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var()</code> expression indicates that the numbering is based on a protein sequence.</p>
+<p>CFTR substitution variant Glycine 576 Alanine (HGVS <em>NP_000483.3:p.Gly576Ala</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var("")</code> expression indicates that the numbering is based on a protein sequence.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_deletion">deletion</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:CFTR, var(p.Phe508del))
-p(REF:NP_000483.3, var(p.Phe508del))</pre>
+<pre>p(HGNC:CFTR, var("p.Phe508del"))
+p(REF:NP_000483.3, var("p.Phe508del"))</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>CFTR ΔF508 variant (HGVS <em>NP_000483.3:p.Phe508del</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var()</code> expression indicates that the numbering is based on a protein reference sequence.</p>
+<p>CFTR ΔF508 variant (HGVS <em>NP_000483.3:p.Phe508del</em>). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var("")</code> expression indicates that the numbering is based on a protein reference sequence.</p>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_frameshift">frameshift</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:CFTR, var(p.Thr1220Lysfs))
-p(REF:NP_000483.3, var(p.Thr1220Lysfs))</pre>
+<pre>p(HGNC:CFTR, var("p.Thr1220Lysfs"))
+p(REF:NP_000483.3, var("p.Thr1220Lysfs"))</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>CFTR frameshift variant <em>(</em>HGVS<em> NP_000483.3:p.Thr1220Lysfs*7). </em>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var()</code> expression indicates that the numbering is based on a protein reference sequence.</p>
+<p>CFTR frameshift variant <em>(</em>HGVS<em> NP_000483.3:p.Thr1220Lysfs*7). </em>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>p.</em> within the <code>var("")</code> expression indicates that the numbering is based on a protein reference sequence.</p>
 </div>
 </div>
 </div>
@@ -3664,7 +3664,7 @@ p(REF:NP_000483.3, var(p.Thr1220Lysfs))</pre>
 <h6 id="_snp">SNP</h6>
 <div class="literalblock">
 <div class="content">
-<pre>g(SNP:rs113993960, var(delCTT))</pre>
+<pre>g(SNP:rs113993960, var("delCTT"))</pre>
 </div>
 </div>
 </div>
@@ -3672,7 +3672,7 @@ p(REF:NP_000483.3, var(p.Thr1220Lysfs))</pre>
 <h6 id="_chromosome">chromosome</h6>
 <div class="literalblock">
 <div class="content">
-<pre>g(REF:NC_000007.13, var(g.117199646_117199648delCTT))</pre>
+<pre>g(REF:NC_000007.13, var("g.117199646_117199648delCTT"))</pre>
 </div>
 </div>
 </div>
@@ -3680,12 +3680,12 @@ p(REF:NP_000483.3, var(p.Thr1220Lysfs))</pre>
 <h6 id="_gene_coding_dna_reference_sequence">gene - coding DNA reference sequence</h6>
 <div class="literalblock">
 <div class="content">
-<pre>g(HGNC:CFTR, var(c.1521_1523delCTT))
-g(REF:NM_000492.3, var(c.1521_1523delCTT))</pre>
+<pre>g(HGNC:CFTR, var("c.1521_1523delCTT"))
+g(REF:NM_000492.3, var("c.1521_1523delCTT"))</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>c.</em> within the <code>var()</code> expression indicates that the numbering is based on a coding DNA reference sequence.The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.</p>
+<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>c.</em> within the <code>var("")</code> expression indicates that the numbering is based on a coding DNA reference sequence.The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.</p>
 </div>
 </div>
 </div>
@@ -3698,12 +3698,12 @@ g(REF:NM_000492.3, var(c.1521_1523delCTT))</pre>
 <h6 id="_coding_reference_sequence">coding reference sequence</h6>
 <div class="literalblock">
 <div class="content">
-<pre>r(HGNC:CFTR, var(c.1521_1523delCTT))
-r(REF:NM_000492.3, var(c.1521_1523delCTT))</pre>
+<pre>r(HGNC:CFTR, var("c.1521_1523delCTT"))
+r(REF:NM_000492.3, var("c.1521_1523delCTT"))</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>c.</em> within the <code>var()</code> expression indicates that the numbering is based on a coding DNA reference sequence. The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.</p>
+<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>c.</em> within the <code>var("")</code> expression indicates that the numbering is based on a coding DNA reference sequence. The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.</p>
 </div>
 </div>
 </div>
@@ -3711,12 +3711,12 @@ r(REF:NM_000492.3, var(c.1521_1523delCTT))</pre>
 <h5 id="_rna_reference_sequence">RNA reference sequence</h5>
 <div class="literalblock">
 <div class="content">
-<pre>r(HGNC:CFTR, var(r.1653_1655delcuu))
-r(REF:NM_000492.3, var(r.1653_1655delcuu))</pre>
+<pre>r(HGNC:CFTR, var("r.1653_1655delcuu"))
+r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>r.</em> within the <code>var()</code> expression indicates that the numbering is based on an RNA reference sequence. The RNA reference sequence covers the entire transcript except for the poly A-tail; numbering starts at the trascrption initiation site and ends at the transcription termination site.</p>
+<p>Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the <a href="http://www.ncbi.nlm.nih.gov/refseq/about/">RefSeq</a> ID in the lower example is preferred over the HGNC gene symbol. The <em>r.</em> within the <code>var("")</code> expression indicates that the numbering is based on an RNA reference sequence. The RNA reference sequence covers the entire transcript except for the poly A-tail; numbering starts at the transcription initiation site and ends at the transcription termination site.</p>
 </div>
 </div>
 </div>
@@ -4008,11 +4008,11 @@ pathology(MESHD:adenocarcinoma)</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>fus(ns5':v5', range5', ns3':v3', range3')</pre>
+<pre>fus(ns5':v5', "range5'", ns3':v3', "range3'")</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>ns5':v5'</code> is a namespace and value for the 5' fusion partner, <code>range5'</code> is the sequence coordinates of the 5' partner, <code>ns3':v3'</code> is a namespace and value for the 3' partner, and <code>range3'</code> is the sequence coordinates for the 3' partner.</p>
+<p>where <code>ns5':v5'</code> is a namespace and value for the 5' fusion partner, <code>range5'</code> is the sequence coordinates of the 5' partner, <code>ns3':v3'</code> is a namespace and value for the 3' partner, and <code>range3'</code> is the sequence coordinates for the 3' partner.  Ranges need to be in quotes.</p>
 </div>
 <div class="sect4">
 <h5 id="_example_4">Example</h5>
@@ -4020,7 +4020,7 @@ pathology(MESHD:adenocarcinoma)</pre>
 <h6 id="_rna_abundance_of_fusion_with_known_breakpoints">RNA abundance of fusion with known breakpoints</h6>
 <div class="literalblock">
 <div class="content">
-<pre>r(fus(HGNC:TMPRSS2, r.1_79, HGNC:ERG, r.312_5034))</pre>
+<pre>r(fus(HGNC:TMPRSS2, "r.1_79", HGNC:ERG, "r.312_5034"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4031,7 +4031,7 @@ pathology(MESHD:adenocarcinoma)</pre>
 <h6 id="_rna_abundance_of_fusion_with_unspecified_breakpoints">RNA abundance of fusion with unspecified breakpoints</h6>
 <div class="literalblock">
 <div class="content">
-<pre>r(fus(HGNC:TMPRSS2, ?, HGNC:ERG, ?))</pre>
+<pre>r(fus(HGNC:TMPRSS2, "?", HGNC:ERG, "?""))</pre>
 </div>
 </div>
 </div>
@@ -5514,7 +5514,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <div class="sect4">
 <h5 id="_variant_mutant_protein_examples">Variant (Mutant) Protein Examples</h5>
 <div class="paragraph">
-<p>The abundances of mutated and variant proteins can be represented in BEL using the abundance modifier function <code>variant()</code> and the other function <code>fusion()</code>.</p>
+<p>The abundances of mutated and variant proteins can be represented in BEL using the abundance modifier function <code>variant("")</code> and the other function <code>fusion()</code>.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -5532,7 +5532,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <div class="sect5">
 <h6 id="_amino_acid_substitutions">Amino Acid Substitutions</h6>
 <div class="paragraph">
-<p>The abundances of proteins with amino acid sequence variations, such as those resulting from missense mutations or polymorphisms can be specified by using the <code>variant()</code> or <code>var()</code> function within a protein abundance term.</p>
+<p>The abundances of proteins with amino acid sequence variations, such as those resulting from missense mutations or polymorphisms can be specified by using the <code>variant("")</code> or <code>var("")</code> function within a protein abundance term.</p>
 </div>
 </div>
 <div class="sect5">
@@ -5543,7 +5543,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <h6 id="_long_form_19">Long Form</h6>
 <div class="literalblock">
 <div class="content">
-<pre>proteinAbundance(HGNC:PIK3CA, variant(p.Glu545Lys))</pre>
+<pre>proteinAbundance(HGNC:PIK3CA, variant("p.Glu545Lys"))</pre>
 </div>
 </div>
 </div>
@@ -5551,7 +5551,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <h6 id="_short_form_19">Short Form</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:PIK3CA, var(p.Glu545Lys))</pre>
+<pre>p(HGNC:PIK3CA, var("p.Glu545Lys"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5561,7 +5561,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <div class="sect5">
 <h6 id="_truncated_proteins">Truncated Proteins</h6>
 <div class="paragraph">
-<p>The abundances of proteins that are truncated by the introduction of a stop codon can be specified by using the <code>variant()</code> or <code>var()</code> function within a protein abundance term.</p>
+<p>The abundances of proteins that are truncated by the introduction of a stop codon can be specified by using the <code>variant("")</code> or <code>var("")</code> function within a protein abundance term.</p>
 </div>
 </div>
 <div class="sect5">
@@ -5572,7 +5572,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <h6 id="_long_form_20">Long Form</h6>
 <div class="literalblock">
 <div class="content">
-<pre>proteinAbundance(HGNC:ABCA1, variant(p.Arg1851*))</pre>
+<pre>proteinAbundance(HGNC:ABCA1, variant("p.Arg1851*"))</pre>
 </div>
 </div>
 </div>
@@ -5580,7 +5580,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <h6 id="_short_form_20">Short Form</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:ABCA1, var(p.Arg1851*))</pre>
+<pre>p(HGNC:ABCA1, var("p.Arg1851*"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5601,7 +5601,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <h6 id="_long_form_21">Long Form</h6>
 <div class="literalblock">
 <div class="content">
-<pre>proteinAbundance(fusion(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))</pre>
+<pre>proteinAbundance(fusion(HGNC:BCR, "p.1_426", HGNC:JAK2, "p.812_1132"))</pre>
 </div>
 </div>
 </div>
@@ -5609,7 +5609,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <h6 id="_short_form_21">Short Form</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(fus(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))</pre>
+<pre>p(fus(HGNC:BCR, "p.1_426", HGNC:JAK2, "p.812_1132"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5617,7 +5617,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(fus(HGNC:BCR, ?, HGNC:JAK2, ?))</pre>
+<pre>p(fus(HGNC:BCR, "?", HGNC:JAK2, "?""))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6513,17 +6513,17 @@ We could represent this observation as follows:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:FOXO1, var(p.Ser256Ala)) =| p(HGNC:FOXO1, pmod(Ph, Ser, 256))</pre>
+<pre>p(HGNC:FOXO1, var("p.Ser256Ala")) =| p(HGNC:FOXO1, pmod(Ph, Ser, 256))</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:FOXO1, var(p.Ser256Ala)) =| (p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Thr, 24)))</pre>
+<pre>p(HGNC:FOXO1, var("p.Ser256Ala")) =| (p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Thr, 24)))</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:FOXO1, var(p.Ser256Ala)) =| (p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Ser, 319)))</pre>
+<pre>p(HGNC:FOXO1, var("p.Ser256Ala")) =| (p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Ser, 319)))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6760,7 +6760,7 @@ In this example, most patient tumor samples with an EGFR L858R mutation were obs
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:EGFR, var(p.Leu858Arg)) negativeCorrelation p(HGNC:ERBB2, pmod(Ph,Tyr,1248))</pre>
+<pre>p(HGNC:EGFR, var("p.Leu858Arg")) negativeCorrelation p(HGNC:ERBB2, pmod(Ph,Tyr,1248))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6775,7 +6775,7 @@ In this example, DUSP6 RNA is observed to be upregulated in immortalized human b
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:EGFR, var(p.Leu858Arg)) -&gt; r(HGNC:DUSP6)</pre>
+<pre>p(HGNC:EGFR, var("p.Leu858Arg")) -&gt; r(HGNC:DUSP6)</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7378,7 +7378,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.0<br>
-Last updated 2016-06-30 00:00:11 UTC
+Last updated 2017-02-17 11:47:58 EST
 </div>
 </div>
 </body>

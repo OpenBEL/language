@@ -40,7 +40,7 @@ These additions and modifications enhance the BEL language by providing new repr
 
 *   Now represent sequence variants at DNA, RNA, and protein levels.
 *   Now represent multiple substitutions within the same gene/RNA/protein
-*   New BEL abundance modifier function http://wiki.openbel.org/display/BLVD/Variants[`variant()`] / http://wiki.openbel.org/display/BLVD/Variants[`var()`] is used for most variant types, replacing `substitution()` / `sub()` and `truncation()` / `trunc()`. http://www.hgvs.org/rec.html[Human Genome Variation Society] (HGVS) nomenclature adopted to describe variants (http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291098-1004%28200001%2915:1%3C7::AID-HUMU4%3E3.0.CO;2-N/pdf[Dunnen and Antonarakis, 2000]) within the `var()` modifier function, expanding supported types of variation to include insertions, deletions, duplications as well as non-specific variants.
+*   New BEL abundance modifier function http://wiki.openbel.org/display/BLVD/Variants[`variant("")`] / http://wiki.openbel.org/display/BLVD/Variants[`var("")`] is used for most variant types, replacing `substitution()` / `sub()` and `truncation()` / `trunc()`. http://www.hgvs.org/rec.html[Human Genome Variation Society] (HGVS) nomenclature adopted to describe variants (http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291098-1004%28200001%2915:1%3C7::AID-HUMU4%3E3.0.CO;2-N/pdf[Dunnen and Antonarakis, 2000]) within the `var("")` modifier function, expanding supported types of variation to include insertions, deletions, duplications as well as non-specific variants.
 *   Usage of http://wiki.openbel.org/display/BLVD/Other+Functions[`fus()`] changed. Instead of a modifier function for a gene/RNA/protein abundance, `fus()` is used to compose new entities that can be used in place of a namespace value for abundance functions.
 
 === Protein Cleavage Fragments
@@ -396,47 +396,47 @@ Additional modification types can be requested as needed, or an external vocabul
 ==== Variants
 
 
-===== variant(), var()
+===== variant(""), var("")
 
-The `variant(<expression>)` or `var(<expression>)` function can be used as an argument within a `geneAbundance()`, `rnaAbundance()`, `microRNAAbundance()`, or `proteinAbundance()` to indicate a sequence variant of the specified abundance. The `var()` function takes http://www.hgvs.org/mutnomen/[HGVS] variant description expression, e.g., for a substitution, insertion, or deletion variant. Multiple `var()` arguments may be applied to an abundance term.
+The `variant("<expression>")` or `var("<expression>")` function can be used as an argument within a `geneAbundance()`, `rnaAbundance()`, `microRNAAbundance()`, or `proteinAbundance()` to indicate a sequence variant of the specified abundance. The `var("")` function takes http://www.hgvs.org/mutnomen/[HGVS] variant description expression, e.g., for a substitution, insertion, or deletion variant. Multiple `var("")` arguments may be applied to an abundance term.
 
 ===== Protein examples
 
 ====== reference allele
 
 
- p(HGNC:CFTR, var(=))
+ p(HGNC:CFTR, var("=""))
 
 This is different than `p(HGNC:CFTR)`, the root protein abundance, which includes all variants.
 
 ====== unspecified variant
 
 
- p(HGNC:CFTR, var(?))
+ p(HGNC:CFTR, var("?""))
 
 ====== substitution
 
 
- p(HGNC:CFTR, var(p.Gly576Ala))
- p(REF:NP_000483.3, var(p.Gly576Ala))
+ p(HGNC:CFTR, var("p.Gly576Ala"))
+ p(REF:NP_000483.3, var("p.Gly576Ala"))
 
-CFTR substitution variant Glycine 576 Alanine (HGVS __NP_000483.3:p.Gly576Ala__). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var()` expression indicates that the numbering is based on a protein sequence.
+CFTR substitution variant Glycine 576 Alanine (HGVS __NP_000483.3:p.Gly576Ala__). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var("")` expression indicates that the numbering is based on a protein sequence.
 
 ====== deletion
 
 
- p(HGNC:CFTR, var(p.Phe508del))
- p(REF:NP_000483.3, var(p.Phe508del))
+ p(HGNC:CFTR, var("p.Phe508del"))
+ p(REF:NP_000483.3, var("p.Phe508del"))
 
-CFTR ΔF508 variant (HGVS __NP_000483.3:p.Phe508del__). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var()` expression indicates that the numbering is based on a protein reference sequence.
+CFTR ΔF508 variant (HGVS __NP_000483.3:p.Phe508del__). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var("")` expression indicates that the numbering is based on a protein reference sequence.
 
 ====== frameshift
 
 
- p(HGNC:CFTR, var(p.Thr1220Lysfs))
- p(REF:NP_000483.3, var(p.Thr1220Lysfs))
+ p(HGNC:CFTR, var("p.Thr1220Lysfs"))
+ p(REF:NP_000483.3, var("p.Thr1220Lysfs"))
 
-CFTR frameshift variant __(__HGVS__ NP_000483.3:p.Thr1220Lysfs*7). __Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var()` expression indicates that the numbering is based on a protein reference sequence.
+CFTR frameshift variant __(__HGVS__ NP_000483.3:p.Thr1220Lysfs*7). __Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var("")` expression indicates that the numbering is based on a protein reference sequence.
 
 ===== DNA (gene) examples
 
@@ -445,20 +445,20 @@ These are all representations of CFTR __ΔF508__.
 ====== SNP
 
 
- g(SNP:rs113993960, var(delCTT))
+ g(SNP:rs113993960, var("delCTT"))
 
 ====== chromosome
 
 
- g(REF:NC_000007.13, var(g.117199646_117199648delCTT))
+ g(REF:NC_000007.13, var("g.117199646_117199648delCTT"))
 
 ====== gene - coding DNA reference sequence
 
 
- g(HGNC:CFTR, var(c.1521_1523delCTT))
- g(REF:NM_000492.3, var(c.1521_1523delCTT))
+ g(HGNC:CFTR, var("c.1521_1523delCTT"))
+ g(REF:NM_000492.3, var("c.1521_1523delCTT"))
 
-Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __c.__ within the `var()` expression indicates that the numbering is based on a coding DNA reference sequence.The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.
+Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __c.__ within the `var("")` expression indicates that the numbering is based on a coding DNA reference sequence.The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.
 
 ===== RNA examples
 
@@ -467,18 +467,18 @@ These are all representations of CFTR __ΔF508__.
 ====== coding reference sequence
 
 
- r(HGNC:CFTR, var(c.1521_1523delCTT))
- r(REF:NM_000492.3, var(c.1521_1523delCTT))
+ r(HGNC:CFTR, var("c.1521_1523delCTT"))
+ r(REF:NM_000492.3, var("c.1521_1523delCTT"))
 
-Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __c.__ within the `var()` expression indicates that the numbering is based on a coding DNA reference sequence. The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.
+Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __c.__ within the `var("")` expression indicates that the numbering is based on a coding DNA reference sequence. The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.
 
 ===== RNA reference sequence
 
 
- r(HGNC:CFTR, var(r.1653_1655delcuu))
- r(REF:NM_000492.3, var(r.1653_1655delcuu))
+ r(HGNC:CFTR, var("r.1653_1655delcuu"))
+ r(REF:NM_000492.3, var("r.1653_1655delcuu"))
 
-Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __r.__ within the `var()` expression indicates that the numbering is based on an RNA reference sequence. The RNA reference sequence covers the entire transcript except for the poly A-tail; numbering starts at the trascrption initiation site and ends at the transcription termination site.
+Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __r.__ within the `var("")` expression indicates that the numbering is based on an RNA reference sequence. The RNA reference sequence covers the entire transcript except for the poly A-tail; numbering starts at the transcription initiation site and ends at the transcription termination site.
 
 ==== Proteolytic fragments
 
@@ -674,23 +674,23 @@ The reaction in which superoxides are dismutated into oxygen and hydrogen peroxi
 `fusion()` or `fus()` expressions can be used in place of a namespace value within a gene, RNA, or protein abundance function to represent a hybrid gene, or gene product formed from two previously separate genes. `fusion()` expressions take the general form:
 
 
- fus(ns5':v5', range5', ns3':v3', range3')
+ fus(ns5':v5', "range5'", ns3':v3', "range3'")
 
-where `ns5':v5'` is a namespace and value for the 5' fusion partner, `range5'` is the sequence coordinates of the 5' partner, `ns3':v3'` is a namespace and value for the 3' partner, and `range3'` is the sequence coordinates for the 3' partner.
+where `ns5':v5'` is a namespace and value for the 5' fusion partner, `range5'` is the sequence coordinates of the 5' partner, `ns3':v3'` is a namespace and value for the 3' partner, and `range3'` is the sequence coordinates for the 3' partner.  Ranges need to be in quotes.
 
 ===== Example
 
 ====== RNA abundance of fusion with known breakpoints
 
 
- r(fus(HGNC:TMPRSS2, r.1_79, HGNC:ERG, r.312_5034))
+ r(fus(HGNC:TMPRSS2, "r.1_79", HGNC:ERG, "r.312_5034"))
 
 The __r.__ designation in the range fields indicates that the numbering uses the RNA sequence as the reference. RNA sequence numbering starts at the transcription initiation site.  You use __c.___ for g() fusions and __p.___ for p() fusions.  These __r.__, __c.__, and __p.__ designations come from http://www.hgvs.org[HGVS variation description] convention.
 
 ====== RNA abundance of fusion with unspecified breakpoints
 
 
- r(fus(HGNC:TMPRSS2, ?, HGNC:ERG, ?))
+ r(fus(HGNC:TMPRSS2, "?", HGNC:ERG, "?""))
 
 == BEL Relationships
 
@@ -1520,7 +1520,7 @@ This term represents the degradation of MYC RNA. Degradation decreases the amoun
 
 ===== Variant (Mutant) Protein Examples
 
-The abundances of mutated and variant proteins can be represented in BEL using the abundance modifier function `variant()` and the other function `fusion()`.
+The abundances of mutated and variant proteins can be represented in BEL using the abundance modifier function `variant("")` and the other function `fusion()`.
 
 * <<Amino Acid Substitutions>>
 * <<Truncated Proteins>>
@@ -1528,33 +1528,33 @@ The abundances of mutated and variant proteins can be represented in BEL using t
 
 ====== Amino Acid Substitutions
 
-The abundances of proteins with amino acid sequence variations, such as those resulting from missense mutations or polymorphisms can be specified by using the `variant()` or `var()` function within a protein abundance term.
+The abundances of proteins with amino acid sequence variations, such as those resulting from missense mutations or polymorphisms can be specified by using the `variant("")` or `var("")` function within a protein abundance term.
 
 ====== Example
 
 ====== Long Form
 
- proteinAbundance(HGNC:PIK3CA, variant(p.Glu545Lys))
+ proteinAbundance(HGNC:PIK3CA, variant("p.Glu545Lys"))
 
 ====== Short Form
 
- p(HGNC:PIK3CA, var(p.Glu545Lys))
+ p(HGNC:PIK3CA, var("p.Glu545Lys"))
 
 This term represents the abundance of the human PIK3CA protein in which the glutamic acid residue at position 545 has been substituted with a lysine.
 
 ====== Truncated Proteins
 
-The abundances of proteins that are truncated by the introduction of a stop codon can be specified by using the `variant()` or `var()` function within a protein abundance term.
+The abundances of proteins that are truncated by the introduction of a stop codon can be specified by using the `variant("")` or `var("")` function within a protein abundance term.
 
 ====== Example
 
 ====== Long Form
 
- proteinAbundance(HGNC:ABCA1, variant(p.Arg1851*))
+ proteinAbundance(HGNC:ABCA1, variant("p.Arg1851*"))
 
 ====== Short Form
 
- p(HGNC:ABCA1, var(p.Arg1851*))
+ p(HGNC:ABCA1, var("p.Arg1851*"))
 
 This term represents the abundance of human ABCA1 protein that has been truncated by substitution of Arginine 1851 with a stop codon.
 
@@ -1566,15 +1566,15 @@ The abundances of fusion proteins resulting from chromosomal translocation mutat
 
 ====== Long Form
 
- proteinAbundance(fusion(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))
+ proteinAbundance(fusion(HGNC:BCR, "p.1_426", HGNC:JAK2, "p.812_1132"))
 
 ====== Short Form
 
- p(fus(HGNC:BCR, p.1_426, HGNC:JAK2, p.812_1132))
+ p(fus(HGNC:BCR, "p.1_426", HGNC:JAK2, "p.812_1132"))
 
 This term represents the abundance of a fusion protein of the 5' partner BCR and 3' partner JAK2, with the breakpoint for BCR at amino acid 426 and JAK2 at 812. _p._ indicates that the protein sequence is used for the range coordinates provided. If the breakpoint is not specified, the fusion protein abundance can be represented as:
 
- p(fus(HGNC:BCR, ?, HGNC:JAK2, ?))
+ p(fus(HGNC:BCR, "?", HGNC:JAK2, "?""))
 
 The `fusion()` function can also be used within `geneAbundance` and `rnaAbundance` terms to represent genes and RNAs modified by fusion mutations.
 
@@ -2029,11 +2029,11 @@ The artificial (laboratory) creation of sequence variants is often used to inves
 In this example, mutation of FOXO1 serine 256 to alanine is used to block phosphorylation at 256 (S256A), a site phosphorylated by AKT. The S256A mutation was found to impair phosphorylation of threonine 24 and serine 319 by AKT (http://www.ncbi.nlm.nih.gov/pubmed?term=11237865[PMID 11237865]).
 We could represent this observation as follows:
 
- p(HGNC:FOXO1, var(p.Ser256Ala)) =| p(HGNC:FOXO1, pmod(Ph, Ser, 256))
+ p(HGNC:FOXO1, var("p.Ser256Ala")) =| p(HGNC:FOXO1, pmod(Ph, Ser, 256))
 
- p(HGNC:FOXO1, var(p.Ser256Ala)) =| (p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Thr, 24)))
+ p(HGNC:FOXO1, var("p.Ser256Ala")) =| (p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Thr, 24)))
 
- p(HGNC:FOXO1, var(p.Ser256Ala)) =| (p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Ser, 319)))
+ p(HGNC:FOXO1, var("p.Ser256Ala")) =| (p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Ser, 319)))
 
 The first statement indicates that phosphorylation at S256 is blocked by mutation of S256 to alanine. The next two statements indicate that the S256A mutation decreases phosphorylation of FOXO1 threonine 24 and serine 319 by AKT.
 However, we are not generally interested in the effects of a lab-created mutant like S256A so much as the role of phosphorylation at serine 256 on phosphorylation of the other two sites. Thus, we recommend the following representation:
@@ -2164,7 +2164,7 @@ In this case, not enough information is available to determine if the change in 
 If the observation comes from the comparison of human tumors grouped by the occurrence of a specific mutation, then the relationship should generally be expressed as correlative. In this case there is no experimental perturbation.
 In this example, most patient tumor samples with an EGFR L858R mutation were observed to exhibit a reduction in ERBB2 tyrosine 1248 phosphorylation compared to wild-type samples (http://www.ncbi.nlm.nih.gov/pubmed/?term=18687633[PMID 18687633]):
 
- p(HGNC:EGFR, var(p.Leu858Arg)) negativeCorrelation p(HGNC:ERBB2, pmod(Ph,Tyr,1248))
+ p(HGNC:EGFR, var("p.Leu858Arg")) negativeCorrelation p(HGNC:ERBB2, pmod(Ph,Tyr,1248))
 
 In this case, no evidence is presented to suggest that the differences in ERBB2 phosphorylation are causally related to the EGFR mutation, only that the two observations are inversely correlated. Note that the subject and object terms are interchangeable for correlative relationships.
 
@@ -2173,7 +2173,7 @@ In this case, no evidence is presented to suggest that the differences in ERBB2 
 If the observation comes from the comparison of experimentally controlled states, like gene deletion, overexpression, or introduction of a mutant allele into a cell line or animal, the experimental perturbation can generally be represented as the subject term of a causal statement.
 In this example, DUSP6 RNA is observed to be upregulated in immortalized human bronchial epithelial cells transfected with EGFR mutant L858R, as compared to WT EGFR (http://www.ncbi.nlm.nih.gov/pubmed/16489012[PMID 16489012]):
 
- p(HGNC:EGFR, var(p.Leu858Arg)) -> r(HGNC:DUSP6)
+ p(HGNC:EGFR, var("p.Leu858Arg")) -> r(HGNC:DUSP6)
 
 In this case, the EGFR mutation is introduced as an experimentally-controlled perturbation.
 

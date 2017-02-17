@@ -405,14 +405,14 @@ The `variant("<expression>")` or `var("<expression>")` function can be used as a
 ====== reference allele
 
 
- p(HGNC:CFTR, var("=""))
+ p(HGNC:CFTR, var("="))
 
 This is different than `p(HGNC:CFTR)`, the root protein abundance, which includes all variants.
 
 ====== unspecified variant
 
 
- p(HGNC:CFTR, var("?""))
+ p(HGNC:CFTR, var("?"))
 
 ====== substitution
 
@@ -690,7 +690,7 @@ The __r.__ designation in the range fields indicates that the numbering uses the
 ====== RNA abundance of fusion with unspecified breakpoints
 
 
- r(fus(HGNC:TMPRSS2, "?", HGNC:ERG, "?""))
+ r(fus(HGNC:TMPRSS2, "?", HGNC:ERG, "?"))
 
 == BEL Relationships
 
@@ -1574,7 +1574,7 @@ The abundances of fusion proteins resulting from chromosomal translocation mutat
 
 This term represents the abundance of a fusion protein of the 5' partner BCR and 3' partner JAK2, with the breakpoint for BCR at amino acid 426 and JAK2 at 812. _p._ indicates that the protein sequence is used for the range coordinates provided. If the breakpoint is not specified, the fusion protein abundance can be represented as:
 
- p(fus(HGNC:BCR, "?", HGNC:JAK2, "?""))
+ p(fus(HGNC:BCR, "?", HGNC:JAK2, "?"))
 
 The `fusion()` function can also be used within `geneAbundance` and `rnaAbundance` terms to represent genes and RNAs modified by fusion mutations.
 

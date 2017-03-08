@@ -595,7 +595,7 @@ NOTE - The default BEL namespace includes commonly used molecular activity types
 ====== default BEL namespace, transcriptional activity
 
 
- act(p(HGNC:FOXO1), ma(tscript))
+ act(p(HGNC:FOXO1), ma(DEFAULT:tscript))
 
 ====== GO molecular function namespace, transcriptional activity
 
@@ -605,7 +605,7 @@ NOTE - The default BEL namespace includes commonly used molecular activity types
 ====== default BEL namespace, kinase activity
 
 
- act(p(HGNC:AKT1), ma(kin))
+ act(p(HGNC:AKT1), ma(DEFAULT:kin))
 
 ====== GO molecular function namespace, kinase activity
 
@@ -665,7 +665,7 @@ The intent of the `cellSurfaceExpression()` function is to provide a simple, sta
 The reaction in which superoxides are dismutated into oxygen and hydrogen peroxide can be represented as:
 
 
- rxn(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen"))
+ rxn(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen")))
 
 === Other Functions
 
@@ -754,7 +754,7 @@ For process, activity, or transformation term A and process term P, `A rateLimit
 The catalytic activity of HMG CoA reductase is a rate-limiting step for cholesterol biosynthesis:
 
 
- act(p(HGNC:HMGCR), ma(cat)) rateLimitingStepOf bp(GOBP:"cholesterol biosynthetic process")
+ act(p(HGNC:HMGCR), ma(DEFAULT:cat)) rateLimitingStepOf bp(GOBP:"cholesterol biosynthetic process")
 
 [[Xcnc]]
 ==== causesNoChange, cnc
@@ -794,14 +794,14 @@ Inhibition of the Patched 1 receptor signaling activity by Hedgehog is represent
 In the case of transcriptional activity, if the protein performing the transcriptional activity interacts with the gene that the RNA is transcribed from, the relationship is considered direct. For example, repression of the transcription of miR-21 by FOXO3 protein transcriptional activity is represented as direct because FOXO3 binds the miR-21 promoter:
 
 
- act(p(HGNC:FOXO3),ma(tscript)) =| r(HGNC:MIR21)
+ act(p(HGNC:FOXO3),ma(DEFAULT:tscript)) =| r(HGNC:MIR21)
 
 ====== Target term is BEL statement
 
 If B is a BEL Statement, the relationship is considered direct if the subject abundance term for B physically interacts with the abundance term for A. For example, for the BEL Statement:
 
 
- p(HGNC:CLSPN) => (act(p(HGNC:ATR), ma(kin)) => p(HGNC:CHEK1, pmod(P)))
+ p(HGNC:CLSPN) => (act(p(HGNC:ATR), ma(DEFAULT:kin)) => p(HGNC:CHEK1, pmod(P)))
 
 CLSPN protein is considered to directly activate the phosphorylation of CHEK1 protein by the kinase activity of ATR, because the CLSPN and ATR proteins physically interact.
 
@@ -810,7 +810,7 @@ CLSPN protein is considered to directly activate the phosphorylation of CHEK1 pr
 Self-referential causal relationships are generally represented as direct. For example, phosphorylation of GSK3B at serine 9 inhibiting the kinase activity of GSK3B can be represented as:
 
 
- p(HGNC:GSK3B, pmod(P, S, 9)) =| act(p(HGNC:GSK3B), ma(kin))
+ p(HGNC:GSK3B, pmod(P, S, 9)) =| act(p(HGNC:GSK3B), ma(DEFAULT:kin))
 
 [[XcorRels]]
 === Correlative Relationships
@@ -1148,7 +1148,7 @@ This term represents the frequency of events in which the protein abundance of r
 
 ====== Long Form - default BEL namespace
 
- activity(proteinAbundance(RGD:Sod1), ma(cat))
+ activity(proteinAbundance(RGD:Sod1), ma(DEFAULT:cat))
 
 ====== Long Form - GO Molecular Function (GOMF) namespace
 
@@ -1156,7 +1156,7 @@ This term represents the frequency of events in which the protein abundance of r
 
 ====== Short Form - default BEL namespace
 
- act(p(RGD:Sod1), ma(cat))
+ act(p(RGD:Sod1), ma(DEFAULT:cat))
 
 ====== short Form - GO Molecular Function namespace
 
@@ -1168,7 +1168,7 @@ This term represents the frequency of events in which the protein abundance of m
 
 ====== Long Form - default BEL namespace
 
- activity(proteinAbundance(MGI:Casp3), molecularActivity(pep))
+ activity(proteinAbundance(MGI:Casp3), molecularActivity(DEFAULT:pep))
 
 ====== Long Form - GO Molecular Function namespace
 
@@ -1176,7 +1176,7 @@ This term represents the frequency of events in which the protein abundance of m
 
 ====== Short Form - default BEL namespace
 
- act(p(MGI:Casp3), ma(pep))
+ act(p(MGI:Casp3), ma(DEFAULT:pep))
 
 ====== Short Form - GO Molecular Function namespace
 
@@ -1188,7 +1188,7 @@ The activity of guanine nucleotide-binding proteins (G-proteins) like RAS in the
 
 ====== Long Form - default BEL namespace
 
- activity(proteinAbundance(SFAM:"RAS Family"), molecularActivity(gtp))
+ activity(proteinAbundance(SFAM:"RAS Family"), molecularActivity(DEFAULT:gtp))
 
 ====== Long Form - GO Molecular Function namespace
 
@@ -1196,7 +1196,7 @@ The activity of guanine nucleotide-binding proteins (G-proteins) like RAS in the
 
 ====== Short Form - default BEL namespace
 
- act(p(SFAM:"RAS Family"), ma(gtp))
+ act(p(SFAM:"RAS Family"), ma(DEFAULT:gtp))
 
 ====== Short Form - GO Molecular Function namespace
 
@@ -1208,7 +1208,7 @@ Molecular translocation events mediated by transporter proteins like ion channel
 
 ====== Long Form - default BEL namespace
 
- activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(tport))
+ activity(complexAbundance(SCOMP:"ENaC Complex"), molecularActivity(DEFAULT:tport))
 
 ====== Long Form - GO Molecular Function namespace
 
@@ -1216,7 +1216,7 @@ Molecular translocation events mediated by transporter proteins like ion channel
 
 ====== Short Form - default BEL namespace
 
- act(complex(NCH:"ENaC Complex"), ma(tport))
+ act(complex(NCH:"ENaC Complex"), ma(DEFAULT:tport))
 
 ====== Short Form - GO Molecular Function namespace
 
@@ -1228,11 +1228,11 @@ This term represents the events in which the human Calnexin protein functions as
 
 ====== Long Form - default BEL namespace
 
- activity(proteinAbundance(HGNC:CANX), molecularActivity(chap))
+ activity(proteinAbundance(HGNC:CANX), molecularActivity(DEFAULT:chap))
 
 ====== Short Form - default BEL namespace
 
- act(p(HGNC:CANX), ma(chap))
+ act(p(HGNC:CANX), ma(DEFAULT:chap))
 
 ====== Transcription Activity
 
@@ -1240,7 +1240,7 @@ Events in which a protein or molecular complex acts to directly control transcri
 
 ====== Long Form - default BEL namespace
 
- activity(proteinAbundance(MGI:Trp53), molecularActivity(tscript))
+ activity(proteinAbundance(MGI:Trp53), molecularActivity(DEFAULT:tscript))
 
 ====== Long Form - GO Molecular Function Namespace
 
@@ -1248,7 +1248,7 @@ Events in which a protein or molecular complex acts to directly control transcri
 
 ====== Short Form - default BEL namespace
 
- act(p(MGI:Trp53), ma(tscript))
+ act(p(MGI:Trp53), ma(DEFAULT:tscript))
 
 ====== Long Form - GO Molecular Function Namespace
 
@@ -1670,15 +1670,15 @@ The epidermal growth factor receptor (EGFR) ligand amphiregulin (AREG) is observ
 
  # disambiguation Amphiregulin = HGNC AREG
 
- proteinAbundance(HGNC:AREG) increases activity(complexAbundance(GOCC:"NF-kappaB complex"), molecularActivity(tscript))
+ proteinAbundance(HGNC:AREG) increases activity(complexAbundance(GOCC:"NF-kappaB complex"), molecularActivity(DEFAULT:tscript))
 
- proteinAbundance(HGNC:EGF) causesNoChange activity(complexAbundance(GOCC:"NF-kappaB complex"), molecularActivity(tscript))
+ proteinAbundance(HGNC:EGF) causesNoChange activity(complexAbundance(GOCC:"NF-kappaB complex"), molecularActivity(DEFAULT:tscript))
 
 ====== Short Form
 
- p(HGNC:AREG) -> act(complex(GOCC:"NF-kappaB complex"), ma(tscript))
+ p(HGNC:AREG) -> act(complex(GOCC:"NF-kappaB complex"), ma(DEFAULT:tscript))
 
- p(HGNC:EGF) causesNoChange act(complex(GOCC:"NF-kappaB complex"), ma(tscript))
+ p(HGNC:EGF) causesNoChange act(complex(GOCC:"NF-kappaB complex"), ma(DEFAULT:tscript))
 
 
 ===== Correlative Statement Examples
@@ -1755,11 +1755,11 @@ In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used t
 
  # EGFR is known to have kinase activity
 
- proteinAbundance(HGNC:AREG) directlyIncreases activity(proteinAbundance(HGNC:EGFR), molecularActivity(kin))
+ proteinAbundance(HGNC:AREG) directlyIncreases activity(proteinAbundance(HGNC:EGFR), molecularActivity(DEFAULT:kin))
 
 ====== Short Form
 
- p(HGNC:AREG) => act(p(HGNC:EGFR), ma(kin))
+ p(HGNC:AREG) => act(p(HGNC:EGFR), ma(DEFAULT:kin))
 
 ====== Example - Kinase and Substrate
 
@@ -1772,12 +1772,12 @@ In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used t
  SET SupportingText = "We found that Cdk1 phosphorylated the
   transcription factor FOXO1 at Ser249 in vitro and in vivo."
 
- activity(proteinAbundance(HGNC:CDK1), molecularActivity(kin)) directlyIncreases \
+ activity(proteinAbundance(HGNC:CDK1), molecularActivity(DEFAULT:kin)) directlyIncreases \
   proteinAbundance(HGNC:FOXO1, proteinModification(Ph, Ser, 249))
 
 ====== Short Form
 
- act(p(HGNC:CDK1), ma(kin)) => p(HGNC:FOXO1, pmod(Ph, S, 249))
+ act(p(HGNC:CDK1), ma(DEFAULT:kin)) => p(HGNC:FOXO1, pmod(Ph, S, 249))
 
 ====== Example - Catalyst and Reaction
 
@@ -1791,13 +1791,13 @@ In this example, the direct activation of a reaction by a catalytic enzyme is re
   second step, 5-lipoxygenase converts 5-HpETE to an allylic
   epoxide, leukotriene A4."
 
- activity(proteinAbundance(HGNC:ALOX5), molecularActivity(cat)) directlyIncreases \
+ activity(proteinAbundance(HGNC:ALOX5), molecularActivity(DEFAULT:cat)) directlyIncreases \
   reaction(reactants(abundance(CHEBI:"5(S)-HPETE")), \
   products(abundance(CHEBI:"leukotriene A4"), abundance(CHEBI:water)))
 
 ====== Short Form
 
- act(p(HGNC:ALOX5), ma(cat)) => rxn(reactants(a(CHEBI:"5(S)-HPETE")), products(a(CHEBI:"leukotriene A4"), a(CHEBI:water)))
+ act(p(HGNC:ALOX5), ma(DEFAULT:cat)) => rxn(reactants(a(CHEBI:"5(S)-HPETE")), products(a(CHEBI:"leukotriene A4"), a(CHEBI:water)))
 
 ====== Example - Self-Referential Relationships
 
@@ -1835,12 +1835,12 @@ In this example, the direct activation of a RNA transcription is encoded. The st
   of monocyte chemoattractant protein (MCP)-1 and interleukin
   (IL)-6 genes, through directly binding to its promoter."
 
- activity(proteinAbundance(HGNC:FOXO1), molecularActivity(tscript)) \
+ activity(proteinAbundance(HGNC:FOXO1), molecularActivity(DEFAULT:tscript)) \
   directlyIncreases rnaAbundance(HGNC:CEBPB)
 
 ====== Short Form
 
- act(p(HGNC:FOXO1), ma(tscript)) => r(HGNC:CEBPB)
+ act(p(HGNC:FOXO1), ma(DEFAULT:tscript)) => r(HGNC:CEBPB)
 
 
 ===== Nested Statement Example
@@ -1859,11 +1859,11 @@ In the relationship described by the evidence text, CLSPN specifically increases
   other ATR targets."
 
  proteinAbundance(HGNC:CLSPN) increases \
- (activity(proteinAbundance(HGNC:ATR), molecularActivity(kin)) directlyIncreases proteinAbundance(HGNC:CHEK1, proteinModification(Ph)))
+ (activity(proteinAbundance(HGNC:ATR), molecularActivity(DEFAULT:kin)) directlyIncreases proteinAbundance(HGNC:CHEK1, proteinModification(Ph)))
 
 ====== Short Form
 
- p(HGNC:CLSPN) -> (act(p(HGNC:ATR), ma(kin)) => p(HGNC:CHEK1, pmod(Ph)))
+ p(HGNC:CLSPN) -> (act(p(HGNC:ATR), ma(DEFAULT:kin)) => p(HGNC:CHEK1, pmod(Ph)))
 
 ==== Other Examples
 
@@ -2017,7 +2017,7 @@ For example, treatment of cells with the PI3 kinase inhibitor LY294002 significa
 
 In a case where more information is available, the protein activity targeted by the inhibitor can be used as the subject term. For example, if the effect of LY 29004 on TGFB2 RNA expression was demonstrated to require the PIK3CA gene, we could represent the subject term as the kinase activity of the PIK3CA protein.
 
- act(p(HGNC:PIK3CA), ma(kin)) -> r(HGNC:TGFB2)
+ act(p(HGNC:PIK3CA), ma(DEFAULT:kin)) -> r(HGNC:TGFB2)
 
 
 ====== How do I represent experiments that use site-directed mutants?
@@ -2124,23 +2124,23 @@ _Example 1._ A mutant telomerase (TERT) protein lacking telomerase activity reta
 
  p(MGI:Tert) -> bp(GOBP:"cell proliferation")
 
- act(p(MGI:Tert), ma(cat)) causesNoChange bp(GOBP:"cell proliferation")
+ act(p(MGI:Tert), ma(DEFAULT:cat)) causesNoChange bp(GOBP:"cell proliferation")
 
 _Example 2._ The serine-threonine kinase RIPK1 activates NF-kappaB through a mechanism that does not involve the protein's kinase activity (http://www.ncbi.nlm.nih.gov/pubmed/20354226[PMID 20354226]).
 
- p(HGNC:RIPK1) -> act(p(GOCC:"NF-kappaB complex"), ma(tscript))
+ p(HGNC:RIPK1) -> act(p(GOCC:"NF-kappaB complex"), ma(DEFAULT:tscript))
 
- act(p(HGNC:RIPK1), ma(kin)) causesNoChange act(p(GOCC:"NF-kappaB complex"), ma(tscript))
+ act(p(HGNC:RIPK1), ma(DEFAULT:kin)) causesNoChange act(p(GOCC:"NF-kappaB complex"), ma(DEFAULT:tscript))
 
 ====== Effects are likely due to the activity of the protein
 
 _Example._ Genes are differentially expressed in wild-type vs. Met knock out mouse hepatocytes, only after treatment with Hgf, the Met ligand (http://www.ncbi.nlm.nih.gov/pubmed/16710476[PMID 16710476]). These genes include integrins Itgav, Itga3, and Itgb1.
 
- act(p(MGI:Met), ma(kin)) -> r(Mgi:Itgav)
+ act(p(MGI:Met), ma(DEFAULT:kin)) -> r(Mgi:Itgav)
 
- act(p(MGI:Met), ma(kin)) -> r(Mgi:Itga3)
+ act(p(MGI:Met), ma(DEFAULT:kin)) -> r(Mgi:Itga3)
 
- act(p(MGI:Met), ma(kin)) -> r(Mgi:Itgb1)
+ act(p(MGI:Met), ma(DEFAULT:kin)) -> r(Mgi:Itgb1)
 
 Because both Met and the Met ligand are required for the increase in gene expression, we use the activity of Met as the subject term.
 
@@ -2262,7 +2262,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 
 Recommended:
 
- act(p(SFAM:"AKT Family"), ma(kin)) => (act(p(HGNC:SKP2)) => deg(p(SFAM:"FOXO Family")))
+ act(p(SFAM:"AKT Family"), ma(DEFAULT:kin)) => (act(p(HGNC:SKP2)) => deg(p(SFAM:"FOXO Family")))
 
 
 [IMPORTANT]
@@ -2322,13 +2322,13 @@ In this example, the modification of the histone by trimethylation does not affe
 
 In many cases two or more distinct modifications are required simultaneously for protein activity, and neither modification alone is sufficient. For example, MAPK3 must be phosphorylated at two sites, Threonine 202 and Tyrosine 204, to be active. Our general practice is to take the simple, most general approach, and model the effect of each site separately:
 
- p(HGNC:MAPK3, pmod(Ph, Thr, 202)) => act(p(HGNC:MAPK3), ma(kin))
+ p(HGNC:MAPK3, pmod(Ph, Thr, 202)) => act(p(HGNC:MAPK3), ma(DEFAULT:kin))
 
- p(HGNC:MAPK3, pmod(Ph, Tyr, 204)) => act(p(HGNC:MAPK3), ma(kin))
+ p(HGNC:MAPK3, pmod(Ph, Tyr, 204)) => act(p(HGNC:MAPK3), ma(DEFAULT:kin))
 
 A multiply-modified abundance term can be used if it is of high importance to capture the requirement for both modifications:
 
- p(HGNC:MAPK3, pmod(Ph, Thr, 202)), pmod(Ph, Tyr, 204)) => act(p(HGNC:MAPK3), ma(kin))
+ p(HGNC:MAPK3, pmod(Ph, Thr, 202)), pmod(Ph, Tyr, 204)) => act(p(HGNC:MAPK3), ma(DEFAULT:kin))
 
 ===== How do I represent a situation where one protein modification initiates additional modifications?
 
@@ -2361,7 +2361,7 @@ Deubiquitination is represented simply as a decrease in the ubiquitinated form o
 
 In this example, the phosphatase CDC25C dephosphorylates CDK1 at tyrosine 15 (http://www.ncbi.nlm.nih.gov/pubmed?term=1384126[PMID 1384126]):
 
- act(p(HGNC:CDC25C), ma(phos)) =| p(HGNC:CDK1, pmod(Ph, Tyr, 15))
+ act(p(HGNC:CDC25C), ma(DEFAULT:phos)) =| p(HGNC:CDK1, pmod(Ph, Tyr, 15))
 
 Similar to deubiquitination, dephosphorylation is represented simply as a decrease in the modified form of the protein.
 
@@ -2377,10 +2377,10 @@ A reversible reaction can be represented by modeling the reaction with the produ
 
 For example, HSD11B1 acts primarily to convert cortisone to active cortisol, but in some cell types the reverse reaction is favored (http://www.ncbi.nlm.nih.gov/pubmed?term=12530648[PMID 12530648]):
 
- act(p(HGNC:HSD11B1), ma(cat)) => \
+ act(p(HGNC:HSD11B1), ma(DEFAULT:cat)) => \
   rxn(reactants(a(CHEBI:NADPH), a(CHEBI:cortisone)), products(a(CHEBI:"NADP(+)"), a(CHEBI:cortisol)))
 
- act(p(HGNC:HSD11B1), ma(cat)) => \
+ act(p(HGNC:HSD11B1), ma(DEFAULT:cat)) => \
   rxn(reactants(a(CHEBI:"NADP(+)"), a(CHEBI:cortisol)), products(a(CHEBI:NADPH), a(CHEBI:cortisone)))
 
 The top statement represents the forward reaction and the bottom statement represents the reverse reaction.
@@ -2392,7 +2392,7 @@ The top statement represents the forward reaction and the bottom statement repre
 
 Reaction terms allow the representation of a transformation of a list of reactants into a list of products. In this example, the superoxide dismutase SOD1 converts superoxide to hydrogen peroxide:
 
- act(p(HGNC:SOD1), ma(cat)) => rxn(reactants(a(CHEBI:superoxide)), products(a(CHEBI:"hydrogen peroxide")))
+ act(p(HGNC:SOD1), ma(DEFAULT:cat)) => rxn(reactants(a(CHEBI:superoxide)), products(a(CHEBI:"hydrogen peroxide")))
 
 It is not necessary to include all reactants and products, especially if they are ubiquitous small molecules. In the above example the reactant hydrogen and product oxygen have been omitted from the reaction.
 
@@ -2400,8 +2400,8 @@ It is not necessary to include all reactants and products, especially if they ar
 
 It is possible to represent the above reaction with separate statements linking the activity of SOD1 to decreased abundances of the reactants and increased abundances of the products:
 
- act(p(HGNC:SOD1), ma(cat)) =| a(CHEBI:superoxide)
- act(p(HGNC:SOD1), ma(cat)) => a(CHEBI:"hydrogen peroxide")
+ act(p(HGNC:SOD1), ma(DEFAULT:cat)) =| a(CHEBI:superoxide)
+ act(p(HGNC:SOD1), ma(DEFAULT:cat)) => a(CHEBI:"hydrogen peroxide")
 
 While this representation describes the function of the catalytic enzyme SOD1, it does not link the product hydrogen peroxide to the reactant superoxide.
 
@@ -2448,9 +2448,9 @@ Protein families can be used to represent protein abundances in cases where the 
 
 "Akt physically associates with MDM2 and phosphorylates it at Ser166 and Ser186." (http://www.ncbi.nlm.nih.gov/pubmed?term=11715018[PMID 11715018])
 
- act(p(SFAM:"AKT Family"), ma(kin)) => p(HGNC:MDM2, pmod(Ph,Ser,166))
+ act(p(SFAM:"AKT Family"), ma(DEFAULT:kin)) => p(HGNC:MDM2, pmod(Ph,Ser,166))
 
- act(p(SFAM:"AKT Family"), ma(kin)) => p(HGNC:MDM2, pmod(Ph,Ser,186))
+ act(p(SFAM:"AKT Family"), ma(DEFAULT:kin)) => p(HGNC:MDM2, pmod(Ph,Ser,186))
 
 Here, Akt may refer to AKT1, AKT2, and/or AKT3.
 
@@ -2458,9 +2458,9 @@ Here, Akt may refer to AKT1, AKT2, and/or AKT3.
 
 "We show that Siah2 is subject to phosphorylation by p38 MAPK ... Phosphopeptide mapping identified T24 and S29 as the primary phospho-acceptor sites." (http://www.ncbi.nlm.nih.gov/pubmed?term=17003045[PMID 17003045])
 
- act(p(PFH:"MAPK p38 Family"), ma(kin)) => p(HGNC:SIAH2, pmod(Ph, Thr, 24))
+ act(p(PFH:"MAPK p38 Family"), ma(DEFAULT:kin)) => p(HGNC:SIAH2, pmod(Ph, Thr, 24))
 
- act(p(PFH:"MAPK p38 Family"), ma(kin)) => p(HGNC:SIAH2, pmod(Ph, Ser, 29))
+ act(p(PFH:"MAPK p38 Family"), ma(DEFAULT:kin)) => p(HGNC:SIAH2, pmod(Ph, Ser, 29))
 
 Here, it is not clear which specific p38 MAPK is responsible (MAPK11, MAPK12, MAPK13, or MAPK14).
 

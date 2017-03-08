@@ -665,7 +665,7 @@ The intent of the `cellSurfaceExpression()` function is to provide a simple, sta
 The reaction in which superoxides are dismutated into oxygen and hydrogen peroxide can be represented as:
 
 
- rxn(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen"))
+ rxn(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen")))
 
 === Other Functions
 

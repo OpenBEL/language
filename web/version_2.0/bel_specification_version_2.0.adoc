@@ -418,7 +418,7 @@ This is different than `p(HGNC:CFTR)`, the root protein abundance, which include
 
 
  p(HGNC:CFTR, var("p.Gly576Ala"))
- p(REF:NP_000483.3, var("p.Gly576Ala"))
+ p(REF:"NP_000483.3", var("p.Gly576Ala"))
 
 CFTR substitution variant Glycine 576 Alanine (HGVS __NP_000483.3:p.Gly576Ala__). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var("")` expression indicates that the numbering is based on a protein sequence.
 
@@ -426,7 +426,7 @@ CFTR substitution variant Glycine 576 Alanine (HGVS __NP_000483.3:p.Gly576Ala__)
 
 
  p(HGNC:CFTR, var("p.Phe508del"))
- p(REF:NP_000483.3, var("p.Phe508del"))
+ p(REF:"NP_000483.3", var("p.Phe508del"))
 
 CFTR ΔF508 variant (HGVS __NP_000483.3:p.Phe508del__). Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var("")` expression indicates that the numbering is based on a protein reference sequence.
 
@@ -434,7 +434,7 @@ CFTR ΔF508 variant (HGVS __NP_000483.3:p.Phe508del__). Because a specific posit
 
 
  p(HGNC:CFTR, var("p.Thr1220Lysfs"))
- p(REF:NP_000483.3, var("p.Thr1220Lysfs"))
+ p(REF:"NP_000483.3", var("p.Thr1220Lysfs"))
 
 CFTR frameshift variant __(__HGVS__ NP_000483.3:p.Thr1220Lysfs*7). __Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __p.__ within the `var("")` expression indicates that the numbering is based on a protein reference sequence.
 
@@ -450,13 +450,13 @@ These are all representations of CFTR __ΔF508__.
 ====== chromosome
 
 
- g(REF:NC_000007.13, var("g.117199646_117199648delCTT"))
+ g(REF:"NC_000007.13", var("g.117199646_117199648delCTT"))
 
 ====== gene - coding DNA reference sequence
 
 
  g(HGNC:CFTR, var("c.1521_1523delCTT"))
- g(REF:NM_000492.3, var("c.1521_1523delCTT"))
+ g(REF:"NM_000492.3", var("c.1521_1523delCTT"))
 
 Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __c.__ within the `var("")` expression indicates that the numbering is based on a coding DNA reference sequence.The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.
 
@@ -468,7 +468,7 @@ These are all representations of CFTR __ΔF508__.
 
 
  r(HGNC:CFTR, var("c.1521_1523delCTT"))
- r(REF:NM_000492.3, var("c.1521_1523delCTT"))
+ r(REF:"NM_000492.3", var("c.1521_1523delCTT"))
 
 Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __c.__ within the `var("")` expression indicates that the numbering is based on a coding DNA reference sequence. The coding DNA reference sequence covers the part of the transcript that is translated into protein; numbering starts at the A of the initiating ATG codon, and ends at the last nucleotide of the translation stop codon.
 
@@ -476,14 +476,14 @@ Because a specific position is referenced, a namespace value for a non-ambiguous
 
 
  r(HGNC:CFTR, var("r.1653_1655delcuu"))
- r(REF:NM_000492.3, var("r.1653_1655delcuu"))
+ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))
 
 Because a specific position is referenced, a namespace value for a non-ambiguous sequence like the http://www.ncbi.nlm.nih.gov/refseq/about/[RefSeq] ID in the lower example is preferred over the HGNC gene symbol. The __r.__ within the `var("")` expression indicates that the numbering is based on an RNA reference sequence. The RNA reference sequence covers the entire transcript except for the poly A-tail; numbering starts at the transcription initiation site and ends at the transcription termination site.
 
 ==== Proteolytic fragments
 
 
-===== fragment(), frag()
+===== fragment(""), frag("")
 
 The `fragment()` or `frag()` function can be used within a `proteinAbundance()` term to specify a protein fragment, e.g., a product of proteolytic cleavage. Protein fragment expressions take the general form:
 
@@ -500,27 +500,27 @@ For these examples, __HGNC:YFG__ is ‘your favorite gene’. For the first four
 ====== fragment with known start/stop
 
 
- p(HGNC:YFG, frag(5_20))
+ p(HGNC:YFG, frag("5_20"))
 
 ====== amino-terminal fragment of unknown length
 
 
- p(HGNC:YFG, frag(1_?))
+ p(HGNC:YFG, frag("1_?"))
 
 ====== carboxyl-terminal fragment of unknown length
 
 
- p(HGNC:YFG, frag(?_*))
+ p(HGNC:YFG, frag("?_*"))
 
 ====== fragment with unknown start/stop
 
 
- p(HGNC:YFG, frag(?))
+ p(HGNC:YFG, frag("?"))
 
 ====== fragment with unknown start/stop and a descriptor
 
 
- p(HGNC:YFG, frag(?, 55kD))
+ p(HGNC:YFG, frag("?", "55kD"))
 
 ==== Cellular location
 
@@ -1494,7 +1494,7 @@ This term represents cell surface expression of rat Fas protein.
 
 ====== Long Form
 
- cellSurfaceExpression(proteinAbudance(RGD:Fas))
+ cellSurfaceExpression(proteinAbundance(RGD:Fas))
 
 
 ====== Short Form
@@ -2038,9 +2038,9 @@ We could represent this observation as follows:
 The first statement indicates that phosphorylation at S256 is blocked by mutation of S256 to alanine. The next two statements indicate that the S256A mutation decreases phosphorylation of FOXO1 threonine 24 and serine 319 by AKT.
 However, we are not generally interested in the effects of a lab-created mutant like S256A so much as the role of phosphorylation at serine 256 on phosphorylation of the other two sites. Thus, we recommend the following representation:
 
- p(HGNC:FOXO1, pmod(Ph, Ser, 256)) =>(p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Thr, 24)))
+ p(HGNC:FOXO1, pmod(Ph, Ser, 256)) => (p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Thr, 24)))
 
- p(HGNC:FOXO1, pmod(Ph, Ser, 256)) =>(p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Ser, 319)))
+ p(HGNC:FOXO1, pmod(Ph, Ser, 256)) => (p(SFAM:"AKT Family") => p(HGNC:FOXO1, pmod(Ph, Ser, 319)))
 
 Here, the statements indicate that phosphorylation of FOXO1 at S256 increases the phosphorylation of T24 and S319 by the kinase activity of AKT.
 While both representations are accurate, the second version is better suited to integrating other information about the role of FOXO1 phosphorylation at S256 into a cohesive, traversable model.
@@ -2069,7 +2069,7 @@ Not recommended:
 
 Recommended:
 
- kin(p(MGI:Met) ) -> r(MGI:Itgav)
+ kin(p(MGI:Met)) -> r(MGI:Itgav)
 
  p(MGI:Hgf) -> r(MGI:Itgav)
 
@@ -2136,11 +2136,11 @@ _Example 2._ The serine-threonine kinase RIPK1 activates NF-kappaB through a mec
 
 _Example._ Genes are differentially expressed in wild-type vs. Met knock out mouse hepatocytes, only after treatment with Hgf, the Met ligand (http://www.ncbi.nlm.nih.gov/pubmed/16710476[PMID 16710476]). These genes include integrins Itgav, Itga3, and Itgb1.
 
- act(p(MGI:Met), ma(DEFAULT:kin)) -> r(Mgi:Itgav)
+ act(p(MGI:Met), ma(DEFAULT:kin)) -> r(MGI:Itgav)
 
- act(p(MGI:Met), ma(DEFAULT:kin)) -> r(Mgi:Itga3)
+ act(p(MGI:Met), ma(DEFAULT:kin)) -> r(MGI:Itga3)
 
- act(p(MGI:Met), ma(DEFAULT:kin)) -> r(Mgi:Itgb1)
+ act(p(MGI:Met), ma(DEFAULT:kin)) -> r(MGI:Itgb1)
 
 Because both Met and the Met ligand are required for the increase in gene expression, we use the activity of Met as the subject term.
 

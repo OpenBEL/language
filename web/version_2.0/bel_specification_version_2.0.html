@@ -2603,7 +2603,7 @@ body {
 </li>
 <li><a href="#_proteolytic_fragments">2.2.3. Proteolytic fragments</a>
 <ul class="sectlevel4">
-<li><a href="#_fragment_frag">fragment(), frag()</a></li>
+<li><a href="#_fragment_frag">fragment(""), frag("")</a></li>
 <li><a href="#_examples_2">Examples</a></li>
 </ul>
 </li>
@@ -3623,7 +3623,7 @@ p(SFAM:"AKT Family")</pre>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:CFTR, var("p.Gly576Ala"))
-p(REF:NP_000483.3, var("p.Gly576Ala"))</pre>
+p(REF:"NP_000483.3", var("p.Gly576Ala"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3635,7 +3635,7 @@ p(REF:NP_000483.3, var("p.Gly576Ala"))</pre>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:CFTR, var("p.Phe508del"))
-p(REF:NP_000483.3, var("p.Phe508del"))</pre>
+p(REF:"NP_000483.3", var("p.Phe508del"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3647,7 +3647,7 @@ p(REF:NP_000483.3, var("p.Phe508del"))</pre>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:CFTR, var("p.Thr1220Lysfs"))
-p(REF:NP_000483.3, var("p.Thr1220Lysfs"))</pre>
+p(REF:"NP_000483.3", var("p.Thr1220Lysfs"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3672,7 +3672,7 @@ p(REF:NP_000483.3, var("p.Thr1220Lysfs"))</pre>
 <h6 id="_chromosome">chromosome</h6>
 <div class="literalblock">
 <div class="content">
-<pre>g(REF:NC_000007.13, var("g.117199646_117199648delCTT"))</pre>
+<pre>g(REF:"NC_000007.13", var("g.117199646_117199648delCTT"))</pre>
 </div>
 </div>
 </div>
@@ -3681,7 +3681,7 @@ p(REF:NP_000483.3, var("p.Thr1220Lysfs"))</pre>
 <div class="literalblock">
 <div class="content">
 <pre>g(HGNC:CFTR, var("c.1521_1523delCTT"))
-g(REF:NM_000492.3, var("c.1521_1523delCTT"))</pre>
+g(REF:"NM_000492.3", var("c.1521_1523delCTT"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3699,7 +3699,7 @@ g(REF:NM_000492.3, var("c.1521_1523delCTT"))</pre>
 <div class="literalblock">
 <div class="content">
 <pre>r(HGNC:CFTR, var("c.1521_1523delCTT"))
-r(REF:NM_000492.3, var("c.1521_1523delCTT"))</pre>
+r(REF:"NM_000492.3", var("c.1521_1523delCTT"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3712,7 +3712,7 @@ r(REF:NM_000492.3, var("c.1521_1523delCTT"))</pre>
 <div class="literalblock">
 <div class="content">
 <pre>r(HGNC:CFTR, var("r.1653_1655delcuu"))
-r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
+r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3723,7 +3723,7 @@ r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
 <div class="sect3">
 <h4 id="_proteolytic_fragments">2.2.3. Proteolytic fragments</h4>
 <div class="sect4">
-<h5 id="_fragment_frag">fragment(), frag()</h5>
+<h5 id="_fragment_frag">fragment(""), frag("")</h5>
 <div class="paragraph">
 <p>The <code>fragment()</code> or <code>frag()</code> function can be used within a <code>proteinAbundance()</code> term to specify a protein fragment, e.g., a product of proteolytic cleavage. Protein fragment expressions take the general form:</p>
 </div>
@@ -3745,7 +3745,7 @@ r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
 <h6 id="_fragment_with_known_start_stop">fragment with known start/stop</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:YFG, frag(5_20))</pre>
+<pre>p(HGNC:YFG, frag("5_20"))</pre>
 </div>
 </div>
 </div>
@@ -3753,7 +3753,7 @@ r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
 <h6 id="_amino_terminal_fragment_of_unknown_length">amino-terminal fragment of unknown length</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:YFG, frag(1_?))</pre>
+<pre>p(HGNC:YFG, frag("1_?"))</pre>
 </div>
 </div>
 </div>
@@ -3761,7 +3761,7 @@ r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
 <h6 id="_carboxyl_terminal_fragment_of_unknown_length">carboxyl-terminal fragment of unknown length</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:YFG, frag(?_*))</pre>
+<pre>p(HGNC:YFG, frag("?_*"))</pre>
 </div>
 </div>
 </div>
@@ -3769,7 +3769,7 @@ r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
 <h6 id="_fragment_with_unknown_start_stop">fragment with unknown start/stop</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:YFG, frag(?))</pre>
+<pre>p(HGNC:YFG, frag("?"))</pre>
 </div>
 </div>
 </div>
@@ -3777,7 +3777,7 @@ r(REF:NM_000492.3, var("r.1653_1655delcuu"))</pre>
 <h6 id="_fragment_with_unknown_start_stop_and_a_descriptor">fragment with unknown start/stop and a descriptor</h6>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:YFG, frag(?, 55kD))</pre>
+<pre>p(HGNC:YFG, frag("?", "55kD"))</pre>
 </div>
 </div>
 </div>
@@ -5546,7 +5546,7 @@ rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."</pre>
 <h6 id="_long_form_17">Long Form</h6>
 <div class="literalblock">
 <div class="content">
-<pre>cellSurfaceExpression(proteinAbudance(RGD:Fas))</pre>
+<pre>cellSurfaceExpression(proteinAbundance(RGD:Fas))</pre>
 </div>
 </div>
 </div>
@@ -6668,12 +6668,12 @@ However, we are not generally interested in the effects of a lab-created mutant 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:FOXO1, pmod(Ph, Ser, 256)) =&gt;(p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Thr, 24)))</pre>
+<pre>p(HGNC:FOXO1, pmod(Ph, Ser, 256)) =&gt; (p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Thr, 24)))</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>p(HGNC:FOXO1, pmod(Ph, Ser, 256)) =&gt;(p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Ser, 319)))</pre>
+<pre>p(HGNC:FOXO1, pmod(Ph, Ser, 256)) =&gt; (p(SFAM:"AKT Family") =&gt; p(HGNC:FOXO1, pmod(Ph, Ser, 319)))</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -6724,7 +6724,7 @@ While both representations are accurate, the second version is better suited to 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>kin(p(MGI:Met) ) -&gt; r(MGI:Itgav)</pre>
+<pre>kin(p(MGI:Met)) -&gt; r(MGI:Itgav)</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -6861,28 +6861,40 @@ While both representations are accurate, the second version is better suited to 
 <div class="literalblock">
 <div class="content">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <pre>act(p(MGI:Met), ma(kin)) -&gt; r(Mgi:Itgav)</pre>
 =======
 <pre>act(p(MGI:Met), ma(DEFAULT:kin)) -&gt; r(Mgi:Itgav)</pre>
 >>>>>>> master
+=======
+<pre>act(p(MGI:Met), ma(DEFAULT:kin)) -&gt; r(MGI:Itgav)</pre>
+>>>>>>> origin/master
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <pre>act(p(MGI:Met), ma(kin)) -&gt; r(Mgi:Itga3)</pre>
 =======
 <pre>act(p(MGI:Met), ma(DEFAULT:kin)) -&gt; r(Mgi:Itga3)</pre>
 >>>>>>> master
+=======
+<pre>act(p(MGI:Met), ma(DEFAULT:kin)) -&gt; r(MGI:Itga3)</pre>
+>>>>>>> origin/master
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <pre>act(p(MGI:Met), ma(kin)) -&gt; r(Mgi:Itgb1)</pre>
 =======
 <pre>act(p(MGI:Met), ma(DEFAULT:kin)) -&gt; r(Mgi:Itgb1)</pre>
 >>>>>>> master
+=======
+<pre>act(p(MGI:Met), ma(DEFAULT:kin)) -&gt; r(MGI:Itgb1)</pre>
+>>>>>>> origin/master
 </div>
 </div>
 <div class="paragraph">
@@ -7592,10 +7604,14 @@ act(p(HGNC:SOD1), ma(DEFAULT:cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 <div id="footer-text">
 Version 2.0<br>
 <<<<<<< HEAD
+<<<<<<< HEAD
 Last updated 2017-02-17 12:31:57 EST
 =======
 Last updated 2017-03-08 11:50:20 EST
 >>>>>>> master
+=======
+Last updated 2017-03-09 15:18:08 EST
+>>>>>>> origin/master
 </div>
 </div>
 </body>

@@ -8,8 +8,8 @@ for x in version*; do
     cd "$x"
     for y in *.adoc; do
         echo "Building html and pdf for" $y
-        asciidoctor -a stylesheet=../css/openbel-custom.css "$y"
-        asciidoctor-pdf "$y"
+        asciidoctor -D $top/docs/$x -a stylesheet=$top/docs/css/openbel-custom.css "$y"
+        asciidoctor-pdf -D $top/docs/$x "$y"
     done
     cd ..
 done

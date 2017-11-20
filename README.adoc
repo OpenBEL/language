@@ -21,8 +21,12 @@ https://github.com/OpenBEL/language/blob/master/LICENSE[Apache License 2.0]
 
 == Deployment to http://openbel.github.io/language
 
-All development is done in the gh-pages branch.  The resulting files are deployed
-by running `cd bin; ./build-using-asciidoctor.sh` followed by a git commit and git push.
+If there is a large change, please use a Pull Request - can be done by editing the asciidoc file directly.
 
-The build script is:  `bin/build-using-asciidoctor.sh`
+The BEL language specification HTML and PDF files are created by by running
+
+    ./bin/build-using-asciidoctor.sh
+
+The updated BEL Language files are deployed by committing and pushing them.
+
 

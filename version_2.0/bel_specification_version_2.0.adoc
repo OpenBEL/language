@@ -801,7 +801,7 @@ In the case of transcriptional activity, if the protein performing the transcrip
 If B is a BEL Statement, the relationship is considered direct if the subject abundance term for B physically interacts with the abundance term for A. For example, for the BEL Statement:
 
 
- p(HGNC:CLSPN) => (act(p(HGNC:ATR), ma(kin)) => p(HGNC:CHEK1, pmod(P)))
+ p(HGNC:CLSPN) => (act(p(HGNC:ATR), ma(kin)) => p(HGNC:CHEK1, pmod(Ph)))
 
 CLSPN protein is considered to directly activate the phosphorylation of CHEK1 protein by the kinase activity of ATR, because the CLSPN and ATR proteins physically interact.
 
@@ -810,7 +810,7 @@ CLSPN protein is considered to directly activate the phosphorylation of CHEK1 pr
 Self-referential causal relationships are generally represented as direct. For example, phosphorylation of GSK3B at serine 9 inhibiting the kinase activity of GSK3B can be represented as:
 
 
- p(HGNC:GSK3B, pmod(P, S, 9)) =| act(p(HGNC:GSK3B), ma(kin))
+ p(HGNC:GSK3B, pmod(Ph, S, 9)) =| act(p(HGNC:GSK3B), ma(kin))
 
 [[XcorRels]]
 === Correlative Relationships

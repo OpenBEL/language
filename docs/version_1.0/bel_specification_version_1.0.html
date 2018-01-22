@@ -3291,13 +3291,16 @@ Once set, document-level properties cannot be cleared. If the same document-leve
 <div class="paragraph">
 <p>The annotation will be associated with all BEL Statements after this command unless it is explicitly cleared with the UNSET action. If the annotation is previously set, the SET action changes its value. Use commas (,) to separate multiple values for the same annotation.</p>
 </div>
+<div class="paragraph">
+<p>All SET values should be quoted.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="_syntax">Syntax</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">SET [DOCUMENT ] name = value | {value, value,…}
-SET STATEMENT_GROUP = value</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">SET [DOCUMENT ] name = "value" | {"value", "value",…}
+SET STATEMENT_GROUP = "value"</code></pre>
 </div>
 </div>
 </div>
@@ -3522,7 +3525,7 @@ UNSET STATEMENT_GROUP</code></pre>
 <p>All URLs used in Annotation Types or Namespace definitions in the Definitions section need to be quoted with double quotes.</p>
 </div>
 <div class="paragraph">
-<p>Any string identifiers that contain non-alphanumeric characters including white space should be quoted. For example, the following BEL Statement</p>
+<p>Any string identifiers that contain non-alphanumeric characters including white space should be quoted. For example, the following BEL Statement.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3679,10 +3682,10 @@ SET Citation = {"document type", "document name", "publication id"}</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java"># without line continuator
-kinase(p(HGNC:IGFI1R)) -| (p(HGNC:BNIP3) -&gt; bp(GO:apoptosis))
+kin(p(HGNC:IGFI1R)) -| (p(HGNC:BNIP3) -&gt; bp(GO:apoptosis))
 
 # with line continuator
-kinase(p(HGNC:IGFI1R)) -| \
+kin(p(HGNC:IGFI1R)) -| \
  (p(HGNC:BNIP3) -&gt; bp(GO:apoptosis))</code></pre>
 </div>
 </div>
@@ -4357,7 +4360,7 @@ BEL 1.0 includes the pathology term function to facilitate the distinction of pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">translocation(p(HGNC:EGFR), (GO:"cell surface"), (GO:endosome))</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">translocation(p(HGNC:EGFR), GO:"cell surface", GO:endosome)</code></pre>
 </div>
 </div>
 </div>
@@ -4407,7 +4410,7 @@ BEL 1.0 includes the pathology term function to facilitate the distinction of pa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">reaction(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen"))</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">reaction(reactants(a(CHEBI:superoxide)), products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen")))</code></pre>
 </div>
 </div>
 </div>
@@ -4513,7 +4516,7 @@ If A or B is an abundance, then members of the abundance are part of the interac
 <p>If B is a BEL Statement, the relationship is considered direct if the subject abundance term for B physically interacts with the abundance term for A. For example, for the BEL Statement:</p>
 </div>
 <div class="paragraph">
-<p>p(HGNC:CLSPN) =&gt; (kin(p(HGNC:ATR)) =&gt; p(HGNC:CHEK1, mod(P)))</p>
+<p>p(HGNC:CLSPN) =&gt; (kin(p(HGNC:ATR)) =&gt; p(HGNC:CHEK1, pmod(P)))</p>
 </div>
 <div class="paragraph">
 <p>CLSPN protein is considered to directly activate the phosphorylation of CHEK1 protein by the kinase activity of ATR, because the CLSPN and ATR proteins physically interact.</p>
@@ -4522,7 +4525,7 @@ If A or B is an abundance, then members of the abundance are part of the interac
 <p>Self-referential causal relationships are generally represented as direct. For example, phosphorylation of GSK3B at serine 9 inhibiting the kinase activity of GSK3B can be represented as:</p>
 </div>
 <div class="paragraph">
-<p>p(HGNC:GSK3B, mod(P, S, 9)) =| kin(p(HGNC:GSK3B))</p>
+<p>p(HGNC:GSK3B, pmod(P, S, 9)) =| kin(p(HGNC:GSK3B))</p>
 </div>
 </div>
 </div>
@@ -4946,7 +4949,7 @@ m(MGI:Mir21)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">complexAbundance(NCH:IkappaB Kinase Complex)
+<pre class="highlight"><code class="language-java" data-lang="java">complexAbundance(NCH:"IkappaB Kinase Complex")
 complexAbundance(proteinAbundance(HGNC:CHUK), proteinAbundance(HGNC:IKBKB), proteinAbundance(HGNC:IKBKG))</code></pre>
 </div>
 </div>
@@ -5372,7 +5375,7 @@ The activity of proteases to hydrolyze peptide bonds can be represented using th
 <div class="sect3">
 <h4 id="_translocations_2">8.6.2. Translocations</h4>
 <div class="paragraph">
-<p>Translocations, or the movement of abundances from one location to another, are represented in BEL Terms by the translocation() or tloc() function. For convenience, the frequently used translocations of abundances from inside the cell to cell surface or extracellular space are represented by the cellSurface() and cellSecretion() functions, respectively. The following term represents the event in which human NFE2L2 protein is translocated from the cytoplasm to the nucleus:</p>
+<p>Translocations, or the movement of abundances from one location to another, are represented in BEL Terms by the translocation() or tloc() function. For convenience, the frequently used translocations of abundances from inside the cell to cell surface or extracellular space are represented by the cellSurfaceExpression() and cellSecretion() functions, respectively. The following term represents the event in which human NFE2L2 protein is translocated from the cytoplasm to the nucleus:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5419,7 +5422,7 @@ The activity of proteases to hydrolyze peptide bonds can be represented using th
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">cellSurface(proteinAbudance(RGD:Fas))</code></pre>
+<pre class="highlight"><code class="language-java" data-lang="java">cellSurfaceExpression(proteinAbundance(RGD:Fas))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5473,7 +5476,7 @@ SET Evidence = "Here, we identify PRAS40 (proline-rich Akt/PKB substrate
 
 # disambiguation PRAS40 = HGNC AKT1S1
 
-complexAbundance(proteinAbundance(HGNC:AKT1S1), proteinAbundance(HGNC:MTOR)</code></pre>
+complexAbundance(proteinAbundance(HGNC:AKT1S1), proteinAbundance(HGNC:MTOR))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5708,7 +5711,7 @@ SET Evidence = "Furthermore, EGFR, activated by amphiregulin"
 # EGFR is known to have kinase activity
 
 proteinAbundance(HGNC:AREG) directlyIncreases \
- kinaseActivity(proteinAbudance(HGNC:EGFR))</code></pre>
+ kinaseActivity(proteinAbundance(HGNC:EGFR))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5929,7 +5932,7 @@ SET CardiovascularSystem = "Heart"
 
 p(HGNC:DES) biomarkerFor bp(GO:"cardioblast differentiation")
 
-CLEAR CardiovascularSystem
+UNSET CardiovascularSystem
 
 SET Tissue = "Muscle, Skeletal"
 
@@ -5959,7 +5962,7 @@ SET Evidence = "Our data indicate that an increased EGFR gene copy number
 # disambiguation OSCC = oral squamous cell carcinoma
 # disambiguation OPL = oral pre-malignant lesion
 
-SET BodyRegion = Mouth
+SET BodyRegion = "Mouth"
 
 g(HGNC:EGFR) prognosticBiomarkerFor path(MESHD:"Carcinoma, Squamous Cell")</code></pre>
 </div>
@@ -6811,7 +6814,7 @@ BEL does not provide a specific representation of unmodified protein abundances.
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">p(HGNC:CTNNB1, pmod(P, S, 45)) =&gt; \
-    (kin(p(PFH:"GSK3 Family")) =&gt; (HGNC:CTNNB1, pmod(P, T, 41)))</code></pre>
+    (kin(p(PFH:"GSK3 Family")) =&gt; p(HGNC:CTNNB1, pmod(P, T, 41)))</code></pre>
 </div>
 </div>
 </div>
@@ -6998,10 +7001,10 @@ cat(p(HGNC:SOD1)) =&gt; a(CHEBI:"hydrogen peroxide")</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-java" data-lang="java">cat(p(HGNC:HSD11B1)) =&gt; \
- rxn(reactants(a(CHEBI:NADPH), a(CHEBI:cortisone)), products(a(CHEBI:NADP(+)), a(CHEBI:cortisol)))
+ rxn(reactants(a(CHEBI:NADPH), a(CHEBI:cortisone)), products(a(CHEBI:"NADP(+)"), a(CHEBI:cortisol)))
 
 cat(p(HGNC:HSD11B1)) =&gt; \
- rxn(reactants(a(CHEBI:NADP(+)), a(CHEBI:cortisol)), products(a(CHEBI:NADPH), a(CHEBI:cortisone)))</code></pre>
+ rxn(reactants(a(CHEBI:"NADP(+)"), a(CHEBI:cortisol)), products(a(CHEBI:NADPH), a(CHEBI:cortisone)))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -7155,7 +7158,7 @@ Framework.</p>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2017-02-17 08:59:07 EST
+Last updated 2018-01-22 16:58:37 EST
 </div>
 </div>
 </body>

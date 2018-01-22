@@ -302,12 +302,14 @@ If a statement group is set, all following statements will be associated with th
 
 The annotation will be associated with all BEL Statements after this command unless it is explicitly cleared with the UNSET action. If the annotation is previously set, the SET action changes its value. Use commas (,) to separate multiple values for the same annotation.
 
+All SET values should be quoted.
+
 Syntax
 ++++++
 [source,java]
 ----
-SET [DOCUMENT ] name = value | {value, value,…}
-SET STATEMENT_GROUP = value
+SET [DOCUMENT ] name = "value" | {"value", "value",…}
+SET STATEMENT_GROUP = "value"
 ----
 
 Examples
@@ -452,7 +454,7 @@ Quotes
 ^^^^^^
 All URLs used in Annotation Types or Namespace definitions in the Definitions section need to be quoted with double quotes.
 
-Any string identifiers that contain non-alphanumeric characters including white space should be quoted. For example, the following BEL Statement
+Any string identifiers that contain non-alphanumeric characters including white space should be quoted. For example, the following BEL Statement.
 
 [source,java]
 ----
@@ -526,10 +528,10 @@ Statement Example
 [source,java]
 ----
 # without line continuator
-kinase(p(HGNC:IGFI1R)) -| (p(HGNC:BNIP3) -> bp(GO:apoptosis))
+kin(p(HGNC:IGFI1R)) -| (p(HGNC:BNIP3) -> bp(GO:apoptosis))
 
 # with line continuator
-kinase(p(HGNC:IGFI1R)) -| \
+kin(p(HGNC:IGFI1R)) -| \
  (p(HGNC:BNIP3) -> bp(GO:apoptosis))
 ----
 
@@ -1018,7 +1020,7 @@ For the abundance term A, +translocation(A, ns1:v1, ns2:v2)+ or +tloc(A, ns1:v1,
 
 [source,java]
 ----
-translocation(p(HGNC:EGFR), (GO:"cell surface"), (GO:endosome))
+translocation(p(HGNC:EGFR), GO:"cell surface", GO:endosome)
 ----
 
 cellSecretion(), sec()
@@ -1058,7 +1060,7 @@ reaction(), rxn()
 
 [source,java]
 ----
-reaction(reactants(a(CHEBI:superoxide)),products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen"))
+reaction(reactants(a(CHEBI:superoxide)), products(a(CHEBI:"hydrogen peroxide"), a(CHEBI: "oxygen")))
 ----
 
 
@@ -1145,13 +1147,13 @@ In the case of transcriptional activity, if the protein performing the transcrip
 
 If B is a BEL Statement, the relationship is considered direct if the subject abundance term for B physically interacts with the abundance term for A. For example, for the BEL Statement:
 
-+p(HGNC:CLSPN) => (kin(p(HGNC:ATR)) => p(HGNC:CHEK1, mod(P)))+
++p(HGNC:CLSPN) => (kin(p(HGNC:ATR)) => p(HGNC:CHEK1, pmod(P)))+
 
 CLSPN protein is considered to directly activate the phosphorylation of CHEK1 protein by the kinase activity of ATR, because the CLSPN and ATR proteins physically interact.
 
 Self-referential causal relationships are generally represented as direct. For example, phosphorylation of GSK3B at serine 9 inhibiting the kinase activity of GSK3B can be represented as:
 
-+p(HGNC:GSK3B, mod(P, S, 9)) =| kin(p(HGNC:GSK3B))+
++p(HGNC:GSK3B, pmod(P, S, 9)) =| kin(p(HGNC:GSK3B))+
 
 Genomic Relationships
 ~~~~~~~~~~~~~~~~~~~~~
@@ -1467,7 +1469,7 @@ The abundances of molecular complexes are represented using the +complexAbundanc
 
 [source,java]
 ----
-complexAbundance(NCH:IkappaB Kinase Complex)
+complexAbundance(NCH:"IkappaB Kinase Complex")
 complexAbundance(proteinAbundance(HGNC:CHUK), proteinAbundance(HGNC:IKBKB), proteinAbundance(HGNC:IKBKG))
 ----
 
@@ -1842,7 +1844,7 @@ This BEL Term represents the reaction in which the reactants phosphoenolpyruvate
 Translocations
 ^^^^^^^^^^^^^^
 
-Translocations, or the movement of abundances from one location to another, are represented in BEL Terms by the +translocation()+ or +tloc()+ function. For convenience, the frequently used translocations of abundances from inside the cell to cell surface or extracellular space are represented by the +cellSurface()+ and +cellSecretion()+ functions, respectively. The following term represents the event in which human NFE2L2 protein is translocated from the cytoplasm to the nucleus:
+Translocations, or the movement of abundances from one location to another, are represented in BEL Terms by the +translocation()+ or +tloc()+ function. For convenience, the frequently used translocations of abundances from inside the cell to cell surface or extracellular space are represented by the +cellSurfaceExpression()+ and +cellSecretion()+ functions, respectively. The following term represents the event in which human NFE2L2 protein is translocated from the cytoplasm to the nucleus:
 
 [source,java]
 ----
@@ -1883,7 +1885,7 @@ Cell surface expression of rat Fas can be represented by:
 
 [source,java]
 ----
-cellSurface(proteinAbudance(RGD:Fas))
+cellSurfaceExpression(proteinAbundance(RGD:Fas))
 ----
 
 short form:
@@ -1932,7 +1934,7 @@ SET Evidence = "Here, we identify PRAS40 (proline-rich Akt/PKB substrate
 
 # disambiguation PRAS40 = HGNC AKT1S1
 
-complexAbundance(proteinAbundance(HGNC:AKT1S1), proteinAbundance(HGNC:MTOR)
+complexAbundance(proteinAbundance(HGNC:AKT1S1), proteinAbundance(HGNC:MTOR))
 ----
 
 short form:
@@ -2145,7 +2147,7 @@ SET Evidence = "Furthermore, EGFR, activated by amphiregulin"
 # EGFR is known to have kinase activity
 
 proteinAbundance(HGNC:AREG) directlyIncreases \
- kinaseActivity(proteinAbudance(HGNC:EGFR))
+ kinaseActivity(proteinAbundance(HGNC:EGFR))
 ----
 
 short form:
@@ -2348,7 +2350,7 @@ SET CardiovascularSystem = "Heart"
 
 p(HGNC:DES) biomarkerFor bp(GO:"cardioblast differentiation")
 
-CLEAR CardiovascularSystem
+UNSET CardiovascularSystem
 
 SET Tissue = "Muscle, Skeletal"
 
@@ -2376,7 +2378,7 @@ SET Evidence = "Our data indicate that an increased EGFR gene copy number
 # disambiguation OSCC = oral squamous cell carcinoma
 # disambiguation OPL = oral pre-malignant lesion
 
-SET BodyRegion = Mouth
+SET BodyRegion = "Mouth"
 
 g(HGNC:EGFR) prognosticBiomarkerFor path(MESHD:"Carcinoma, Squamous Cell")
 ----
@@ -3069,7 +3071,7 @@ Because the kinase mediating the second phosphorylation is known, this relations
 [source,java]
 ----
 p(HGNC:CTNNB1, pmod(P, S, 45)) => \
-    (kin(p(PFH:"GSK3 Family")) => (HGNC:CTNNB1, pmod(P, T, 41)))
+    (kin(p(PFH:"GSK3 Family")) => p(HGNC:CTNNB1, pmod(P, T, 41)))
 ----
 
 
@@ -3247,10 +3249,10 @@ For example, HSD11B1 acts primarily to convert cortisone to active cortisol, but
 [source,java]
 ----
 cat(p(HGNC:HSD11B1)) => \
- rxn(reactants(a(CHEBI:NADPH), a(CHEBI:cortisone)), products(a(CHEBI:NADP(+)), a(CHEBI:cortisol)))
+ rxn(reactants(a(CHEBI:NADPH), a(CHEBI:cortisone)), products(a(CHEBI:"NADP(+)"), a(CHEBI:cortisol)))
 
 cat(p(HGNC:HSD11B1)) => \
- rxn(reactants(a(CHEBI:NADP(+)), a(CHEBI:cortisol)), products(a(CHEBI:NADPH), a(CHEBI:cortisone)))
+ rxn(reactants(a(CHEBI:"NADP(+)"), a(CHEBI:cortisol)), products(a(CHEBI:NADPH), a(CHEBI:cortisone)))
 ----
 
 The top statement represents the forward reaction and the bottom statement represents the reverse reaction.

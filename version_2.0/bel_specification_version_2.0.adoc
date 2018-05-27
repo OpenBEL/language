@@ -38,8 +38,8 @@ These additions and modifications enhance the BEL language by providing new repr
 === Variants
 
 
-*   Now represent sequence variants at DNA, RNA, and protein levels.
-*   Now represent multiple substitutions within the same gene/RNA/protein
+*   Now represents sequence variants at DNA, RNA, and protein levels.
+*   Now represents multiple substitutions within the same gene/RNA/protein
 *   New BEL abundance modifier function http://wiki.openbel.org/display/BLVD/Variants[`variant("")`] / http://wiki.openbel.org/display/BLVD/Variants[`var("")`] is used for most variant types, replacing `substitution()` / `sub()` and `truncation()` / `trunc()`. http://www.hgvs.org/rec.html[Human Genome Variation Society] (HGVS) nomenclature adopted to describe variants (http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291098-1004%28200001%2915:1%3C7::AID-HUMU4%3E3.0.CO;2-N/pdf[Dunnen and Antonarakis, 2000]) within the `var("")` modifier function, expanding supported types of variation to include insertions, deletions, duplications as well as non-specific variants.
 *   Usage of http://wiki.openbel.org/display/BLVD/Other+Functions[`fus()`] changed. Instead of a modifier function for a gene/RNA/protein abundance, `fus()` is used to compose new entities that can be used in place of a namespace value for abundance functions.
 
@@ -1273,7 +1273,7 @@ This statement represents that MTOR and AKT1S1 proteins physically interact. Not
 
  SET Citation = {"PubMed", "Nat Cell Biol 2007 Mar 9(3) 316-23", "17277771"}
 
- SET SupportingText = "Here, we identify PRAS40 (proline-rich Akt/PKB substrate
+ SET Support = "Here, we identify PRAS40 (proline-rich Akt/PKB substrate
   40 kDa) as a novel mTOR binding partner"
 
  # disambiguation PRAS40 = HGNC AKT1S1
@@ -1292,7 +1292,7 @@ Here, a protein-protein interaction is the object of a BEL Statement.This statem
 
  SET Citation = {"PubMed", "J Cell Biol. 2003 Jun 9;161(5):911-21.", "12796477"}
 
- SET SupportingText = "Upon BMP4 treatment, the serine-threonine kinase
+ SET Support ="Upon BMP4 treatment, the serine-threonine kinase
  FKBP12/rapamycin-associated protein (FRAP), mammalian target of
  rapamycin (mTOR), associates with Stat3 and facilitates STAT activation."
 
@@ -1312,7 +1312,7 @@ This statement expresses that STAT3 protein binds to the CCL11 gene DNA, and tha
 
  SET Citation = {"PubMed", "J Immunol 2009 Mar 15 182(6) 3357-65", "19265112"}
 
- SET SupportingText = "IL-17A induced at 1 h a marked enrichment of
+ SET Support ="IL-17A induced at 1 h a marked enrichment of
   STAT3- associated CCL11 promoter DNA"
 
  proteinAbundance(HGNC:IL17A) increases \
@@ -1332,7 +1332,7 @@ This statement represents that PIP3 binds AKT1 protein.
 
  SET Citation = {"PubMed", "Breast Cancer Res 2005 7(4) R394-401", "15987444"}
 
- SET Evidence = "After PIP3 binding, Akt1 is activated"
+ SET Support ="After PIP3 binding, Akt1 is activated"
 
  # disambiguation PIP3 = CHEBI 1-phosphatidyl-1D-myo-inositol 3,4,5-trisphosphate
 
@@ -1604,7 +1604,7 @@ These statements use the causal `<<Xincreases, increases>>` relationship. These 
 
  SET Citation = {"PubMed", "Int J Oncol 1999 Jul 15(1) 173-8", "10375612"}
 
- SET SupportingText = "Northern blot analysis documented that two
+ SET Support = "Northern blot analysis documented that two
   transcription factor genes chosen for further study, c-myc
   promoter-binding protein (MBP-1) and X-box binding protein 1
   (XBP-1), were up-regulated in U266 cells about 3-fold relative
@@ -1637,7 +1637,7 @@ This statement demonstrates a causal statement using the `<<Xdecreases, decrease
 
  SET Citation = {"PubMed", "J Mol Med. 2003 Mar;81(3):168-74. Epub 2003 Mar 14.", "12682725"}
 
- SET SupportingText = "high-dose steroid treatment decreases vascular
+ SET Support ="high-dose steroid treatment decreases vascular
   inflammation and ischemic tissue damage after myocardial
   infarction and stroke through direct vascular effects involving
   the nontranscriptional activation of eNOS"
@@ -1664,7 +1664,7 @@ The epidermal growth factor receptor (EGFR) ligand amphiregulin (AREG) is observ
 
  SET Citation = {"PubMed", "Mol Cancer Res 2007 Aug 5(8) 847-61", "17670913"}
 
- SET SupportingText = "Furthermore, EGFR, activated by amphiregulin but not
+ SET Support ="Furthermore, EGFR, activated by amphiregulin but not
   epidermal growth factor, results in the prompt activation of the
   transcription factor nuclear factor-kappaB (NF-kappaB)"
 
@@ -1694,7 +1694,7 @@ This statement expresses that an increase in cytoplasmic FGF2 protein positively
 
  SET Citation = {"PubMed", "J Pathol. 2005 May;206(1):28-38.", "15772985"}
 
- SET SupportingText = "Quantitative digital image analysis revealed
+ SET Support ="Quantitative digital image analysis revealed
  increased cytoplasmic expression of FGF-2 in bronchial epithelium
  (0.35 +/- 0.03 vs 0.20 +/- 0.04, p < 0.008) and nuclear
  localization in ASM (p < 0.0001) in COPD patients compared with
@@ -1716,7 +1716,7 @@ This statement represents that abundance of protein designated by the name Nr2f2
 
  SET Citation = {"PubMed", "Mech Ageing Dev. 2004 Oct-Nov;125(10-11):719-32.", "15541767"}
 
- SET SupportingText = "COUP-TFII is involved in the angiogenic process in the developing embryos."
+ SET Support ="COUP-TFII is involved in the angiogenic process in the developing embryos."
 
  # disambiguation - COUP-TFII refers to MGI Nr2f2
 
@@ -1749,7 +1749,7 @@ In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used t
 
  SET Citation = {"PubMed", "Mol Cancer Res 2007 Aug 5(8) 847-61", "17670913"}
 
- SET SupportingText = "Furthermore, EGFR, activated by amphiregulin"
+ SET Support ="Furthermore, EGFR, activated by amphiregulin"
 
  # disambiguation Amphiregulin = HGNC AREG
 
@@ -1769,7 +1769,7 @@ In this example, the `<<XdIncreases, directlyIncreases>>` relationship is used t
 
  SET Citation = {"PubMed", "Science 2008 Mar 21 319(5870) 1665-8.", "18356527"}
 
- SET SupportingText = "We found that Cdk1 phosphorylated the
+ SET Support ="We found that Cdk1 phosphorylated the
   transcription factor FOXO1 at Ser249 in vitro and in vivo."
 
  activity(proteinAbundance(HGNC:CDK1), molecularActivity(kin)) directlyIncreases \
@@ -1787,7 +1787,7 @@ In this example, the direct activation of a reaction by a catalytic enzyme is re
 
  SET Citation = {"Other", "Reactome: Leukotriene synthesis", "REACT_15354.1"}
 
- SET SupportingText = "Dehydration of 5-HpETE to leukotriene A4. In the
+ SET Support ="Dehydration of 5-HpETE to leukotriene A4. In the
   second step, 5-lipoxygenase converts 5-HpETE to an allylic
   epoxide, leukotriene A4."
 
@@ -1807,7 +1807,7 @@ In this example, the `<<XdDecreases, directlyDecreases>>` relationship is used t
 
  SET Citation = {"PubMed", "Proc Natl Acad Sci U S A 2000 Oct 24 97(22) 11960-5", "11035810"}
 
- SET SupportingText = "GSK-3 activity is inhibited through phosphorylation
+ SET Support ="GSK-3 activity is inhibited through phosphorylation
   of serine 21 in GSK-3 alpha and serine 9 in GSK-3 beta."
 
  proteinAbundance(HGNC:GSK3A, proteinModification(Ph, Ser, 21)) \
@@ -1830,7 +1830,7 @@ In this example, the direct activation of a RNA transcription is encoded. The st
 
  SET Citation = {"PubMed", "Biochem Biophys Res Commun. 2009 Jan 9;378(2):290-5. Epub 2008 Nov 21.", "19026986"}
 
- SET SupportingText = "We found that Foxo1 increased the expression of
+ SET Support ="We found that Foxo1 increased the expression of
   CCAAT/enhancer binding protein (C/EBPbeta, a positive regulator
   of monocyte chemoattractant protein (MCP)-1 and interleukin
   (IL)-6 genes, through directly binding to its promoter."
@@ -1854,7 +1854,7 @@ In the relationship described by the evidence text, CLSPN specifically increases
 
  SET Species = "9606"
 
- SET SupportingText = "Consistently, the RNAi-mediated ablation of Claspin
+ SET Support ="Consistently, the RNAi-mediated ablation of Claspin
   selectively abrogated ATR's ability to phosphorylate Chk1 but not
   other ATR targets."
 
@@ -1897,7 +1897,7 @@ In this case, the document name is the pathway name, the type is _Online Resourc
 
 Support annotations provide the specific text that the statement is derived from. Text should come directly from the abstract or full text of the source referenced by the citation annotation. For example, a support line from the Reactome pathway cited above is:
 
- SET Supporting = "The p53 protein activates the transcription of cyclin-dependent kinase inhibitor, p21.
+ SET Support ="The p53 protein activates the transcription of cyclin-dependent kinase inhibitor, p21.
  p21 inactivates the CyclinE:Cdk2 complexes, and prevent entry of the cell into S phase, leading to G1 arrest."
 
 ====== Species

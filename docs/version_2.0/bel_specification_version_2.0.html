@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="generator" content="Asciidoctor 2.0.7">
 <meta name="author" content="Natalie Catlett">
 <title>BEL 2.0 Specification</title>
 <style>
@@ -2688,7 +2688,7 @@ body {
 <li><a href="#Xcnc">3.1.6. causesNoChange, cnc</a></li>
 <li><a href="#_regulates_reg">3.1.7. regulates, reg</a>
 <ul class="sectlevel4">
-<li><a href="#__strong_direct_relationships_strong"><strong>Direct Relationships</strong></a></li>
+<li><a href="#_direct_relationships"><strong>Direct Relationships</strong></a></li>
 <li><a href="#_direct_causal_relationships">Direct causal relationships</a></li>
 <li><a href="#_examples_7">Examples</a></li>
 </ul>
@@ -3334,7 +3334,7 @@ p(SFAM:"AKT Family")</pre>
 <div class="paragraph">
 <p>Additional modification types can be requested as needed, or an external vocabulary can be used. Like other BEL namespace values, these modification types can be equivalenced to values in other vocabularies.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3350,11 +3350,7 @@ p(SFAM:"AKT Family")</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ADPRib</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ADP-ribosylation</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ADP-rybosylation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">adenosine diphosphoribosyl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ADP-ribosylation, ADP-rybosylation, adenosine diphosphoribosyl</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Farn</p></td>
@@ -3374,31 +3370,23 @@ p(SFAM:"AKT Family")</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ISG</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISGylation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISGylation, ISG15-protein conjugation</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ISG15-protein conjugation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Me</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">methylation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Me1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">monomethylation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mono-methylation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Me1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">monomethylation, mono-methylation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Me2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">dimethylation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dimethylation, di-methylation</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">di-methylation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Me3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">trimethylation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">tri-methylation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trimethylation, tri-methylation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Myr</p></td>
@@ -3430,50 +3418,38 @@ p(SFAM:"AKT Family")</pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sulf</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sulfation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sulfation, sulphation, sulfur addition, sulphur addition, sulfonation, sulphonation</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sulphation</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sulfur addition</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sulphur addition</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sulfonation</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">sulphonation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sumo</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SUMOylation</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ub</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ubiquitination, ubiquitinylation, ubiquitylation</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ubiquitination</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ubiquitinylation</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ubiquitylation</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UbK48</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lysine 48-linked polyubiquitination</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UbK63</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lysine 63-linked polyubiquitination</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">UbMono</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UbMono</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">monoubiquitination</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">UbPoly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">polyubiquitination</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
 <h5 id="_supported_one_and_three_letter_amino_acid_codes">Supported One- and Three-letter Amino Acid Codes</h5>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3742,7 +3718,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 <p>For these examples, <em>HGNC:YFG</em> is ‘your favorite gene’. For the first four examples, only the <code>&lt;range&gt;</code> argument is used. The last examples include use of the optional <code>&lt;descriptor&gt;</code>.</p>
 </div>
 <div class="sect5">
-<h6 id="_fragment_with_known_start_stop">fragment with known start/stop</h6>
+<h6 id="_fragment_with_known_startstop">fragment with known start/stop</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:YFG, frag("5_20"))</pre>
@@ -3766,7 +3742,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_fragment_with_unknown_start_stop">fragment with unknown start/stop</h6>
+<h6 id="_fragment_with_unknown_startstop">fragment with unknown start/stop</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:YFG, frag("?"))</pre>
@@ -3774,7 +3750,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_fragment_with_unknown_start_stop_and_a_descriptor">fragment with unknown start/stop and a descriptor</h6>
+<h6 id="_fragment_with_unknown_startstop_and_a_descriptor">fragment with unknown start/stop and a descriptor</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:YFG, frag("?", "55kD"))</pre>
@@ -3807,7 +3783,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_endoplasmic_reticulum_pool_of_ca_sup_2_sup">Endoplasmic Reticulum pool of Ca<sup>2+</sup></h6>
+<h6 id="_endoplasmic_reticulum_pool_of_ca2">Endoplasmic Reticulum pool of Ca<sup>2+</sup></h6>
 <div class="literalblock">
 <div class="content">
 <pre>a(CHEBI:"calcium(2+)", loc(GOCC:"endoplasmic reticulum"))</pre>
@@ -4153,7 +4129,7 @@ A -&gt; B</pre>
 <p>For terms A and B, <code>A regulates B</code> or <code>A reg B</code> indicate that A is reported to have an effect on B, but information is missing about whether A increases B or A decreases B. This relationship provides more information than <a href="#Xassociation">association</a>, because the upstream entity (source term) and downstream entity (target term) can be assigned.</p>
 </div>
 <div class="sect4">
-<h5 id="__strong_direct_relationships_strong"><strong>Direct Relationships</strong></h5>
+<h5 id="_direct_relationships"><strong>Direct Relationships</strong></h5>
 <div class="paragraph">
 <p>Direct relationships include direct causal relationships and non-causal relationships that are considered direct because they are self-referential.</p>
 </div>
@@ -4435,7 +4411,7 @@ The use of <code>hasComponent</code> relationships is complementary to the use o
 <div class="paragraph">
 <p>Namespaces are a reference to the specific vocabulary that a value used in a BEL Term comes from. The examples in this documentation use the following set of BEL Namespaces (<a href="http://wiki.openbel.org/display/BELNA/Namespaces+Overview">v20131211</a>) to reference external ontologies and vocabularies:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7019,7 +6995,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 </table>
 </div>
 <div class="sect5">
-<h6 id="__strong_exception_modified_histones_bound_to_the_promoter_of_a_specific_gene_strong"><strong>Exception – modified histones bound to the promoter of a specific gene</strong></h6>
+<h6 id="_exception_modified_histones_bound_to_the_promoter_of_a_specific_gene"><strong>Exception – modified histones bound to the promoter of a specific gene</strong></h6>
 <div class="paragraph">
 <p>One exception to our general practice of not specifying protein modifications within complex abundances is the interaction of specific modified histones with the promoter of a specific gene. In this example, cigarette smoke is observed to increase H3K27me3 levels at the DKK1 promoter (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=19351856">PMID 19351856</a>).</p>
 </div>
@@ -7378,7 +7354,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.0<br>
-Last updated 2018-05-27 07:22:23 EDT
+Last updated 2019-04-21 08:21:20 -0400
 </div>
 </div>
 </body>

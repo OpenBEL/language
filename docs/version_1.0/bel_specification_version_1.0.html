@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="generator" content="Asciidoctor 2.0.7">
 <meta name="author" content="Natalie Catlett">
-<title>BEL 1.0 Specification</title>
+<title>BEL 1.0 Specification [DEPRECATED]</title>
 <style>
 @import url(http://red-hat-overpass-fonts.s3.amazonaws.com/overpass.css);
 
@@ -2481,10 +2481,11 @@ body {
 
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>BEL 1.0 Specification</h1>
+<h1>BEL 1.0 Specification [DEPRECATED]</h1>
 <div class="details">
 <span id="author" class="author">Natalie Catlett</span><br>
 <span id="email" class="email"><a href="mailto:info@openbel.org">info@openbel.org</a></span><br>
@@ -2832,7 +2833,7 @@ body {
 </li>
 </ul>
 </li>
-<li><a href="#_glossary">11. Glossary</a></li>
+<li><a href="#_glossary">Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -2844,6 +2845,29 @@ body {
 </div>
 <div class="paragraph">
 <p><em>Please cite the BEL v1.0 language documentation as "BEL v1.0 Language Documentation, <a href="https://github.com/OpenBEL/language" class="bare">https://github.com/OpenBEL/language</a> ", along with the date accessed.</em></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>OpenBEL is not supported!</strong></p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://bel.bio">BEL.bio</a> project is supported and is also hosting an up to date BEL Language website at <a href="https://language.bel.bio">BEL Language</a>.</p>
+</div>
+<div class="paragraph">
+<p>BEL is now &gt;= 2.1 and the 2.0.0+ versions are documented at the BEL.bio Language website.</p>
+</div>
+<div class="paragraph">
+<p>This OpenBEL BEL Language document is the only specification of BEL 1.0 version as the BEL.bio Language website starts at 2.0.0</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2898,7 +2922,7 @@ the object can be either another BEL Term or a BEL Statement. The
 predicate is one of the BEL Relationship types describing the
 relationship between the subject BEL Term and the object.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="bel_statement.jpg" alt="Structure of a BEL Statement">
 </div>
@@ -3120,7 +3144,7 @@ Most BEL Statements represent relationships between one BEL Term and another BEL
 <p>Internally specified lists can be defined within a BEL Document. These lists enumerate the set of allowable domain values for statements using the Annotation Type within the BEL Document. For example, an annotation type named <em>dosage</em> might have the domain values {"LOW", "MEDIUM", "HIGH"} specified as a list.</p>
 </div>
 <div class="paragraph">
-<p>Annotation Types defined using a regular expression domain allow the knowledge designer to specify which strings are allowed for statements using the Annotation Type within the BEL Document. For example, a regular expression such as <code>[-]?[0-9]*\.?[0-9]</code> can be used to constrain the annotation type to only allow floating-point numbers.</p>
+<p>Annotation Types defined using a regular expression domain allow the knowledge designer to specify which strings are allowed for statements using the Annotation Type within the BEL Document. For example, a regular expression such as <code>[-+]?[0-9]*\.?[0-9]+</code> can be used to constrain the annotation type to only allow floating-point numbers.</p>
 </div>
 <div class="sect2">
 <h3 id="_reserved_annotation_types">4.1. Reserved Annotation Types</h3>
@@ -3211,7 +3235,7 @@ Most BEL Statements represent relationships between one BEL Term and another BEL
 <div class="paragraph">
 <p>The following BEL Document Properties are recognized:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -3334,7 +3358,7 @@ SET STATEMENT_GROUP = "PubMed 123456"</code></pre>
 <div class="paragraph">
 <p>Define a namespace or annotation in the document. Three value types are supported:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3466,7 +3490,7 @@ UNSET STATEMENT_GROUP</code></pre>
 <div class="paragraph">
 <p>The following keywords are reserved for use in BEL Script documents:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -3541,7 +3565,7 @@ UNSET STATEMENT_GROUP</code></pre>
 <div class="paragraph">
 <p>Some characters must be escaped (using an <a href="http://en.wikipedia.org/wiki/Escape_sequence">escape sequence</a>) for it to be recognized in a quoted string.  The following escape sequences are supported:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3602,8 +3626,8 @@ UNSET STATEMENT_GROUP</code></pre>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Octal</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">\OOO, \OO, or \O
-</p><p class="tableblock">(O = octal 0 - 7)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\OOO, \OO, or \O</p>
+<p class="tableblock">(O = octal 0 - 7)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Captures a character by its octal value.</p></td>
 </tr>
 </tbody>
@@ -4035,7 +4059,7 @@ If &lt;pos&gt; is omitted, then the position of the modification is unspecified.
 <div class="paragraph">
 <p>The following modification types are supported:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4086,7 +4110,7 @@ If &lt;pos&gt; is omitted, then the position of the modification is unspecified.
 <div class="paragraph">
 <p>The following single-letter Amino Acid codes are supported:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -4778,7 +4802,7 @@ All terms in BEL 1.0 represent classes, but given that classes implicitly have i
 <div class="paragraph">
 <p>Namespaces are a reference to the specific vocabulary that a value used in a BEL Term comes from. See the <a href="#Namespaces">Namespaces</a> for more information. The examples use the following set of BEL Namespaces to reference external ontologies and vocabularies:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -7131,7 +7155,7 @@ Framework.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_glossary">11. Glossary</h2>
+<h2 id="_glossary">Glossary</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>A glossary of BEL terminology.</p>
@@ -7158,7 +7182,7 @@ Framework.</p>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2018-01-22 16:58:37 EST
+Last updated 2019-07-21 16:48:01 +0200
 </div>
 </div>
 </body>

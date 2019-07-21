@@ -1,12 +1,24 @@
-= BEL 2.0 Specification
+= BEL 2.0 Specification [DEPRECATED]
 Natalie Catlett <info@openbel.org>
 v2.0, 2014-06
 :toc: right
 :toclevels: 4
+:icons: font
 
 This is the home of the BEL Language Documentation v2.0.
 
 _Please cite the BEL v2.0 language documentation as "BEL v2.0 Language Documentation, https://github.com/OpenBEL/language ", along with the date accessed._
+
+
+[WARNING]
+====
+*OpenBEL is not supported!*
+
+The https://bel.bio[BEL.bio] project is supported and is also hosting an up to date BEL Language website at https://language.bel.bio[BEL Language].
+
+BEL is now >= 2.1 and the 2.0.0+ versions are documented at the BEL.bio Language website.
+====
+
 
 :numbered!:
 [[overview]]

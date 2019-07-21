@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.4">
+<meta name="generator" content="Asciidoctor 2.0.7">
 <meta name="author" content="Natalie Catlett">
-<title>BEL 2.0 Specification</title>
+<title>BEL 2.0 Specification [DEPRECATED]</title>
 <style>
 @import url(http://red-hat-overpass-fonts.s3.amazonaws.com/overpass.css);
 
@@ -2481,10 +2481,11 @@ body {
 
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="article toc2 toc-right">
 <div id="header">
-<h1>BEL 2.0 Specification</h1>
+<h1>BEL 2.0 Specification [DEPRECATED]</h1>
 <div class="details">
 <span id="author" class="author">Natalie Catlett</span><br>
 <span id="email" class="email"><a href="mailto:info@openbel.org">info@openbel.org</a></span><br>
@@ -2688,7 +2689,7 @@ body {
 <li><a href="#Xcnc">3.1.6. causesNoChange, cnc</a></li>
 <li><a href="#_regulates_reg">3.1.7. regulates, reg</a>
 <ul class="sectlevel4">
-<li><a href="#__strong_direct_relationships_strong"><strong>Direct Relationships</strong></a></li>
+<li><a href="#_direct_relationships"><strong>Direct Relationships</strong></a></li>
 <li><a href="#_direct_causal_relationships">Direct causal relationships</a></li>
 <li><a href="#_examples_7">Examples</a></li>
 </ul>
@@ -2832,6 +2833,26 @@ body {
 </div>
 <div class="paragraph">
 <p><em>Please cite the BEL v2.0 language documentation as "BEL v2.0 Language Documentation, <a href="https://github.com/OpenBEL/language" class="bare">https://github.com/OpenBEL/language</a> ", along with the date accessed.</em></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>OpenBEL is not supported!</strong></p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://bel.bio">BEL.bio</a> project is supported and is also hosting an up to date BEL Language website at <a href="https://language.bel.bio">BEL Language</a>.</p>
+</div>
+<div class="paragraph">
+<p>BEL is now &gt;= 2.1 and the 2.0.0+ versions are documented at the BEL.bio Language website.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -3334,7 +3355,7 @@ p(SFAM:"AKT Family")</pre>
 <div class="paragraph">
 <p>Additional modification types can be requested as needed, or an external vocabulary can be used. Like other BEL namespace values, these modification types can be equivalenced to values in other vocabularies.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -3473,7 +3494,7 @@ p(SFAM:"AKT Family")</pre>
 </div>
 <div class="sect4">
 <h5 id="_supported_one_and_three_letter_amino_acid_codes">Supported One- and Three-letter Amino Acid Codes</h5>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -3742,7 +3763,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 <p>For these examples, <em>HGNC:YFG</em> is ‘your favorite gene’. For the first four examples, only the <code>&lt;range&gt;</code> argument is used. The last examples include use of the optional <code>&lt;descriptor&gt;</code>.</p>
 </div>
 <div class="sect5">
-<h6 id="_fragment_with_known_start_stop">fragment with known start/stop</h6>
+<h6 id="_fragment_with_known_startstop">fragment with known start/stop</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:YFG, frag("5_20"))</pre>
@@ -3766,7 +3787,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_fragment_with_unknown_start_stop">fragment with unknown start/stop</h6>
+<h6 id="_fragment_with_unknown_startstop">fragment with unknown start/stop</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:YFG, frag("?"))</pre>
@@ -3774,7 +3795,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_fragment_with_unknown_start_stop_and_a_descriptor">fragment with unknown start/stop and a descriptor</h6>
+<h6 id="_fragment_with_unknown_startstop_and_a_descriptor">fragment with unknown start/stop and a descriptor</h6>
 <div class="literalblock">
 <div class="content">
 <pre>p(HGNC:YFG, frag("?", "55kD"))</pre>
@@ -3807,7 +3828,7 @@ r(REF:"NM_000492.3", var("r.1653_1655delcuu"))</pre>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_endoplasmic_reticulum_pool_of_ca_sup_2_sup">Endoplasmic Reticulum pool of Ca<sup>2+</sup></h6>
+<h6 id="_endoplasmic_reticulum_pool_of_ca2">Endoplasmic Reticulum pool of Ca<sup>2+</sup></h6>
 <div class="literalblock">
 <div class="content">
 <pre>a(CHEBI:"calcium(2+)", loc(GOCC:"endoplasmic reticulum"))</pre>
@@ -4153,7 +4174,7 @@ A -&gt; B</pre>
 <p>For terms A and B, <code>A regulates B</code> or <code>A reg B</code> indicate that A is reported to have an effect on B, but information is missing about whether A increases B or A decreases B. This relationship provides more information than <a href="#Xassociation">association</a>, because the upstream entity (source term) and downstream entity (target term) can be assigned.</p>
 </div>
 <div class="sect4">
-<h5 id="__strong_direct_relationships_strong"><strong>Direct Relationships</strong></h5>
+<h5 id="_direct_relationships"><strong>Direct Relationships</strong></h5>
 <div class="paragraph">
 <p>Direct relationships include direct causal relationships and non-causal relationships that are considered direct because they are self-referential.</p>
 </div>
@@ -4255,7 +4276,7 @@ A -&gt; B</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -4380,7 +4401,7 @@ The use of <code>hasComponent</code> relationships is complementary to the use o
 <table>
 <tr>
 <td class="icon">
-<div class="title">Warning</div>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -4435,7 +4456,7 @@ The use of <code>hasComponent</code> relationships is complementary to the use o
 <div class="paragraph">
 <p>Namespaces are a reference to the specific vocabulary that a value used in a BEL Term comes from. The examples in this documentation use the following set of BEL Namespaces (<a href="http://wiki.openbel.org/display/BELNA/Namespaces+Overview">v20131211</a>) to reference external ontologies and vocabularies:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
 <col style="width: 50%;">
@@ -6302,7 +6323,7 @@ SET Anatomy = "Pulmonary Artery"</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -6323,7 +6344,7 @@ SET Anatomy = "Pulmonary Artery"</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -6568,7 +6589,7 @@ While both representations are accurate, the second version is better suited to 
 <table>
 <tr>
 <td class="icon">
-<div class="title">Important</div>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -6821,7 +6842,7 @@ In this example, DUSP6 RNA is observed to be upregulated in immortalized human b
 <table>
 <tr>
 <td class="icon">
-<div class="title">Important</div>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -6941,7 +6962,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 <table>
 <tr>
 <td class="icon">
-<div class="title">Important</div>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -6983,7 +7004,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 <table>
 <tr>
 <td class="icon">
-<div class="title">Important</div>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -7008,7 +7029,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 <table>
 <tr>
 <td class="icon">
-<div class="title">Warning</div>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -7019,7 +7040,7 @@ For example: "Akt-phosphorylated FOXO interacts with the ubiquitin ligase Skp2 a
 </table>
 </div>
 <div class="sect5">
-<h6 id="__strong_exception_modified_histones_bound_to_the_promoter_of_a_specific_gene_strong"><strong>Exception – modified histones bound to the promoter of a specific gene</strong></h6>
+<h6 id="_exception_modified_histones_bound_to_the_promoter_of_a_specific_gene"><strong>Exception – modified histones bound to the promoter of a specific gene</strong></h6>
 <div class="paragraph">
 <p>One exception to our general practice of not specifying protein modifications within complex abundances is the interaction of specific modified histones with the promoter of a specific gene. In this example, cigarette smoke is observed to increase H3K27me3 levels at the DKK1 promoter (<a href="http://www.ncbi.nlm.nih.gov/pubmed?term=19351856">PMID 19351856</a>).</p>
 </div>
@@ -7196,7 +7217,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 <table>
 <tr>
 <td class="icon">
-<div class="title">Warning</div>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -7378,7 +7399,7 @@ act(p(HGNC:SOD1), ma(cat)) =&gt; a(CHEBI:"hydrogen peroxide")</pre>
 <div id="footer">
 <div id="footer-text">
 Version 2.0<br>
-Last updated 2018-05-27 07:22:23 EDT
+Last updated 2019-07-21 16:48:10 +0200
 </div>
 </div>
 </body>

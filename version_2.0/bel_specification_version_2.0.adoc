@@ -351,16 +351,16 @@ Additional modification types can be requested as needed, or an external vocabul
 |====
 | **Label** | **Synonym**
 | Ac | acetylation
-| ADPRib | ADP-ribosylation|ADP-rybosylation|adenosine diphosphoribosyl
+| ADPRib | ADP-ribosylation, ADP-rybosylation, adenosine diphosphoribosyl
 | Farn | farnesylation
 | Gerger | geranylgeranylation
 | Glyco | glycosylation
 | Hy | hydroxylation
-| ISG | ISGylation|ISG15-protein conjugation
+| ISG | ISGylation, ISG15-protein conjugation
 | Me | methylation
-| Me1 | monomethylation|mono-methylation
-| Me2 | dimethylation|di-methylation
-| Me3 | trimethylation|tri-methylation
+| Me1 | monomethylation, mono-methylation
+| Me2 | dimethylation, di-methylation
+| Me3 | trimethylation, tri-methylation
 | Myr | myristoylation
 | Nedd | neddylation
 | NGlyco | N-linked glycosylation
@@ -368,9 +368,9 @@ Additional modification types can be requested as needed, or an external vocabul
 | OGlyco | O-linked glycosylation
 | Palm | palmitoylation
 | Ph | phosphorylation
-| Sulf | sulfation|sulphation|sulfur addition|sulphur addition|sulfonation|sulphonation
+| Sulf | sulfation, sulphation, sulfur addition, sulphur addition, sulfonation, sulphonation
 | Sumo | SUMOylation
-| Ub | ubiquitination|ubiquitinylation|ubiquitylation
+| Ub | ubiquitination, ubiquitinylation, ubiquitylation
 | UbK48 | Lysine 48-linked polyubiquitination
 | UbK63 | Lysine 63-linked polyubiquitination
 | UbMono | monoubiquitination
